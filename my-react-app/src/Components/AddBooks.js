@@ -27,17 +27,28 @@ const AddBooks = () => {
 
   const getData = () => {
     axios
-      .get(`https://localhost:7200/api/Book`)
+      .get(`https://localhost:7061/api/Book`)
       .then((result) => {
         setData(result.data);
       })
       .catch((error) => {
         toast.error("Failed to get data: " + error.message);
       });
+    axios
+      .get(
+        `https://localhost:7061/api/PublishingHouses
+`
+      )
+      .then((result) => {
+        setPublishingHouse(result.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get publishing houses: " + error.message);
+      });
   };
 
   const handleSave = () => {
-    const url = `https://localhost:7200/api/Book`;
+    const url = `https://localhost:7061/api/Book`;
     const data = {
       ISBN: isbn,
       Image: image,
@@ -134,8 +145,11 @@ const AddBooks = () => {
               <option value="">Select Publishing House</option>
               {Array.isArray(publishingHouse) &&
                 publishingHouse.map((publishingHouse) => (
-                  <option key={publishingHouse.id} value={publishingHouse.id}>
-                    {publishingHouse.name}
+                  <option
+                    key={publishingHouse.publishingHouseId}
+                    value={publishingHouse.publishingHouseId}
+                  >
+                    {publishingHouse.houseName}
                   </option>
                 ))}
             </Form.Control>

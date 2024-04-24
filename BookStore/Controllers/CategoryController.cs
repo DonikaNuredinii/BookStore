@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Models;
+using BookStore.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -9,10 +9,10 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly CategoriesContext _categoriesContext;
+        private readonly MyContext _categoriesContext;
 
 
-        public CategoryController(CategoriesContext categoriesContext)
+        public CategoryController(MyContext categoriesContext)
         {
             _categoriesContext = categoriesContext;
 
