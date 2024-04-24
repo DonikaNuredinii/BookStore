@@ -7,7 +7,7 @@ import Sidebar from "./Components/Sidebar";
 // import Books from "./Dashboard-Pages/Books";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// import Navbar from "./Components/Navbar";
+import Navbar from "./Components/Navbar";
 // import AddBooks from "./Components/AddBooks";
 // import AddCategories from "./Components/AddCategories";
 // import Categories from "./Dashboard-Pages/Categories";
@@ -17,7 +17,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import AddAccessories from "./Components/AddAccessories";
 // import AddAuthors from "./Components/AddAuthors";
 // import Authors from "./Dashboard-Pages/Authors";
-
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -36,7 +35,7 @@ function App() {
         )}
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
-          {/* <Navbar Toggle={Toggle} /> */}
+          <Navbar Toggle={Toggle} />
           <Routes>
             {/* <Route path="/" element={<Home Toggle={Toggle} />} /> */}
             {/* <Route path="/add-staff" element={<AddStaff />} />
