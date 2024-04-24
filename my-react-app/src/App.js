@@ -4,13 +4,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import Sidebar from "./Components/Sidebar";
 // import Home from "./Home";
-// import Books from "./Dashboard-Pages/Books";
+import Books from "./Dashboard-Pages/Books";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-// import AddBooks from "./Components/AddBooks";
- import AddCategories from "./Components/AddCategories";
- import Categories from "./Dashboard-Pages/Categories";
+import AddBooks from "./Components/AddBooks";
+import AddCategories from "./Components/AddCategories";
+import Categories from "./Dashboard-Pages/Categories";
 // import AddStaff from "./Components/AddStaff";
 // import Staff from "./Dashboard-Pages/Staff";
 // import Accessories from "./Dashboard-Pages/Accessories";
@@ -37,18 +37,18 @@ function App() {
         <div className="col">
           <Navbar Toggle={Toggle} />
           <Routes>
-          <Route path="/add-categories" element={<AddCategories />} />
+            <Route path="/add-categories" element={<AddCategories />} />
 
-          <Route path="/Categories" element={<Categories />} />
+            <Route path="/Categories" element={<Categories />} />
             {/* <Route path="/" element={<Home Toggle={Toggle} />} /> */}
-            {/* <Route path="/add-staff" element={<AddStaff />} />
+            {/* <Route path="/add-staff" element={<AddStaff />} /> */}
             <Route path="/add-books" element={<AddBooks />} />
-            <Route path="/add-Accessories" element={<AddAccessories />} />
+            {/* <Route path="/add-Accessories" element={<AddAccessories />} />
             <Route path="/add-Authors" element={<AddAuthors />} />
 
-            <Route path="/Staff" element={<Staff />} />
+            <Route path="/Staff" element={<Staff />} /> */}
             <Route path="/Books" element={<Books />} />
-            <Route path="/Authors" element={<Authors />} />
+            {/* <Route path="/Authors" element={<Authors />} />
             <Route path="/Accessories" element={<Accessories />} /> */}
             {/* <Route path="/Authors" element={<Authors />} /> */}
           </Routes>
