@@ -60,7 +60,7 @@ const User = () => {
     handleShow();
     setEditUserID(UserID);
     axios
-        .get(`https://localhost:7061/api/Book/${UserID}`)
+        .get(`https://localhost:7061/api/User/${UserID}`)
         .then((result) => {
           setEditFirstName(result.data.firstName);
           setEditLastName(result.data.lastName);
@@ -72,7 +72,7 @@ const User = () => {
         })
 
         .catch((error) => {
-          toast.error("Failed to get  Book: " + error.message);
+          toast.error("Failed to get  User: " + error.message);
         });
     };
 
@@ -82,7 +82,7 @@ const User = () => {
     const handleDelete = (UserID) => {
     if (window.confirm("Are you sure you want to delete this User") == true) {
       axios
-        .delete(`https://localhost:7061/api/Book/${UserID}`)
+        .delete(`https://localhost:7061/api/User/${UserID}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("User has been deleted");
@@ -117,7 +117,7 @@ const User = () => {
             toast.success("User has been updated");
         })
         .catch((error) => {
-            toast.error("Failed to edit Book: " + error.message);
+            toast.error("Failed to edit User: " + error.message);
         });
     };
     const clear = () => {
@@ -133,7 +133,7 @@ const User = () => {
         <Fragment>
           <ToastContainer></ToastContainer>
           <div className="add-button">
-            <Link to="/add-books">
+            <Link to="/add-user">
               <Button variant="dark" className="btn-add">
                 Add
               </Button>

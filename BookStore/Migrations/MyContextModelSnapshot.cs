@@ -191,7 +191,7 @@ namespace BookStore.Migrations
 
                     b.HasIndex("RolesID");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>

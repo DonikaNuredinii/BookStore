@@ -19,7 +19,7 @@ function Sidebar() {
           <i className="bi bi-house fs-5 me-3"></i>
           <span>Home</span>
         </Link>
-        <Link to="./Staff" className="list-group-item py-2">
+        <Link to="./User" className="list-group-item py-2">
           <i class="bi bi-person-badge fs-5 me-3"></i>
           <span>User</span>
         </Link>

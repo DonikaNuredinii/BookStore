@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240512122051_User")]
-    partial class User
+    [Migration("20240512171751_Users")]
+    partial class Users
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -194,7 +194,7 @@ namespace BookStore.Migrations
 
                     b.HasIndex("RolesID");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>

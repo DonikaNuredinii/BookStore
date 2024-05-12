@@ -13,6 +13,8 @@ const AddUser = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [roles, setRoles] = useState([]); // State for roles
+  const [selectedRole, setSelectedRole] = useState(""); // State for selected role
 
   const [data, setData] = useState([]);
 
@@ -23,22 +25,26 @@ const AddUser = () => {
   const getData = () => {
     axios
       .get(`https://localhost:7061/api/User`)
-      .then((result) => {
-        setData(result.data);
+      .then((userData) => {
+        setData(userData.data);
       })
-      .catch((error) => {
-        toast.error("Failed to get data: " + error.message);
+      .catch((userError) => {
+        toast.error("Failed to get user data: " + userError.message);
       });
-
+  
     axios
-      .get(`https://localhost:7061/api/Roles`)
-      .then((result) => {
-
-      })
-      .catch((error) => {
-        toast.error("Failed to get roles: " + error.message);
-      });
+    .get(
+      `https://localhost:7061/api/Roles
+`
+    )
+    .then((result) => {
+      setRoles(result.data);
+    })
+    .catch((error) => {
+      toast.error("Failed to get roles: " + error.message);
+    });
   };
+  
 
   const handleSave = () => {
     const url = `https://localhost:7061/api/User`;
@@ -152,6 +158,7 @@ const AddUser = () => {
             />
           </Form.Group>
         </Col>
+        
       </Row>
       <Row>
         <Col>
