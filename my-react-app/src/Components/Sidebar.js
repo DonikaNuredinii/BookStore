@@ -21,7 +21,7 @@ function Sidebar() {
         </Link>
         <Link to="./Staff" className="list-group-item py-2">
           <i class="bi bi-person-badge fs-5 me-3"></i>
-          <span>Stafi</span>
+          <span>User</span>
         </Link>
         <Link to="./Books" className="list-group-item py-2 ">
           <i className="bi bi-book fs-5 me-3"></i>

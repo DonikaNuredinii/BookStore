@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BookStore"
+    "\\BookStore",
+    "\\BookStore\\Controllers",
+    "\\BookStore\\Migrations",
+    "\\BookStore\\Models"
   ],
-  "SelectedNode": "\\BookStore\\appsettings.json",
+  "SelectedNode": "\\BookStore\\Models\\MyContext.cs",
   "PreviewInSolutionExplorer": false
 }
