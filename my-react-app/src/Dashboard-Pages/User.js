@@ -1,4 +1,4 @@
-import React, { useState,useEffect,Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
@@ -7,127 +7,137 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const User = () => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const [editUserID, setEditUserID] = useState("");
-    const [editFirstName, setEditFirstName] = useState("");
-    const [editLastName, setEditLastName] = useState("");
-    const [editPhoneNumber, setEditPhoneNumber] = useState("");
-    const [editEmail, setEditEmail] = useState("");
-    const [editUsername, setEditUsername] = useState("");
-    const [editPassword, setEditPassword] = useState("");
+  const [editUserId, seteditUserId] = useState("");
+  const [editFirstName, setEditFirstName] = useState("");
+  const [editLastName, setEditLastName] = useState("");
+  const [editPhoneNumber, setEditPhoneNumber] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editUsername, setEditUsername] = useState("");
+  const [editPassword, setEditPassword] = useState("");
+  const [editRoles, setEditRoles] = useState("");
 
-    const [roles, setRoles] = useState([]); 
-    const [editRolesHouse, setEditRoles] = useState(""); 
-
-
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        getData();
-    }, []);
-
-    const getData = () => {
-        axios
-        .get(`https://localhost:7061/api/User`)
-        .then((result) => {
-          setData(result.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-        axios
-        .get(
-            `https://localhost:7061/api/Roles`
-        )
-        .then((result) => {
-          setRoles(result.data);
-          console.log("Roles Data:", result.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching roles:", error);
-          toast.error("Failed to get roles: " + error.message);
-        });
-    };
+  const [roles, setRoles] = useState([]);
+  const [data, setData] = useState([]);
 
 
-     //edit
-    const handleEdit = (UserID) => {
-    handleShow();
-    setEditUserID(UserID);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
     axios
-        .get(`https://localhost:7061/api/User/${UserID}`)
-        .then((result) => {
-          setEditFirstName(result.data.firstName);
-          setEditLastName(result.data.lastName);
-          setEditPhoneNumber(result.data.phoneNumber);
-          setEditEmail(result.data.email);
-          setEditUsername(result.data.username);
-          setEditPassword(result.data.password);
+      .get(`https://localhost:7061/api/User`)
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-        })
+    axios
+      .get(
+        `https://localhost:7061/api/Roles
+`
+      )
+      .then((result) => {
+        setRoles(result.data);
+        console.log("Roles Data:", result.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching Roles:", error);
+        toast.error("Failed to get roles: " + error.message);
+      });
+  };
 
-        .catch((error) => {
-          toast.error("Failed to get  User: " + error.message);
-        });
-    };
+//edit
+  
+const handleEdit = (UserId) => {
+  console.log("UserID:", UserId); 
+  if (!UserId) {
+    toast.error("UserID is not valid");
+    return;
+  }
+
+  handleShow();
+  seteditUserId(UserId);
+  axios
+    .get(`https://localhost:7061/api/User/${UserId}`)
+    .then((result) => {
+      const userData = result.data;
+      setEditFirstName(userData.firstName);
+      setEditLastName(userData.lastName);
+      setEditPhoneNumber(userData.phoneNumber);
+      setEditEmail(userData.email);
+      setEditUsername(userData.username);
+      setEditPassword(userData.password);
+      setEditRoles(userData.roles); 
+      seteditUserId(UserId);
+    })
+    .catch((error) => {
+      toast.error("Failed to get User: " + error.message);
+    });
+};
 
 
-    //delete
-
-    const handleDelete = (UserID) => {
-    if (window.confirm("Are you sure you want to delete this User") == true) {
+  const handleDelete = (UserId) => {
+    console.log("UserID before delete:", UserId);
+    if (window.confirm("Are you sure you want to delete this User?")) {
       axios
-        .delete(`https://localhost:7061/api/User/${UserID}`)
+        .delete(`https://localhost:7061/api/User/${UserId}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("User has been deleted");
+            getData(); 
           }
         })
         .catch((error) => {
           toast.error("Failed to delete User: " + error.message);
         });
     }
-    };
+  };
 
-
-    const handleUpdate = () => {
-        const url = `https://localhost:7061/api/User/${editUserID}`;
-        const data = {
-          UserID: editUserID,
-          FirstName: editFirstName,
-          LastNme: editLastName,
-          PhoneNumber: editPhoneNumber,
-          Email: editEmail,
-          Username: editUsername,
-          Password: editPassword,
-
-          
-        };
-        axios
-        .put(url, data)
-        .then((result) => {
-            handleClose();
-            getData();
-            clear();
-            toast.success("User has been updated");
-        })
-        .catch((error) => {
-            toast.error("Failed to edit User: " + error.message);
-        });
+  const handleUpdate = async () => {
+    const url = `https://localhost:7061/api/User/${editUserId}`;
+  
+    const userData = {
+      UserID: editUserId,
+      FirstName: editFirstName,
+      LastName: editLastName,
+      PhoneNumber: editPhoneNumber,
+      Email: editEmail,
+      Username: editUsername,
+      Password: editPassword,
+      Roles: editRoles,
     };
-    const clear = () => {
-        setEditFirstName("");
-        setEditLastName("");
-        setEditPhoneNumber("");
-        setEditEmail("");
-        setEditUsername("");
-        setEditPassword("");
-    };
+  
+    axios
+      .put(url, userData) 
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success("User has been updated");
+      })
+      .catch((error) => {
+        toast.error("Failed to edit User: " + error.message);
+      });
+  };
+  
+
+  const clear = () => {
+    setEditFirstName("");
+    setEditLastName("");
+    setEditPhoneNumber("");
+    setEditEmail("");
+    setEditUsername("");
+    setEditPassword("");
+    setEditRoles("");
+  };
 
     return (
         <Fragment>
@@ -155,7 +165,7 @@ const User = () => {
               {data && data.length > 0
                 ? data.map((item, index) => {
                     return (
-                      <tr key={index}>
+                      <tr key={item.UserID}>
                         <td>{index + 1}</td>
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
@@ -205,7 +215,7 @@ const User = () => {
                        type="text"
                        placeholder="ID"
                        name="id"
-                       value={editUserID}
+                       value={editUserId}
                        readOnly
                      />
                    </Form.Group>
@@ -294,18 +304,18 @@ const User = () => {
                   <Form.Label>Roles</Form.Label>
                   <Form.Control
                     as="select"
-                    value={editRolesHouse}
+                    value={editRoles}
                     onChange={(e) => setEditRoles(e.target.value)}
                   >
                     <option value="">Select Role</option>
                     {roles &&
                       roles.length > 0 &&
-                      roles.map((rolesItem) => (
+                      roles.map((roleItem) => (
                         <option
-                          key={rolesItem.roleID}
-                          value={rolesItem.roleID}
+                          key={roleItem.RoleID}
+                          value={roleItem.RoleID}
                         >
-                          {rolesItem.roleName}
+                          {roleItem.Rolename}
                         </option>
                       ))}
                   </Form.Control>
@@ -332,12 +342,7 @@ const User = () => {
             </Modal.Footer>
           </Modal>
         </Fragment>
-      );
-    };
+  );
+};
+  
     export default User;
-    
-    
-
-      
-
-

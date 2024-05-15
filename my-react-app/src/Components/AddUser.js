@@ -3,8 +3,7 @@ import { Row, Col, Form } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "react-bootstrap"; 
-
+import { Button } from "react-bootstrap";
 
 const AddUser = () => {
   const [firstName, setFirstName] = useState("");
@@ -13,41 +12,8 @@ const AddUser = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [roles, setRoles] = useState([]); // State for roles
-  const [selectedRole, setSelectedRole] = useState(""); // State for selected role
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios
-      .get(`https://localhost:7061/api/User`)
-      .then((userData) => {
-        setData(userData.data);
-      })
-      .catch((userError) => {
-        toast.error("Failed to get user data: " + userError.message);
-      });
-  
-    axios
-    .get(
-      `https://localhost:7061/api/Roles
-`
-    )
-    .then((result) => {
-      setRoles(result.data);
-    })
-    .catch((error) => {
-      toast.error("Failed to get roles: " + error.message);
-    });
-  };
-  
 
   const handleSave = () => {
-    const url = `https://localhost:7061/api/User`;
     const userData = {
       FirstName: firstName,
       LastName: lastName,
@@ -58,28 +24,27 @@ const AddUser = () => {
     };
 
     axios
-      .post(url, userData)
-      .then((result) => {
-        getData();
-        clear();
+      .post("https://localhost:7061/api/User", userData)
+      .then((response) => {
+        // Handle successful response
+        console.log("User added successfully:", response.data);
+        clearForm();
         toast.success("User has been added");
       })
       .catch((error) => {
+        // Handle error response
+        console.error("Failed to add user:", error);
         toast.error("Failed to add user: " + error.message);
       });
   };
 
-  const clear = () => {
+  const clearForm = () => {
     setFirstName("");
     setLastName("");
     setPhoneNumber("");
     setEmail("");
     setUsername("");
     setPassword("");
-  };
-
-  const handleClear = () => {
-    clear();
   };
 
   return (
@@ -151,21 +116,20 @@ const AddUser = () => {
           <Form.Group controlId="formPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              type="text"
+              type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
         </Col>
-        
       </Row>
       <Row>
         <Col>
           <Button variant="primary" onClick={handleSave}>
             Save
           </Button>
-          <Button variant="secondary" onClick={handleClear}>
+          <Button variant="secondary" onClick={clearForm}>
             Clear
           </Button>
         </Col>

@@ -5,7 +5,9 @@ namespace BookStore.Models
 {
     public class User
     {
+        
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
