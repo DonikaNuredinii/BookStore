@@ -15,6 +15,7 @@ namespace BookStore.Models
         public DbSet<CategoryBook> categoryBooks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
+        public DbSet<Stock> Stock { get; set; }
 
     }
 }

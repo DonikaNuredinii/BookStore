@@ -13,6 +13,22 @@ const AddUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    axios
+      .get(`https://localhost:7061/api/User`)
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get data: " + error.message);
+      });
+  };
+
   const handleSave = () => {
     const userData = {
       FirstName: firstName,
@@ -24,7 +40,7 @@ const AddUser = () => {
     };
 
     axios
-      .post("https://localhost:7061/api/User", userData)
+      .post(`https://localhost:7061/api/User`, userData)
       .then((response) => {
         // Handle successful response
         console.log("User added successfully:", response.data);
@@ -32,8 +48,8 @@ const AddUser = () => {
         toast.success("User has been added");
       })
       .catch((error) => {
-        // Handle error response
         console.error("Failed to add user:", error);
+        console.log("Detailed error response:", error.response);
         toast.error("Failed to add user: " + error.message);
       });
   };

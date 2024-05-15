@@ -45,6 +45,17 @@ const AddBooks = () => {
       .catch((error) => {
         toast.error("Failed to get publishing houses: " + error.message);
       });
+    axios
+      .get(
+        `https://localhost:7061/api/Stock
+`
+      )
+      .then((result) => {
+        setStock(result.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get Stock: " + error.message);
+      });
   };
 
   const handleSave = () => {
