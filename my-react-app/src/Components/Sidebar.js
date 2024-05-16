@@ -31,7 +31,7 @@ function Sidebar() {
           <i class="bi bi-grid-1x2 fs-5 me-3"></i>
           <span>Kategorite</span>
         </Link>
-        <Link to="./Authors" className="list-group-item py-2">
+        <Link to="./Author" className="list-group-item py-2">
           <i class="bi bi-vector-pen fs-5 me-3"></i>
           <span>Autoret</span>
         </Link>

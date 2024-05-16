@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
 namespace BookStore.Models
 {
@@ -8,10 +8,7 @@ namespace BookStore.Models
 
         public int Quantity { get; set;}
 
-        public int BookID { get; set; }
-        [ForeignKey("BookID")]
-
-        public Book Book { get; set; }  
+  
     }
 
 }

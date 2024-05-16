@@ -11,32 +11,26 @@ import axios from "axios";
 const Books = () => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [editBookId, seteditBookId] = useState("");
   const [editISBN, setEditISBN] = useState("");
   const [editImage, setEditImage] = useState("");
   const [editTitle, setEditTitle] = useState("");
-  const [editAuthors, setEditAuthors] = useState("");
+  const [editAuthors, setEditAuthors] = useState([]);
   const [editPublicationDate, setEditPublicationDate] = useState("");
   const [editPageNumber, setEditPageNumber] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
-  const [editStock, setEditStock] = useState("");
+  const [editStock, setEditStock] = useState([]);
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
-  const [editPublishingHouse, setEditPublishingHouse] = useState("");
-
-  const [authors, setAuthors] = useState([]);
-  const [stocks, setStock] = useState([]);
-  const [publishingHouse, setPublishingHouse] = useState([]);
+  const [editPublishingHouse, seteditPublishingHouse] = useState([]);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
   }, []);
   const getData = () => {
+    console.log(data);
     axios
       .get(`https://localhost:7061/api/Book`)
       .then((result) => {
@@ -45,51 +39,51 @@ const Books = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    axios
-      .get(
-        `https://localhost:7061/api/PublishingHouses
-`
-      )
-      .then((result) => {
-        setPublishingHouse(result.data);
-        console.log("Publishing House Data:", result.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching publishing houses:", error);
-        toast.error("Failed to get publishing houses: " + error.message);
-      });
   };
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   //edit
-  const handleEdit = (BookId) => {
+  const handleEdit = (bookID) => {
     handleShow();
-    seteditBookId(BookId);
-    axios
-      .get(`https://localhost:7061/api/Book/${BookId}`)
-      .then((result) => {
-        setEditISBN(result.data.isbn);
-        setEditImage(result.data.image);
-        setEditPublicationDate(result.data.publicationDate);
-        setEditPageNumber(result.data.pageNumber);
-        setEditDescription(result.data.description);
-        setEditPrice(result.data.price);
-        setEditDateOfAddition(result.data.dateOfadition);
-        setEditType(result.data.type);
-        seteditBookId(BookId);
-      })
 
+    console.log("Received BookID:", editBookId);
+    axios
+      .get(`https://localhost:7061/api/Book/${editBookId}`)
+      .then((result) => {
+        const bookData = result.data;
+        seteditBookId(bookID);
+        setEditISBN(bookData.isbn);
+        setEditImage(bookData.image);
+        setEditPublicationDate(bookData.publicationDate);
+        setEditPageNumber(bookData.pageNumber);
+        setEditDescription(bookData.description);
+        setEditPrice(bookData.price);
+        setEditDateOfAddition(bookData.dateOfadition);
+        setEditType(bookData.type);
+        if (bookData.bookAuthors) {
+          setEditAuthors([bookData.bookAuthors[0].author.name]);
+        }
+
+        if (bookData.stock) {
+          setEditStock(bookData.stock.quantity);
+        }
+
+        if (bookData.publishingHouse) {
+          seteditPublishingHouse(bookData.publishingHouse.houseName);
+        }
+      })
       .catch((error) => {
-        toast.error("Failed to get  Book: " + error.message);
+        toast.error("Failed to get Book: " + error.message);
       });
   };
 
   //delete
 
-  const handleDelete = (BookId) => {
+  const handleDelete = (bookID) => {
     if (window.confirm("Are you sure you want to delete this Book") == true) {
       axios
-        .delete(`https://localhost:7061/api/Book/${BookId}`)
+        .delete(`https://localhost:7061/api/Book/${bookID}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Book has been deleted");
@@ -104,11 +98,11 @@ const Books = () => {
   const handleUpdate = () => {
     const url = `https://localhost:7061/api/Book/${editBookId}`;
     const data = {
-      BookId: editBookId,
+      BookID: editBookId,
       ISBN: editISBN,
       Image: editImage,
       Title: editTitle,
-      Authors: editAuthors,
+      Author: editAuthors,
       PublishingHouse: editPublishingHouse,
       PublicationDate: editPublicationDate,
       PageNumber: editPageNumber,
@@ -135,7 +129,7 @@ const Books = () => {
     setEditImage("");
     setEditTitle("");
     setEditAuthors("");
-    setEditPublishingHouse("");
+    seteditPublishingHouse("");
     setEditPublicationDate("");
     setEditPageNumber("");
     setEditDescription("");
@@ -185,27 +179,36 @@ const Books = () => {
                       <img src={item.image} alt="Book Cover" />
                     </td>
                     <td>{item.title}</td>
-                    <td>{item.houseName}</td>
-                    <td>{authors}</td>
+
+                    <td>
+                      {item.bookAuthors
+                        .map((author) => author.author.name)
+                        .join(", ")}
+                    </td>
+                    <td>
+                      {item.publishingHouse
+                        ? item.publishingHouse.houseName
+                        : ""}
+                    </td>
                     <td>{item.publicationDate}</td>
                     <td>{item.pageNumber}</td>
                     <td>{item.price}</td>
                     <td>{item.description}</td>
                     <td>{item.dateOfadition}</td>
                     <td>{item.type}</td>
-                    <td>{stocks}</td>
+                    <td>{item.stock ? item.stock.quantity : "-"}</td>
                     <td colSpan={2} className="btn">
                       <Button
                         variant="outline-dark"
                         className="btn-edit"
-                        onClick={() => handleEdit(item.BookId)}
+                        onClick={() => handleEdit(item.BookID)}
                       >
                         Edit
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
-                        onClick={() => handleDelete(item.BookId)}
+                        onClick={() => handleDelete(item.BookID)}
                       >
                         Delete
                       </Button>
@@ -284,12 +287,12 @@ const Books = () => {
                   <Form.Control
                     as="select"
                     value={editPublishingHouse}
-                    onChange={(e) => setEditPublishingHouse(e.target.value)}
+                    onChange={(e) => seteditPublishingHouse(e.target.value)}
                   >
                     <option value="">Select Publishing House</option>
-                    {publishingHouse &&
-                      publishingHouse.length > 0 &&
-                      publishingHouse.map((publishingHouseItem) => (
+                    {editPublishingHouse &&
+                      editPublishingHouse.length > 0 &&
+                      editPublishingHouse.map((publishingHouseItem) => (
                         <option
                           key={publishingHouseItem.id}
                           value={publishingHouseItem.id}
@@ -317,9 +320,9 @@ const Books = () => {
                       )
                     }
                   >
-                    {authors.map((author) => (
-                      <option key={author.id} value={author.id}>
-                        {author.name}
+                    {editAuthors.map((editAuthors) => (
+                      <option key={editAuthors.id} value={editAuthors.id}>
+                        {editAuthors.name}
                       </option>
                     ))}
                   </Form.Control>
@@ -391,7 +394,7 @@ const Books = () => {
                     onChange={(e) => setEditStock(e.target.value)}
                   >
                     <option value="">Select Stock</option>
-                    {stocks.map((stock) => (
+                    {editStock.map((stock) => (
                       <option key={stock.id} value={stock.id}>
                         {stock.amount}
                       </option>

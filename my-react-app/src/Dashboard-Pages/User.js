@@ -52,17 +52,17 @@ const User = () => {
 
   //edit
 
-  const handleEdit = (UserId) => {
-    console.log("UserID:", UserId);
-    if (!UserId) {
+  const handleEdit = (userId) => {
+    console.log("UserID:", userId);
+    if (!userId) {
       toast.error("UserID is not valid");
       return;
     }
 
     handleShow();
-    seteditUserId(UserId);
+    seteditUserId(userId);
     axios
-      .get(`https://localhost:7061/api/User/${UserId}`)
+      .get(`https://localhost:7061/api/User/${userId}`)
       .then((result) => {
         const userData = result.data;
         setEditFirstName(userData.firstName);
@@ -72,18 +72,18 @@ const User = () => {
         setEditUsername(userData.username);
         setEditPassword(userData.password);
         setEditRoles(userData.roles);
-        seteditUserId(UserId);
+        seteditUserId(userId);
       })
       .catch((error) => {
         toast.error("Failed to get User: " + error.message);
       });
   };
 
-  const handleDelete = (UserId) => {
-    console.log("UserID before delete:", UserId);
+  const handleDelete = (userId) => {
+    console.log("UserID before delete:", userId);
     if (window.confirm("Are you sure you want to delete this User?")) {
       axios
-        .delete(`https://localhost:7061/api/User/${UserId}`)
+        .delete(`https://localhost:7061/api/User/${userId}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("User has been deleted");
@@ -153,13 +153,14 @@ const User = () => {
             <th>Email</th>
             <th>Username</th>
             <th>Password</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data && data.length > 0
             ? data.map((item, index) => {
                 return (
-                  <tr key={item.UserID}>
+                  <tr key={item.userID}>
                     <td>{index + 1}</td>
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
@@ -172,14 +173,14 @@ const User = () => {
                       <Button
                         variant="outline-dark"
                         className="btn-edit"
-                        onClick={() => handleEdit(item.UserID)}
+                        onClick={() => handleEdit(item.userID)}
                       >
                         Edit
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
-                        onClick={() => handleDelete(item.UserID)}
+                        onClick={() => handleDelete(item.userID)}
                       >
                         Delete
                       </Button>

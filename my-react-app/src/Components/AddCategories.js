@@ -7,9 +7,8 @@ import { Link } from "react-router-dom";
 
 const AddCategories = () => {
   const [genre, setGenre] = useState("");
-  const [categoryDescription, setCategoryDescription] = useState(""); 
-  const [creationDate, setCreationDate] = useState("");
-
+  const [categoryDescription, setCategoryDescription] = useState("");
+  const [creatioDate, setCreationDate] = useState("");
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -18,7 +17,7 @@ const AddCategories = () => {
 
   const getData = () => {
     axios
-      .get(`https://localhost:7200/api/Category`)
+      .get(`https://localhost:7061/api/Category`)
       .then((result) => {
         setData(result.data);
       })
@@ -27,11 +26,11 @@ const AddCategories = () => {
       });
   };
   const handleSave = () => {
-    const url = "https://localhost:7200/api/Category";
+    const url = "https://localhost:7061/api/Category";
     const data = {
-     Genre: genre,
-    CategoryDescription: categoryDescription,
-    CreationDate: creationDate
+      Genre: genre,
+      CategoryDescription: categoryDescription,
+      CreatioDate: creatioDate,
     };
     axios
       .post(url, data)
@@ -82,9 +81,7 @@ const AddCategories = () => {
               name="categoryDescription"
               value={categoryDescription}
               onChange={(e) => setCategoryDescription(e.target.value)}
-            >
-             
-            </Form.Control>
+            ></Form.Control>
           </Form.Group>
         </Col>
 
@@ -92,9 +89,9 @@ const AddCategories = () => {
           <Form.Group controlCategoryId="formCreationDate">
             <Form.Label>CreationDate</Form.Label>
             <Form.Control
-              type="text"
+              type="date"
               placeholder="Enter Creation Date"
-              value={creationDate}
+              value={creatioDate}
               onChange={(e) => setCreationDate(e.target.value)}
             />
           </Form.Group>

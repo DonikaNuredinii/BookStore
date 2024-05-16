@@ -4,6 +4,7 @@ using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20240516141817_Book")]
+    partial class Book
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,38 +24,6 @@ namespace BookStore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BookStore.Models.Author", b =>
-                {
-                    b.Property<int>("AuthorID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorID"));
-
-                    b.Property<string>("Awards")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Biography")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AuthorID");
-
-                    b.ToTable("Author");
-                });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>
                 {
@@ -112,29 +83,6 @@ namespace BookStore.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
-                {
-                    b.Property<int>("BookAuthorsID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookAuthorsID"));
-
-                    b.Property<int>("AuthorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookAuthorsID");
-
-                    b.HasIndex("AuthorID");
-
-                    b.HasIndex("BookID");
-
-                    b.ToTable("BookAuthors");
-                });
-
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -142,10 +90,6 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("CategoryDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatioDate")
                         .HasColumnType("datetime2");
@@ -293,25 +237,6 @@ namespace BookStore.Migrations
                     b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
-                {
-                    b.HasOne("BookStore.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany("BookAuthors")
-                        .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("BookStore.Models.CategoryBook", b =>
                 {
                     b.HasOne("BookStore.Models.Book", "Book")
@@ -340,11 +265,6 @@ namespace BookStore.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("BookStore.Models.Book", b =>
-                {
-                    b.Navigation("BookAuthors");
                 });
 #pragma warning restore 612, 618
         }

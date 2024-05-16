@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240515212425_stock")]
-    partial class stock
+    [Migration("20240516164245_Author")]
+    partial class Author
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,38 @@ namespace BookStore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("BookStore.Models.Author", b =>
+                {
+                    b.Property<int>("AuthorID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorID"));
+
+                    b.Property<string>("Awards")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Biography")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AuthorID");
+
+                    b.ToTable("Author");
+                });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>
                 {
@@ -63,6 +95,9 @@ namespace BookStore.Migrations
                     b.Property<int>("PublishingHouseId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -75,7 +110,32 @@ namespace BookStore.Migrations
 
                     b.HasIndex("PublishingHouseId");
 
+                    b.HasIndex("StockId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
+                {
+                    b.Property<int>("BookAuthorsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookAuthorsID"));
+
+                    b.Property<int>("AuthorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookAuthorsID");
+
+                    b.HasIndex("AuthorID");
+
+                    b.HasIndex("BookID");
+
+                    b.ToTable("BookAuthors");
                 });
 
             modelBuilder.Entity("BookStore.Models.Category", b =>
@@ -163,15 +223,10 @@ namespace BookStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockId"));
 
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("StockId");
-
-                    b.HasIndex("BookID");
 
                     b.ToTable("Stock");
                 });
@@ -226,7 +281,34 @@ namespace BookStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BookStore.Models.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("PublishingHouse");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
+                {
+                    b.HasOne("BookStore.Models.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.Book", "Book")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("BookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("BookStore.Models.CategoryBook", b =>
@@ -248,17 +330,6 @@ namespace BookStore.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("BookStore.Models.Stock", b =>
-                {
-                    b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("BookStore.Models.User", b =>
                 {
                     b.HasOne("BookStore.Models.Roles", "Roles")
@@ -268,6 +339,11 @@ namespace BookStore.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Book", b =>
+                {
+                    b.Navigation("BookAuthors");
                 });
 #pragma warning restore 612, 618
         }

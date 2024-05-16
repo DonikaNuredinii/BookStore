@@ -15,10 +15,13 @@ namespace BookStore.Models
         public int Price { get; set; }
         public DateTime DateOfadition { get; set; }
         public string Type { get; set; }
-        public int PublishingHouseId { get; set; }
-        [ForeignKey("PublishingHouseId")]
 
+        public int PublishingHouseId { get; set; }
+        public int StockId { get; set;}
+
+        public List<BookAuthors> BookAuthors { get; set; }
 
         public PublishingHouse PublishingHouse { get; set; }
+        public Stock Stock { get; set; }
     }
 }

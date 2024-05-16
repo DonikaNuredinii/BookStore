@@ -18,42 +18,58 @@ namespace WebApplication1.Controllers
 
 		}
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Book>>> getBooks()
-		{
-			if (_booksContext.Books == null)
-			{
-				return NotFound();
-			}
-			return await _booksContext.Books.ToListAsync();
-		}
-		[HttpGet("{BookID}")]
-		public async Task<ActionResult<Book>> GetBook(int BookID)
-		{
-			if (_booksContext.Books == null)
-			{
-				return NotFound();
-			}
-			var book = await _booksContext.Books.FindAsync(BookID);
-			if (book == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				return book;
-			}
-		}
-		[HttpPost]
-		public async Task<ActionResult<Book>> PostBook(Book book)
-		{
-			_booksContext.Books.Add(book);
-			await _booksContext.SaveChangesAsync();
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        {
+            var booksWithAuthors = await _booksContext.Books
+                .Include(b => b.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
+                .ToListAsync();
 
-			return CreatedAtAction(nameof(GetBook), new { BookID = book.BookID }, book);
-		}
+            var booksDTO = booksWithAuthors.Select(book => new Book
+            {
+                BookID = book.BookID,
+                ISBN = book.ISBN,
+
+            }).ToList();
+
+            return booksDTO;
+        }
+
+        [HttpGet("{BookID}")]
+        public async Task<ActionResult<Book>> GetBook(int BookID)
+        {
+            var book = await _booksContext.Books
+                .Include(b => b.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
+                .FirstOrDefaultAsync(b => b.BookID == BookID);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            // Create a DTO object with only the necessary properties
+            var bookDTO = new Book
+            {
+                BookID = book.BookID,
+                ISBN = book.ISBN,
+                // Add other properties as needed
+            };
+
+            return bookDTO;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Book>> PostBook(Book book)
+        {
+            _booksContext.Books.Add(book);
+            await _booksContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetBook), new { BookID = book.BookID }, book);
+        }
 
 
-		[HttpPut("{BookID}")]
+        [HttpPut("{BookID}")]
 		public async Task<ActionResult> PutBook(int BookID, Book book)
         {
 			if (BookID != book.BookID)
