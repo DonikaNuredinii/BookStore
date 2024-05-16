@@ -25,7 +25,7 @@ const Categories = () => {
 
     const getData = () => { 
         axios
-        .get('`https://localhost:7200/api/Category`')
+        .get("https://localhost:7200/api/Category")
         .then ((result) => {
             setData(result.data);
         })
@@ -35,24 +35,24 @@ const Categories = () => {
     };
 
     //edit
-    const handleEdit = (categoryId) => {
-        handleShow();
-        setEditCategoryId(categoryId);
-        axios.get('`https://localhost:7200/api/Category/${categoryId}`)')
-        .then((result) => {
-            setEditGenre(result.data.categoryId);
-            setEditCategoryDescription(result.data.categoryDescription);
-            setEditCreationDate(result.data.creationDate);
-            setEditCategoryId(categoryId);
-        })
-        .catch((error) => {
-            toast.error("Failed to get Category:" + error.message);
-        });
-    };
-
+   const handleEdit = (categoryId) => {
+    handleShow();
+    setEditCategoryId(categoryId);
+    axios
+    .get(`https://localhost:7200/api/Category/${categoryId}`)
+    .then((result) => {
+      setEditGenre(result.data.genre);
+      setEditCategoryDescription(result.data.categoryDescription);
+      setEditCreationDate(result.data.creationDate);
+    })
+    .catch((error) => {
+      toast.error("Failed to get Category: " + error.message);
+    });
+};
+  
     //delete
     const handleDelete = (categoryId) => {
-        if (window.confirm("Are you sure you want to delete this Category") == true) {
+        if (window.confirm("Are you sure you want to delete this Category") === true) {
             axios
             .delete(`https://localhost:7200/api/Category/${categoryId}`)
             .then((result) => {
@@ -67,7 +67,7 @@ const Categories = () => {
     };
     //update
     
-    const handleUpdate = () => {
+    const handleUpdate = (e) => {
             const url = `https://localhost:7200/api/Category/${editCategoryId}`;
             const data = {
                 categoryId : editCategoryId,
@@ -91,7 +91,9 @@ const Categories = () => {
     setEditGenre("");
     setEditCategoryDescription("");
     setEditCreationDate("");
-  };
+    setEditCategoryId("");  
+};
+
 
   return (
     <Fragment>
@@ -126,7 +128,7 @@ const Categories = () => {
                   <Button
                       variant="outline-dark"
                       className="btn-edit"
-                      onClick={() => handleEdit(item.categoryI)}
+                      onClick={() => handleEdit(item.categoryId)}
                     >
                       Edit
                     </Button>
