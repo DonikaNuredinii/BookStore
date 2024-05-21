@@ -6,8 +6,8 @@
 .sidebar {
   /* width: 250px; */
   height: 1900vh;
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 10px;
 }
 
 .list-group a {
@@ -119,9 +119,31 @@ nav {
   bottom: -5px;
   transition: all 0.3s ease-in-out;
 }
-.navbar-link.active {
-}
+
 .logo {
   width: 20%;
   height: 20%;
+}
+
+/* SearchBox.css */
+.search {
+  position: relative;
+  width: 300px;
+  margin: 20px auto;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 20px 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
 }
