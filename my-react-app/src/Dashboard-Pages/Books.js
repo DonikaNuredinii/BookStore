@@ -61,8 +61,10 @@ const Books = () => {
         setEditPrice(bookData.price);
         setEditDateOfAddition(bookData.dateOfadition);
         setEditType(bookData.type);
-        if (bookData.bookAuthors) {
+        if (bookData.bookAuthors && bookData.bookAuthors.length > 0) {
           setEditAuthors([bookData.bookAuthors[0].author.name]);
+        } else {
+          setEditAuthors([]);
         }
 
         if (bookData.stock) {
@@ -320,11 +322,12 @@ const Books = () => {
                       )
                     }
                   >
-                    {editAuthors.map((editAuthors) => (
-                      <option key={editAuthors.id} value={editAuthors.id}>
-                        {editAuthors.name}
-                      </option>
-                    ))}
+                    {editAuthors &&
+                      editAuthors.map((author) => (
+                        <option key={author.id} value={author.id}>
+                          {author.name}
+                        </option>
+                      ))}
                   </Form.Control>
                 </Form.Group>
               </Col>

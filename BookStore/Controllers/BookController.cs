@@ -17,56 +17,42 @@ namespace WebApplication1.Controllers
 			_booksContext = booksContext;
 
 		}
-		[HttpGet]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            var booksWithAuthors = await _booksContext.Books
-                .Include(b => b.BookAuthors)
-                    .ThenInclude(ba => ba.Author)
-                .ToListAsync();
-
-            var booksDTO = booksWithAuthors.Select(book => new Book
+            if (_booksContext.Books == null)
             {
-                BookID = book.BookID,
-                ISBN = book.ISBN,
-
-            }).ToList();
-
-            return booksDTO;
+                return NotFound();
+            }
+            return await _booksContext.Books.ToListAsync();
         }
 
         [HttpGet("{BookID}")]
         public async Task<ActionResult<Book>> GetBook(int BookID)
         {
-            var book = await _booksContext.Books
-                .Include(b => b.BookAuthors)
-                    .ThenInclude(ba => ba.Author)
-                .FirstOrDefaultAsync(b => b.BookID == BookID);
-
-            if (book == null)
+            if (_booksContext.Books == null)
             {
                 return NotFound();
             }
-
-            // Create a DTO object with only the necessary properties
-            var bookDTO = new Book
+            var Author = await _booksContext.Books.FindAsync(BookID);
+            if (Author == null)
             {
-                BookID = book.BookID,
-                ISBN = book.ISBN,
-                // Add other properties as needed
-            };
-
-            return bookDTO;
+                return NotFound();
+            }
+            else
+            {
+                return Author;
+            }
         }
-
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             _booksContext.Books.Add(book);
             await _booksContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBook), new { BookID = book.BookID }, book);
+            return CreatedAtAction(nameof(GetBooks), new { BookID = book.BookID }, book);
         }
+
 
 
         [HttpPut("{BookID}")]
