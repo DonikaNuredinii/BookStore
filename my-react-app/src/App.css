@@ -97,8 +97,22 @@
   margin-top: 2%;
   padding: 10px 30px;
 }
-nav {
-  /* background-color: #85b8cb; */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+.navbar-toggle {
+  display: none;
+}
+
+.navbar-menu.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 .navbar-link {
   color: #303539;
@@ -125,25 +139,71 @@ nav {
   height: 20%;
 }
 
-/* SearchBox.css */
-.search {
+.search-container {
+  display: flex;
+  align-items: center;
   position: relative;
-  width: 300px;
-  margin: 20px auto;
-}
-
-#search-input {
-  width: 100%;
-  padding: 10px 20px 10px 40px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  outline: none;
 }
 
 .search-icon {
   position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #aaa;
+  right: 10px;
+  color: #1d6a96;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.search-input {
+  display: none;
+  width: 0;
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  opacity: 0;
+  transition: width 5s ease-in-out, opacity 0.3s ease;
+}
+
+.search-container.expanded .search-input {
+  display: block;
+  width: 500px;
+  opacity: 1;
+}
+
+.search-active .navbar-menu {
+  display: none;
+}
+
+.navbar-toggle {
+  display: none; /* Hide toggle by default, adjust as needed for responsive design */
+}
+
+.navbar-toggle-icon {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Optional: Media query for responsiveness */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-active .navbar-menu {
+    display: none;
+  }
 }

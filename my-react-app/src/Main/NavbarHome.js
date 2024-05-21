@@ -26,11 +26,11 @@ const NavbarHome = () => {
       <div className="logo-container">
         <img src={logo} alt="Logo" className="logo" />
       </div>
-      <div className={`navbar-menu ${isOpen ? "open" : ""}`}>
+      <div className={`navbar-menu ${isSearchOpen ? "hidden" : ""}`}>
         <Link to="/" className="navbar-link active">
           Home
         </Link>
-        
+
         <Link to="/categories" className="navbar-link">
           Categories
         </Link>
@@ -40,29 +40,34 @@ const NavbarHome = () => {
         <Link to="/authors" className="navbar-link">
           Authors
         </Link>
-       <Link to="/about" className="navbar-link">
+        <Link to="/about" className="navbar-link">
           About
         </Link>
         <Link to="/giftcard" className="navbar-link">
           Gift card
         </Link>
         <Link to="/signup-login" className="navbar-link">
-          Sign Up & Log In
+          Account
         </Link>
-        <div className="search">
-        <IoIosSearch className="search-icon" />
-        <input
-        type="text"
-        id="search-input"
-        placeholder="Search..."
-        onChange={handleChange}
-      />
-    </div>
         <Link to="/Dashboard" className="navbar-link">
           Dashboard
         </Link>
-        
       </div>
+      <div className={`search-container ${isSearchOpen ? "expanded" : ""}`}>
+        <input
+          type="text"
+          id="search-input"
+          className={`search-input ${isSearchOpen ? "visible" : ""}`}
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={handleChange}
+        />
+        <IoIosSearch
+          className={`search-icon ${isSearchOpen ? "hidden" : ""}`}
+          onClick={toggleSearch}
+        />
+      </div>
+
       <div className="navbar-toggle" onClick={toggleMenu}>
         <span className="navbar-toggle-icon"></span>
         <span className="navbar-toggle-icon"></span>
