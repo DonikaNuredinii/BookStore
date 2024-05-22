@@ -137,7 +137,7 @@ const User = () => {
     <Fragment>
       <ToastContainer></ToastContainer>
       <div className="add-button">
-        <Link to="/add-user">
+        <Link to="../add-user">
           <Button variant="dark" className="btn-add">
             Add
           </Button>

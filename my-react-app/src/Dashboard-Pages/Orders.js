@@ -117,7 +117,7 @@ const Orders = () => {
     <Fragment>
       <ToastContainer></ToastContainer>
       <div className="add-button">
-        <Link to="/add-orders">
+        <Link to="../add-orders">
           <Button variant="dark" className="btn-add">
             Add Orders
           </Button>

@@ -100,7 +100,7 @@ const Categories = () => {
     <Fragment>
       <ToastContainer></ToastContainer>
       <div className="add-button">
-        <Link to="/add-categories">
+        <Link to="../add-categories">
           <Button variant="dark" className="btn-add">
             Add Category
           </Button>

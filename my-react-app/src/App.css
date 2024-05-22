@@ -207,3 +207,110 @@
     display: none;
   }
 }
+
+
+/* Home Page - section1 */
+
+.first-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: stretch;
+  color: white;
+}
+
+.left-part-s1 {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.left-part-s1 p{
+  color: #303539;
+  margin-top: 20px;
+  text-align:justify;
+}
+
+.right-part-s1 {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: left;
+
+}
+
+.img1-s1 {
+  width: 650px; 
+  height: 550px; 
+  position: relative;
+  animation-name: img1;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+.h1-s1{
+  margin-top: 50px;
+  color:#1d6a96;
+}
+
+.h2-s1{
+  color:#1d6a96;
+  font-style: italic;
+  font-weight: 100;
+}
+
+
+.right-part-s1 {
+  position: relative;
+}
+
+/* Second section */
+
+.second-section{
+  margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+  background-color:#303539;
+  height:600px;
+  flex: 1;
+  padding: 0 10px;
+}
+
+.second-section h1{
+  color: white;
+  font-weight: 100;
+  letter-spacing: 5px;
+  margin-top: 150px;
+  margin-bottom: 20px;
+}
+
+.second-section h3{
+  color: #1d6a96;
+  font-style: italic;
+  letter-spacing: 10px;
+  
+}
+
+.second-section p{
+  color: white;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 700px;
+  margin-top: 20px;
+}
+
+.custom-button {
+  padding: 10px 20px;
+  background-color: #1d6a96;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #0f4365;
+}

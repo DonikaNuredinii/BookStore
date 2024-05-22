@@ -145,7 +145,7 @@ const Books = () => {
     <Fragment>
       <ToastContainer></ToastContainer>
       <div className="add-button">
-        <Link to="/add-books">
+        <Link to="../add-books">
           <Button variant="dark" className="btn-add">
             Add
           </Button>
