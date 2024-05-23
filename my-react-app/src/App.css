@@ -99,7 +99,7 @@
 }
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .navbar-menu {
   display: flex;
@@ -142,6 +142,7 @@
 .search-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 
@@ -157,7 +158,7 @@
   display: none;
   width: 0;
   position: relative;
-  padding: 10px 40px 10px 20px;
+  padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 25px;
   outline: none;
@@ -176,7 +177,7 @@
 }
 
 .navbar-toggle {
-  display: none; /* Hide toggle by default, adjust as needed for responsive design */
+  display: none;
 }
 
 .navbar-toggle-icon {
@@ -208,7 +209,6 @@
   }
 }
 
-
 /* Home Page - section1 */
 
 .first-section {
@@ -218,6 +218,7 @@
   justify-content: space-around;
   align-content: stretch;
   color: white;
+  margin-top: 100px;
 }
 
 .left-part-s1 {
@@ -226,93 +227,164 @@
   width: 500px;
 }
 
-.left-part-s1 p{
+.left-part-s1 p {
   color: #303539;
   margin-top: 20px;
-  text-align:justify;
+  text-align: justify;
 }
 
 .right-part-s1 {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: left;
-
 }
 
 .img1-s1 {
-  width: 650px; 
-  height: 550px; 
+  width: 650px;
+  height: 550px;
   position: relative;
   animation-name: img1;
   animation-duration: 5s;
   animation-fill-mode: forwards;
 }
 
-.h1-s1{
+.h1-s1 {
   margin-top: 50px;
-  color:#1d6a96;
+  color: #1d6a96;
 }
 
-.h2-s1{
-  color:#1d6a96;
+.h2-s1 {
+  color: #1d6a96;
   font-style: italic;
   font-weight: 100;
 }
-
 
 .right-part-s1 {
   position: relative;
 }
-
 /* Second section */
 
-.second-section{
-  margin-top: -50px;
+.book-banner {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: space-between;
   align-items: center;
-  background-color:#303539;
-  height:600px;
+  background-color: #1e3643;
+  height: 250px;
   flex: 1;
   padding: 0 10px;
 }
 
-.second-section h1{
-  color: white;
-  font-weight: 100;
-  letter-spacing: 5px;
-  margin-top: 150px;
-  margin-bottom: 20px;
+.book-banner-content {
+  flex: 1;
+  margin-left: 20px;
+  padding: 50px;
 }
 
-.second-section h3{
+.book-banner-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
   color: #1d6a96;
-  font-style: italic;
-  letter-spacing: 10px;
-  
 }
-
-.second-section p{
-  color: white;
-  margin-bottom: 30px;
-  text-align: center;
+.book-banner-content p {
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-align: justify;
   width: 700px;
-  margin-top: 20px;
+  color: #d1dddb;
 }
 
-.custom-button {
+.more-button {
   padding: 10px 20px;
   background-color: #1d6a96;
-  color: #ffffff;
+  color: #d1dddb;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
-.custom-button:hover {
+.more-button:hover {
   background-color: #0f4365;
+}
+
+.book-covers {
+  display: flex;
+  align-items: center;
+}
+
+.book-covers img {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+/*Slider*/
+
+.slide-container {
+  width: 80%;
+  margin: 15% auto;
+}
+
+.each-slide {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.image-container::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.image-container span {
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+/*favorite and cart*/
+.buttons-container {
+  position: fixed;
+  bottom: 20px;
+  right: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 200px;
+}
+
+.link-on {
+  background-color: rgba(29, 106, 150, 0.7);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.link-on:hover {
+  background-color: #13516e;
 }
 
 /* Account */
@@ -371,7 +443,7 @@ form h1 {
   margin: 30px 0;
 }
 
-.inputs-logIn-row{
+.inputs-logIn-row {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -379,10 +451,9 @@ form h1 {
   height: 50px;
   margin: 30px 0 15px;
   gap: 10px;
-
 }
 
-.inputs-logIn-row input{
+.inputs-logIn-row input {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -391,9 +462,7 @@ form h1 {
   border: 2px solid rgb(15, 67, 101);
   border-radius: 40px;
   padding: 20px 45px 20px 20px;
-  
 }
-
 
 .inputs-logIn input {
   width: 100%;
@@ -474,8 +543,7 @@ form .signUp-link {
   transition: 0.4s;
 }
 
-
-.inputs-logIn-row{
+.inputs-logIn-row {
   display: flex;
   flex-direction: row;
 }

@@ -105,7 +105,7 @@ const Author = () => {
     <Fragment>
       <ToastContainer />
       <div className="add-button">
-        <Link to="../add-author">
+        <Link to="../add-authors">
           <Button variant="dark" className="btn-add">
             Add Author
           </Button>

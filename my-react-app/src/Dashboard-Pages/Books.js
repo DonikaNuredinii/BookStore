@@ -15,7 +15,7 @@ const Books = () => {
   const [editISBN, setEditISBN] = useState("");
   const [editImage, setEditImage] = useState("");
   const [editTitle, setEditTitle] = useState("");
-  const [editAuthors, setEditAuthors] = useState([]);
+  const [editAuthors, setEditAuthors] = useState("");
   const [editPublicationDate, setEditPublicationDate] = useState("");
   const [editPageNumber, setEditPageNumber] = useState("");
   const [editDescription, setEditDescription] = useState("");
@@ -69,10 +69,19 @@ const Books = () => {
 
         if (bookData.stock) {
           setEditStock(bookData.stock.quantity);
+        } else {
+          setEditStock("");
         }
 
         if (bookData.publishingHouse) {
-          seteditPublishingHouse(bookData.publishingHouse.houseName);
+          seteditPublishingHouse([
+            {
+              id: bookData.publishingHouse.id,
+              name: bookData.publishingHouse.houseName,
+            },
+          ]);
+        } else {
+          seteditPublishingHouse([]);
         }
       })
       .catch((error) => {
@@ -97,7 +106,8 @@ const Books = () => {
     }
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (e) => {
+    e.preventDefault();
     const url = `https://localhost:7061/api/Book/${editBookId}`;
     const data = {
       BookID: editBookId,
@@ -181,16 +191,11 @@ const Books = () => {
                       <img src={item.image} alt="Book Cover" />
                     </td>
                     <td>{item.title}</td>
-
+                    <td>{item.author}</td>
                     <td>
-                      {item.bookAuthors
-                        .map((author) => author.author.name)
-                        .join(", ")}
-                    </td>
-                    <td>
-                      {item.publishingHouse
+                      {item.publishingHouse && item.publishingHouse.houseName
                         ? item.publishingHouse.houseName
-                        : ""}
+                        : "-"}
                     </td>
                     <td>{item.publicationDate}</td>
                     <td>{item.pageNumber}</td>
@@ -323,8 +328,8 @@ const Books = () => {
                     }
                   >
                     {editAuthors &&
-                      editAuthors.map((author) => (
-                        <option key={author.id} value={author.id}>
+                      editAuthors.map((author, index) => (
+                        <option key={index} value={author.id}>
                           {author.name}
                         </option>
                       ))}
@@ -392,17 +397,10 @@ const Books = () => {
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>
                   <Form.Control
-                    as="select"
+                    type="text"
                     value={editStock}
                     onChange={(e) => setEditStock(e.target.value)}
-                  >
-                    <option value="">Select Stock</option>
-                    {editStock.map((stock) => (
-                      <option key={stock.id} value={stock.id}>
-                        {stock.amount}
-                      </option>
-                    ))}
-                  </Form.Control>
+                  />
                 </Form.Group>
               </Col>
             </Row>

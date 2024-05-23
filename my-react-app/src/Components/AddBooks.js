@@ -290,7 +290,7 @@ const AddBooks = () => {
       <Row>
         {" "}
         <Col>
-          <Link to="/Books">
+          <Link to="../Books">
             <Button variant="dark" className="btn-add" onClick={handleSave}>
               Add
             </Button>

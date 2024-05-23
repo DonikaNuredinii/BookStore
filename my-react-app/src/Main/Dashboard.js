@@ -14,7 +14,7 @@ import AddUser from "../Components/AddUser";
 import User from "../Dashboard-Pages/User";
 // import Accessories from "./Dashboard-Pages/Accessories";
 // import AddAccessories from "./Components/AddAccessories";
-// import AddAuthors from "../Components/AddAuthors";
+import AddAuthors from "../Components/AddAuthors";
 import Author from "../Dashboard-Pages/Author";
 
 function Dashboard() {
@@ -44,7 +44,7 @@ function Dashboard() {
             <Route path="User" element={<User />} />
             <Route path="add-books" element={<AddBooks />} />
             {/* <Route path="/add-Accessories" element={<AddAccessories />} /> */}
-            {/* <Route path="/add-Authors" element={<AddAuthors />} /> */}
+            <Route path="/add-Authors" element={<AddAuthors />} />
 
             <Route path="/Books" element={<Books />} />
             <Route path="/Author" element={<Author />} />

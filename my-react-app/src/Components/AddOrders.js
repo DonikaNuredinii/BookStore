@@ -33,13 +33,12 @@ const AddOrders = () => {
     const url = "https://localhost:7061/api/Orders";
     const data = {
       OrderDate: orderDate,
-      OrderShipDate: orderShipDate ,
+      OrderShipDate: orderShipDate,
       Address: address,
       City: city,
       Country: country,
       ZipCode: zipCode,
       DiscountId: discountId,
-      
     };
     axios
       .post(url, data)
@@ -60,7 +59,6 @@ const AddOrders = () => {
     setCountry("");
     setZipCode("");
     setDiscountId("");
-
   };
   const handleClear = () => {
     clear();
@@ -105,7 +103,7 @@ const AddOrders = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
-             </Form.Group>
+          </Form.Group>
         </Col>
       </Row>
       <Row>
@@ -119,7 +117,7 @@ const AddOrders = () => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
-             </Form.Group>
+          </Form.Group>
         </Col>
       </Row>
       <Row>
@@ -133,7 +131,7 @@ const AddOrders = () => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
-             </Form.Group>
+          </Form.Group>
         </Col>
       </Row>
       <Row>
@@ -147,7 +145,7 @@ const AddOrders = () => {
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
             />
-             </Form.Group>
+          </Form.Group>
         </Col>
       </Row>
       <Row>
@@ -167,7 +165,7 @@ const AddOrders = () => {
       <Row>
         {""}
         <Col>
-          <Link to="/Orders">
+          <Link to="../Orders">
             <Button
               variant="dark"
               className="btn-addOrders"
@@ -192,5 +190,3 @@ const AddOrders = () => {
 };
 
 export default AddOrders;
-
-

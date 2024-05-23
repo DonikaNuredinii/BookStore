@@ -100,7 +100,7 @@ const AddCategories = () => {
       <Row>
         {""}
         <Col>
-          <Link to="/Categories">
+          <Link to="../Categories">
             <Button
               variant="dark"
               className="btn-addCategories"
