@@ -5,6 +5,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import HomePage from "./Main/HomePage";
+import Account from "./Main/Account";
 import Dashboard from "./Main/Dashboard";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <div className="container-fluid custom-bg min-vh-100">
       <Routes>
         <Route path="/" element={<HomePage />} /> {/* Route for the homepage */}
+        <Route path="/account" element={<Account />} />
         <Route
           path="/dashboard/*"
           element={<Dashboard toggle={toggle} Toggle={Toggle} />}
