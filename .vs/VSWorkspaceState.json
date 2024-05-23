@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\BookStore",
+    "\\BookStore\\bin",
     "\\BookStore\\Controllers",
     "\\BookStore\\Migrations",
     "\\BookStore\\Models"
   ],
-  "SelectedNode": "\\BookStore\\Models\\MyContext.cs",
+  "SelectedNode": "\\BookStore\\BookStore.csproj",
   "PreviewInSolutionExplorer": false
 }
