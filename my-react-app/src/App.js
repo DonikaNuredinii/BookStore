@@ -4,11 +4,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import HomePage from "./Main/HomePage";
-import Account from "./Main/Account";
+import Pages from "./Main/Pages";
 import Dashboard from "./Main/Dashboard";
-import Categories from "./Main/Categories";
-
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -20,9 +17,7 @@ function App() {
   return (
     <div className="container-fluid custom-bg min-vh-100">
       <Routes>
-        <Route path="/" element={<HomePage />} /> {/* Route for the homepage */}
-        <Route path="/account" element={<Account />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/*" element={<Pages />} />
         <Route
           path="/dashboard/*"
           element={<Dashboard toggle={toggle} Toggle={Toggle} />}

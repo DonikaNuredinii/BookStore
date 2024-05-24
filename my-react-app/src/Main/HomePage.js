@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import NavbarHome from "./NavbarHome";
-import books from "../Images/books.jpg"; // Adjust the path to your image
+import Books from "../Images/books.jpg"; // Adjust the path to your image
 import Slider from "../Components/Slider";
 import "../App.css";
-import { IoSnow } from "react-icons/io5";
 import BookBanner from "../Components/BookBaner";
 import { CiShoppingCart } from "react-icons/ci";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const HomePage = () => {
   const [toggle, setToggle] = useState(true);
+  const [book, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetchBooks();
+    console.log(book);
+  }, []);
+
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get(`https://localhost:7061/api/Book`);
+      setBooks(response.data);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  };
 
   const Toggle = () => {
     setToggle(!toggle);
@@ -44,6 +58,12 @@ const HomePage = () => {
     delay: 1000,
     config: { duration: 3000 },
   });
+  //favorite
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   const handleClick = () => {
     // history.push("/new-route");
@@ -59,7 +79,6 @@ const HomePage = () => {
 
   return (
     <>
-      <NavbarHome Toggle={Toggle} />
       <div className="first-section">
         <div className="left-part-s1">
           <animated.h1 style={textSpring} className="h1-s1">
@@ -78,7 +97,7 @@ const HomePage = () => {
 
         <div className="right-part-s1">
           <animated.img
-            src={books}
+            src={Books}
             alt="img1-s1"
             className="img1-s1"
             style={imageSpring}
@@ -88,11 +107,54 @@ const HomePage = () => {
       <div className="second-section">
         <BookBanner></BookBanner>
       </div>
-
       <div className="third-section">
         <Slider></Slider>
       </div>
-      <div className="fourth-section"></div>
+      <div className="fourth-section">
+        <div className="language">
+          <Link to="/" className="language-link">
+            English
+          </Link>
+          <Link to="/" className="language-link">
+            Albanian
+          </Link>
+        </div>
+        <div className="cards">
+          {book.map((book) => (
+            <div key={book.bookID} className="card-item">
+              <div className="card-image">
+                <img src={book.image} alt={book.title} className="book-image" />
+                <div className="icon-container">
+                  {isFavorite ? (
+                    <MdFavorite
+                      className={`favorite-icon`}
+                      onClick={handleFavoriteClick}
+                    />
+                  ) : (
+                    <MdFavoriteBorder
+                      className={`favorite-icon`}
+                      onClick={handleFavoriteClick}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="dropup">
+                <div className="dropup-content">
+                  <p className="card-price">Price: €{book.price}</p>
+                  <h3 className="card-title">{book.title}</h3>
+                  <p className="card-author">Author: {book.author}</p>
+                  <button className="buy-now-btn">Add to Cart</button>
+                </div>
+              </div>
+              <div className="card-content">
+                <h3 className="card-title">{book.title}</h3>
+                <p className="card-author">Author: {book.author}</p>
+                <p className="card-price">Price: €{book.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className={`buttons-container ${isSticky ? "sticky" : ""}`}>
         <Link to="" className="link-on">
