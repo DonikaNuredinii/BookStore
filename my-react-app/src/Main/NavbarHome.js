@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import logo from "../Images/logo.png";
+import logo from "../Images/logo1.png";
 import { IoIosSearch } from "react-icons/io";
 
 const NavbarHome = () => {
