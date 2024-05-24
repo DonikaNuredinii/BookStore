@@ -7,6 +7,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import HomePage from "./Main/HomePage";
 import Account from "./Main/Account";
 import Dashboard from "./Main/Dashboard";
+import Categories from "./Main/Categories";
+
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -20,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} /> {/* Route for the homepage */}
         <Route path="/account" element={<Account />} />
+        <Route path="/categories" element={<Categories />} />
         <Route
           path="/dashboard/*"
           element={<Dashboard toggle={toggle} Toggle={Toggle} />}

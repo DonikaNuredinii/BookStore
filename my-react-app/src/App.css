@@ -548,3 +548,153 @@ form .signUp-link {
   display: flex;
   flex-direction: row;
 }
+
+/* dropdown menu 
+ .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 5px;
+  display: none;
+  min-width: 200px;
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.dropdown-menu.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa; } */
+
+
+
+/* css per sidebar kategori */
+.sidebarc {
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px; 
+  height: 100%;
+  background: #0f4365;
+  color: #fff;
+  bottom: 30%;
+  border-radius: 30px;
+  margin-top: 100px;
+  height: 65%;
+  border-radius: 12%;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav ul li {
+  margin: 10px 0; 
+}
+
+.nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px; 
+  display: block;
+}
+
+.nav ul li a:hover {
+  background: #444;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  margin-left: 70px;
+  padding: 20px;
+  width: 300px;
+  box-sizing: border-box;
+  align-items: stretch;
+  border-radius: 30px;
+  position: relative; 
+  overflow: hidden;
+}
+.card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+.card-content {
+  padding: 10px; 
+}
+
+.card-title {
+  font-size: 20px; 
+
+}
+
+.card-author {
+  font-style: italic; 
+}
+
+.card-price {
+  font-weight: bold;
+}
+.buy-now-btn {
+  background-color: #a90000; 
+  color: white; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  display: block;
+  margin: 0 auto;
+}
+
+.buy-now-btn:hover {
+  background-color: #b11c0f;
+}
+.main-content {
+  background-color: #e8edee;
+}
+.card-image {
+  height: 200px; 
+  overflow: hidden; 
+  border-radius: 5px 5px 0 0; 
+  margin-bottom: 10px; 
+}
+
+.card-image img {
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
+  transition: transform 0.3s ease; 
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05); 
+}
