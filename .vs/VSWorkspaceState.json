@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\BookStore",
-    "\\BookStore\\bin",
-    "\\BookStore\\Controllers",
-    "\\BookStore\\Migrations",
-    "\\BookStore\\Models"
+    ""
   ],
-  "SelectedNode": "\\BookStore\\BookStore.csproj",
+  "SelectedNode": "\\BookStore.sln",
   "PreviewInSolutionExplorer": false
 }

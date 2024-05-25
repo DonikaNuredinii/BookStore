@@ -18,6 +18,7 @@ namespace BookStore.Models
         public DbSet<Stock> Stock { get; set; }
         public DbSet<Author> Author { get; set; }
         public DbSet<BookAuthors> BookAuthors { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
     }
 }
