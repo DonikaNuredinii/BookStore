@@ -16,7 +16,8 @@ import User from "../Dashboard-Pages/User";
 // import AddAccessories from "./Components/AddAccessories";
 import AddAuthors from "../Components/AddAuthors";
 import Author from "../Dashboard-Pages/Author";
-
+// import AddOrders from "./Components/AddOrders";
+// import Orders from "../Dashboard-Pages/Orders";
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
 
@@ -49,6 +50,9 @@ function Dashboard() {
             <Route path="/Books" element={<Books />} />
             <Route path="/Author" element={<Author />} />
             {/* <Route path="/Accessories" element={<Accessories />} /> */}
+            {/* <Route path="/add-Orders" element={<AddOrders />} />
+            <Route path="Orders" element={<Orders />} /> */}
+          
           </Routes>
         </div>
       </div>

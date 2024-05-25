@@ -35,9 +35,14 @@ function Sidebar() {
           <i class="bi bi-vector-pen fs-5 me-3"></i>
           <span>Autoret</span>
         </Link>
+
         <Link to="./Accessories" className="list-group-item py-2 ">
           <i class="bi bi-bookmark-star-fill fs-5 me-3"></i>
           <span>Aksesoret</span>
+        </Link>
+        <Link to="./Orders" className="list-group-item py-2 ">
+          <i className="bi bi-book fs-5 me-3"></i>
+          <span>Porosite</span>
         </Link>
       </div>
     </div>
