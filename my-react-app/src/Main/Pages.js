@@ -1,25 +1,13 @@
-<<<<<<< Updated upstream
 import React, { useState } from "react";
 import Account from "../Main/Account";
 import Categories from "../Main/Categories";
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import NavbarHome from "./NavbarHome";
-import Footer from "./Footer";
-
-
-
-=======
-import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./HomePage";
 import NavbarHome from "./NavbarHome";
+import Footer from "./Footer";
 import Buttons from "../Components/Buttons";
-import Account from "../Main/Account";
-import Categories from "../Main/Categories";
 import GiftCard from "../Main/GiftCard";
 import Cart from "../Main/Cart";
->>>>>>> Stashed changes
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
@@ -41,7 +29,7 @@ function Pages() {
         <Route path="/giftCard" element={<GiftCard />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
-      <Footer Toggle={Toggle}/>
+      <Footer Toggle={Toggle} />
     </div>
   );
 }
