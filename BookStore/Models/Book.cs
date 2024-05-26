@@ -17,6 +17,8 @@ namespace BookStore.Models
         public string Type { get; set; }
         public PublishingHouse PublishingHouse { get; set; }
         public Stock Stock { get; set; }
-   
+        
+
+
     }
 }

@@ -615,11 +615,11 @@ form .signUp-link {
   left: 0;
   width: 200px;
   height: 100%;
-  background: #0f4365;
+  background: #88a0af;
   color: #fff;
   bottom: 30%;
   border-radius: 30px;
-  margin-top: 100px;
+  margin-top: 210px;
   height: 65%;
   border-radius: 12%;
 }
@@ -649,6 +649,9 @@ form .signUp-link {
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 150px;
+  margin-right: 20px;
+
+  
 }
 .language {
   display: flex;
@@ -697,11 +700,13 @@ form .signUp-link {
   font-size: 2.5rem;
 }
 
+
 .card-item {
   display: inline-block;
   margin: 10px;
   text-align: center;
   position: relative;
+  max-width:200px;
 }
 
 .card-image {
@@ -725,9 +730,9 @@ form .signUp-link {
 }
 
 .card-title {
-  font-size: 1rem;
+ font-size: 1rem;
   font-weight: bold;
-  width: 90%;
+  max-width: 90%;
   color: #0f4365;
 }
 
