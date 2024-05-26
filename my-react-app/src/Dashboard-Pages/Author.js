@@ -39,7 +39,7 @@ const Author = () => {
     handleShow();
     setEditAuthorID(authorID);
     axios
-      .get(`https://localhost:7061/api/Author/${editAuthorID}`)
+      .get(`https://localhost:7061/api/Author/${authorID}`)
       .then((result) => {
         const authorData = result.data;
         setEditName(authorData.name);

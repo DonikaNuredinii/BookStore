@@ -15,15 +15,53 @@ const AddBooks = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [dateOfadition, setDateOfAddition] = useState("");
-  const [stock, setStock] = useState("");
-  const [publishingHouse, setPublishingHouse] = useState("");
+  const [stock, setStock] = useState([]);
+  const [publishingHouse, setPublishingHouse] = useState([]);
   const [type, setType] = useState("");
   const [success, setSuccess] = useState(false);
+  const [authorsList, setAuthorsList] = useState([]);
+  const [selectedAuthors, setSelectedAuthors] = useState([]);
+  const [selectedPublishingHouse, setSelectedPublishingHouse] = useState(null);
+  const [selectedStock, setSelectedStock] = useState(null);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
+    getPublishingHouses();
+    getStocks();
+    getAuthors();
   }, []);
+  const getPublishingHouses = () => {
+    axios
+      .get("https://localhost:7061/api/PublishingHouses")
+      .then((response) => {
+        setPublishingHouse(response.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get publishing houses: " + error.message);
+      });
+  };
+
+  const getStocks = () => {
+    axios
+      .get("https://localhost:7061/api/Stock")
+      .then((response) => {
+        setStock(response.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get stocks: " + error.message);
+      });
+  };
+  const getAuthors = () => {
+    axios
+      .get("https://localhost:7061/api/Author")
+      .then((response) => {
+        setAuthorsList(response.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to fetch authors: " + error.message);
+      });
+  };
 
   const getData = () => {
     axios
@@ -34,45 +72,35 @@ const AddBooks = () => {
       .catch((error) => {
         toast.error("Failed to get data: " + error.message);
       });
-    axios
-      .get(
-        `https://localhost:7061/api/PublishingHouses
-`
-      )
-      .then((result) => {
-        setPublishingHouse(result.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get publishing houses: " + error.message);
-      });
-    axios
-      .get(
-        `https://localhost:7061/api/Stock
-`
-      )
-      .then((result) => {
-        setStock(result.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get Stock: " + error.message);
-      });
+  };
+  const handlePublishingHouseChange = (e) => {
+    const selectedPublishingHouse = parseInt(e.target.value);
+    setSelectedPublishingHouse(selectedPublishingHouse);
+    const publishingHouse = publishingHouse.find(
+      (ph) => ph.publishingHouseId === selectedPublishingHouse
+    );
+    setData({ ...data, publishingHouse });
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     const url = `https://localhost:7061/api/Book`;
+    const authorsString = selectedAuthors
+      .map((author) => author.name)
+      .join(", ");
     const data = {
-      ISBN: isbn,
+      ISBN: parseInt(isbn),
       Image: image,
       Title: title,
-      Authors: authors,
-      PublishingHouse: publishingHouse,
+      Authors: authorsString,
+      PublishingHouseId: parseInt(selectedPublishingHouse),
       PublicationDate: publicationDate,
-      PageNumber: pageNumber,
+      PageNumber: parseInt(pageNumber),
       Description: description,
-      Price: price,
+      Price: parseFloat(price),
       DateOfadition: dateOfadition,
       Type: type,
-      Stock: stock,
+      StockId: parseInt(selectedStock),
     };
     axios
       .post(url, data)
@@ -85,6 +113,18 @@ const AddBooks = () => {
       .catch((error) => {
         toast.error("Failed to add Book: " + error.message);
       });
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleAuthorsChange = (e) => {
+    const selectedAuthors = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setData({ ...data, authors: selectedAuthors });
   };
   const clear = () => {
     setISBN("");
@@ -150,19 +190,19 @@ const AddBooks = () => {
             <Form.Label>Publishing House</Form.Label>
             <Form.Control
               as="select"
-              value={publishingHouse}
-              onChange={(e) => setPublishingHouse(e.target.value)}
+              value={data.publishingHouse}
+              onChange={(e) => handleInputChange(e)}
+              name="publishingHouse"
             >
               <option value="">Select Publishing House</option>
-              {Array.isArray(publishingHouse) &&
-                publishingHouse.map((publishingHouse) => (
-                  <option
-                    key={publishingHouse.publishingHouseId}
-                    value={publishingHouse.publishingHouseId}
-                  >
-                    {publishingHouse.houseName}
-                  </option>
-                ))}
+              {publishingHouse.map((publishingHouse) => (
+                <option
+                  key={publishingHouse.publishingHouseId}
+                  value={publishingHouse.publishingHouseId}
+                >
+                  {publishingHouse.houseName}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
         </Col>
@@ -174,19 +214,23 @@ const AddBooks = () => {
             <Form.Control
               as="select"
               multiple
-              value={authors}
-              onChange={(e) =>
-                setAuthors(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
+              value={selectedAuthors.map((author) => author.authorID)}
+              onChange={(e) => {
+                const selectedOptions = Array.from(
+                  e.target.selectedOptions,
+                  (option) =>
+                    authorsList.find(
+                      (author) => author.authorID === parseInt(option.value)
+                    )
+                );
+                setSelectedAuthors(selectedOptions);
+              }}
             >
-              {Array.isArray(authors) &&
-                authors.map((author) => (
-                  <option key={author.id} value={author.id}>
-                    {author.name}
-                  </option>
-                ))}
+              {authorsList.map((author) => (
+                <option key={author.authorID} value={author.authorID}>
+                  {author.name}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
         </Col>
@@ -235,7 +279,8 @@ const AddBooks = () => {
           <Form.Group controlId="formPrice">
             <Form.Label>Price</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
+              step="0.01"
               placeholder="Enter price"
               name="price"
               value={price}
@@ -248,15 +293,16 @@ const AddBooks = () => {
             <Form.Label>Stock</Form.Label>
             <Form.Control
               as="select"
-              value={stock}
-              onChange={(e) => setStock(e.target.value)}
+              value={data.stock}
+              onChange={(e) => handleInputChange(e)}
+              name="stock"
             >
-              {Array.isArray(stock) &&
-                stock.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
+              <option value="">Select Stock</option>
+              {stock.map((stock) => (
+                <option key={stock.stockId} value={stock.stockId}>
+                  {stock.quantity}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
         </Col>

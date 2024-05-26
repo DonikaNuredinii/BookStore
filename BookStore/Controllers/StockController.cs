@@ -20,6 +20,33 @@ namespace BookStore.Controllers
         {
             return await _stockContext.Stock.ToListAsync();
         }
+        [HttpGet("{stockId}")]
+        public async Task<ActionResult<Stock>> GetStock(int stockId)
+        {
+            var stock = await _stockContext.Stock.FindAsync(stockId);
+            if (stock == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return stock;
+            }
+        }
+
+        [HttpDelete("{stockId}")]
+        public async Task<ActionResult> DeleteStock(int stockId)
+        {
+            var stock = await _stockContext.Stock.FindAsync(stockId);
+            if (stock == null)
+            {
+                return NotFound();
+            }
+            _stockContext.Stock.Remove(stock);
+            await _stockContext.SaveChangesAsync();
+            return Ok();
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<Stock>> PostStock(Stock Stock)

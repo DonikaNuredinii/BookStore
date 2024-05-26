@@ -9,12 +9,14 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 const HomePage = () => {
   const [toggle, setToggle] = useState(true);
   const [book, setBooks] = useState([]);
 
   useEffect(() => {
     fetchBooks();
+    console.log(book.image);
     console.log(book);
   }, []);
 
@@ -24,6 +26,15 @@ const HomePage = () => {
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books:", error);
+    }
+  };
+  const preprocessImagePath = (path) => {
+    const imageName = path.split("/").pop();
+    try {
+      return images(`./${imageName}`);
+    } catch (err) {
+      console.error(`Image not found: ${imageName}`);
+      return null;
     }
   };
 
@@ -120,39 +131,46 @@ const HomePage = () => {
           </Link>
         </div>
         <div className="cards">
-          {book.map((book) => (
-            <div key={book.bookID} className="card-item">
-              <div className="card-image">
-                <img src={book.image} alt={book.title} className="book-image" />
-                <div className="icon-container">
-                  {isFavorite ? (
-                    <MdFavorite
-                      className={`favorite-icon`}
-                      onClick={handleFavoriteClick}
-                    />
-                  ) : (
-                    <MdFavoriteBorder
-                      className={`favorite-icon`}
-                      onClick={handleFavoriteClick}
-                    />
-                  )}
+          {book.map((book) => {
+            const imagePath = preprocessImagePath(book.image);
+            return (
+              <div key={book.bookID} className="card-item">
+                <div className="card-image">
+                  <img
+                    src={imagePath || "/images/placeholder.jpg"}
+                    alt={book.title}
+                    className="book-image"
+                  />
+                  <div className="icon-container">
+                    {isFavorite ? (
+                      <MdFavorite
+                        className="favorite-icon"
+                        onClick={() => handleFavoriteClick(book.bookID)}
+                      />
+                    ) : (
+                      <MdFavoriteBorder
+                        className="favorite-icon"
+                        onClick={() => handleFavoriteClick(book.bookID)}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="dropup">
-                <div className="dropup-content">
-                  <p className="card-price">Price: €{book.price}</p>
+                <div className="dropup">
+                  <div className="dropup-content">
+                    <p className="card-price">Price: €{book.price}</p>
+                    <h3 className="card-title">{book.title}</h3>
+                    <p className="card-author">Author: {book.author}</p>
+                    <button className="buy-now-btn">Add to Cart</button>
+                  </div>
+                </div>
+                <div className="card-content">
                   <h3 className="card-title">{book.title}</h3>
                   <p className="card-author">Author: {book.author}</p>
-                  <button className="buy-now-btn">Add to Cart</button>
+                  <p className="card-price">Price: €{book.price}</p>
                 </div>
               </div>
-              <div className="card-content">
-                <h3 className="card-title">{book.title}</h3>
-                <p className="card-author">Author: {book.author}</p>
-                <p className="card-price">Price: €{book.price}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
@@ -51,9 +51,9 @@ const CategoriesF = () => {
   };
 
   // Filtrimi i librave sipas zhanrit të zgjedhur
-  /* const filteredBooks = selectedGenre
-    ? books.filter((book) => book.genreId === selectedGenre.id)
-    : books; */
+  const filteredBooks = selectedCategory
+    ? books.filter((book) => book.categoryID === selectedCategory.categoryID)
+    : books;
   const handleCategoryClick = async (category) => {
     setSelectedCategory(category);
     try {

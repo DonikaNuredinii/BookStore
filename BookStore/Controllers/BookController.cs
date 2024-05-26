@@ -19,7 +19,13 @@ namespace WebApplication1.Controllers
 		}
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+
         {
+            var books = await _booksContext.Books
+               .Include(b => b.PublishingHouse)
+               .Include(b => b.Stock)
+               .ToListAsync();
+
             if (_booksContext.Books == null)
             {
                 return NotFound();
@@ -31,6 +37,11 @@ namespace WebApplication1.Controllers
         [HttpGet("{BookID}")]
         public async Task<ActionResult<Book>> GetBook(int BookID)
         {
+			var book = await _booksContext.Books
+                .Include(b => b.PublishingHouse)
+                .Include(b => b.Stock)
+                .FirstOrDefaultAsync(b => b.BookID == BookID);
+
             if (_booksContext.Books == null)
             {
                 return NotFound();

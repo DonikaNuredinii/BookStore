@@ -12,7 +12,7 @@ namespace BookStore.Models
         public DateTime PublicationDate { get; set; }
         public int PageNumber { get; set; }
         public string Description { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public DateTime DateOfadition { get; set; }
         public string Type { get; set; }
         public PublishingHouse PublishingHouse { get; set; }
