@@ -19,6 +19,7 @@ namespace BookStore.Models
         public DbSet<Author> Author { get; set; }
         public DbSet<BookAuthors> BookAuthors { get; set; }
         public DbSet<Orders> Orders { get; set; }
+        public DbSet<GiftCard> GiftCards { get; set; }  
 
     }
 }

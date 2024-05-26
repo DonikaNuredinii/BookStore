@@ -4,7 +4,6 @@ import Books from "../Images/books.jpg"; // Adjust the path to your image
 import Slider from "../Components/Slider";
 import "../App.css";
 import BookBanner from "../Components/BookBaner";
-import { CiShoppingCart } from "react-icons/ci";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -23,7 +22,11 @@ const HomePage = () => {
   const fetchBooks = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Book`);
-      setBooks(response.data);
+      const initialBooks = response.data.map((book) => ({
+        ...book,
+        isFavorite: false,
+      }));
+      setBooks(initialBooks);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
@@ -45,7 +48,6 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Adjust this value based on when you want the buttons to stick
       setSticky(window.scrollY > 200);
     };
 
@@ -72,8 +74,14 @@ const HomePage = () => {
   //favorite
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+  const handleFavoriteClick = (bookID) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.bookID === bookID
+          ? { ...book, isFavorite: !book.isFavorite }
+          : book
+      )
+    );
   };
 
   const handleClick = () => {
@@ -142,17 +150,19 @@ const HomePage = () => {
                     className="book-image"
                   />
                   <div className="icon-container">
-                    {isFavorite ? (
-                      <MdFavorite
-                        className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
-                      />
-                    ) : (
-                      <MdFavoriteBorder
-                        className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
-                      />
-                    )}
+                    <div className="icon-container">
+                      {book.isFavorite ? (
+                        <MdFavorite
+                          className="favorite-icon"
+                          onClick={() => handleFavoriteClick(book.bookID)}
+                        />
+                      ) : (
+                        <MdFavoriteBorder
+                          className="favorite-icon"
+                          onClick={() => handleFavoriteClick(book.bookID)}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="dropup">
@@ -172,19 +182,6 @@ const HomePage = () => {
             );
           })}
         </div>
-      </div>
-
-      <div className={`buttons-container ${isSticky ? "sticky" : ""}`}>
-        <Link to="" className="link-on">
-          <span role="img" aria-label="Love">
-            <MdFavoriteBorder />
-          </span>
-        </Link>
-        <Link to="" className="link-on">
-          <span role="img" aria-label="Add to cart">
-            <CiShoppingCart />
-          </span>
-        </Link>
       </div>
     </>
   );
