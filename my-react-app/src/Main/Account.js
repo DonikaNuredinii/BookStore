@@ -111,7 +111,7 @@ const Account = ({ onSignUpSuccess }) => {
                             <label><input type="checkbox" />Remember me</label>
                             <a href="#">Forgot password?</a>
                         </div>
-                        <button type="submit">Log In</button>
+                        <button type="submit" className="acc-button">Log In</button>
                         <div className="signUp-link">
                             <p>Do you have an account? <a href="#" onClick={signUpLink}>Sign Up</a></p>
                         </div>
@@ -146,7 +146,7 @@ const Account = ({ onSignUpSuccess }) => {
                 I agree to the terms & conditions
               </label>
             </div>
-            <button type="submit" >Sign Up</button>
+            <button type="submit" className="acc-button" >Sign Up</button>
             <div className="signUp-link">
               <p>
                 Already have an account?{" "}

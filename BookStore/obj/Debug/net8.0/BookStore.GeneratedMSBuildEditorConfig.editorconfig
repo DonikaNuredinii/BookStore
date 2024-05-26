@@ -9,11 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BookStore
 build_property.RootNamespace = BookStore
+<<<<<<< Updated upstream
 build_property.ProjectDir = C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\
+=======
+build_property.ProjectDir = C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\
+>>>>>>> Stashed changes
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< Updated upstream
 build_property.MSBuildProjectDirectory = C:\Users\hp\OneDrive\Desktop\BookStore\BookStore
+=======
+build_property.MSBuildProjectDirectory = C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore
+>>>>>>> Stashed changes
 build_property._RazorSourceGeneratorDebug = 
