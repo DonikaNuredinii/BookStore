@@ -62,8 +62,7 @@ const Accessories = () => {
                                 <p>Marka: {x.Seller}</p>
                                 <p>Pershkrimi: {x.Description}</p>
                                 <p>Masat: {x.Dimensions}</p>
-                                <p>Sasia: {x.Quantity}</p>
-                                <p>Data e Shtimit:{x.DateofAddition}</p>
+                                <p>Data e Shtimit: {x.DateofAddition}</p>
                                 <p>{x.Stock} ne Stok.</p>
                                 <p> Add to Cart | Add to Wish List </p> 
                                 <button><CiShoppingCart /></button>

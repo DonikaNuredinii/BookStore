@@ -22,7 +22,6 @@ const Accessories = () => {
   const [editDescription, setEditDescription] = useState("");
   const [editDimensions, setEditDimensions] = useState("");
   const [editPrice, setEditPrice] = useState("");
-  const [editQuantity, setEditQuantity] = useState("");
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editStock, setEditStock] = useState([]);
 
@@ -61,7 +60,6 @@ const Accessories = () => {
         setEditDescription(accessoriesData.Description);
         setEditDimensions(accessoriesData.Dimensions);
         setEditPrice(accessoriesData.Price);
-        setEditQuantity(accessoriesData.Quantity);
         setEditDateOfAddition(accessoriesData.DateOfAddition);
         setEditStock(accessoriesData.Stock);
       })
@@ -99,7 +97,6 @@ const Accessories = () => {
       Description: editDescription,
       Dimensions: editDimensions,
       Price: editPrice,
-      Quantity: editQuantity,
       DateOfAddition:editDateOfAddition,
       Stock: editStock,
     };
@@ -125,7 +122,6 @@ const Accessories = () => {
     setEditDimensions("");
     setEditDescription("");
     setEditPrice("");
-    setEditQuantity("");
     setEditDateOfAddition("");
     setEditStock("");
   };
@@ -151,7 +147,6 @@ const Accessories = () => {
             <th>Description</th>
             <th>Dimensions</th>
             <th>Price</th>
-            <th>Quantity</th>
             <th>DateOfAddition</th>
             <th>Stock</th>
             <th>Actions</th>
@@ -172,7 +167,6 @@ const Accessories = () => {
                     <td>{item.Description}</td>
                     <td>{item.Dimensions}</td>
                     <td>{item.Price}</td>
-                    <td>{item.Quantity}</td>
                     <td>{item.DateOfAddition}</td>
                     <td>{item.Stock}</td>
                     <td colSpan={2} className="btn">
@@ -308,21 +302,6 @@ const Accessories = () => {
               </Col>
 
               <Col>
-                <Form.Group controlId="formQuantity">
-                  <Form.Label>Quantity</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Quantity"
-                    name="Quantity"
-                    value={editQuantity}
-                    onChange={(e) => setEditQuantity(e.target.value)}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row>
-                <Col>
                     <Form.Group controlId="formDateOfAddition">
                         <Form.Label>Date Of Addition</Form.Label>
                         <Form.Control
@@ -334,7 +313,9 @@ const Accessories = () => {
                         />
                     </Form.Group>
                 </Col>
+            </Row>
 
+            <Row>
                 <Col>
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>

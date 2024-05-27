@@ -54,7 +54,6 @@ const AddAccessories = () => {
       Description: Description,
       Dimensions: Dimensions,
       Price: Price,
-      Quantity: Quantity,
       DateOfaddition: DateOfaddition,
       Stock: Stock,
     };
@@ -78,7 +77,6 @@ const AddAccessories = () => {
     setDescription("");
     setDimensions("");
     setPrice("");
-    setQuantity("");
     setDateOfAddition("");
     setStock("");
   };
@@ -187,21 +185,6 @@ const AddAccessories = () => {
         </Col>
 
         <Col>
-          <Form.Group controlId="formQuantity">
-            <Form.Label>Quantity</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter Quantity"
-              name="Quantity"
-              value={Quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            />
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row>
-      <Col>
         <Form.Group controlId="formDateOfAddition">
           <Form.Label>Date of Addition</Form.Label>
           <Form.Control
@@ -214,6 +197,9 @@ const AddAccessories = () => {
         </Form.Group>
       </Col>
       
+      </Row>
+
+      <Row>
       <Col>
           <Form.Group controlId="formStock">
             <Form.Label>Stock</Form.Label>

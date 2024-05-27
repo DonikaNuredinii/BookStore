@@ -8,7 +8,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: '8.5 cm wide, 4 cm high, 1.7 cm thick. and thumb hole diameter includes 4 options: 1.8 cm, 0.2 cm, 2.2 cm, 2.4 cm',
         Price: 27.00,
-        Quantity:1, //nr me bo sipas klientit
         DateofAddition:'27 May 2024',
         Stock:10 //stokun me bo boolean
     },
@@ -20,7 +19,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'When assembled: 5" D x 5.25H x 3.85"W',
         Price: 101.59,
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -32,7 +30,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'When assembled: 5" D x 5.25H x 3.85"W',
         Price: 101.59, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -44,7 +41,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'When assembled: 5" D x 5.25H x 3.85"W',
         Price: 101.59, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -56,7 +52,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: '8.5" x 11" / spiral bound',
         Price: 32.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -68,7 +63,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: '12" H x 16" W x 6.5" D with an adjustable leather shoulder strap.',
         Price: 503.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -80,7 +74,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Height 8cm',
         Price: 6.99, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -92,7 +85,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Bag measures 36 x 39 cm (excluding handles).',
         Price: 10.99, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -104,7 +96,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Measures 170 x 215 x 25 mm',
         Price: 15.49, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -116,7 +107,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Contains 20 self-adhesive pockets, 20 checkout cards, 1 date stamp, 1 stamp pad and 1 pencil.',
         Price: 20.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -128,7 +118,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Measures 17.5 x 10.5 cm.',
         Price: 18.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -140,7 +129,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Made from steel.Measures: 17 x 11 x10 cm. Single bookend.Colour green.',
         Price: 27.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -152,7 +140,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'pack size: 7 x 0.5 x 18 cm',
         Price: 13.50, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -164,7 +151,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'pack size: 7 x 0.5 x 18 cm',
         Price: 13.50, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -176,7 +162,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'pack size: 7 x 0.5 x 18 cm',
         Price: 13.50, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -188,7 +173,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: 'Bag measures 36 x 40 cm',
         Price: 16.59, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -199,8 +183,7 @@ const AccessoriesData = [
         Seller:'?Marka Tregtare?',
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: '2.9"L x 2.1". Item Weight:	15 Grams',
-        Price: 12.99, 
-        Quantity:1,
+        Price: 12.99,
         DateofAddition:'27 May 2024',
         Stock:10
     },
@@ -212,7 +195,6 @@ const AccessoriesData = [
         Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis sollicitudin dui. Integer pulvinar rutrum nibh, eget fringilla arcu elementum commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
         Dimensions: '8.5 cm wide, 4 cm high, 1.7 cm thick. and thumb hole diameter includes 4 options: 1.8 cm, 0.2 cm, 2.2 cm, 2.4 cm',
         Price: 10.00, 
-        Quantity:1,
         DateofAddition:'27 May 2024',
         Stock:10
     }
