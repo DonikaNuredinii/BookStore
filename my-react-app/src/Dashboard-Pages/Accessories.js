@@ -35,7 +35,7 @@ const Accessories = () => {
   const getData = () => {
     console.log(Data);
     axios
-      .get(`https://localhost:7200/api/Accessories`)
+      .get(`https://localhost:7061/api/Accessories`)
       .then((result) => {
         setData(result.Data);
       })
@@ -51,7 +51,7 @@ const Accessories = () => {
     console.log("Received AccessoriesID: ", editAccessoriesID);
 
     axios
-      .get(`https://localhost:7200/api/Accessories/${editAccessoriesID}`)
+      .get(`https://localhost:7061/api/Accessories/${editAccessoriesID}`)
       .then((result) => {
         const accessoriesData = result.Data;
         setEditAccessoriesID(AccessoriesID);
@@ -78,7 +78,7 @@ const Accessories = () => {
       true
     ) {
       axios
-        .delete(`https://localhost:7200/api/Accessories/${AccessoriesID}`)
+        .delete(`https://localhost:7061/api/Accessories/${AccessoriesID}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Accessory item has been deleted!");
@@ -91,7 +91,7 @@ const Accessories = () => {
   };
 
   const handleUpdate = () => {
-    const url = `https://localhost:7200/api/Accessories/${editAccessoriesID}`;
+    const url = `https://localhost:7061/api/Accessories/${editAccessoriesID}`;
     const Data = {
       AccessoriesID: editAccessoriesID,
       Image: editImage,

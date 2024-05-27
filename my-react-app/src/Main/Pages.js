@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Buttons from "../Components/Buttons";
 import GiftCard from "../Main/GiftCard";
 import Cart from "../Main/Cart";
+import Accessories from "./Accessories";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
@@ -28,6 +29,7 @@ function Pages() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/giftCard" element={<GiftCard />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/Accessories" element={<Accessories/>}/>
       </Routes>
       <Footer Toggle={Toggle} />
     </div>

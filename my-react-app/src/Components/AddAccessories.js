@@ -25,7 +25,7 @@ const AddAccessories = () => {
 
   const getData = () => {
     axios
-      .get(`https://localhost:7200/api/Accessories`)
+      .get(`https://localhost:7061/api/Accessories`)
       .then((result) => {
         setData(result.data);
       })
@@ -34,7 +34,7 @@ const AddAccessories = () => {
       });
     // axios
     //   .get(
-    //     `https://localhost:7200/api/Stock`
+    //     `https://localhost:7061/api/Stock`
     //   )
     //   .then((result) => {
     //     setStock(result.data);
@@ -45,7 +45,7 @@ const AddAccessories = () => {
   };
 
   const handleSave = () => {
-    const url = `https://localhost:7200/api/Accessories`;
+    const url = `https://localhost:7061/api/Accessories`;
     const data = {
       AccessoriesID: AccessoriesID,
       Image: Image,
