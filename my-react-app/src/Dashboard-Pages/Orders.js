@@ -51,7 +51,7 @@ const Orders = () => {
         setEditCity(result.data.city);
         setEditCountry(result.data.country);
         setEditZipCode(result.data.zipCode);
-        setEditDiscountId(result.data.setEditDiscountId);
+        setEditDiscountID(result.data.setEditDiscountId);
       })
       .catch((error) => {
         toast.error("Failed to get Orders: " + error.message);
@@ -109,7 +109,7 @@ const Orders = () => {
     setEditCity("");
     setEditCountry("");
     setEditZipCode("");
-    setEditDiscountId("");
+    setEditDiscountID("");
   };
 
   
@@ -265,7 +265,7 @@ const Orders = () => {
                     type="text"
                     placeholder="Enter DiscountId"
                     value={editDiscountId}
-                    onChange={(e) => setEditDiscountId(e.target.value)}
+                    onChange={(e) => setEditDiscountID(e.target.value)}
                   />
                 </Form.Group>
               </Col>

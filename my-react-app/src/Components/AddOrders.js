@@ -6,13 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const AddOrders = () => {
-  const [orderDate, setEditOrderDate] = useState("");
-  const [orderShipDate, setEditOrderShipDate] = useState("");
-  const [address, setEditAddress] = useState("");
-  const [city, setEditCity] = useState("");
-  const [country, setEditCoutry] = useState("");
-  const [zipCode, setEditZipCode] = useState("");
-  const [discountId, setEditDiscountId] = useState("");
+  const [orderDate, setOrderDate] = useState("");
+  const [orderShipDate, setOrderShipDate] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCoutry] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [discountId, setDiscountId] = useState("");
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -53,10 +53,10 @@ const AddOrders = () => {
   };
   const clear = () => {
     setOrderDate("");
-    setOrderShipDate("");
+    orderShipDate("");
     setAddress("");
     setCity("");
-    setCountry("");
+    setCoutry("");
     setZipCode("");
     setDiscountId("");
   };
@@ -129,7 +129,7 @@ const AddOrders = () => {
               placeholder="Enter Country"
               name="country"
               value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              onChange={(e) => setCoutry(e.target.value)}
             />
           </Form.Group>
         </Col>
