@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 
 const Accessories = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -23,7 +22,7 @@ const Accessories = () => {
   const [editDimensions, setEditDimensions] = useState("");
   const [editPrice, setEditPrice] = useState("");
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
-  const [editStock, setEditStock] = useState([]);
+  // const [editStock, setEditStock] = useState([]);
 
   const [Data, setData] = useState([]);
 
@@ -32,7 +31,7 @@ const Accessories = () => {
   }, []);
 
   const getData = () => {
-    console.log(Data);
+    // console.log(Data);
     axios
       .get(`https://localhost:7061/api/Accessories`)
       .then((result) => {
@@ -44,24 +43,25 @@ const Accessories = () => {
   };
 
   //Edit
-  const handleEdit = (AccessoriesID) => {
+  const handleEdit = (accessoriesID) => {
 
     handleShow();
-    console.log("Received AccessoriesID: ", editAccessoriesID);
+    setEditAccessoriesID(accessoriesID)
+    // console.log("Received AccessoriesID: ", editAccessoriesID);
 
     axios
       .get(`https://localhost:7061/api/Accessories/${editAccessoriesID}`)
       .then((result) => {
-        const accessoriesData = result.Data;
-        setEditAccessoriesID(AccessoriesID);
-        setEditImage(accessoriesData.Image);
-        setEditName(accessoriesData.Name);
-        setEditSeller(accessoriesData.Seller);
-        setEditDescription(accessoriesData.Description);
-        setEditDimensions(accessoriesData.Dimensions);
-        setEditPrice(accessoriesData.Price);
-        setEditDateOfAddition(accessoriesData.DateOfAddition);
-        setEditStock(accessoriesData.Stock);
+        // const accessoriesData = result.Data;
+        // setEditAccessoriesID(accessoriesID);
+        setEditImage(result.data.image);
+        setEditName(result.data.name);
+        setEditSeller(result.data.seller);
+        setEditDescription(result.data.description);
+        setEditDimensions(result.data.dimensions);
+        setEditPrice(result.data.price);
+        setEditDateOfAddition(result.data.dateOfAddition);
+        // setEditStock(accessoriesData.Stock);
       })
 
       .catch((error) => {
@@ -70,13 +70,13 @@ const Accessories = () => {
   };
 
   //Delete
-  const handleDelete = (AccessoriesID) => {
+  const handleDelete = (accessoriesID) => {
     if (
       window.confirm("Are you sure you want to delete this Accessory item?") ===
       true
     ) {
       axios
-        .delete(`https://localhost:7061/api/Accessories/${AccessoriesID}`)
+        .delete(`https://localhost:7061/api/Accessories/${accessoriesID}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Accessory item has been deleted!");
@@ -91,14 +91,14 @@ const Accessories = () => {
   const handleUpdate = () => {
     const url = `https://localhost:7061/api/Accessories/${editAccessoriesID}`;
     const Data = {
-      AccessoriesID: editAccessoriesID,
-      Image: editImage,
-      Name: editName,
-      Description: editDescription,
-      Dimensions: editDimensions,
-      Price: editPrice,
-      DateOfAddition:editDateOfAddition,
-      Stock: editStock,
+      accessoriesID: editAccessoriesID,
+      image: editImage,
+      name: editName,
+      description: editDescription,
+      dimensions: editDimensions,
+      price: editPrice,
+      dateOfAddition: editDateOfAddition,
+      // Stock: editStock,
     };
 
     axios
@@ -115,7 +115,7 @@ const Accessories = () => {
   };
 
   const clear = () => {
-    setEditAccessoriesID("");
+    // setEditAccessoriesID("");
     setEditImage("");
     setEditName("");
     setEditSeller("");
@@ -123,7 +123,7 @@ const Accessories = () => {
     setEditDescription("");
     setEditPrice("");
     setEditDateOfAddition("");
-    setEditStock("");
+    // setEditStock("");
   };
 
   return (
@@ -140,7 +140,7 @@ const Accessories = () => {
         <thead className="table-dark">
           <tr>
             <th>#</th>
-            <th>AccessoriesID</th>
+            {/* <th>AccessoriesID</th> */}
             <th>Image</th>
             <th>Name</th>
             <th>Seller</th>
@@ -148,7 +148,7 @@ const Accessories = () => {
             <th>Dimensions</th>
             <th>Price</th>
             <th>DateOfAddition</th>
-            <th>Stock</th>
+            {/* <th>Stock</th> */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -156,31 +156,31 @@ const Accessories = () => {
           {Data && Data.length > 0
             ? Data.map((item, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={item.accessoriesID}>
                     <td>{index + 1}</td>
-                    <td>{item.AccessoriesID}</td>
+                    {/* <td>{item.}</td> */}
                     <td>
                       <img src={item.image} alt="Acessories" />
                     </td>
-                    <td>{item.Name}</td>
-                    <td>{item.Seller}</td>
-                    <td>{item.Description}</td>
-                    <td>{item.Dimensions}</td>
-                    <td>{item.Price}</td>
-                    <td>{item.DateOfAddition}</td>
-                    <td>{item.Stock}</td>
+                    <td>{item.name}</td>
+                    <td>{item.seller}</td>
+                    <td>{item.description}</td>
+                    <td>{item.dimensions}</td>
+                    <td>{item.price}</td>
+                    <td>{item.dateOfAddition}</td>
+                    {/* <td>{item.Stock}</td> */}
                     <td colSpan={2} className="btn">
                       <Button
                         variant="outline-dark"
                         className="btn-edit"
-                        onClick={() => handleEdit(item.AccessoriesID)}
+                        onClick={() => handleEdit(item.accessoriesID)}
                       >
                         Edit
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
-                        onClick={() => handleDelete(item.AccessoriesID)}
+                        onClick={() => handleDelete(item.accessoriesID)}
                       >
                         Delete
                       </Button>
@@ -211,7 +211,7 @@ const Accessories = () => {
                     placeholder="Enter AccessoriesID"
                     name="AccessoriesID"
                     value={editAccessoriesID}
-                    onChange={(e) => setEditAccessoriesID(e.target.value)}
+                    readOnly
                   />
                 </Form.Group>
               </Col>
@@ -314,7 +314,7 @@ const Accessories = () => {
                     </Form.Group>
                 </Col>
             </Row>
-
+{/* 
             <Row>
                 <Col>
                 <Form.Group controlId="formStock">
@@ -333,7 +333,7 @@ const Accessories = () => {
                   </Form.Control>
                 </Form.Group>
               </Col>
-            </Row>
+            </Row> */}
           </Form>
         </Modal.Body>
 
