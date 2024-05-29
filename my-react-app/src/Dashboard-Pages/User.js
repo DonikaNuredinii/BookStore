@@ -71,7 +71,7 @@ const User = () => {
         setEditEmail(userData.email);
         setEditUsername(userData.username);
         setEditPassword(userData.password);
-        setEditRoles(userData.roles);
+        setEditRoles(userData.rolesID.toString());
         seteditUserId(userId);
       })
       .catch((error) => {
@@ -306,8 +306,8 @@ const User = () => {
                     {roles &&
                       roles.length > 0 &&
                       roles.map((roleItem) => (
-                        <option key={roleItem.RoleID} value={roleItem.RoleID}>
-                          {roleItem.Rolename}
+                        <option key={roleItem.roleID} value={roleItem.roleID}>
+                          {roleItem.roleName}
                         </option>
                       ))}
                   </Form.Control>

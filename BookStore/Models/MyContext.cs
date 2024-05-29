@@ -32,8 +32,21 @@ namespace BookStore.Models
             modelBuilder.Entity<Accessories>()
                 .Property(a => a.Price)
                 .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<User>()
+                .Property(u => u.RolesID); 
+
+            modelBuilder.Entity<User>()
+                .HasOne<Roles>()
+                .WithMany()
+                .HasForeignKey(u => u.RolesID);
+
+            modelBuilder.Entity<Roles>().HasData(
+                new Roles { RolesID = 2, RoleName = "User" },
+                new Roles { RolesID = 3, RoleName = "Admin" }
+            );
 
             base.OnModelCreating(modelBuilder);
         }
     }
 }
+       

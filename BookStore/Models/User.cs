@@ -15,9 +15,13 @@ namespace BookStore.Models
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        [ForeignKey("RolesID")]
+        [ForeignKey("Roles")]
+        public int RolesID { get; set; }
 
 
-        public Roles Roles { get; set; }
+        public User()
+        {
+            RolesID = 2; // Default role ID
+        }
     }
 }
