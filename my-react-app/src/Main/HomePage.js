@@ -7,11 +7,18 @@ import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cart from "./Cart";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 const HomePage = () => {
   const [toggle, setToggle] = useState(true);
   const [book, setBooks] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    window.location.href = "/cart";
+    setCart([...cart, product]);
+  };
 
   useEffect(() => {
     fetchBooks();
@@ -82,10 +89,6 @@ const HomePage = () => {
           : book
       )
     );
-  };
-
-  const handleClick = () => {
-    // history.push("/new-route");
   };
 
   // Frame Animation
@@ -170,7 +173,13 @@ const HomePage = () => {
                     <p className="card-price">Price: €{book.price}</p>
                     <h3 className="card-title">{book.title}</h3>
                     <p className="card-author">Author: {book.author}</p>
-                    <button className="buy-now-btn">Add to Cart</button>
+                    <button
+                      to="/cart"
+                      className="buy-now-btn"
+                      onClick={() => addToCart(book)}
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
                 <div className="card-content">
@@ -183,6 +192,7 @@ const HomePage = () => {
           })}
         </div>
       </div>
+      {cart.length > 0 && <Cart cart={cart} />}
     </>
   );
 };

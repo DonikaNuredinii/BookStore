@@ -3,6 +3,7 @@ import Wildfire from "../Images/wildfire.jpg";
 import Twisted from "../Images/twisted.jpg";
 import cruelPrince from "../Images/cruelPrince.jpg";
 import icebreaker from "../Images/icebreaker.jpg";
+import { Link } from "react-router-dom";
 import "../App.css";
 const BookBanner = () => {
   return (
@@ -15,15 +16,15 @@ const BookBanner = () => {
           Dive into our curated collection and find your next favorite book
           today!
         </p>
-        <button className="more-button">See more</button>
+        <Link to="/Categories" className="more-button">
+          See more
+        </Link>
       </div>
       <div className="book-covers">
-        {/* Replace these with actual book cover images */}
         <img src={Wildfire} alt="Book Cover 1" />
         <img src={Twisted} alt="Book Cover 2" />
         <img src={cruelPrince} alt="Book Cover 3" />
         <img src={icebreaker} alt="Book Cover 4" />
-        {/* Add more book covers as needed */}
       </div>
     </div>
   );

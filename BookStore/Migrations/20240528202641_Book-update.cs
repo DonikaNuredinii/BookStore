@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class Accessories : Migration
+    public partial class Bookupdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,20 +26,6 @@ namespace BookStore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Author", x => x.AuthorID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BookAuthors",
-                columns: table => new
-                {
-                    BookAuthorsID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookID = table.Column<int>(type: "int", nullable: false),
-                    AuthorID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookAuthors", x => x.BookAuthorsID);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,7 +178,6 @@ namespace BookStore.Migrations
                     ISBN = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PageNumber = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -216,6 +201,32 @@ namespace BookStore.Migrations
                         column: x => x.StockId,
                         principalTable: "Stock",
                         principalColumn: "StockId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookAuthors",
+                columns: table => new
+                {
+                    BookAuthorsID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookID = table.Column<int>(type: "int", nullable: false),
+                    AuthorID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookAuthors", x => x.BookAuthorsID);
+                    table.ForeignKey(
+                        name: "FK_BookAuthors_Author_AuthorID",
+                        column: x => x.AuthorID,
+                        principalTable: "Author",
+                        principalColumn: "AuthorID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookAuthors_Books_BookID",
+                        column: x => x.BookID,
+                        principalTable: "Books",
+                        principalColumn: "BookID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -251,6 +262,16 @@ namespace BookStore.Migrations
                 column: "StockId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BookAuthors_AuthorID",
+                table: "BookAuthors",
+                column: "AuthorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookAuthors_BookID",
+                table: "BookAuthors",
+                column: "BookID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Books_PublishingHouseId",
                 table: "Books",
                 column: "PublishingHouseId");
@@ -283,9 +304,6 @@ namespace BookStore.Migrations
                 name: "Accessories");
 
             migrationBuilder.DropTable(
-                name: "Author");
-
-            migrationBuilder.DropTable(
                 name: "BookAuthors");
 
             migrationBuilder.DropTable(
@@ -299,6 +317,9 @@ namespace BookStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Author");
 
             migrationBuilder.DropTable(
                 name: "Books");

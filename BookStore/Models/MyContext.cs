@@ -23,5 +23,17 @@ namespace BookStore.Models
         public DbSet<GiftCard> GiftCards { get; set; }
         public DbSet<Accessories> Accessories { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>()
+                .Property(b => b.Price)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Accessories>()
+                .Property(a => a.Price)
+                .HasColumnType("decimal(18,2)");
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

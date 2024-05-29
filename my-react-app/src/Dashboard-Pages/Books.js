@@ -21,10 +21,10 @@ const Books = () => {
   const [editPageNumber, setEditPageNumber] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
-  const [editStock, setEditStock] = useState([]);
+  const [editStock, setEditStock] = useState(null);
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
-  const [editPublishingHouse, seteditPublishingHouse] = useState([]);
+  const [editPublishingHouse, seteditPublishingHouse] = useState(null);
 
   //Prosess image
   const preprocessImagePath = (path) => {
@@ -148,33 +148,35 @@ const Books = () => {
         setEditPrice(bookData.price);
         setEditDateOfAddition(bookData.dateOfadition);
         setEditType(bookData.type);
-        getAuthors(bookID)
-          .then((authors) => {
-            const authorNames = authors.map((author) => author.name);
-            setEditAuthors(authorNames);
-          })
-          .catch((error) => {
-            console.error("Failed to fetch authors:", error);
-          });
-
-        setEditStock(bookData.stock ? [bookData.stock] : []);
-
+        // Check if 'authors' property exists and is an array
+        if (Array.isArray(bookData.authors)) {
+          // Assuming each author object has a 'name' property
+          setEditAuthors(bookData.authors.map((author) => author.name));
+        } else {
+          console.error(
+            "Authors data is not in the expected format:",
+            bookData.authors
+          );
+          // Handle the case when 'authors' is not in the expected format
+          // You can set default or empty authors here
+          setEditAuthors([]);
+        }
         seteditPublishingHouse(
-          bookData.publishingHouse
-            ? [bookData.publishingHouse.publishingHouseId]
-            : []
+          bookData.publishingHouse ? bookData.publishingHouse : null
         );
+
+        setEditStock(bookData.stock ? bookData.stock : null);
       })
       .catch((error) => {
         toast.error("Failed to get Book: " + error.message);
       });
   };
+
   const handleStockChange = (e) => {
     const stockId = e.target.value;
     const selectedStock = editStock.find(
       (s) => s.stockId === parseInt(stockId)
     );
-    console.log("selectedStock:", selectedStock);
     setEditStock(selectedStock ? [selectedStock] : []);
   };
 
@@ -208,23 +210,26 @@ const Books = () => {
     console.log("Edit id:", editBookId);
     const url = `https://localhost:7061/api/Book/${editBookId}`;
     const data = {
-      bookID: editBookId,
-      isbn: editISBN,
-      image: editImage || "",
-      title: editTitle || "",
-      author: editAuthors.join(", ") || "",
-      publicationDate: editPublicationDate || "",
-      pageNumber: parseInt(editPageNumber) || 0,
-      description: editDescription || "",
-      price: parseFloat(editPrice) || 0.0,
-      dateOfadition: editDateOfAddition || "",
-      type: editType || "",
-      publishingHouse: {
+      BookID: editBookId,
+      ISBN: editISBN,
+      Image: editImage || "",
+      Title: editTitle || "",
+      Author: editAuthors.join(", ") || "",
+      PublicationDate: editPublicationDate || "",
+      PageNumber: parseInt(editPageNumber) || 0,
+      Description: editDescription || "",
+      Price: parseFloat(editPrice) || 0.0,
+      DateOfadition: editDateOfAddition || "",
+      Type: editType || "",
+      PublishingHouse: {
         publishingHouseId: editPublishingHouse[0] || 0,
+        HouseName: editPublishingHouse[0]
+          ? editPublishingHouse[0].HouseName
+          : "",
       },
-      stock: {
-        stockId: editStock[0].stockId || 0,
-        quantity: editStock[0].quantity || 0,
+      Stock: {
+        stockId: editStock ? (editStock[0] ? editStock[0].stockId : 0) : 0,
+        quantity: editStock ? (editStock[0] ? editStock[0].quantity : 0) : 0,
       },
     };
 
@@ -255,7 +260,36 @@ const Books = () => {
             (error.response ? error.response.data.title : error.message)
         );
       });
+
+    console.log("Data being sent:", data);
+
+    axios
+      .put(url, data)
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success("Book has been updated");
+      })
+      .catch((error) => {
+        console.error(
+          "Failed to edit Book:",
+          error.response ? error.response.data : error.message
+        );
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.errors
+        ) {
+          console.error("Validation errors:", error.response.data.errors);
+        }
+        toast.error(
+          "Failed to edit Book: " +
+            (error.response ? error.response.data.title : error.message)
+        );
+      });
   };
+
   const clear = () => {
     setEditISBN("");
     setEditImage("");
@@ -426,22 +460,24 @@ const Books = () => {
               <Col>
                 <Form.Group controlId="formPublishingHouse">
                   <Form.Label>Publishing House</Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={editPublishingHouse ? editPublishingHouse.id : ""}
-                    onChange={(e) => handleInputChange(e)}
-                    name="publishingHouse"
-                  >
-                    <option value="">Select Publishing House</option>
-                    {editPublishingHouse.map((house) => (
-                      <option
-                        key={house.publishingHouseId} // Assigning a unique key prop
-                        value={house.publishingHouseId}
-                      >
-                        {house.houseName}
-                      </option>
-                    ))}
-                  </Form.Control>
+                  {Array.isArray(editPublishingHouse) && ( // Add conditional rendering
+                    <Form.Control
+                      as="select"
+                      value={editPublishingHouse ? editPublishingHouse.id : ""}
+                      onChange={(e) => handleInputChange(e)}
+                      name="publishingHouse"
+                    >
+                      <option value="">Select Publishing House</option>
+                      {editPublishingHouse.map((house) => (
+                        <option
+                          key={house.publishingHouseId}
+                          value={house.publishingHouseId}
+                        >
+                          {house.houseName}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  )}
                 </Form.Group>
               </Col>
 
@@ -532,19 +568,21 @@ const Books = () => {
               <Col>
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={editStock.stockId}
-                    onChange={handleStockChange}
-                    name="stock"
-                  >
-                    <option value="">Select Stock</option>
-                    {editStock.map((stock) => (
-                      <option key={stock.stockId} value={stock.stockId}>
-                        {stock.quantity}
-                      </option>
-                    ))}
-                  </Form.Control>
+                  {editStock && ( // Add conditional rendering
+                    <Form.Control
+                      as="select"
+                      value={editStock.stockId}
+                      onChange={handleStockChange}
+                      name="stock"
+                    >
+                      <option value="">Select Stock</option>
+                      {editStock.map((stock) => (
+                        <option key={stock.stockId} value={stock.stockId}>
+                          {stock.quantity}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  )}
                 </Form.Group>
               </Col>
             </Row>
