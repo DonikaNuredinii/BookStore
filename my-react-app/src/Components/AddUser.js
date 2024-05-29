@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "react-bootstrap";
 
 const AddUser = () => {
   const [firstName, setFirstName] = useState("");
@@ -12,24 +11,15 @@ const AddUser = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios
-      .get(`https://localhost:7061/api/User`)
-      .then((result) => {
-        setData(result.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get data: " + error.message);
-      });
-  };
+  const [selectedRole, setSelectedRole] = useState(2);
 
   const handleSave = () => {
+    // Form validation
+    if (!firstName || !lastName || !email || !username || !password) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
+
     const userData = {
       FirstName: firstName,
       LastName: lastName,
@@ -37,19 +27,18 @@ const AddUser = () => {
       Email: email,
       Username: username,
       Password: password,
+      RolesID: parseInt(selectedRole),
     };
 
     axios
       .post(`https://localhost:7061/api/User`, userData)
       .then((response) => {
-        // Handle successful response
         console.log("User added successfully:", response.data);
         clearForm();
         toast.success("User has been added");
       })
       .catch((error) => {
         console.error("Failed to add user:", error);
-        console.log("Detailed error response:", error.response);
         toast.error("Failed to add user: " + error.message);
       });
   };
@@ -61,6 +50,7 @@ const AddUser = () => {
     setEmail("");
     setUsername("");
     setPassword("");
+    setSelectedRole(2);
   };
 
   return (
@@ -137,6 +127,21 @@ const AddUser = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Form.Group controlId="formRoles">
+            <Form.Label>Role</Form.Label>
+            <Form.Control
+              as="select"
+              value={selectedRole.toString()}
+              onChange={(e) => setSelectedRole(e.target.value)}
+            >
+              <option value="2">User</option>
+              <option value="3">Admin</option>
+            </Form.Control>
           </Form.Group>
         </Col>
       </Row>

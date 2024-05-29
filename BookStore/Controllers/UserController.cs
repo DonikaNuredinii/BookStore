@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApplication1.Controllers
 {
@@ -81,10 +82,6 @@ namespace WebApplication1.Controllers
         [HttpDelete("{UserID}")]
         public async Task<ActionResult> DeleteUser(int UserID)
         {
-            if (_usersContext.Users == null)
-            {
-                return NotFound();
-            }
             var user = await _usersContext.Users.FindAsync(UserID);
             if (user == null)
             {
