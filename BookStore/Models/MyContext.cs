@@ -44,6 +44,15 @@ namespace BookStore.Models
                 new Roles { RolesID = 2, RoleName = "User" },
                 new Roles { RolesID = 3, RoleName = "Admin" }
             );
+            modelBuilder.Entity<Book>()
+                .HasOne<PublishingHouse>()
+                .WithMany()
+                .HasForeignKey(b => b.PublishingHouseId);
+
+            modelBuilder.Entity<Book>()
+                .HasOne<Stock>()
+                .WithMany()
+                .HasForeignKey(b => b.StockId);
 
             base.OnModelCreating(modelBuilder);
         }
