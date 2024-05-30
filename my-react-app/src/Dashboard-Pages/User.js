@@ -12,7 +12,7 @@ const User = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [editUserId, seteditUserId] = useState("");
+  const [editUserId, setEditUserId] = useState("");
   const [editFirstName, setEditFirstName] = useState("");
   const [editLastName, setEditLastName] = useState("");
   const [editPhoneNumber, setEditPhoneNumber] = useState("");
@@ -33,6 +33,7 @@ const User = () => {
       .get(`https://localhost:7061/api/User`)
       .then((result) => {
         setData(result.data);
+        console.log("User Data:", result.data); // Log user data
       })
       .catch((error) => {
         console.log(error);
@@ -42,7 +43,7 @@ const User = () => {
       .get(`https://localhost:7061/api/Roles`)
       .then((result) => {
         setRoles(result.data);
-        console.log("Roles Data:", result.data);
+        console.log("Roles Data:", result.data); // Log roles data
       })
       .catch((error) => {
         console.error("Error fetching Roles:", error);
@@ -50,17 +51,14 @@ const User = () => {
       });
   };
 
-  //edit
-
   const handleEdit = (userId) => {
-    console.log("UserID:", userId);
     if (!userId) {
       toast.error("UserID is not valid");
       return;
     }
 
     handleShow();
-    seteditUserId(userId);
+    setEditUserId(userId);
     axios
       .get(`https://localhost:7061/api/User/${userId}`)
       .then((result) => {
@@ -72,7 +70,6 @@ const User = () => {
         setEditUsername(userData.username);
         setEditPassword(userData.password);
         setEditRoles(userData.rolesID.toString());
-        seteditUserId(userId);
       })
       .catch((error) => {
         toast.error("Failed to get User: " + error.message);
@@ -80,7 +77,6 @@ const User = () => {
   };
 
   const handleDelete = (userId) => {
-    console.log("UserID before delete:", userId);
     if (window.confirm("Are you sure you want to delete this User?")) {
       axios
         .delete(`https://localhost:7061/api/User/${userId}`)
@@ -107,7 +103,7 @@ const User = () => {
       Email: editEmail,
       Username: editUsername,
       Password: editPassword,
-      Roles: editRoles,
+      RolesID: parseInt(editRoles),
     };
 
     axios
@@ -135,7 +131,7 @@ const User = () => {
 
   return (
     <Fragment>
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
       <div className="add-button">
         <Link to="../add-user">
           <Button variant="dark" className="btn-add">
@@ -153,12 +149,20 @@ const User = () => {
             <th>Email</th>
             <th>Username</th>
             <th>Password</th>
+            <th>Roles</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data && data.length > 0
             ? data.map((item, index) => {
+                let roleName = "N/A";
+                if (item.rolesID === 2) {
+                  roleName = "Admin";
+                } else if (item.rolesID === 3) {
+                  roleName = "User";
+                }
+                console.log("Role ID:", item.rolesID, "Role Name:", roleName); // Log role mapping
                 return (
                   <tr key={item.userID}>
                     <td>{index + 1}</td>
@@ -168,7 +172,7 @@ const User = () => {
                     <td>{item.email}</td>
                     <td>{item.username}</td>
                     <td>{item.password}</td>
-
+                    <td>{roleName}</td>
                     <td colSpan={2} className="btn">
                       <Button
                         variant="outline-dark"
@@ -229,7 +233,7 @@ const User = () => {
               </Col>
               <Col>
                 <Form.Group controlId="formLastName">
-                  <Form.Label>LastName</Form.Label>
+                  <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter your Last Name"
@@ -285,7 +289,7 @@ const User = () => {
                 <Form.Group controlId="formPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="password"
                     placeholder="Enter your password"
                     name="password"
                     value={editPassword}
@@ -293,45 +297,38 @@ const User = () => {
                   />
                 </Form.Group>
               </Col>
-
+            </Row>
+            <Row>
               <Col>
                 <Form.Group controlId="formRoles">
-                  <Form.Label>Roles</Form.Label>
+                  <Form.Label>Role</Form.Label>
                   <Form.Control
                     as="select"
+                    name="roles"
                     value={editRoles}
                     onChange={(e) => setEditRoles(e.target.value)}
                   >
                     <option value="">Select Role</option>
-                    {roles &&
-                      roles.length > 0 &&
-                      roles.map((roleItem) => (
-                        <option key={roleItem.roleID} value={roleItem.roleID}>
-                          {roleItem.roleName}
-                        </option>
-                      ))}
+                    <option value="2">Admin</option>
+                    <option value="3">User</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
             </Row>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button
+                variant="dark"
+                type="button"
+                onClick={handleUpdate}
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-dark"
-            className="btn-Close"
-            onClick={handleClose}
-          >
-            Close
-          </Button>
-          <Button
-            variant="outline-dark"
-            className="btn-update"
-            onClick={handleUpdate}
-          >
-            Update
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Fragment>
   );
