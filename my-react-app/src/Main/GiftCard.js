@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../App.css";
 
 const GiftCard = () => {
-  const [amount, setAmount] = useState(25);
-  const [selectedDesign, setSelectedDesign] = useState("design1"); // Set initial design
+  const [amount, setAmount] = useState(0);
+  const [selectedDesign, setSelectedDesign] = useState("design1");
   const [recipientName, setRecipientName] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [message, setMessage] = useState("");

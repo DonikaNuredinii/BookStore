@@ -64,8 +64,37 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutBookAuthors(int id, BookAuthors bookAuthors)
+        {
+            if (id != bookAuthors.BookAuthorsID)
+            {
+                return BadRequest();
+            }
 
-        private bool BookAuthorsExists(int id)
+            _context.Entry(bookAuthors).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookAuthorsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
+    private bool BookAuthorsExists(int id)
         {
             return _context.BookAuthors.Any(e => e.BookAuthorsID == id);
         }
