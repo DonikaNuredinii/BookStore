@@ -1,169 +1,75 @@
 import React, { useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import theSpanish from "../Images/theSpanish.jpg";
 
-function CartItem({ product }) {
-  return (
-    <div className="item">
-      <img src={product.image} alt={product.name} />
-      <div className="info-Cart">
-        <div className="name-Cart">{product.name}</div>
-        <div className="price-Cart">${product.price}/1 product</div>
-      </div>
-      <div className="quantity-Cart">{product.quantity}</div>
-      <div className="returnPrice-Cart">
-        ${product.price * product.quantity}
-      </div>
-    </div>
-  );
-}
+const Cart = () => {
+  const [quantity, setQuantity] = useState(1);
+  const price = 5.0;
+  const discount = 0.3;
+  const discountedPrice = price * (1 - discount);
 
-function Cart({ cart }) {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
-    address: "",
-    country: "",
-    city: "",
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+  const handleQuantityChange = (delta) => {
+    setQuantity((prevQuantity) => Math.max(prevQuantity + delta, 1));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("your-backend-checkout-api-url", {
-        ...formData,
-        cart,
-      });
-      console.log("Checkout submitted successfully:", response.data);
-      setFormData({
-        fullName: "",
-        phoneNumber: "",
-        address: "",
-        country: "",
-        city: "",
-      });
-    } catch (error) {
-      console.error("Error submitting checkout data:", error);
-    }
+  const handleCheckout = () => {
+    console.log("Proceeding to checkout with quantity:", quantity);
   };
 
-  const totalQuantity = cart
-    ? cart.reduce((total, item) => total + item.quantity, 0)
-    : 0;
-  const totalPrice = cart
-    ? cart.reduce((total, item) => total + item.price * item.quantity, 0)
-    : 0;
-
   return (
-    <div className="Cart-container">
-      <Link to="/" className="keep-shopping-link">
-        keep shopping
-      </Link>
-      <div className="checkoutLayout">
-        <div className="return-Cart">
-          <h1>List Product in Cart</h1>
-          <hr />
-          <div className="product-list-Cart">
-            {cart &&
-              cart.map((product, index) => (
-                <CartItem key={index} product={product} />
-              ))}
+    <div className="cart-container">
+      <div className="top-Cart">
+        <h1>Your cart</h1>
+        <Link to="./HomePage" className="continue-shopping">
+          Continue Shoping
+        </Link>
+      </div>
+      <div className="cart-items-name">
+        <p>Product</p>
+        <p>Quantity</p>
+        <p>Total Price</p>
+      </div>
+      <div className="cart-item">
+        <img src={theSpanish} alt="2-pack 18k Gold Plated Basic Chubby Hoops" />
+        <div className="items-cart-screen">
+          <div className="item-details">
+            <p>2-pack 18k Gold Plated Basic Chubby Hoops</p>
+            <p>€{price.toFixed(2)}</p>
+            <p>Color: Gold</p>
+          </div>
+          <div className="quantity-controls">
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              disabled={quantity <= 1}
+            >
+              -
+            </button>
+            <span>{quantity}</span>
+            <button onClick={() => handleQuantityChange(1)}>+</button>
           </div>
         </div>
-        <div className="right-cart">
-          <h1>Checkout</h1>
-          <form className="form-Cart" onSubmit={handleSubmit}>
-            <div className="group-Cart">
-              <label htmlFor="fullName" className="label-Cart">
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-Cart">
-              <label htmlFor="phoneNumber" className="label-Cart">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-Cart">
-              <label htmlFor="address" className="label-Cart">
-                Address
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-Cart">
-              <label htmlFor="country" className="label-Cart">
-                Country
-              </label>
-              <select
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-              >
-                <option value="">Choose..</option>
-                <option value="">Kingdom</option>
-              </select>
-            </div>
-            <div className="group-Cart">
-              <label htmlFor="city" className="label-Cart">
-                City
-              </label>
-              <select
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-              >
-                <option value="">Choose..</option>
-                <option value="">London</option>
-              </select>
-            </div>
-            <div className="return-Cart">
-              <div className="row-Cart">
-                <div>Total Quantity:</div>
-                <div className="totalQuantity">{totalQuantity}</div>
-              </div>
-              <div className="row-Cart">
-                <div>Total Price:</div>
-                <div className="totalPrice">${totalPrice}</div>
-              </div>
-            </div>
-            <button type="submit" className="buttonCheckout">
-              CHECKOUT
-            </button>
-          </form>
-        </div>
+        <p className="total-price">
+          €{(discountedPrice * quantity).toFixed(2)}
+        </p>
+      </div>
+      <div className="cart-summary">
+        <p>30% zbritje vetem ne WEB! (-€{(price * discount).toFixed(2)})</p>
+        <p>Estimated total: €{(discountedPrice * quantity).toFixed(2)} EUR</p>
+        <p>
+          Tax included. <a href="#shipping">Shipping</a> and discounts
+          calculated at checkout.
+        </p>
+        <Link
+          to="../CheckoutForm"
+          className="checkout-button"
+          onClick={handleCheckout}
+        >
+          Check out
+        </Link>
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

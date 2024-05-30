@@ -1,4 +1,6 @@
-﻿namespace BookStore.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BookStore.Models
 {
     public class GiftCard
     {
@@ -9,5 +11,7 @@
         public string RecipientName { get; set; }
         public string RecipientEmail { get; set; }
         public string Message { get; set; }
+        [ForeignKey("UserID")]
+        public int UserID { get; set; }
     }
 }
