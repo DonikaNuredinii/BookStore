@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BookStore.Models
 {
     public class Orders
@@ -7,9 +9,14 @@ namespace BookStore.Models
         public DateTime OrderShipDate { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public string Country { get; set; }
+        [ForeignKey("CountryID")]
+        public int CountryID { get; set; }
         public int ZipCode { get; set; }
-        public int DiscountId { get; set; }
+        [ForeignKey("DiscountID")]
+        public int DiscountID { get; set; }
+        [ForeignKey("GiftCardID")]
+        public int GiftCardID { get; set; }
+
 
     }
 }
