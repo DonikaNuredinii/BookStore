@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\BookStore",
-    "\\BookStore\\Migrations"
+    ""
   ],
-  "SelectedNode": "\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
+  "SelectedNode": "\\BookStore.sln",
   "PreviewInSolutionExplorer": false
 }

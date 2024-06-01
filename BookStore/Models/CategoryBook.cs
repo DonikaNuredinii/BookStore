@@ -10,8 +10,5 @@ namespace BookStore.Models
 
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
-
-        public virtual Book Book { get; set; }
-        public virtual Category Category { get; set; }
     }
 }

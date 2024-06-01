@@ -22,6 +22,11 @@ namespace BookStore.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<GiftCard> GiftCards { get; set; }
         public DbSet<Accessories> Accessories { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Payment> Payment{ get; set; }
+        public DbSet<UserOrder> UserOrder { get; set; }
+        public DbSet<Discount> Discount { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +38,18 @@ namespace BookStore.Models
                 .Property(a => a.Price)
                 .HasColumnType("decimal(18,2)");
             modelBuilder.Entity<User>()
-                .Property(u => u.RolesID); 
+                .Property(u => u.RolesID);
+            modelBuilder.Entity<Discount>()
+        .Property(d => d.DiscountAmount)
+        .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<OrderDetails>()
+                .Property(o => o.TotalPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Amount)
+                .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<User>()
                 .HasOne<Roles>()
@@ -44,6 +60,15 @@ namespace BookStore.Models
                 new Roles { RolesID = 2, RoleName = "User" },
                 new Roles { RolesID = 3, RoleName = "Admin" }
             );
+            modelBuilder.Entity<Book>()
+                .HasOne<PublishingHouse>()
+                .WithMany()
+                .HasForeignKey(b => b.PublishingHouseId);
+
+            modelBuilder.Entity<Book>()
+                .HasOne<Stock>()
+                .WithMany()
+                .HasForeignKey(b => b.StockId);
 
             base.OnModelCreating(modelBuilder);
         }

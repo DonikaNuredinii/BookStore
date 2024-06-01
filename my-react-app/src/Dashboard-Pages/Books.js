@@ -21,35 +21,42 @@ const Books = () => {
   const [editPageNumber, setEditPageNumber] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
-  const [editStock, setEditStock] = useState(null);
+  const [editStock, setEditStock] = useState("");
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
-  const [editPublishingHouse, seteditPublishingHouse] = useState(null);
+  const [editPublishingHouse, setEditPublishingHouse] = useState("");
+  const [editBook, setEditBook] = useState({});
+  const [data, setData] = useState("");
+  const [selectedAuthors, setSelectedAuthors] = useState([]);
+  const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
+  const [selectedStock, setSelectedStock] = useState("");
+  const [publishingHouseList, setPublishingHouseList] = useState([]);
+  const [stockList, setStockList] = useState([]);
+  const handleShow = () => setShow(true);
 
-  //Prosess image
-  const preprocessImagePath = (path) => {
-    if (!path) return null;
-    const imageName = path.split("/").pop();
-    try {
-      return images(`./${imageName}`);
-    } catch (err) {
-      console.error(`Image not found: ${imageName}`);
-      return null;
-    }
-  };
-  const [data, setData] = useState([]);
   useEffect(() => {
+    getAuthors();
     getPublishingHouses();
     getStocks();
     getData();
-    getAuthors();
   }, []);
-  //getData
+
+  const getAuthors = () => {
+    axios
+      .get("https://localhost:7061/api/Author")
+      .then((response) => {
+        setAuthorsList(response.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to fetch authors: " + error.message);
+      });
+  };
+
   const getPublishingHouses = () => {
-    return axios
+    axios
       .get("https://localhost:7061/api/PublishingHouses")
       .then((response) => {
-        seteditPublishingHouse(response.data); // Set as array
+        setPublishingHouseList(response.data);
       })
       .catch((error) => {
         toast.error("Failed to get publishing houses: " + error.message);
@@ -57,87 +64,40 @@ const Books = () => {
   };
 
   const getStocks = () => {
-    return axios
-      .get(`https://localhost:7061/api/Stock`)
-      .then((response) => {
-        setEditStock(response.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get stock: " + error.message);
-      });
-  };
-  const getAuthors = (bookID) => {
-    return axios
-      .get(`https://localhost:7061/api/BookAuthors`)
-      .then((result) => {
-        const authorData = result.data;
-        const authorPromises = authorData.map(({ authorID }) =>
-          axios.get(`https://localhost:7061/api/Author/${authorID}`)
-        );
-        return Promise.all(authorPromises);
-      })
-      .then((authorResponses) => {
-        const authors = authorResponses.map((response) => response.data);
-        setAuthorsList(authors);
-        return authors;
-      })
-      .catch((error) => {
-        console.error("Failed to get authors:", error);
-        return [];
-      });
-  };
-
-  const getData = () => {
-    console.log("editStock:", editStock);
-
     axios
-      .get(`https://localhost:7061/api/Book`)
-      .then((result) => {
-        const books = result.data;
-        const promises = books.map((book) => {
-          let publishingHousePromise;
-          let stockPromise;
-          if (book.publishingHouseId) {
-            publishingHousePromise = getPublishingHouses(
-              book.publishingHouseId
-            );
-          } else {
-            publishingHousePromise = Promise.resolve();
-          }
-          if (book.stockId) {
-            stockPromise = getStocks(book.stockId);
-          } else {
-            stockPromise = Promise.resolve();
-          }
-          return Promise.all([
-            publishingHousePromise,
-            stockPromise,
-            getAuthors(book.bookID),
-          ]);
-        });
-        Promise.all(promises)
-          .then(() => {
-            setData(books);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      .get("https://localhost:7061/api/Stock")
+      .then((response) => {
+        setStockList(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Failed to get stocks: " + error.message);
       });
   };
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  //edit
+
+  const getData = async () => {
+    try {
+      const response = await axios.get("https://localhost:7061/api/Book");
+      setData(response.data);
+      const booksWithAuthorsPromises = data.map(async (book) => {
+        const bookAuthorsResponse = await axios.get(
+          `https://localhost:7061/api/BookAuthor/${book.bookID}`
+        );
+        const authors = bookAuthorsResponse.data;
+        return { ...book, authors };
+      });
+      const booksWithAuthors = await Promise.all(booksWithAuthorsPromises);
+      setData(booksWithAuthors);
+    } catch (error) {
+      toast.error("Failed to get books: " + error.message);
+    }
+  };
   const handleEdit = (bookID) => {
     handleShow();
-
-    console.log("Received BookID:", bookID);
     axios
       .get(`https://localhost:7061/api/Book/${bookID}`)
       .then((result) => {
         const bookData = result.data;
+
         seteditBookId(bookID);
         setEditISBN(bookData.isbn);
         setEditImage(bookData.image);
@@ -148,95 +108,50 @@ const Books = () => {
         setEditPrice(bookData.price);
         setEditDateOfAddition(bookData.dateOfadition);
         setEditType(bookData.type);
-        // Check if 'authors' property exists and is an array
-        if (Array.isArray(bookData.authors)) {
-          // Assuming each author object has a 'name' property
-          setEditAuthors(bookData.authors.map((author) => author.name));
-        } else {
-          console.error(
-            "Authors data is not in the expected format:",
-            bookData.authors
-          );
-          // Handle the case when 'authors' is not in the expected format
-          // You can set default or empty authors here
-          setEditAuthors([]);
-        }
-        seteditPublishingHouse(
-          bookData.publishingHouse ? bookData.publishingHouse : null
+        setEditAuthors(bookData.authors || []);
+        setSelectedAuthors(
+          (bookData.authors || []).map((author) => author.authorID)
         );
-
-        setEditStock(bookData.stock ? bookData.stock : null);
+        setEditPublishingHouse(bookData.publishingHouse);
+        setSelectedPublishingHouse(
+          bookData.publishingHouse?.publishingHouseId || ""
+        );
+        setEditStock(bookData.stock);
+        setSelectedStock(bookData.stock?.stockId || "");
       })
       .catch((error) => {
         toast.error("Failed to get Book: " + error.message);
       });
   };
 
-  const handleStockChange = (e) => {
-    const stockId = e.target.value;
-    const selectedStock = editStock.find(
-      (s) => s.stockId === parseInt(stockId)
-    );
-    setEditStock(selectedStock ? [selectedStock] : []);
-  };
-
-  //delete
-
-  const handleDelete = (bookID) => {
-    if (window.confirm("Are you sure you want to delete this Book") == true) {
-      axios
-        .delete(`https://localhost:7061/api/Book/${bookID}`)
-        .then((result) => {
-          if (result.status === 200) {
-            toast.success("Book has been deleted");
-          }
-        })
-        .catch((error) => {
-          toast.error("Failed to delete Book: " + error.message);
-        });
-    }
-  };
-  //imput change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-    if (name === "stock") {
-      setEditStock(value);
-    }
-  };
-
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log("Edit id:", editBookId);
-    const url = `https://localhost:7061/api/Book/${editBookId}`;
+
+    // Ensure valid publishing house and stock data
+    const publishingHouseId = parseInt(selectedPublishingHouse) || null;
+    const stockId = parseInt(selectedStock) || null;
+
+    // Prepare data for update
     const data = {
-      BookID: editBookId,
-      ISBN: editISBN,
-      Image: editImage || "",
-      Title: editTitle || "",
-      Author: editAuthors.join(", ") || "",
-      PublicationDate: editPublicationDate || "",
-      PageNumber: parseInt(editPageNumber) || 0,
-      Description: editDescription || "",
-      Price: parseFloat(editPrice) || 0.0,
-      DateOfadition: editDateOfAddition || "",
-      Type: editType || "",
-      PublishingHouse: {
-        publishingHouseId: editPublishingHouse[0] || 0,
-        HouseName: editPublishingHouse[0]
-          ? editPublishingHouse[0].HouseName
-          : "",
-      },
-      Stock: {
-        stockId: editStock ? (editStock[0] ? editStock[0].stockId : 0) : 0,
-        quantity: editStock ? (editStock[0] ? editStock[0].quantity : 0) : 0,
-      },
+      bookID: editBookId,
+      isbn: parseInt(editISBN) || 0,
+      image: editImage || "string",
+      title: editTitle || "string",
+      publicationDate: editPublicationDate || new Date().toISOString(),
+      pageNumber: parseInt(editPageNumber) || 0,
+      description: editDescription || "string",
+      price: parseFloat(editPrice) || 0.0,
+      dateOfadition: editDateOfAddition || new Date().toISOString(),
+      type: editType || "string",
+      publishingHouseId: publishingHouseId,
+      stockId: stockId,
     };
 
     console.log("Data being sent:", data);
 
     axios
-      .put(url, data)
+      .put(`https://localhost:7061/api/Book/${editBookId}`, data)
       .then((result) => {
         handleClose();
         getData();
@@ -248,46 +163,43 @@ const Books = () => {
           "Failed to edit Book:",
           error.response ? error.response.data : error.message
         );
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.errors
-        ) {
-          console.error("Validation errors:", error.response.data.errors);
-        }
-        toast.error(
-          "Failed to edit Book: " +
-            (error.response ? error.response.data.title : error.message)
-        );
+        const errorMessage =
+          error.response?.data?.title || error.message || "Unknown error";
+        toast.error(`Failed to edit Book: ${errorMessage}`);
       });
+  };
 
-    console.log("Data being sent:", data);
-
-    axios
-      .put(url, data)
-      .then((result) => {
-        handleClose();
+  const handleDelete = async (bookID) => {
+    if (window.confirm("Are you sure you want to delete this Book")) {
+      try {
+        await axios.delete(`https://localhost:7061/api/Book/${bookID}`);
+        toast.success("Book has been deleted");
         getData();
-        clear();
-        toast.success("Book has been updated");
-      })
-      .catch((error) => {
-        console.error(
-          "Failed to edit Book:",
-          error.response ? error.response.data : error.message
-        );
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.errors
-        ) {
-          console.error("Validation errors:", error.response.data.errors);
-        }
-        toast.error(
-          "Failed to edit Book: " +
-            (error.response ? error.response.data.title : error.message)
-        );
-      });
+      } catch (error) {
+        toast.error("Failed to delete book: " + error.message);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    setShow(false);
+    setEditBook({});
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditBook({ ...editBook, [name]: value });
+  };
+
+  const preprocessImagePath = (path) => {
+    if (!path) return null;
+    const imageName = path.split("/").pop();
+    try {
+      return images(`./${imageName}`);
+    } catch (err) {
+      console.error(`Image not found: ${imageName}`);
+      return null;
+    }
   };
 
   const clear = () => {
@@ -295,7 +207,7 @@ const Books = () => {
     setEditImage("");
     setEditTitle("");
     setEditAuthors("");
-    seteditPublishingHouse("");
+    setEditPublishingHouse("");
     setEditPublicationDate("");
     setEditPageNumber("");
     setEditDescription("");
@@ -335,64 +247,85 @@ const Books = () => {
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0
-            ? data.map((item, index) => {
-                console.log(item.publishingHouse);
-                const imagePath = preprocessImagePath(item.image);
-                return (
-                  <tr key={item.bookID}>
-                    <td>{index + 1}</td>
-                    <td>{item.isbn}</td>
-                    <td>
-                      <img
-                        src={imagePath || "/images/placeholder.jpg"}
-                        alt="Book Cover"
-                        style={{ width: "50px", height: "auto" }}
-                      />
-                    </td>
-                    <td>{item.title}</td>
-                    <td>
-                      {authorsList &&
-                        authorsList.map((author, index) => (
-                          <span key={index}>
-                            {author.name} - {author.dateOfBirth}
-                            {index !== authorsList.length - 1 && ", "}
-                          </span>
-                        ))}
-                    </td>
-                    <td>
-                      {item.publishingHouse
-                        ? item.publishingHouse.houseName
-                        : "-"}
-                    </td>
+          {data && data.length > 0 ? (
+            data.map((item, index) => {
+              // Log the item to see its structure
+              console.log("Item:", item);
 
-                    <td>{item.publicationDate}</td>
-                    <td>{item.pageNumber}</td>
-                    <td>{item.price}</td>
-                    <td>{item.description}</td>
-                    <td>{item.dateOfadition}</td>
-                    <td>{item.type}</td>
-                    <td>{item.stock ? item.stock.quantity : "-"}</td>
-                    <td colSpan={2} className="btn">
-                      <Button
-                        variant="outline-dark"
-                        className="btn-edit"
-                        onClick={() => handleEdit(item.bookID)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="outline-dark"
-                        className="btn-delete"
-                        onClick={() => handleDelete(item.bookID)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })
-            : "Loading..."}
+              // Make sure item is not undefined or null
+              if (!item) {
+                return null;
+              }
+
+              // Make sure all necessary properties exist before accessing them
+              const imagePath = preprocessImagePath(item.image);
+              const authors = item.authors || [];
+              const publishingHouse = item.publishingHouse || {};
+              const stock = item.stock || {};
+
+              return (
+                <tr key={item.bookID}>
+                  <td>{index + 1}</td>
+                  <td>{item.isbn}</td>
+                  <td>
+                    <img
+                      src={imagePath || "/images/placeholder.jpg"}
+                      alt="Book Cover"
+                      style={{ width: "50px", height: "auto" }}
+                    />
+                  </td>
+                  <td>{item.title}</td>
+                  <td>
+                    {authors.map((author) => (
+                      <div key={author.authorID}>
+                        {author.name} - {author.dateOfBirth}
+                      </div>
+                    ))}
+                  </td>
+                  <td>
+                    {" "}
+                    {publishingHouseList.find(
+                      (house) =>
+                        house.publishingHouseId === item.publishingHouseId
+                    )?.houseName || "-"}
+                  </td>
+                  <td>{item.publicationDate}</td>
+                  <td>{item.pageNumber}</td>
+                  <td>{item.price}</td>
+                  <td>{item.description}</td>
+                  <td>{item.dateOfadition}</td>
+                  <td>{item.type}</td>
+                  <td>
+                    {" "}
+                    {stockList.find((stock) => stock.stockId === item.stockId)
+                      ?.quantity || "-"}
+                  </td>
+                  <td colSpan={2} className="btn">
+                    <Button
+                      variant="outline-dark"
+                      className="btn-edit"
+                      onClick={() => handleEdit(item.bookID)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline-dark"
+                      className="btn-delete"
+                      onClick={() => handleDelete(item.bookID)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan="13" className="text-center">
+                No Books Available
+              </td>
+            </tr>
+          )}
         </tbody>
       </Table>
       <Modal
@@ -402,13 +335,13 @@ const Books = () => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Edit Books</Modal.Title>
+          <Modal.Title>Edit Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleUpdate}>
             <Row>
               <Col>
-                <Form.Group controlId="formISBN">
+                <Form.Group controlId="formBookId">
                   <Form.Label>ID</Form.Label>
                   <Form.Control
                     type="text"
@@ -460,51 +393,45 @@ const Books = () => {
               <Col>
                 <Form.Group controlId="formPublishingHouse">
                   <Form.Label>Publishing House</Form.Label>
-                  {Array.isArray(editPublishingHouse) && ( // Add conditional rendering
-                    <Form.Control
-                      as="select"
-                      value={editPublishingHouse ? editPublishingHouse.id : ""}
-                      onChange={(e) => handleInputChange(e)}
-                      name="publishingHouse"
-                    >
-                      <option value="">Select Publishing House</option>
-                      {editPublishingHouse.map((house) => (
-                        <option
-                          key={house.publishingHouseId}
-                          value={house.publishingHouseId}
-                        >
-                          {house.houseName}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  )}
+                  <Form.Control
+                    as="select"
+                    value={selectedPublishingHouse}
+                    onChange={(e) => setSelectedPublishingHouse(e.target.value)}
+                  >
+                    <option value="">Select Publishing House</option>
+                    {publishingHouseList.map((publishingHouse) => (
+                      <option
+                        key={publishingHouse.publishingHouseId}
+                        value={publishingHouse.publishingHouseId}
+                      >
+                        {publishingHouse.houseName}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
-
               <Col>
                 <Form.Group controlId="formAuthors">
                   <Form.Label>Authors</Form.Label>
-                  {authorsList && (
-                    <Form.Control
-                      as="select"
-                      multiple
-                      value={editAuthors}
-                      onChange={(e) =>
-                        setEditAuthors(
-                          Array.from(
-                            e.target.selectedOptions,
-                            (option) => option.value
-                          )
+                  <Form.Control
+                    as="select"
+                    multiple
+                    value={selectedAuthors}
+                    onChange={(e) =>
+                      setSelectedAuthors(
+                        Array.from(
+                          e.target.selectedOptions,
+                          (option) => option.value
                         )
-                      }
-                    >
-                      {authorsList.map((author, index) => (
-                        <option key={author.authorID} value={author.authorID}>
-                          {author.name}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  )}
+                      )
+                    }
+                  >
+                    {authorsList.map((author) => (
+                      <option key={author.authorID} value={author.authorID}>
+                        {author.name}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
             </Row>
@@ -521,7 +448,6 @@ const Books = () => {
                   />
                 </Form.Group>
               </Col>
-
               <Col>
                 <Form.Group controlId="formPageNumber">
                   <Form.Label>Page Number</Form.Label>
@@ -549,7 +475,6 @@ const Books = () => {
                   />
                 </Form.Group>
               </Col>
-
               <Col>
                 <Form.Group controlId="formPrice">
                   <Form.Label>Price</Form.Label>
@@ -568,21 +493,18 @@ const Books = () => {
               <Col>
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>
-                  {editStock && ( // Add conditional rendering
-                    <Form.Control
-                      as="select"
-                      value={editStock.stockId}
-                      onChange={handleStockChange}
-                      name="stock"
-                    >
-                      <option value="">Select Stock</option>
-                      {editStock.map((stock) => (
-                        <option key={stock.stockId} value={stock.stockId}>
-                          {stock.quantity}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  )}
+                  <Form.Control
+                    as="select"
+                    value={selectedStock}
+                    onChange={(e) => setSelectedStock(e.target.value)}
+                  >
+                    <option value="">Select Stock</option>
+                    {stockList.map((stock) => (
+                      <option key={stock.stockId} value={stock.stockId}>
+                        {stock.quantity}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
             </Row>
@@ -612,24 +534,24 @@ const Books = () => {
                 </Form.Group>
               </Col>
             </Row>
+            <Modal.Footer>
+              <Button
+                variant="outline-dark"
+                className="btn-Close"
+                onClick={handleClose}
+              >
+                Close
+              </Button>
+              <Button
+                variant="outline-dark"
+                className="btn-update"
+                type="submit"
+              >
+                Update
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-dark"
-            className="btn-Close"
-            onClick={handleClose}
-          >
-            Close
-          </Button>
-          <Button
-            variant="outline-dark"
-            className="btn-update"
-            onClick={handleUpdate}
-          >
-            Update
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Fragment>
   );

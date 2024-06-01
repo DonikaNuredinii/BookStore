@@ -80,7 +80,6 @@ const AddBooks = () => {
       Type: type,
       StockId: parseInt(selectedStock),
     };
-    console.log(requestData);
 
     axios
       .post(url, requestData)
@@ -174,7 +173,8 @@ const AddBooks = () => {
               value={selectedPublishingHouse}
               onChange={(e) => setSelectedPublishingHouse(e.target.value)}
             >
-              <option value="">Select Publishing House</option>
+              <option value="">
+              Select Publishing House</option>
               {publishingHouseList.map((publishingHouse) => (
                 <option
                   key={publishingHouse.publishingHouseId}
@@ -302,7 +302,6 @@ const AddBooks = () => {
         </Col>
       </Row>
       <Row>
-        {" "}
         <Col>
           <Button variant="dark" className="btn-add" onClick={handleSave}>
             Add
@@ -319,3 +318,4 @@ const AddBooks = () => {
 };
 
 export default AddBooks;
+

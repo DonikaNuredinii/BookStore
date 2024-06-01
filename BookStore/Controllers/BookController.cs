@@ -1,107 +1,104 @@
 using BookStore.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
-using BookStore.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class BookController : ControllerBase
-	{
-		private readonly MyContext _booksContext;
-		public BookController(MyContext booksContext)
-		{
-			_booksContext = booksContext;
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BookController : ControllerBase
+    {
+        private readonly MyContext _booksContext;
 
-		}
+        public BookController(MyContext booksContext)
+        {
+            _booksContext = booksContext;
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
-
         {
-            var books = await _booksContext.Books
-               .Include(b => b.PublishingHouse)
-               .Include(b => b.Stock)
-               .ToListAsync();
+            var books = await _booksContext.Books.ToListAsync();
 
-            if (_booksContext.Books == null)
+            if (books == null)
             {
                 return NotFound();
             }
-            return await _booksContext.Books.ToListAsync();
 
+            return books;
         }
 
         [HttpGet("{BookID}")]
         public async Task<ActionResult<Book>> GetBook(int BookID)
         {
-			var book = await _booksContext.Books
-                .Include(b => b.PublishingHouse)
-                .Include(b => b.Stock)
-                .FirstOrDefaultAsync(b => b.BookID == BookID);
+            var book = await _booksContext.Books.FindAsync(BookID);
 
-            if (_booksContext.Books == null)
+            if (book == null)
             {
                 return NotFound();
             }
-            var Author = await _booksContext.Books.FindAsync(BookID);
-            if (Author == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Author;
-            }
+
+            return book;
         }
+
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             _booksContext.Books.Add(book);
             await _booksContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBooks), new { BookID = book.BookID }, book);
+            return CreatedAtAction(nameof(GetBook), new { BookID = book.BookID }, book);
         }
 
-
-
         [HttpPut("{BookID}")]
-		public async Task<ActionResult> PutBook(int BookID, Book book)
+        public async Task<ActionResult> PutBook(int BookID, Book book)
         {
-			if (BookID != book.BookID)
-			{
-				return BadRequest();
-			}
-			_booksContext.Entry(book).State = EntityState.Modified;
-			try
-			{
-				await _booksContext.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				throw;
-			}
-			return Ok();
-		}
+            if (BookID != book.BookID)
+            {
+                return BadRequest();
+            }
 
-		[HttpDelete("{BookID}")]
+            _booksContext.Entry(book).State = EntityState.Modified;
 
-		public async Task<ActionResult> DeleteBook(int BookID)
-		{
-			if (_booksContext.Books == null)
-			{
-				return NotFound();
-			}
-			var book = await _booksContext.Books.FindAsync(BookID);
-			if (book == null)
-			{
-				return NotFound();
-			}
-			_booksContext.Books.Remove(book);
-			await _booksContext.SaveChangesAsync();
-			return Ok();
-		}
-	}
+            try
+            {
+                await _booksContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookExists(BookID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete("{BookID}")]
+        public async Task<ActionResult> DeleteBook(int BookID)
+        {
+            var book = await _booksContext.Books.FindAsync(BookID);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _booksContext.Books.Remove(book);
+            await _booksContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        private bool BookExists(int BookID)
+        {
+            return _booksContext.Books.Any(e => e.BookID == BookID);
+        }
+    }
 }
