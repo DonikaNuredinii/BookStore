@@ -11,30 +11,50 @@ const Account = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState("");
   const [selectedRole, setSelectedRole] = useState(2);
+  const [formErrors, setFormErrors] = useState({});
 
   const [formData, setFormData] = useState({
     confirmPassword: "",
     agreeTerms: false,
   });
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\+?\d{1,4}-?\d{1,4}-?\d{1,9}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
+  const validateName = (name) => {
+    const nameRegex = /^[A-Z][a-zA-Z]*$/;
+    return nameRegex.test(name);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleSave = () => {
-    // Form validation
+
     if (!firstName || !lastName || !email || !username || !password) {
       toast.error("Please fill out all required fields.");
       return;
     }
   };
 
-  
   const signUpLink = () => {
-    setAction('active');
-}
+    setAction("active");
+  };
 
-const logInLink = () => {
-    setAction('');
-}
+  const logInLink = () => {
+    setAction("");
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -48,7 +68,36 @@ const logInLink = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
+    const errors = {};
+
+
+    if (!validateName(firstName)) {
+      errors.firstName = "First name should start with a capital letter.";
+    }
+    if (!validateName(lastName)) {
+      errors.lastName = "Last name should start with a capital letter.";
+    }
+    if (!validatePhoneNumber(phoneNumber)) {
+      errors.phoneNumber = "Invalid phone number. It should be 10 digits.";
+    }
+    if (!validateEmail(email)) {
+      errors.email = "Invalid email address.";
+    }
+    if (!validatePassword(password)) {
+      errors.password = "Password should be at least 8 characters long and contain at least one uppercase letter and one symbol.";
+    }
+    if (password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match.";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    } else {
+      setFormErrors({});
+    }
+
     const userData = {
       FirstName: firstName,
       LastName: lastName,
@@ -56,9 +105,9 @@ const logInLink = () => {
       Email: email,
       Username: username,
       Password: password,
-      RolesID: 3, 
+      RolesID: 3,
     };
-  
+
     axios
       .post("https://localhost:7061/api/User", userData)
       .then((response) => {
@@ -69,7 +118,7 @@ const logInLink = () => {
         toast.error("Error registering user: " + error.message);
       });
   };
-  
+
   const clearForm = () => {
     setFirstName("");
     setLastName("");
@@ -125,13 +174,20 @@ const logInLink = () => {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
+              
               <input
                 type="text"
                 placeholder="Surname"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
+              
             </div>
+            <div className="inputs-login-row-error">
+              <div className="error-message">{formErrors.firstName}</div>
+              <div className="error-message">{formErrors.lastName}</div>
+            </div>
+
             <div className="inputs-logIn">
               <input
                 type="text"
@@ -140,15 +196,15 @@ const logInLink = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-            <div className="inputs-logIn">
+            <div className="error-message">{formErrors.phoneNumber}</div>
+
+            <div className="inputs-logIn-row">
               <input
                 type="text"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div className="inputs-logIn">
               <input
                 type="text"
                 placeholder="Username"
@@ -156,14 +212,21 @@ const logInLink = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
+            <div className="inputs-login-row-error">
+                <div className="error-message">{formErrors.email}</div>
+                <div className="error-message">{formErrors.rusinovci}</div>
+            </div>
+
             <div className="inputs-logIn">
               <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              
             </div>
+            <div className="error-message">{formErrors.password}</div>
             <div className="inputs-logIn">
               <input
                 type="password"
@@ -173,7 +236,9 @@ const logInLink = () => {
                 onChange={handleChange}
                 required
               />
+              
             </div>
+            <div className="error-message">{formErrors.confirmPassword}</div>
             <div className="remember-forgot">
               <label>
                 <input
