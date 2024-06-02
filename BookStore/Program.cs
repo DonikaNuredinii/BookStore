@@ -1,5 +1,7 @@
 using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+      app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
 app.UseCors(builder =>
@@ -32,5 +40,21 @@ app.UseAuthorization();
 app.UseStaticFiles();
 
 app.MapControllers();
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next.Invoke();
+    }
+    catch (Exception ex)
+    {
+        var response = context.Response;
+        response.ContentType = "application/json";
+        response.StatusCode = StatusCodes.Status500InternalServerError;
+        var errorResponse = new { message = ex.Message, detail = ex.StackTrace };
+        await response.WriteAsync(JsonSerializer.Serialize(errorResponse));
+    }
+});
+
 
 app.Run();

@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
+import { IoIosCheckmark } from "react-icons/io";
 
-const GiftCard = () => {
+const GiftCard = ({ addToCart }) => {
   const [amount, setAmount] = useState(0);
   const [selectedDesign, setSelectedDesign] = useState("design1");
   const [recipientName, setRecipientName] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [message, setMessage] = useState("");
   const [senderName, setSenderName] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleAmountChange = (event) => {
     setAmount(parseInt(event.target.value, 10));
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const handleRecipientNameChange = (event) => {
@@ -35,14 +42,47 @@ const GiftCard = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Sending gift card details:", {
+    setShowModal(true);
+
+    const giftCardDetails = {
       amount,
       selectedDesign,
       recipientName,
       recipientEmail,
       message,
       senderName,
-    });
+      userID: 2,
+    };
+
+    const giftCardProduct = {
+      title: "Gift Card",
+      price: amount,
+      image: getDesignImageUrl(selectedDesign),
+    };
+
+    addToCart(giftCardProduct);
+
+    fetch("https://localhost:7061/api/GiftCard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(giftCardDetails),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(JSON.stringify(error));
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Gift card created:", data);
+      })
+      .catch((error) => {
+        console.error("Error creating gift card:", error.message);
+      });
   };
 
   return (
@@ -131,6 +171,36 @@ const GiftCard = () => {
           Add to cart
         </button>
       </div>
+      {/* Modal */}
+      {showModal && (
+        <div className="modal-cart">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <p className="item-modal">
+              <IoIosCheckmark />
+              Item added to cart
+            </p>
+            <img
+              src={getDesignImageUrl(selectedDesign)}
+              alt={`Design ${selectedDesign} Preview`}
+              className="design-preview-modal"
+            />
+            <p>Amount: ${amount}</p>
+            <div className="view-cart-container">
+              <Link to="/cart" className="view-cart-button">
+                View Cart
+              </Link>
+            </div>
+            <div className="view-cart-container">
+              <Link to="/" className="continue-shopping">
+                Continue Shopping
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

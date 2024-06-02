@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import Books from "../Images/books.jpg"; // Adjust the path to your image
+import Books from "../Images/books.jpg";
 import Slider from "../Components/Slider";
 import "../App.css";
 import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Cart from "./Cart";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
-const HomePage = () => {
-  const [toggle, setToggle] = useState(true);
-  const [book, setBooks] = useState([]);
-  const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    window.location.href = "/cart";
-    setCart([...cart, product]);
+const HomePage = ({ addToCart }) => {
+  const [toggle, setToggle] = useState(true);
+  const [books, setBooks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
     fetchBooks();
-    console.log(book.image);
-    console.log(book);
   }, []);
 
   const fetchBooks = async () => {
@@ -38,6 +36,7 @@ const HomePage = () => {
       console.error("Error fetching books:", error);
     }
   };
+
   const preprocessImagePath = (path) => {
     const imageName = path.split("/").pop();
     try {
@@ -47,39 +46,6 @@ const HomePage = () => {
       return null;
     }
   };
-
-  const Toggle = () => {
-    setToggle(!toggle);
-  };
-  const [isSticky, setSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setSticky(window.scrollY > 200);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  //Text Animation
-  const textSpring = useSpring({
-    from: { opacity: 0, transform: "translateY(20px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
-    delay: 500,
-    config: { duration: 1000 },
-  });
-
-  //Image Animation
-  const imageSpring = useSpring({
-    from: { opacity: 0, transform: "translateX(100%)" },
-    to: { opacity: 1, transform: "translateX(0)" },
-    delay: 1000,
-    config: { duration: 3000 },
-  });
-  //favorite
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = (bookID) => {
     setBooks((prevBooks) =>
@@ -91,13 +57,24 @@ const HomePage = () => {
     );
   };
 
-  // Frame Animation
-  // const frameSpring = useSpring({
-  //   from: { opacity: 0, transform: "translateX(-40px)" },
-  //   to: { opacity: 1, transform: "translateX(0)" },
-  //   delay: 1500,
-  //   config: { duration: 1500 }
-  // });
+  const textSpring = useSpring({
+    from: { opacity: 0, transform: "translateY(20px)" },
+    to: { opacity: 1, transform: "translateY(0)" },
+    delay: 500,
+    config: { duration: 1000 },
+  });
+
+  const imageSpring = useSpring({
+    from: { opacity: 0, transform: "translateX(100%)" },
+    to: { opacity: 1, transform: "translateX(0)" },
+    delay: 1000,
+    config: { duration: 3000 },
+  });
+  const handleSubmit = (book) => {
+    addToCart(book);
+    setSelectedBook(book);
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -127,10 +104,10 @@ const HomePage = () => {
         </div>
       </div>
       <div className="second-section">
-        <BookBanner></BookBanner>
+        <BookBanner />
       </div>
       <div className="third-section">
-        <Slider></Slider>
+        <Slider />
       </div>
       <div className="fourth-section">
         <div className="language">
@@ -142,7 +119,7 @@ const HomePage = () => {
           </Link>
         </div>
         <div className="cards">
-          {book.map((book) => {
+          {books.map((book) => {
             const imagePath = preprocessImagePath(book.image);
             return (
               <div key={book.bookID} className="card-item">
@@ -153,19 +130,17 @@ const HomePage = () => {
                     className="book-image"
                   />
                   <div className="icon-container">
-                    <div className="icon-container">
-                      {book.isFavorite ? (
-                        <MdFavorite
-                          className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
-                        />
-                      ) : (
-                        <MdFavoriteBorder
-                          className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
-                        />
-                      )}
-                    </div>
+                    {book.isFavorite ? (
+                      <MdFavorite
+                        className="favorite-icon"
+                        onClick={() => handleFavoriteClick(book.bookID)}
+                      />
+                    ) : (
+                      <MdFavoriteBorder
+                        className="favorite-icon"
+                        onClick={() => handleFavoriteClick(book.bookID)}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="dropup">
@@ -174,9 +149,8 @@ const HomePage = () => {
                     <h3 className="card-title">{book.title}</h3>
                     <p className="card-author">Author: {book.author}</p>
                     <button
-                      to="/cart"
                       className="buy-now-btn"
-                      onClick={() => addToCart(book)}
+                      onClick={() => handleSubmit(book)}
                     >
                       Add to Cart
                     </button>
@@ -192,7 +166,32 @@ const HomePage = () => {
           })}
         </div>
       </div>
-      {cart.length > 0 && <Cart cart={cart} />}
+      {showModal && selectedBook && (
+        <div className="modal-cart">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <p>Item added to cart</p>
+            <img
+              src={preprocessImagePath(selectedBook.image)}
+              alt={selectedBook.title}
+              className="design-preview"
+            />
+            <p>Amount: €{selectedBook.price}</p>
+            <div className="view-cart-container">
+              <Link to="./cart" className="view-cart-button">
+                View Cart
+              </Link>
+            </div>
+            <div className="view-cart-container">
+              <Link to="/" className="continue-shopping">
+                Continue Shopping
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
