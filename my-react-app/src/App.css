@@ -1366,8 +1366,7 @@ label {
 .whatsapp-update,
 .save-info,
 .shipping-option,
-.payment-option,
-.billing-option {
+.payment-option {
   display: flex;
   align-items: center;
   margin-bottom: 10px;

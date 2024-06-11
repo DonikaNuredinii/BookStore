@@ -71,7 +71,13 @@ const HomePage = ({ addToCart }) => {
     config: { duration: 3000 },
   });
   const handleSubmit = (book) => {
-    addToCart(book);
+    // Extract the book ID
+    const bookId = book.bookID;
+
+    // Call the addToCart function with the book ID
+    addToCart(bookId);
+
+    // Set the selected book and show the modal
     setSelectedBook(book);
     setShowModal(true);
   };

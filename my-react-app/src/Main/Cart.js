@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import Buttons from "../Components/Buttons"; // Adjust the path as necessary
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const Cart = ({ cart = [], setCart }) => {
@@ -37,9 +36,50 @@ const Cart = ({ cart = [], setCart }) => {
       return null;
     }
   };
+  const handleCheckout = async () => {
+    const cartData = cart.map((item, index) => {
+      const cartItemData = {
+        quantity: quantities[index],
+      };
 
-  const handleCheckout = () => {
-    console.log("Proceeding to checkout with quantities:", quantities);
+      if (item.book) {
+        cartItemData.bookId = item.book.id;
+      }
+
+      if (item.accessories) {
+        cartItemData.accessoriesId = item.accessories.id;
+      }
+
+      if (item.giftCard) {
+        cartItemData.giftCardId = item.giftCard.id;
+      }
+
+      return cartItemData;
+    });
+    console.log("Cart Data:", cartData);
+
+    try {
+      const response = await fetch("https://localhost:7061/api/CartItems", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartData),
+      });
+
+      if (response.ok) {
+        console.log("Checkout successful!");
+        // Clear the cart
+        setCart([]);
+        setQuantities([]);
+      } else {
+        console.error("Error checking out:", response.status);
+        // Log response body
+        const responseBody = await response.json();
+        console.log("Response body:", responseBody);
+      }
+      console.log("Validation Error Details:", response.errors.$);
+    } catch (error) {
+      console.error("Error checking out:", error);
+    }
   };
 
   const removeFromCart = (index) => {
@@ -113,13 +153,13 @@ const Cart = ({ cart = [], setCart }) => {
           Tax included. <a href="#shipping">Shipping</a> and discounts
           calculated at checkout.
         </p>
-        {/* Checkout button */}
+        {/* Checkout Button */}
         <Link
-          to="/CheckoutForm"
-          className="checkout-button"
           onClick={handleCheckout}
+          disabled={cart.length === 0}
+          className="checkout-button"
         >
-          Check out
+          Checkout
         </Link>
       </div>
     </div>

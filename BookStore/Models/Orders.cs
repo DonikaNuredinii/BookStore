@@ -16,6 +16,8 @@ namespace BookStore.Models
         public int DiscountID { get; set; }
         [ForeignKey("GiftCardID")]
         public int GiftCardID { get; set; }
+        [ForeignKey("OrderDetailsID")]
+        public int OrderDetailsID { get; set; }
 
 
     }

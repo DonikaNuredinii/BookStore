@@ -4,6 +4,7 @@ using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20240602202150_order-null")]
+    partial class ordernull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,37 +175,6 @@ namespace BookStore.Migrations
                     b.ToTable("BookAuthors");
                 });
 
-            modelBuilder.Entity("BookStore.Models.CartItem", b =>
-                {
-                    b.Property<int>("CartItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"));
-
-                    b.Property<int?>("AccessoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GiftCardId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartItemId");
-
-                    b.HasIndex("AccessoriesId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("GiftCardId");
-
-                    b.ToTable("CartItems");
-                });
-
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -322,15 +294,22 @@ namespace BookStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsID"));
 
-                    b.Property<int>("CartItemId")
+                    b.Property<int?>("AccessoriesID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GiftCardID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderDetailsID");
-
-                    b.HasIndex("CartItemId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -559,38 +538,6 @@ namespace BookStore.Migrations
                         .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BookStore.Models.CartItem", b =>
-                {
-                    b.HasOne("BookStore.Models.Accessories", "Accessories")
-                        .WithMany()
-                        .HasForeignKey("AccessoriesId");
-
-                    b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
-
-                    b.HasOne("BookStore.Models.GiftCard", "GiftCard")
-                        .WithMany()
-                        .HasForeignKey("GiftCardId");
-
-                    b.Navigation("Accessories");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("GiftCard");
-                });
-
-            modelBuilder.Entity("BookStore.Models.OrderDetails", b =>
-                {
-                    b.HasOne("BookStore.Models.CartItem", "CartItem")
-                        .WithMany()
-                        .HasForeignKey("CartItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CartItem");
                 });
 
             modelBuilder.Entity("BookStore.Models.User", b =>

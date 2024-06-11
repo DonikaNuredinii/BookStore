@@ -27,6 +27,7 @@ namespace BookStore.Models
         public DbSet<UserOrder> UserOrder { get; set; }
         public DbSet<Discount> Discount { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

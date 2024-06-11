@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../App.css";
 import { CiCreditCard1 } from "react-icons/ci";
-import { FaCcPaypal } from "react-icons/fa";
 import { LuPackageCheck } from "react-icons/lu";
 
 const CheckoutForm = () => {
@@ -44,7 +43,6 @@ const CheckoutForm = () => {
 
   const handleCheckout = () => {
     console.log("Proceeding to checkout with data:", formData);
-    // Here you can add your checkout logic (e.g., API call)
   };
 
   const handleSubmit = (e) => {
@@ -85,7 +83,6 @@ const CheckoutForm = () => {
               onChange={handleChange}
             >
               <option value="Kosovo">Kosovo</option>
-              {/* Add more options as needed */}
             </select>
             <input
               type="text"
@@ -143,21 +140,6 @@ const CheckoutForm = () => {
             </div>
           </div>
 
-          {/* <div className="shipping-method">
-            <h2>Shipping method</h2>
-            <div className="shipping-option">
-              <input
-                type="radio"
-                name="shippingMethod"
-                id="shipping"
-                value="shipping"
-                checked={formData.shippingMethod === "shipping"}
-                onChange={handleChange}
-              />
-              <label htmlFor="shipping">Shipping - €2.00</label>
-            </div>
-          </div> */}
-
           <div className="payment">
             <h2>Payment</h2>
             <p>Select a payment method below.</p>
@@ -213,19 +195,6 @@ const CheckoutForm = () => {
                   </div>
                 )}
               </div>
-              {/* <div className="payment-method">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="paypal"
-                  value="paypal"
-                  checked={formData.paymentMethod === "paypal"}
-                  onChange={handleChange}
-                />
-                <label htmlFor="paypal">
-                  <FaCcPaypal />
-                </label>
-              </div> */}
               <div className="payment-method">
                 <input
                   type="radio"
@@ -238,35 +207,8 @@ const CheckoutForm = () => {
                 <label htmlFor="cod">
                   <LuPackageCheck />
                 </label>
+                {formData.paymentMethod === "cod" && <p>Payment on delivery</p>}
               </div>
-            </div>
-          </div>
-
-          <div className="billing-address">
-            <h2>Billing address</h2>
-            <div className="billing-option">
-              <input
-                type="radio"
-                name="billingSameAsShipping"
-                id="same-as-shipping"
-                value={true}
-                checked={formData.billingSameAsShipping === true}
-                onChange={handleChange}
-              />
-              <label htmlFor="same-as-shipping">Same as shipping address</label>
-            </div>
-            <div className="billing-option">
-              <input
-                type="radio"
-                name="billingSameAsShipping"
-                id="different-address"
-                value={false}
-                checked={formData.billingSameAsShipping === false}
-                onChange={handleChange}
-              />
-              <label htmlFor="different-address">
-                Use a different billing address
-              </label>
             </div>
           </div>
 
