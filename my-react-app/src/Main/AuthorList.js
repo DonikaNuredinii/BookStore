@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../App.css';  // Import the CSS file
 
 const AuthorList = () => {
   const [authors, setAuthors] = useState([]);
@@ -22,10 +23,10 @@ const AuthorList = () => {
   return (
     <div>
       <h2>Authors</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <ul className="author-list" style={{ listStyle: 'none', padding: 0 }}>
         {authors.map(author => (
           <li key={author.authorID} style={{ fontFamily: 'Fantasy' }}>
-            <Link to={`/authors/${author.authorID}`}>{author.name}</Link>
+            <Link to={`/authors/${author.authorID}`} className="author-link">{author.name}</Link>
           </li>
         ))}
       </ul>

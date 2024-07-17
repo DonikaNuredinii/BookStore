@@ -107,11 +107,11 @@ const CategoriesF = ({ addToCart }) => {
     false,
     /\.(png|jpe?g|svg)$/
   );
-  const imagesShkencaNatyore = require.context(
+  /*const imagesShkencaNatyore = require.context(
     "../Images/ShkencaNatyore",
     false,
     /\.(png|jpe?g|svg)$/
-  );
+  );*/
   const imagesShkencaTeknike = require.context(
     "../Images/ShkencaTeknike",
     false,
@@ -224,8 +224,8 @@ const CategoriesF = ({ addToCart }) => {
         return imagesPsikologji(`./${imageName}`);
       } else if (path.includes("Romance")) {
         return imagesRomance(`./${imageName}`);
-      } else if (path.includes("ShkencaNatyore")) {
-        return imagesShkencaNatyore(`./${imageName}`);
+      /*} else if (path.includes("ShkencaNatyore")) {
+        return imagesShkencaNatyore(`./${imageName}`);*/
       } else if (path.includes("ShkencaTeknike")) {
         return imagesShkencaTeknike(`./${imageName}`);
       } else if (path.includes("Shkence")) {
