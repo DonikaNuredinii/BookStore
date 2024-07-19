@@ -1,38 +1,58 @@
-// AuthorDetails.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import "../App.css";
 
-const AuthorDetails = ({ authorId, onClose }) => {
+const AuthorDetails = ({ onClose }) => {
+  const { authorID } = useParams();
   const [author, setAuthor] = useState(null);
-  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch author details
-    axios.get(`/api/authors/${authorId}`)
-      .then(response => {
+    const fetchAuthor = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7061/api/Author/${authorID}`
+        );
         setAuthor(response.data);
-      });
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
 
-    // Fetch books by author
-    axios.get(`/api/authors/${authorId}/books`)
-      .then(response => {
-        setBooks(response.data);
-      });
-  }, [authorId]);
+    if (authorID) {
+      fetchAuthor();
+    }
+  }, [authorID]);
 
-  if (!author) return <div>Loading...</div>;
+  if (!authorID) {
+    return <div>No author ID specified.</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching author data: {error.message}</div>;
+  }
+
+  if (!author) {
+    return <div>No author found.</div>;
+  }
 
   return (
-    <div className="author-details">
-      <button onClick={onClose}>Close</button>
-      <h2>{author.name}</h2>
-      <p>{author.description}</p>
-      <h3>Books:</h3>
-      <ul>
-        {books.map(book => (
-          <li key={book.id}>{book.title}</li>
-        ))}
-      </ul>
+    <div className="author-card-container">
+      <div className="author-card">
+        <h2 className="author-name">{author.name}</h2>
+        <p className="author-dob">Date of Birth: {author.dateOfBirth}</p>
+        <p className="author-biography">{author.biography}</p>
+        <p className="author-awards">Awards: {author.awards}</p>
+        <p className="author-genre">Genre: {author.genre}</p>
+      </div>
     </div>
   );
 };
