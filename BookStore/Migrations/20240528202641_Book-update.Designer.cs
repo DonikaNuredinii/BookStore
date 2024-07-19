@@ -223,7 +223,7 @@ namespace BookStore.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("categoryBooks");
+                    b.ToTable("CategoryBooks");
                 });
 
             modelBuilder.Entity("BookStore.Models.GiftCard", b =>

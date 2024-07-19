@@ -6,12 +6,10 @@ namespace BookStore.Models
     {
 
         public int BookAuthorsID { get; set; }
-
-        [ForeignKey("Book")]
         public int BookID { get; set; }
+        public Book Book { get; set; }
 
-        [ForeignKey("Author")]
         public int AuthorID { get; set; }
-
+        public Author Author { get; set; }
     }
 }

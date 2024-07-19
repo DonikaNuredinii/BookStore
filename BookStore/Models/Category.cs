@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BookStore.Models
 {
     public class Category
@@ -6,6 +8,8 @@ namespace BookStore.Models
         public String Genre { get; set; }
         public string CategoryDescription { get; set; }
         public DateTime CreatioDate { get; set; }
-        
+        [JsonIgnore]
+        public ICollection<CategoryBook> CategoryBooks { get; set; } = new HashSet<CategoryBook>();
+
     }
 }

@@ -2,53 +2,99 @@ using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class bookCategoriesController : ControllerBase
+    public class CategoryBooksController : ControllerBase
     {
         private readonly MyContext _context;
 
-        public bookCategoriesController(MyContext context)
+        public CategoryBooksController(MyContext context)
         {
             _context = context;
         }
 
-        // GET: api/bookCategories
+        // GET: api/CategoryBooks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoryBook>>> GetCategoryBooks()
+        public async Task<ActionResult<IEnumerable<object>>> GetCategoryBooks()
         {
-            return await _context.categoryBooks.ToListAsync();
+            var categoryBooks = await _context.CategoryBooks
+                .Include(cb => cb.Book)
+                .Include(cb => cb.Category)
+                .Select(cb => new
+                {
+                    cb.CategoryBookID,
+                    cb.BookID,
+                    cb.CategoryID,
+                    Book = new
+                    {
+                        cb.Book.BookID,
+                        cb.Book.Title
+                        // Add other properties as needed
+                    },
+                    Category = new
+                    {
+                        cb.Category.CategoryId, // Updated property name
+                        cb.Category.Genre
+                        // Add other properties as needed
+                    }
+                })
+                .ToListAsync();
+
+            return Ok(categoryBooks);
         }
 
-        // GET: api/bookCategories/
+        // GET: api/CategoryBooks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryBook>> GetCategoryBook(int id)
+        public async Task<ActionResult<object>> GetCategoryBook(int id)
         {
-            var categoryBook = await _context.categoryBooks.FindAsync(id);
+            var categoryBook = await _context.CategoryBooks
+                .Include(cb => cb.Book)
+                .Include(cb => cb.Category)
+                .Where(cb => cb.CategoryBookID == id)
+                .Select(cb => new
+                {
+                    cb.CategoryBookID,
+                    cb.BookID,
+                    cb.CategoryID,
+                    Book = new
+                    {
+                        cb.Book.BookID,
+                        cb.Book.Title
+                        // Add other properties as needed
+                    },
+                    Category = new
+                    {
+                        cb.Category.CategoryId, // Updated property name
+                        cb.Category.Genre
+                        // Add other properties as needed
+                    }
+                })
+                .FirstOrDefaultAsync();
 
             if (categoryBook == null)
             {
                 return NotFound();
             }
 
-            return categoryBook;
+            return Ok(categoryBook);
         }
 
-        // POST: api/bookCategories
+        // POST: api/CategoryBooks
         [HttpPost]
         public async Task<ActionResult<CategoryBook>> PostCategoryBook(CategoryBook categoryBook)
         {
-            _context.categoryBooks.Add(categoryBook);
+            _context.CategoryBooks.Add(categoryBook);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategoryBook", new { id = categoryBook.CategoryBookID }, categoryBook);
+            return CreatedAtAction(nameof(GetCategoryBook), new { id = categoryBook.CategoryBookID }, categoryBook);
         }
 
-        // PUT: api/bookCategories/
+        // PUT: api/CategoryBooks/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategoryBook(int id, CategoryBook categoryBook)
         {
@@ -78,25 +124,25 @@ namespace BookStore.Controllers
             return NoContent();
         }
 
-        // DELETE: api/bookCategories/
+        // DELETE: api/CategoryBooks/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CategoryBook>> DeleteCategoryBook(int id)
+        public async Task<IActionResult> DeleteCategoryBook(int id)
         {
-            var categoryBook = await _context.categoryBooks.FindAsync(id);
+            var categoryBook = await _context.CategoryBooks.FindAsync(id);
             if (categoryBook == null)
             {
                 return NotFound();
             }
 
-            _context.categoryBooks.Remove(categoryBook);
+            _context.CategoryBooks.Remove(categoryBook);
             await _context.SaveChangesAsync();
 
-            return categoryBook;
+            return NoContent();
         }
 
         private bool CategoryBookExists(int id)
         {
-            return _context.categoryBooks.Any(e => e.CategoryBookID == id);
+            return _context.CategoryBooks.Any(e => e.CategoryBookID == id);
         }
     }
 }

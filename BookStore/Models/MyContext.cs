@@ -13,7 +13,7 @@ namespace BookStore.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<PublishingHouse> PublishingHouses { get; set; }
-        public DbSet<CategoryBook> categoryBooks { get; set; }
+        public DbSet<CategoryBook> CategoryBooks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Stock> Stock { get; set; }
@@ -70,6 +70,32 @@ namespace BookStore.Models
                 .HasOne<Stock>()
                 .WithMany()
                 .HasForeignKey(b => b.StockId);
+              modelBuilder.Entity<BookAuthors>()
+                .HasKey(ba => ba.BookAuthorsID);
+
+            modelBuilder.Entity<BookAuthors>()
+                .HasOne(ba => ba.Book)
+                .WithMany(b => b.BookAuthors)
+                .HasForeignKey(ba => ba.BookID);
+
+            modelBuilder.Entity<BookAuthors>()
+                .HasOne(ba => ba.Author)
+                .WithMany(a => a.BookAuthors)
+                .HasForeignKey(ba => ba.AuthorID);
+
+            modelBuilder.Entity<CategoryBook>()
+       .HasKey(cb => new { cb.BookID, cb.CategoryID });
+
+            modelBuilder.Entity<CategoryBook>()
+                .HasOne(cb => cb.Book)
+                .WithMany(b => b.CategoryBooks)
+                .HasForeignKey(cb => cb.BookID);
+
+            modelBuilder.Entity<CategoryBook>()
+                .HasOne(cb => cb.Category)
+                .WithMany(c => c.CategoryBooks)
+                .HasForeignKey(cb => cb.CategoryID);
+
 
             base.OnModelCreating(modelBuilder);
         }

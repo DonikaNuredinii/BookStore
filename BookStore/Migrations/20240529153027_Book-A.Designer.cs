@@ -215,7 +215,7 @@ namespace BookStore.Migrations
 
                     b.HasKey("CategoryBookID");
 
-                    b.ToTable("categoryBooks");
+                    b.ToTable("CategoryBooks");
                 });
 
             modelBuilder.Entity("BookStore.Models.GiftCard", b =>

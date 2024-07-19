@@ -169,6 +169,10 @@ namespace BookStore.Migrations
 
                     b.HasKey("BookAuthorsID");
 
+                    b.HasIndex("AuthorID");
+
+                    b.HasIndex("BookID");
+
                     b.ToTable("BookAuthors");
                 });
 
@@ -193,12 +197,6 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CartItemId");
-
-                    b.HasIndex("AccessoriesId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("GiftCardId");
 
                     b.ToTable("CartItems");
                 });
@@ -229,21 +227,20 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Models.CategoryBook", b =>
                 {
-                    b.Property<int>("CategoryBookID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryBookID"));
-
                     b.Property<int>("BookID")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryBookID");
+                    b.Property<int>("CategoryBookID")
+                        .HasColumnType("int");
 
-                    b.ToTable("categoryBooks");
+                    b.HasKey("BookID", "CategoryID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.ToTable("CategoryBooks");
                 });
 
             modelBuilder.Entity("BookStore.Models.Country", b =>
@@ -561,25 +558,42 @@ namespace BookStore.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookStore.Models.CartItem", b =>
+            modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
                 {
-                    b.HasOne("BookStore.Models.Accessories", "Accessories")
-                        .WithMany()
-                        .HasForeignKey("AccessoriesId");
+                    b.HasOne("BookStore.Models.Author", "Author")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("BookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("BookStore.Models.GiftCard", "GiftCard")
-                        .WithMany()
-                        .HasForeignKey("GiftCardId");
+                    b.Navigation("Author");
 
-                    b.Navigation("Accessories");
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("BookStore.Models.CategoryBook", b =>
+                {
+                    b.HasOne("BookStore.Models.Book", "Book")
+                        .WithMany("CategoryBooks")
+                        .HasForeignKey("BookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.Category", "Category")
+                        .WithMany("CategoryBooks")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Book");
 
-                    b.Navigation("GiftCard");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("BookStore.Models.OrderDetails", b =>
@@ -600,6 +614,23 @@ namespace BookStore.Migrations
                         .HasForeignKey("RolesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BookStore.Models.Author", b =>
+                {
+                    b.Navigation("BookAuthors");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Book", b =>
+                {
+                    b.Navigation("BookAuthors");
+
+                    b.Navigation("CategoryBooks");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Category", b =>
+                {
+                    b.Navigation("CategoryBooks");
                 });
 #pragma warning restore 612, 618
         }

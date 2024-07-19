@@ -10,5 +10,8 @@ namespace BookStore.Models
 
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
+
+        public Book Book { get; set; }
+        public Category Category { get; set; }
     }
 }

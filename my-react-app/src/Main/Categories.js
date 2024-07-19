@@ -9,13 +9,19 @@ const CategoriesF = ({ addToCart }) => {
   const [categories, setCategories] = useState([]);
   const [books, setBooks] = useState([]);
   const [bookCategories, setBookCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null); // Gjendja për zhanrin e zgjedhur
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // Import images
   const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
   const imagesArkitekture = require.context(
     "../Images/Arkitekture",
@@ -107,11 +113,6 @@ const CategoriesF = ({ addToCart }) => {
     false,
     /\.(png|jpe?g|svg)$/
   );
-  /*const imagesShkencaNatyore = require.context(
-    "../Images/ShkencaNatyore",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );*/
   const imagesShkencaTeknike = require.context(
     "../Images/ShkencaTeknike",
     false,
@@ -142,9 +143,8 @@ const CategoriesF = ({ addToCart }) => {
     fetchCategories();
     fetchBooks();
     fetchBookCategories();
-    console.log(books.image);
-    console.log(books);
   }, []);
+
   const handleSubmit = (book) => {
     addToCart(book);
     setSelectedBook(book);
@@ -154,6 +154,7 @@ const CategoriesF = ({ addToCart }) => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Category`);
+      console.log("Categories fetched:", response.data); // Debugging line
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -163,6 +164,7 @@ const CategoriesF = ({ addToCart }) => {
   const fetchBooks = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Book`);
+      console.log("Books fetched:", response.data); // Debugging line
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -172,8 +174,9 @@ const CategoriesF = ({ addToCart }) => {
   const fetchBookCategories = async () => {
     try {
       const response = await axios.get(
-        `https://localhost:7061/api/bookCategories`
+        `https://localhost:7061/api/CategoryBooks`
       );
+      console.log("BookCategories fetched:", response.data); // Debugging line
       setBookCategories(response.data);
     } catch (error) {
       console.error("Error fetching book categories:", error);
@@ -224,8 +227,6 @@ const CategoriesF = ({ addToCart }) => {
         return imagesPsikologji(`./${imageName}`);
       } else if (path.includes("Romance")) {
         return imagesRomance(`./${imageName}`);
-      /*} else if (path.includes("ShkencaNatyore")) {
-        return imagesShkencaNatyore(`./${imageName}`);*/
       } else if (path.includes("ShkencaTeknike")) {
         return imagesShkencaTeknike(`./${imageName}`);
       } else if (path.includes("Shkence")) {
@@ -249,25 +250,21 @@ const CategoriesF = ({ addToCart }) => {
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
 
-  // Filtrimi i librave sipas zhanrit të zgjedhur
-  const filteredBooks = selectedCategory
-    ? books.filter((book) => book.categoryId === selectedCategory.categoryId)
-    : books;
-  /* const handleCategoryClick = async (category) => {
-    setSelectedCategory(category);
-    try {
-      const response = await axios.get(
-        `https://localhost:7061/api/Book?categoryId=${category.id}`
-      );
-      setBooks(response.data);
-    } catch (error) {
-      console.error("Error fetching books for selected category:", error);
+  // Map bookCategories to books
+  const categoryBooks = bookCategories.reduce((acc, item) => {
+    const { category, book } = item;
+    if (!acc[category.categoryId]) {
+      acc[category.categoryId] = [];
     }
-  }; */
+    acc[category.categoryId].push(book);
+    return acc;
+  }, {});
+
+  // Filter books by selected category
+  const filteredBooks = selectedCategory
+    ? categoryBooks[selectedCategory.categoryId] || []
+    : books;
 
   return (
     <>
@@ -286,17 +283,8 @@ const CategoriesF = ({ addToCart }) => {
               <ul>
                 {categories.map((category) => (
                   <li key={category.categoryId}>
-                    {/* <a
-                  href={`#${category.genre.toLowerCase()}`}
-                  onClick={() => handleCategoryClick(category)}
-                  className={selectedCategory === category ? "active" : ""}
-                >
-                  {category.genre}
-                </a> */}
                     <a
-                      href={`#${
-                        category.genre ? category.genre.toLowerCase() : ""
-                      }`}
+                      href={`#${category.genre.toLowerCase()}`}
                       onClick={() => handleCategoryClick(category)}
                       className={selectedCategory === category ? "active" : ""}
                     >
@@ -310,51 +298,55 @@ const CategoriesF = ({ addToCart }) => {
         </div>
 
         <div className="cards">
-          {filteredBooks.map((book) => {
-            const imagePath = preprocessImagePath(book.image);
-            return (
-              <div key={book.bookID} className="card-item">
-                <div className="card-image">
-                  <img
-                    src={imagePath || "/images/placeholder.jpg"}
-                    alt={book.title}
-                    className="book-image"
-                  />
-                  <div className="icon-container">
-                    {isFavorite ? (
-                      <MdFavorite
-                        className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
-                      />
-                    ) : (
-                      <MdFavoriteBorder
-                        className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
-                      />
-                    )}
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book) => {
+              const imagePath = preprocessImagePath(book.image);
+              return (
+                <div key={book.bookID} className="card-item">
+                  <div className="card-image">
+                    <img
+                      src={imagePath || "/images/placeholder.jpg"}
+                      alt={book.title}
+                      className="book-image"
+                    />
+                    <div className="icon-container">
+                      {isFavorite ? (
+                        <MdFavorite
+                          className="favorite-icon"
+                          onClick={() => handleFavoriteClick(book.bookID)}
+                        />
+                      ) : (
+                        <MdFavoriteBorder
+                          className="favorite-icon"
+                          onClick={() => handleFavoriteClick(book.bookID)}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="dropup">
-                  <div className="dropup-content">
-                    <p className="card-price">Price: €{book.price}</p>
+                  <div className="dropup">
+                    <div className="dropup-content">
+                      <p className="card-price">Price: €{book.price}</p>
+                      <h3 className="card-title">{book.title}</h3>
+                      <p className="card-author">Author: {book.author}</p>
+                      <button
+                        className="buy-now-btn"
+                        onClick={() => handleSubmit(book)}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                  <div className="card-content">
                     <h3 className="card-title">{book.title}</h3>
                     <p className="card-author">Author: {book.author}</p>
-                    <button
-                      className="buy-now-btn"
-                      onClick={() => handleSubmit(book)}
-                    >
-                      Add to Cart
-                    </button>
+                    <p className="card-price">Price: €{book.price}</p>
                   </div>
                 </div>
-                <div className="card-content">
-                  <h3 className="card-title">{book.title}</h3>
-                  <p className="card-author">Author: {book.author}</p>
-                  <p className="card-price">Price: €{book.price}</p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <p>No books available for the selected category.</p>
+          )}
         </div>
       </div>
       {showModal && selectedBook && (

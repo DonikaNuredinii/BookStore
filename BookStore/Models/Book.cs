@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BookStore.Models
 {
@@ -19,11 +20,11 @@ namespace BookStore.Models
 
         [ForeignKey("Stock")]
         public int StockId { get; set; }
+        [JsonIgnore]
+        public ICollection<BookAuthors> BookAuthors { get; set; } = new HashSet<BookAuthors>();
 
-
-
-
-
+        [JsonIgnore]
+        public ICollection<CategoryBook> CategoryBooks { get; set; } = new HashSet<CategoryBook>();
 
     }
 }

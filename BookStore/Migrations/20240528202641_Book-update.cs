@@ -231,7 +231,7 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "categoryBooks",
+                name: "CategoryBooks",
                 columns: table => new
                 {
                     CategoryBookID = table.Column<int>(type: "int", nullable: false)
@@ -241,15 +241,15 @@ namespace BookStore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_categoryBooks", x => x.CategoryBookID);
+                    table.PrimaryKey("PK_CategoryBooks", x => x.CategoryBookID);
                     table.ForeignKey(
-                        name: "FK_categoryBooks_Books_BookID",
+                        name: "FK_CategoryBooks_Books_BookID",
                         column: x => x.BookID,
                         principalTable: "Books",
                         principalColumn: "BookID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_categoryBooks_Categories_CategoryID",
+                        name: "FK_CategoryBooks_Categories_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
@@ -283,12 +283,12 @@ namespace BookStore.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_categoryBooks_BookID",
-                table: "categoryBooks",
+                table: "CategoryBooks",
                 column: "BookID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_categoryBooks_CategoryID",
-                table: "categoryBooks",
+                table: "CategoryBooks",
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
@@ -307,10 +307,11 @@ namespace BookStore.Migrations
                 name: "BookAuthors");
 
             migrationBuilder.DropTable(
-                name: "categoryBooks");
+                name: "CategoryBooks");
 
             migrationBuilder.DropTable(
                 name: "GiftCards");
+
 
             migrationBuilder.DropTable(
                 name: "Orders");

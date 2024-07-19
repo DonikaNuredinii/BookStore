@@ -1,7 +1,9 @@
+using BookStore.DTOs;
 using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
@@ -17,50 +19,116 @@ namespace WebApplication1.Controllers
             _booksContext = booksContext;
         }
 
+        // GET: api/Book
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            var books = await _booksContext.Books.ToListAsync();
+            var books = await _booksContext.Books
+                .Include(b => b.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
+                .Include(b => b.CategoryBooks)
+                    .ThenInclude(cb => cb.Category)
+                .ToListAsync();
 
-            if (books == null)
+            if (!books.Any())
             {
                 return NotFound();
             }
 
-            return books;
+            return Ok(books);
         }
 
-        [HttpGet("{BookID}")]
-        public async Task<ActionResult<Book>> GetBook(int BookID)
+        // GET: api/Book/5
+        [HttpGet("{bookID}")]
+        public async Task<ActionResult<BookResponse>> GetBook(int bookID)
         {
-            var book = await _booksContext.Books.FindAsync(BookID);
+            var book = await _booksContext.Books
+                .Include(b => b.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
+                .Include(b => b.CategoryBooks)
+                    .ThenInclude(cb => cb.Category)
+                .FirstOrDefaultAsync(b => b.BookID == bookID);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            return book;
+            var authors = book.BookAuthors.Select(ba => ba.Author).ToList();
+            var categories = book.CategoryBooks.Select(cb => cb.Category).ToList();
+
+            var result = new BookResponse
+            {
+                Book = book,
+                Authors = authors,
+                Categories = categories
+            };
+
+            return Ok(result);
         }
 
+        // POST: api/Book
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             _booksContext.Books.Add(book);
             await _booksContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBook), new { BookID = book.BookID }, book);
+            // Handle Book-Category relationships
+            if (book.CategoryBooks != null && book.CategoryBooks.Any())
+            {
+                foreach (var categoryBook in book.CategoryBooks)
+                {
+                    _booksContext.CategoryBooks.Add(new CategoryBook
+                    {
+                        BookID = book.BookID,
+                        CategoryID = categoryBook.CategoryID
+                    });
+                }
+                await _booksContext.SaveChangesAsync();
+            }
+
+            return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
         }
 
-        [HttpPut("{BookID}")]
-        public async Task<ActionResult> PutBook(int BookID, Book book)
+        // PUT: api/Book/5
+        [HttpPut("{bookID}")]
+        public async Task<IActionResult> PutBook(int bookID, Book book)
         {
-            if (BookID != book.BookID)
+            if (bookID != book.BookID)
             {
                 return BadRequest();
             }
 
-            _booksContext.Entry(book).State = EntityState.Modified;
+            var existingBook = await _booksContext.Books
+                .Include(b => b.CategoryBooks)
+                .FirstOrDefaultAsync(b => b.BookID == bookID);
+
+            if (existingBook == null)
+            {
+                return NotFound();
+            }
+
+            existingBook.Title = book.Title;
+            // Update other fields as necessary
+
+            // Remove existing CategoryBooks
+            _booksContext.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
+
+            // Add new CategoryBooks
+            if (book.CategoryBooks != null && book.CategoryBooks.Any())
+            {
+                foreach (var categoryBook in book.CategoryBooks)
+                {
+                    _booksContext.CategoryBooks.Add(new CategoryBook
+                    {
+                        BookID = book.BookID,
+                        CategoryID = categoryBook.CategoryID
+                    });
+                }
+            }
+
+            _booksContext.Entry(existingBook).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +136,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(BookID))
+                if (!BookExists(bookID))
                 {
                     return NotFound();
                 }
@@ -78,27 +146,34 @@ namespace WebApplication1.Controllers
                 }
             }
 
-            return Ok();
+            return NoContent();
         }
 
-        [HttpDelete("{BookID}")]
-        public async Task<ActionResult> DeleteBook(int BookID)
+        // DELETE: api/Book/5
+        [HttpDelete("{bookID}")]
+        public async Task<IActionResult> DeleteBook(int bookID)
         {
-            var book = await _booksContext.Books.FindAsync(BookID);
+            var book = await _booksContext.Books
+                .Include(b => b.CategoryBooks)
+                .FirstOrDefaultAsync(b => b.BookID == bookID);
+
             if (book == null)
             {
                 return NotFound();
             }
 
+            // Remove CategoryBooks relationships
+            _booksContext.CategoryBooks.RemoveRange(book.CategoryBooks);
+
             _booksContext.Books.Remove(book);
             await _booksContext.SaveChangesAsync();
 
-            return Ok();
+            return NoContent();
         }
 
-        private bool BookExists(int BookID)
+        private bool BookExists(int bookID)
         {
-            return _booksContext.Books.Any(e => e.BookID == BookID);
+            return _booksContext.Books.Any(e => e.BookID == bookID);
         }
     }
 }
