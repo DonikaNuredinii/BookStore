@@ -123,6 +123,11 @@ const CategoriesF = ({ addToCart }) => {
     false,
     /\.(png|jpe?g|svg)$/
   );
+  const imagesShkencaNatyrore = require.context(
+    "../Images/ShkencaNatyrore",
+    false,
+    /\.(png|jpe?g|svg)$/
+  );
   const imagesSociologji = require.context(
     "../Images/Sociologji",
     false,
@@ -135,6 +140,11 @@ const CategoriesF = ({ addToCart }) => {
   );
   const imagesTeater = require.context(
     "../Images/Teater",
+    false,
+    /\.(png|jpe?g|svg)$/
+  );
+  const imagesNovelaG = require.context(
+    "../Images/NovelaG",
     false,
     /\.(png|jpe?g|svg)$/
   );
@@ -229,6 +239,8 @@ const CategoriesF = ({ addToCart }) => {
         return imagesRomance(`./${imageName}`);
       } else if (path.includes("ShkencaTeknike")) {
         return imagesShkencaTeknike(`./${imageName}`);
+      } else if (path.includes("ShkencaNatyrore")) {
+        return imagesShkencaNatyrore(`./${imageName}`);
       } else if (path.includes("Shkence")) {
         return imagesShkence(`./${imageName}`);
       } else if (path.includes("Sociologji")) {
@@ -237,7 +249,10 @@ const CategoriesF = ({ addToCart }) => {
         return imagesSport(`./${imageName}`);
       } else if (path.includes("Teater")) {
         return imagesTeater(`./${imageName}`);
-      } else {
+      }else if (path.includes("NovelaG")) {
+        return imagesNovelaG(`./${imageName}`);
+      }
+       else {
         console.error("Folder not found for the provided image path.");
         return null;
       }
