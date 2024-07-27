@@ -44,9 +44,8 @@ const Accessories = () => {
 
   //Edit
   const handleEdit = (accessoriesID) => {
-
     handleShow();
-    setEditAccessoriesID(accessoriesID)
+    setEditAccessoriesID(accessoriesID);
     // console.log("Received AccessoriesID: ", editAccessoriesID);
 
     axios
@@ -175,14 +174,14 @@ const Accessories = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.accessoriesID)}
                       >
-                        Edit
+                        <i class="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.accessoriesID)}
                       >
-                        Delete
+                        <i class="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>
@@ -302,19 +301,19 @@ const Accessories = () => {
               </Col>
 
               <Col>
-                    <Form.Group controlId="formDateOfAddition">
-                        <Form.Label>Date Of Addition</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Date Of Addition"
-                            name="DateOfAddition"
-                            value={editDateOfAddition}
-                            onChange={(e) => setEditDateOfAddition(e.target.value)}
-                        />
-                    </Form.Group>
-                </Col>
+                <Form.Group controlId="formDateOfAddition">
+                  <Form.Label>Date Of Addition</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Date Of Addition"
+                    name="DateOfAddition"
+                    value={editDateOfAddition}
+                    onChange={(e) => setEditDateOfAddition(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
             </Row>
-{/* 
+            {/* 
             <Row>
                 <Col>
                 <Form.Group controlId="formStock">

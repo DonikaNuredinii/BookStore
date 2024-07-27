@@ -1,9 +1,6 @@
 ﻿using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -44,12 +41,12 @@ public class BookAuthorsController : ControllerBase
         return Ok(bookAuthors);
     }
 
-    // GET: api/BookAuthors/5
-    [HttpGet("{id}")]
-    public async Task<ActionResult<object>> GetBookAuthors(int id)
+    // GET: api/BookAuthors/Book/5
+    [HttpGet("Book/{bookID}")]
+    public async Task<ActionResult<IEnumerable<object>>> GetBookAuthorsByBookID(int bookID)
     {
         var bookAuthors = await _context.BookAuthors
-            .Where(ba => ba.BookAuthorsID == id)
+            .Where(ba => ba.BookID == bookID)
             .Select(ba => new
             {
                 ba.BookAuthorsID,
@@ -68,9 +65,9 @@ public class BookAuthorsController : ControllerBase
                     // Add other properties as needed
                 }
             })
-            .FirstOrDefaultAsync();
+            .ToListAsync();
 
-        if (bookAuthors == null)
+        if (bookAuthors == null || !bookAuthors.Any())
         {
             return NotFound();
         }

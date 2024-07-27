@@ -170,6 +170,44 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
+        [HttpPost("AddBookWithAuthors")]
+        public async Task<IActionResult> AddBookWithAuthors(AddBookWithAuthorsRequest request)
+        {
+            if (request == null || request.Book == null || !request.AuthorIds.Any())
+            {
+                return BadRequest("Invalid book or author data");
+            }
+
+            using (var transaction = await _booksContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    // Add the book
+                    _booksContext.Books.Add(request.Book);
+                    _booksContext.Books.Add(request.Book);
+                    await _booksContext.SaveChangesAsync();
+
+                    // Add book-author relationships
+                    foreach (var authorId in request.AuthorIds)
+                    {
+                        _booksContext.BookAuthors.Add(new BookAuthors
+                        {
+                            BookID = request.Book.BookID,
+                            AuthorID = authorId
+                        });
+                    }
+                    await _booksContext.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                    return Ok(request.Book);
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return StatusCode(500, "An error occurred: " + ex.Message);
+                }
+            }
+        }
 
         private bool BookExists(int bookID)
         {

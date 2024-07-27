@@ -33,83 +33,56 @@ const AddBooks = () => {
   const getAuthors = () => {
     axios
       .get("https://localhost:7061/api/Author")
-      .then((response) => {
-        setAuthorsList(response.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to fetch authors: " + error.message);
-      });
+      .then((response) => setAuthorsList(response.data))
+      .catch((error) =>
+        toast.error("Failed to fetch authors: " + error.message)
+      );
   };
 
   const getPublishingHouses = () => {
     axios
       .get("https://localhost:7061/api/PublishingHouses")
-      .then((response) => {
-        setPublishingHouseList(response.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get publishing houses: " + error.message);
-      });
+      .then((response) => setPublishingHouseList(response.data))
+      .catch((error) =>
+        toast.error("Failed to get publishing houses: " + error.message)
+      );
   };
 
   const getStocks = () => {
     axios
       .get("https://localhost:7061/api/Stock")
-      .then((response) => {
-        setStockList(response.data);
-      })
-      .catch((error) => {
-        toast.error("Failed to get stocks: " + error.message);
-      });
+      .then((response) => setStockList(response.data))
+      .catch((error) => toast.error("Failed to get stocks: " + error.message));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    const url = "https://localhost:7061/api/Book";
+    const url = "https://localhost:7061/api/Book/AddBookWithAuthors";
     const requestData = {
-      ISBN: parseInt(isbn),
-      Image: image,
-      Title: title,
-      Authors: selectedAuthors.map((author) => author.authorID),
-      PublishingHouseId: parseInt(selectedPublishingHouse),
-      PublicationDate: new Date(publicationDate).toISOString(),
-      PageNumber: parseInt(pageNumber),
-      Description: description,
-      Price: parseFloat(price),
-      DateOfadition: new Date(dateOfadition).toISOString(),
-      Type: type,
-      StockId: parseInt(selectedStock),
+      Book: {
+        isbn,
+        image,
+        title,
+        publicationDate,
+        pageNumber,
+        description,
+        price,
+        type,
+        dateOfadition,
+        publishingHouseId: selectedPublishingHouse,
+        stockId: selectedStock,
+      },
+      AuthorIds: selectedAuthors.map((authorId) => parseInt(authorId)),
     };
 
-    axios
-      .post(url, requestData)
-      .then((result) => {
-        const bookId = result.data.bookID;
-        addBookAuthors(bookId, requestData.Authors);
-        clear();
-        toast.success("Book has been added");
-        setSuccess(true);
-      })
-      .catch((error) => {
-        toast.error("Failed to add Book: " + error.message);
-      });
-  };
-
-  const addBookAuthors = (bookId, authors) => {
-    const url = `https://localhost:7061/api/BookAuthors`;
-    const bookAuthorsData = authors.map((author) => ({
-      bookID: bookId,
-      authorID: author,
-    }));
-
-    axios
-      .post(url, bookAuthorsData)
-      .then(() => {
-        console.log("BookAuthors added successfully.");
-      })
-      .catch((error) => {
-        console.error("Failed to add BookAuthors: " + error.message);
-      });
+    try {
+      const response = await axios.post(url, requestData);
+      clear();
+      toast.success("Book has been added with authors");
+      setSuccess(true);
+    } catch (error) {
+      toast.error("Failed to add Book with Authors: " + error.message);
+    }
   };
 
   const clear = () => {
@@ -127,8 +100,8 @@ const AddBooks = () => {
   };
 
   return (
-    <Form className="bookForm ">
-      <ToastContainer></ToastContainer>
+    <Form className="bookForm">
+      <ToastContainer />
       <Row>
         <Col>
           <Form.Group controlId="formISBN">
@@ -173,8 +146,7 @@ const AddBooks = () => {
               value={selectedPublishingHouse}
               onChange={(e) => setSelectedPublishingHouse(e.target.value)}
             >
-              <option value="">
-              Select Publishing House</option>
+              <option value="">Select Publishing House</option>
               {publishingHouseList.map((publishingHouse) => (
                 <option
                   key={publishingHouse.publishingHouseId}
@@ -303,9 +275,11 @@ const AddBooks = () => {
       </Row>
       <Row>
         <Col>
-          <Button variant="dark" className="btn-add" onClick={handleSave}>
-            Add
-          </Button>
+          <Link to="../Books">
+            <Button variant="dark" className="btn-add" onClick={handleSave}>
+              Add Authors
+            </Button>
+          </Link>
         </Col>
         <Col>
           <Button variant="dark" className="btn-add" onClick={clear}>
@@ -318,4 +292,3 @@ const AddBooks = () => {
 };
 
 export default AddBooks;
-

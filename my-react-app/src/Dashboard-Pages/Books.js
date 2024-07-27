@@ -2,11 +2,12 @@ import React, { useState, useEffect, Fragment } from "react";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
+import "../App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import "../App.css";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.css";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 const Books = () => {
@@ -77,20 +78,41 @@ const Books = () => {
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Book");
-      setData(response.data);
-      const booksWithAuthorsPromises = data.map(async (book) => {
-        const bookAuthorsResponse = await axios.get(
-          `https://localhost:7061/api/BookAuthor/${book.bookID}`
-        );
-        const authors = bookAuthorsResponse.data;
-        return { ...book, authors };
-      });
-      const booksWithAuthors = await Promise.all(booksWithAuthorsPromises);
-      setData(booksWithAuthors);
+      console.log("API Response:", response.data); // Add this line
+
+      if (response.status === 200) {
+        setData(response.data);
+
+        // Fetch authors for each book
+        const booksWithAuthorsPromises = response.data.map(async (book) => {
+          try {
+            const bookAuthorsResponse = await axios.get(
+              `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
+            );
+            const authors = Array.isArray(bookAuthorsResponse.data)
+              ? bookAuthorsResponse.data
+              : [];
+            return { ...book, authors };
+          } catch (authorError) {
+            console.error(
+              `Failed to fetch authors for book ${book.bookID}:`,
+              authorError
+            );
+            return { ...book, authors: [] }; // Return book with empty authors if an error occurs
+          }
+        });
+
+        const booksWithAuthors = await Promise.all(booksWithAuthorsPromises);
+        setData(booksWithAuthors);
+      } else {
+        throw new Error(`Unexpected response status: ${response.status}`);
+      }
     } catch (error) {
+      console.error("Error fetching books:", error);
       toast.error("Failed to get books: " + error.message);
     }
   };
+
   const handleEdit = (bookID) => {
     handleShow();
     axios
@@ -239,7 +261,7 @@ const Books = () => {
             <th>Publication Date</th>
             <th>Page Number</th>
             <th>Price</th>
-            <th>Discription</th>
+            <th>Description</th>
             <th>Date of Addition</th>
             <th>Type</th>
             <th>Stock</th>
@@ -249,19 +271,11 @@ const Books = () => {
         <tbody>
           {data && data.length > 0 ? (
             data.map((item, index) => {
-              // Log the item to see its structure
-              console.log("Item:", item);
-
-              // Make sure item is not undefined or null
-              if (!item) {
-                return null;
-              }
-
-              // Make sure all necessary properties exist before accessing them
               const imagePath = preprocessImagePath(item.image);
-              const authors = item.authors || [];
+              const authors = Array.isArray(item.authors) ? item.authors : [];
               const publishingHouse = item.publishingHouse || {};
               const stock = item.stock || {};
+              console.log("item.authors:", item.authors);
 
               return (
                 <tr key={item.bookID}>
@@ -276,14 +290,12 @@ const Books = () => {
                   </td>
                   <td>{item.title}</td>
                   <td>
-                    {authors.map((author) => (
-                      <div key={author.authorID}>
-                        {author.name} - {author.dateOfBirth}
-                      </div>
-                    ))}
+                    {item.authors &&
+                      item.authors
+                        .map((author) => author.author.name)
+                        .join(", ")}
                   </td>
                   <td>
-                    {" "}
                     {publishingHouseList.find(
                       (house) =>
                         house.publishingHouseId === item.publishingHouseId
@@ -296,7 +308,6 @@ const Books = () => {
                   <td>{item.dateOfadition}</td>
                   <td>{item.type}</td>
                   <td>
-                    {" "}
                     {stockList.find((stock) => stock.stockId === item.stockId)
                       ?.quantity || "-"}
                   </td>
@@ -306,14 +317,14 @@ const Books = () => {
                       className="btn-edit"
                       onClick={() => handleEdit(item.bookID)}
                     >
-                      Edit
+                      <i class="bi bi-pencil-square"></i>
                     </Button>
                     <Button
                       variant="outline-dark"
                       className="btn-delete"
                       onClick={() => handleDelete(item.bookID)}
                     >
-                      Delete
+                      <i class="bi bi-trash"></i>
                     </Button>
                   </td>
                 </tr>
