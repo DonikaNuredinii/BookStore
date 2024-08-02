@@ -13,7 +13,8 @@ namespace BookStore.Models
         public string Dimensions { get; set; }
         public decimal Price { get; set; }
         public DateTime DateofAddition { get; set; }
-        public Stock Stock { get; set; }
+        [ForeignKey("Stock")]
+        public int StockId { get; set; }
     }
 }
 

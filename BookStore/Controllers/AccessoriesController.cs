@@ -45,7 +45,7 @@ namespace Bookstore.Controllers
         }
 
         [HttpPut("{AccessoriesID}")]
-        public async Task<IActionResult> PutAccessory(int AccessoriesID, Accessories accessories)
+        public async Task<ActionResult> PutAccessory(int AccessoriesID, Accessories accessories)
         {
             if (AccessoriesID != accessories.AccessoriesID)
             {
@@ -69,10 +69,6 @@ namespace Bookstore.Controllers
         [HttpDelete("{AccessoriesID}")]
         public async Task<ActionResult> DeleteAccessories(int AccessoriesID)
         {
-            if (_accessoriesContext.Accessories == null)
-            {
-                return NotFound();
-            }
 
             var accessories = await _accessoriesContext.Accessories.FindAsync(AccessoriesID);
             if (accessories == null)

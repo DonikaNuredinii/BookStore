@@ -1,39 +1,72 @@
-import React, {useState} from "react";
-import AccessoriesData from "./AccessoriesData";
+import React, {useState, useEffect} from "react";
 import { BsArrowUpShort } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
-import { MdFavorite } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import Form from 'react-bootstrap/Form';
-// import Container from 'react-bootstrap/Container';
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import AccessoriesBanner from "../Components/AccessoriesBanner";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "../App.css";
 
-// function FilteredSearch(){
-//     const [search, setSearch] = useState('');
-//     console.log(search)
 
-//     return(
-//         <div className='filteredSearch'>
-//             <Container>
-//                 <h1 className='text-center mt-4'>Contact Keeper</h1>
-//                 <Form>
-//                     <InputGroup className='my-3'>
-//                         <Form.Group onChange={(e)=> setSearch(e.target.value)} placeholder='Search Contacts'/>
-//                     </InputGroup>
-//                 </Form>
-//             </Container>
-//         </div>
-//     )
-// }
-
-const Accessories = () => {
+const Accessories = ({addToCart}) => {
     const [detail,setDetail] = useState([]);
     const [close, setClose]= useState(false);
     const AccDetailPage = (Accessories)=>{
         setDetail([{...Accessories}])
         setClose(true)
     };
+    const [isFavorite, setIsFavorite] = useState(false);
+    const handleFavoriteClick = () => {
+        setIsFavorite(!isFavorite);
+      };
+
+      const scrollToFirstQuarter = () => {
+        const firstQuarterY = window.innerHeight / 3;
+         window.scrollTo(0, firstQuarterY);
+      };
+    const [accessories, setAccessories] = useState([]);
+
+      useEffect(() => {
+        fetchaccessories();
+      }, []);
+
+      const fetchaccessories = async () => {
+        try {
+          const response = await axios.get(`https://localhost:7061/api/Accessories`);
+          console.log("Accessories fetched:", response.data);
+          setAccessories(response.data);
+        } catch (error) {
+          console.error("Error fetching accessories:", error);
+        }
+      };
+
+      const handleSubmit = (accessories) => {
+        addToCart(accessories);
+      };
+      
+const ImazhetEAksesoriev = require.context("../Images/ImazhetAksesorie", false, /\.(png|jpe?g|svg)$/);
+
+const preprocessImagePath = (path) => {
+  if (!path) {
+    console.error("Path is null or undefined.");
+    return null;
+  }
+
+  const image = path.split("/").pop();
+  try {
+    if (path.includes("ImazhetAksesorie")) {
+      return ImazhetEAksesoriev(`./${image}`);
+    } else {
+      console.error("Folder not found for the provided image path.");
+      return null;
+    }
+  } catch (err) {
+    console.error(`Image not found: ${image}`);
+    return null;
+  }
+};
+
     const top =() => {
         window.scrollTo(0,0);
     };
@@ -41,6 +74,9 @@ const Accessories = () => {
     return(
         
         <div className="accessories">
+            <div className="second-section">
+            <AccessoriesBanner></AccessoriesBanner>
+          </div>
         {
             close ? <div className="Acc-detail-container">
             <div className="Acc-detail-content">
@@ -64,9 +100,19 @@ const Accessories = () => {
                                 <p>Masat: {x.Dimensions}</p>
                                 <p>Data e Shtimit: {x.DateofAddition}</p>
                                 <p>{x.Stock} ne Stok.</p>
-                                <p> Add to Cart | Add to Wish List </p> 
-                                <button><CiShoppingCart /></button>
+                                <p> Add to Cart | Add to Wish List </p>
+                                <button className="buy-now-btn" onClick={() => handleSubmit(accessories)}> <CiShoppingCart /></button>
                                 <button><MdFavorite /></button>
+                                <div className="view-cart-container">
+                                    <Link to="./cart" className="view-cart-button">
+                                        View Cart
+                                    </Link>
+                                    </div>
+                                    <div className="view-cart-container">
+                                    <Link to="../Accessories" className="continue-shopping">
+                                        Continue Shopping
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                         </>
@@ -76,23 +122,43 @@ const Accessories = () => {
             </div>
         </div> :null
         }
-        <div className="Acc-container">
+        <div className="Acc-cards">
         {   
-            AccessoriesData.map((AData) => 
+            accessories.map((accessories) => 
             {
+                const imagePath = preprocessImagePath(accessories.image);
                 return (
                 <>
-                    <div className="AccData-box" key={AData.AccessoriesID}>
-                        <div className="Acc-content">
-                            <div className="Acc-img-box">
-                                <img src={AData.Image} alt={AData.Name}/>
+                    <div className="card-item" key={accessories.AccessoriesID}>
+                        <div className="acc-card-image">
+                            <div className="acc-image">
+                                <img src={imagePath || "loading" } alt={accessories.Name} className="accessories-image"/>
                             </div>
-                            <div className="Acc-detail">
-                                <div className="Acc-info">
-                                    <h5>{AData.Name}</h5>
-                                    <p>${AData.Price}</p>
+                            <div className="icon-container">
+                                {isFavorite ? (
+                                    <MdFavorite
+                                    className="favorite-icon"
+                                    onClick={() => handleFavoriteClick(accessories.AccessoriesID)}
+                                    />
+                                ) : (
+                                    <MdFavoriteBorder
+                                    className="favorite-icon"
+                                    onClick={() => handleFavoriteClick(accessories.AccessoriesID)}
+                                    />
+                              )}
+                        </div>
+                            <div className="dropup">
+                                <div className="dropup-content">
+                                <p className="card-price">Price: €{accessories.Price}</p>
+                                <h3 className="card-title">{accessories.Name}</h3>
+                                <p className="card-author">Seller: {accessories.Seller}</p>
+                                <button onClick={()=>{AccDetailPage(accessories); scrollToFirstQuarter();}} className="Acc-btn">View</button>
                                 </div>
-                                <button onClick={()=>{AccDetailPage(AData); top();}} className="Acc-button">View</button>
+                            </div>
+                            <div className="card-content">
+                                <h3 className="card-author">{accessories.Name}</h3>
+                                <p className="card-title">Seller: {accessories.Seller}</p>
+                                <p className="card-price">Price: €{accessories.Price}</p>
                             </div>
                         </div>                            
                     </div>

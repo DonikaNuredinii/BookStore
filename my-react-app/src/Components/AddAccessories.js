@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const AddAccessories = () => {
-  // const [AccessoriesID, setAccessoriesID] = useState("");
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [seller, setSeller] = useState("");
@@ -14,39 +13,40 @@ const AddAccessories = () => {
   const [dimensions, setDimensions] = useState("");
   const [price, setPrice] = useState("");
   const [dateOfaddition, setDateOfAddition] = useState("");
-  // const [stock, setStock] = useState("");
-  // const [success, setSuccess] = useState(false);
-
+  const [selectedStock, setSelectedStock] = useState("");
+  const [stockList, setStockList] = useState([]);
+  const [success, setSuccess] = useState(false);
   const [data, setData] = useState([]);
+
   useEffect(() => {
     getData();
+    getStocks();
   }, []);
 
   const getData = () => {
     axios
       .get(`https://localhost:7061/api/Accessories`)
-      .then((result) => {
-        setData(result.data);
-      })
+      .then((response) => 
+        setData(response.data))
       .catch((error) => {
-        toast.error("Failed to get data: " + error.message);
+        toast.error("Failed to fetch data: " + error.message);
       });
-    // axios
-    //   .get(
-    //     `https://localhost:7061/api/Stock`
-    //   )
-    //   .then((result) => {
-    //     setStock(result.data);
-    //   })
-    //   .catch((error) => {
-    //     toast.error("Failed to get Stock: "+error.message);
-    //   });
-  };
+    };
+      const getStocks = () => {
+        axios
+          .get("https://localhost:7061/api/Stock")
+          .then((response) => {
+            setStockList(response.data);
+          })
+          .catch((error) => {
+            toast.error("Failed to get stocks: " + error.message);
+          });
+      };
 
-  const handleSave = () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
     const url = `https://localhost:7061/api/Accessories`;
-    const data = {
-      // AccessoriesID: AddAccessories,
+    const requestData = {
       Image: image,
       Name: name,
       Seller: seller,
@@ -54,22 +54,21 @@ const AddAccessories = () => {
       Dimensions: dimensions,
       Price: price,
       DateOfaddition: dateOfaddition,
-      // Stock: Stock,
+      stockId: selectedStock,
     };
-    axios
-      .post(url, data)
-      .then((result) => {
-        getData();
+
+    try{
+    const response = await axios
+      .post(url, requestData);
         clear();
         toast.success("Accessory has been added");
-        // setSuccess(true);
-      })
-      .catch((error) => {
+        setSuccess(true);
+      }
+      catch (error) {
         toast.error("Failed to add Accessory: " + error.message);
-      });
+      }
   };
   const clear = () => {
-    // setAccessoriesID("");
     setImage("");
     setName("");
     setSeller("");
@@ -77,70 +76,54 @@ const AddAccessories = () => {
     setDimensions("");
     setPrice("");
     setDateOfAddition("");
-    // setStock("");
+    setSelectedStock("");
   };
   const handleClear = () => {
     clear();
   };
+
   return (
     <Form className="AccessoriesForm ">
       <ToastContainer></ToastContainer>
       <Row>
-        {/* <Col> */}
-          {/* <Form.Group controlId="formAccessoriesID">
-            <Form.Label>AccessoriesID</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Accessories ID"
-              name="AccessoriesID"
-              value={AccessoriesID}
-              onChange={(e) => setAccessoriesID(e.target.value)}
-            />
-          </Form.Group>
-        </Col> */}
         <Col>
           <Form.Group controlAccessoriesID="formImage">
             <Form.Label>Image</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter image URL"
-              name="image"
               value={image}
               onChange={(e) => setImage(e.target.value)}
             />
           </Form.Group>
         </Col>
-      </Row>
 
-      <Row>
         <Col>
           <Form.Group controlAccessoriesID="formName">
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Name"
-              name="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Group>
-        </Col>
-
-        <Col>
-          <Form.Group controlAccessoriesID="formSeller">
-            <Form.Label>Seller</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Seller"
-              name="Seller"
-              value={seller}
-              onChange={(e) => setSeller(e.target.value)}
             />
           </Form.Group>
         </Col>
       </Row>
 
       <Row>
+        <Col>
+          <Form.Group controlAccessoriesID="formSeller">
+            <Form.Label>Seller</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Seller"
+              value={seller}
+              onChange={(e) => setSeller(e.target.value)}
+            />
+          </Form.Group>
+        </Col>
+
         <Col>
           <Form.Group controlAccessoriesID="formDescription">
             <Form.Label>Description</Form.Label>
@@ -148,80 +131,79 @@ const AddAccessories = () => {
               as="textarea"
               rows={3}
               placeholder="Enter description"
-              name="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
         </Col>
+      </Row>
 
+      <Row>
         <Col>
           <Form.Group controlAccessoriesID="formDimensions">
             <Form.Label>Dimensions</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Dimensions"
-              name="Dimensions"
               value={dimensions}
               onChange={(e) => setDimensions(e.target.value)}
             />
           </Form.Group>
         </Col>
-      </Row>
 
-      <Row>
         <Col>
           <Form.Group controlAccessoriesID="formPrice">
             <Form.Label>Price</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
+              step="0.01"
               placeholder="Enter Price"
-              name="Price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
           </Form.Group>
         </Col>
+      </Row>
 
-        <Col>
+      <Row>
+       <Col>
         <Form.Group controlAccessoriesID="formDateOfAddition">
           <Form.Label>Date of Addition</Form.Label>
           <Form.Control
             type="date"
             placeholder="Enter date of addition"
-            name="DateOfAddition"
             value={dateOfaddition}
             onChange={(e) => setDateOfAddition(e.target.value)}
           />
         </Form.Group>
-      </Col>
-      
-      </Row>
-
-    {/*   <Row>
-      <Col>
-          <Form.Group controlAccessoriesID="formStock">
+       </Col>
+       <Col>
+          <Form.Group controlId="formStock">
             <Form.Label>Stock</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter Stock"
-              name="Stock"
-              value={Stock}
-              onChange={(e) => setStock(e.target.value)}
-            />
+              as="select"
+              value={selectedStock}
+              onChange={(e) => setSelectedStock(e.target.value)}
+            >
+              <option value="">Select Stock</option>
+              {stockList.map((stock) => (
+                <option key={stock.stockId} value={stock.stockId}>
+                  {stock.quantity}
+                </option>
+              ))}
+            </Form.Control>
           </Form.Group>
         </Col>
-      </Row> */}
+      </Row>
 
       <Row>
-        {" "}
         <Col>
           <Link to="../Accessories">
             <Button
               variant="dark"
               className="btn-addAccessories"
               onClick={handleSave}>
-              Add
+              Add Accessories
             </Button>
           </Link>
         </Col>
