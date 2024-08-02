@@ -44,6 +44,11 @@ function Sidebar() {
           <i className="bi bi-book fs-5 me-3"></i>
           <span>Porosite</span>
         </Link>
+
+        <Link to="./ContactUs" className="list-group-item py-2 ">
+          <i className="bi bi-book fs-5 me-3"></i>
+          <span>Contact</span>
+        </Link>
       </div>
     </div>
   );

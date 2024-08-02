@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class Bookupdate : Migration
+    public partial class User : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,6 +31,22 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    CartItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: true),
+                    AccessoriesId = table.Column<int>(type: "int", nullable: true),
+                    GiftCardId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.CartItemId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -44,6 +62,47 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Contact",
+                columns: table => new
+                {
+                    ContactID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contact", x => x.ContactID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    CountryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.CountryID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Discount",
+                columns: table => new
+                {
+                    DiscountID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Discount", x => x.DiscountID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GiftCards",
                 columns: table => new
                 {
@@ -53,7 +112,8 @@ namespace BookStore.Migrations
                     SelectedDesign = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipientEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,13 +130,33 @@ namespace BookStore.Migrations
                     OrderShipDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CountryID = table.Column<int>(type: "int", nullable: false),
                     ZipCode = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: false)
+                    DiscountID = table.Column<int>(type: "int", nullable: false),
+                    GiftCardID = table.Column<int>(type: "int", nullable: false),
+                    OrderDetailsID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrdersId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    PaymentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpiryDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CVV = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrdersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.PaymentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,6 +196,40 @@ namespace BookStore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stock", x => x.StockId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserOrder",
+                columns: table => new
+                {
+                    UserOrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    OrdersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOrder", x => x.UserOrderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderDetails",
+                columns: table => new
+                {
+                    OrderDetailsID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CartItemId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailsID);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_CartItems_CartItemId",
+                        column: x => x.CartItemId,
+                        principalTable: "CartItems",
+                        principalColumn: "CartItemId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,14 +348,13 @@ namespace BookStore.Migrations
                 name: "CategoryBooks",
                 columns: table => new
                 {
-                    CategoryBookID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookID = table.Column<int>(type: "int", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    CategoryBookID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryBooks", x => x.CategoryBookID);
+                    table.PrimaryKey("PK_CategoryBooks", x => new { x.BookID, x.CategoryID });
                     table.ForeignKey(
                         name: "FK_CategoryBooks_Books_BookID",
                         column: x => x.BookID,
@@ -254,6 +367,15 @@ namespace BookStore.Migrations
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RolesID", "RoleName" },
+                values: new object[,]
+                {
+                    { 2, "User" },
+                    { 3, "Admin" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -282,14 +404,14 @@ namespace BookStore.Migrations
                 column: "StockId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_categoryBooks_BookID",
-                table: "CategoryBooks",
-                column: "BookID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_categoryBooks_CategoryID",
+                name: "IX_CategoryBooks_CategoryID",
                 table: "CategoryBooks",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_CartItemId",
+                table: "OrderDetails",
+                column: "CartItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RolesID",
@@ -310,11 +432,28 @@ namespace BookStore.Migrations
                 name: "CategoryBooks");
 
             migrationBuilder.DropTable(
+                name: "Contact");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "Discount");
+
+            migrationBuilder.DropTable(
                 name: "GiftCards");
 
+            migrationBuilder.DropTable(
+                name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
+
+            migrationBuilder.DropTable(
+                name: "UserOrder");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -327,6 +466,9 @@ namespace BookStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "CartItems");
 
             migrationBuilder.DropTable(
                 name: "Roles");

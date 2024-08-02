@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\BookStore",
-    "\\BookStore\\Migrations"
+    ""
   ],
-  "SelectedNode": "\\BookStore\\Migrations\\20240529153027_Book-A.cs",
+  "SelectedNode": "\\BookStore.sln",
   "PreviewInSolutionExplorer": false
 }

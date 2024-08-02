@@ -18,6 +18,8 @@ import AddAuthors from "../Components/AddAuthors";
 import Author from "../Dashboard-Pages/Author";
 import AddOrders from "../Components/AddOrders";
 import Orders from "../Dashboard-Pages/Orders";
+import AddContact from "../Components/AddContact";
+import ContactUs from "../Dashboard-Pages/ContactUs";
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
 
@@ -52,6 +54,8 @@ function Dashboard() {
             <Route path="/Accessories" element={<Accessories />} />
             <Route path="/add-Orders" element={<AddOrders />} />
             <Route path="Orders" element={<Orders />} />
+            <Route path="/add-contact" element={<AddContact />} />
+            <Route path="ContactUs" element={<ContactUs />} />
           
           </Routes>
         </div>

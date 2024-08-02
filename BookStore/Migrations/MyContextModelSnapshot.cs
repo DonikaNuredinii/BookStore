@@ -243,6 +243,31 @@ namespace BookStore.Migrations
                     b.ToTable("CategoryBooks");
                 });
 
+            modelBuilder.Entity("BookStore.Models.ContactUs", b =>
+                {
+                    b.Property<int>("ContactID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactID");
+
+                    b.ToTable("Contact");
+                });
+
             modelBuilder.Entity("BookStore.Models.Country", b =>
                 {
                     b.Property<int>("CountryID")
