@@ -9,8 +9,11 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
-
-const image = require.context("../Images/ImazhetAksesorie", false, /\.(png|jpe?g|svg)$/);
+const image = require.context(
+  "../Images/ImazhetAksesorie",
+  false,
+  /\.(png|jpe?g|svg)$/
+);
 const Accessories = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -37,16 +40,20 @@ const Accessories = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("https://localhost:7061/api/Accessories");
+      const response = await axios.get(
+        "https://localhost:7061/api/Accessories"
+      );
       console.log("API Response:", response.data);
-  
+
       setData(response.data);
     } catch (error) {
       console.error("Error fetching accessories:", error);
-      toast.error("Failed to get accessories: " + (error.response?.data?.message || error.message));
+      toast.error(
+        "Failed to get accessories: " +
+          (error.response?.data?.message || error.message)
+      );
     }
   };
-  
 
   const getStocks = () => {
     axios
@@ -66,7 +73,6 @@ const Accessories = () => {
     axios
       .get(`https://localhost:7061/api/Accessories/${editAccessoriesID}`)
       .then((result) => {
-
         const accessoriesData = result.data;
 
         setEditAccessoriesID(accessoriesID);
@@ -88,18 +94,21 @@ const Accessories = () => {
 
   //Delete
   const handleDelete = async (accessoriesID) => {
-    if ( window.confirm("Are you sure you want to delete this Accessory item?")) {
-        
-        try {
-          await axios.delete(`https://localhost:7061/api/Accessories/${accessoriesID}`);
-          toast.success("Accessory item has been deleted");
-          getData();
-        } catch (error) {
-          toast.error("Failed to delete Accessory item: " + error.message);
-        }
+    if (
+      window.confirm("Are you sure you want to delete this Accessory item?")
+    ) {
+      try {
+        await axios.delete(
+          `https://localhost:7061/api/Accessories/${accessoriesID}`
+        );
+        toast.success("Accessory item has been deleted");
+        getData();
+      } catch (error) {
+        toast.error("Failed to delete Accessory item: " + error.message);
       }
-    };
-      
+    }
+  };
+
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log("Edit id:", editAccessoriesID);
@@ -116,7 +125,7 @@ const Accessories = () => {
       dateOfAddition: editDateOfAddition,
       stockId: stockId,
     };
-    
+
     console.log("Data being sent:", data);
 
     axios
@@ -128,7 +137,10 @@ const Accessories = () => {
         toast.success("Accessory has been updated successfully!");
       })
       .catch((error) => {
-        toast.error("Failed to edit Accessory: " + error.response ? error.response.data : error.message
+        toast.error(
+          "Failed to edit Accessory: " + error.response
+            ? error.response.data
+            : error.message
         );
         const errorMessage =
           error.response?.data?.name || error.message || "Unknown error";
@@ -194,7 +206,7 @@ const Accessories = () => {
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0? (
+          {data && data.length > 0 ? (
             data.map((item, index) => {
               const imagePath = preprocessImagePath(item.image);
               const stock = item.stock || {};
@@ -202,9 +214,11 @@ const Accessories = () => {
               return (
                 <tr key={item.accessoriesID}>
                   <td>{index + 1}</td>
-                  <td>{item.accessoriesID}</td>
                   <td>
-                    <img src={imagePath || "/Images/placeholder.jpg"} alt="Accessory Item" />
+                    <img
+                      src={imagePath || "/Images/placeholder.jpg"}
+                      alt="Accessory Item"
+                    />
                   </td>
                   <td>{item.name}</td>
                   <td>{item.seller}</td>
@@ -212,8 +226,10 @@ const Accessories = () => {
                   <td>{item.dimensions}</td>
                   <td>{item.price}</td>
                   <td>{item.dateOfAddition}</td>
-                  <td>{stockList.find((stock) => stock.stockId === item.stockId)
-                      ?.quantity || "-"}</td>
+                  <td>
+                    {stockList.find((stock) => stock.stockId === item.stockId)
+                      ?.quantity || "-"}
+                  </td>
                   <td colSpan={2} className="btn">
                     <Button
                       variant="outline-dark"
@@ -232,15 +248,14 @@ const Accessories = () => {
                   </td>
                 </tr>
               );
-            }))
-            : (
+            })
+          ) : (
             <tr>
               <td colSpan="13" className="text-center">
                 No Books Available
               </td>
             </tr>
-            )
-            }
+          )}
         </tbody>
       </Table>
       <Modal

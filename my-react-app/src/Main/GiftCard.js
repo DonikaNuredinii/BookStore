@@ -44,7 +44,12 @@ const GiftCard = ({ addToCart }) => {
     event.preventDefault();
     setShowModal(true);
 
+    // Generate a unique code or assign a value to `code` if needed
+    const generatedCode =
+      "GC" + Math.random().toString(36).substr(2, 9).toUpperCase();
+
     const giftCardDetails = {
+      code: generatedCode, // Include the code field
       amount,
       selectedDesign,
       recipientName,
@@ -133,7 +138,7 @@ const GiftCard = ({ addToCart }) => {
           </div>
         )}
       </div>
-      <div className="form">
+      <div className="form-gift">
         <h2>Amount</h2>
         <label htmlFor="amount">Amount:</label>
         <input

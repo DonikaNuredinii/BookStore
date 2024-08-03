@@ -12,7 +12,7 @@ namespace BookStore.Models
         public int? BookId { get; set; }
 
         [ForeignKey("Accessories")]
-        public int? AccessoriesId { get; set; }
+        public int? AccessoriesID { get; set; }
  
 
         [ForeignKey("GiftCard")]

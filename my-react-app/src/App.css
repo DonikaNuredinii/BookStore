@@ -711,7 +711,6 @@ form .signUp-link {
   top: -2px;
   left: -2px;
   z-index: 1;
-  position: absolute;
 }
 
 .favorite-icon {
@@ -746,6 +745,7 @@ form .signUp-link {
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .card-content {
   padding: 10px;
   text-align: left;
@@ -786,7 +786,7 @@ form .signUp-link {
   background-color: #0f4365;
 }
 
-.dropup {
+.card-item .dropup {
   position: absolute;
   bottom: -32%;
   width: 200px;
@@ -803,6 +803,7 @@ form .signUp-link {
 .card-item:hover .dropup {
   display: block;
 }
+
 .card-item:hover .card-content {
   opacity: 0;
   pointer-events: none;
@@ -854,11 +855,6 @@ form .signUp-link {
   color: #d1d1d1;
   margin-top: 20px;
 }
-
-form {
-  width: 330px;
-}
-
 .inputs-contact {
   position: relative;
   width: 100%;
@@ -994,7 +990,7 @@ form {
   text-align: left;
 }
 
-.form {
+.form-gift {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -1005,20 +1001,20 @@ form {
   width: 500px;
 }
 
-.form h2 {
+.form-gift h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.form label {
+.form-gift label {
   font-size: 14px;
   color: #666;
   margin-bottom: 5px;
 }
 
-.form input,
-.form textarea {
+.form-gift input,
+.form-gift textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -1027,7 +1023,7 @@ form {
   font-size: 14px;
 }
 
-.form button[type="submit"] {
+.form-gift button[type="submit"] {
   background-color: #0f4365;
   color: #fff;
   padding: 10px 20px;
@@ -1036,7 +1032,7 @@ form {
   cursor: pointer;
 }
 
-.form button[type="submit"]:hover {
+.form-gift button[type="submit"]:hover {
   background-color: #030e26;
 }
 /* Preview design */
@@ -1072,8 +1068,8 @@ form {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
-  background-color: #fff;
+.modal-cart .modal-content {
+  background-color: #f0f0f0;
   margin: 20px;
   padding: 20px;
   border: 1px solid #888;
@@ -1642,8 +1638,131 @@ label {
   margin: 6px 0;
   color: #444;
 }
+.accessories-banner {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #030e26;
+  height: 230px;
+  flex: 1;
+  padding: 0 10px;
+}
 
-.accessories-banner{
+.accessories-banner-content {
+  flex: 1;
+  margin-left: 20px;
+  padding: 50px;
+}
+
+.accessories-banner-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #d1dddb;
+}
+.accessories-banner-content p {
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-align: justify;
+  width: 700px;
+  color: #d1dddb;
+}
+.accessories-items {
+  display: flex;
+  align-items: center;
+}
+
+.accessories-items img {
+  width: 190px;
+  height: 230px;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+/*Invoice*/
+
+.invoice-container {
+  width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #e4e4e4;
+  padding-bottom: 20px;
+}
+
+.invoice-logo {
+  text-align: left;
+}
+
+.invoice-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.invoice-logo h1 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #6e329d;
+}
+
+.invoice-info {
+  text-align: right;
+}
+
+.invoice-info p {
+  margin: 0;
+}
+
+.invoice-bill-to {
+  margin: 20px 0;
+}
+
+.invoice-bill-to p {
+  margin: 0;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #e4e4e4;
+  padding: 8px;
+  text-align: left;
+}
+
+.invoice-summary {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.invoice-summary-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoice-summary-item.total {
+  font-weight: bold;
+}
+
+.invoice-notes {
+  margin-top: 20px;
+}
+
+.invoice-notes p {
+  margin: 0;
+}
+
+.accessories-banner {
   margin-top: 50px;
   display: flex;
   flex-direction: column;

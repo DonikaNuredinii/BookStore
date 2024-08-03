@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./HomePage";
 import NavbarHome from "./NavbarHome";
@@ -12,12 +12,22 @@ import Accessories from "./Accessories";
 import AuthorList from "./AuthorList";
 import CheckoutForm from "./CheckoutForm";
 import AuthorDetails from "./AuthorDetails";
+import Invoice from "./Invoice";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
   const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCart(storedCart);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
@@ -31,7 +41,7 @@ function Pages() {
     <div>
       <NavbarHome Toggle={Toggle} />
       {location.pathname !== "/account" && (
-        <Buttons isSticky={false} cartCount={cart.length} />
+        <Buttons isSticky={isSticky} cartCount={cart.length} />
       )}
       <Routes>
         <Route
@@ -50,6 +60,7 @@ function Pages() {
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/CheckoutForm" element={<CheckoutForm />} />
+        <Route path="/Invoice" element={<Invoice />} />
         <Route path="/Accessories" element={<Accessories />} />
         <Route path="/AuthorList" element={<AuthorList />} />
         <Route path="/AuthorDetails/:authorID" element={<AuthorDetails />} />

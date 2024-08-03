@@ -3,6 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../App.css";
 
 const AddUser = () => {
   const [firstName, setFirstName] = useState("");
@@ -147,10 +148,10 @@ const AddUser = () => {
       </Row>
       <Row>
         <Col>
-          <Button variant="primary" onClick={handleSave}>
+          <Button variant="primary" className="btn-add" onClick={handleSave}>
             Save
           </Button>
-          <Button variant="secondary" onClick={clearForm}>
+          <Button variant="secondary" className="btn-add" onClick={clearForm}>
             Clear
           </Button>
         </Col>

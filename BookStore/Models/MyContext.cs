@@ -5,11 +5,8 @@ namespace BookStore.Models
 {
     public class MyContext : DbContext
     {
-        public MyContext(DbContextOptions options) : base(options)
-        {
+        public MyContext(DbContextOptions options) : base(options) { }
 
-
-        }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<PublishingHouse> PublishingHouses { get; set; }
@@ -24,7 +21,7 @@ namespace BookStore.Models
         public DbSet<GiftCard> GiftCards { get; set; }
         public DbSet<Accessories> Accessories { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
-        public DbSet<Payment> Payment{ get; set; }
+        public DbSet<Payment> Payment { get; set; }
         public DbSet<UserOrder> UserOrder { get; set; }
         public DbSet<Discount> Discount { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -39,15 +36,15 @@ namespace BookStore.Models
             modelBuilder.Entity<Accessories>()
                 .Property(a => a.Price)
                 .HasColumnType("decimal(18,2)");
-            modelBuilder.Entity<User>()
-                .Property(u => u.RolesID);
+
             modelBuilder.Entity<Discount>()
-        .Property(d => d.DiscountAmount)
-        .HasColumnType("decimal(18,2)");
+                .Property(d => d.DiscountAmount)
+                .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<OrderDetails>()
                 .Property(o => o.TotalPrice)
                 .HasColumnType("decimal(18,2)");
+
 
             modelBuilder.Entity<Payment>()
                 .Property(p => p.Amount)
@@ -62,6 +59,7 @@ namespace BookStore.Models
                 new Roles { RolesID = 2, RoleName = "User" },
                 new Roles { RolesID = 3, RoleName = "Admin" }
             );
+
             modelBuilder.Entity<Book>()
                 .HasOne<PublishingHouse>()
                 .WithMany()
@@ -71,7 +69,8 @@ namespace BookStore.Models
                 .HasOne<Stock>()
                 .WithMany()
                 .HasForeignKey(b => b.StockId);
-              modelBuilder.Entity<BookAuthors>()
+
+            modelBuilder.Entity<BookAuthors>()
                 .HasKey(ba => ba.BookAuthorsID);
 
             modelBuilder.Entity<BookAuthors>()
@@ -85,7 +84,7 @@ namespace BookStore.Models
                 .HasForeignKey(ba => ba.AuthorID);
 
             modelBuilder.Entity<CategoryBook>()
-       .HasKey(cb => new { cb.BookID, cb.CategoryID });
+                .HasKey(cb => new { cb.BookID, cb.CategoryID });
 
             modelBuilder.Entity<CategoryBook>()
                 .HasOne(cb => cb.Book)
@@ -102,4 +101,3 @@ namespace BookStore.Models
         }
     }
 }
-       

@@ -6,7 +6,7 @@ namespace BookStore.Models
     public class Book
     {
         public int BookID { get; set; }
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         public string Image { get; set; }
         public string Title { get; set; }
         public DateTime PublicationDate { get; set; }

@@ -15,11 +15,13 @@ namespace WebApplication1.Controllers
     {
         private readonly MyContext _context;
         private readonly ILogger<GiftCardController> _logger;
+        private readonly GiftCardService _giftCardService;
 
-        public GiftCardController(MyContext context, ILogger<GiftCardController> logger)
+        public GiftCardController(MyContext context, ILogger<GiftCardController> logger, GiftCardService giftCardService)
         {
             _context = context;
             _logger = logger;
+            _giftCardService = giftCardService;
         }
 
         // GET: api/GiftCard
@@ -28,7 +30,8 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                return await _context.GiftCards.ToListAsync();
+                var giftCards = await _context.GiftCards.ToListAsync();
+                return Ok(giftCards);
             }
             catch (Exception ex)
             {
@@ -48,7 +51,7 @@ namespace WebApplication1.Controllers
                 {
                     return NotFound();
                 }
-                return giftCard;
+                return Ok(giftCard);
             }
             catch (Exception ex)
             {
@@ -69,6 +72,15 @@ namespace WebApplication1.Controllers
                     return BadRequest(ModelState);
                 }
 
+                // Generate a new gift card code and ensure it's unique
+                string generatedCode;
+                do
+                {
+                    generatedCode = _giftCardService.GenerateGiftCardCode();
+                } while (await _context.GiftCards.AnyAsync(g => g.Code == generatedCode));
+
+                giftCard.Code = generatedCode;
+
                 _context.GiftCards.Add(giftCard);
                 await _context.SaveChangesAsync();
 
@@ -81,19 +93,28 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // PUT: api/GiftCard/5
         [HttpPut("{GiftCardID}")]
-        public async Task<IActionResult> PutGiftCard(int GiftCardID, GiftCard giftCard)
+        public async Task<IActionResult> PutGiftCard(int GiftCardID, [FromBody] GiftCard giftCard)
         {
             if (GiftCardID != giftCard.GiftCardID)
             {
-                return BadRequest();
+                return BadRequest("GiftCardID mismatch");
             }
 
-            _context.Entry(giftCard).State = EntityState.Modified;
+            var existingGiftCard = await _context.GiftCards.FindAsync(GiftCardID);
+            if (existingGiftCard == null)
+            {
+                return NotFound();
+            }
+
+            existingGiftCard.Code = giftCard.Code;
+            existingGiftCard.Amount = giftCard.Amount;
+            existingGiftCard.RecipientName = giftCard.RecipientName;
+            existingGiftCard.IsActive = giftCard.IsActive;
 
             try
             {
+                _context.Entry(existingGiftCard).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException ex)
@@ -114,6 +135,7 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
+
 
         // DELETE: api/GiftCard/5
         [HttpDelete("{GiftCardID}")]

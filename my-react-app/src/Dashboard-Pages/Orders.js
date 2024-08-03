@@ -11,7 +11,7 @@ const Orders = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-   
+
   const [editOrdersId, setEditOrdersId] = useState("");
   const [editOrderDate, setEditOrderDate] = useState("");
   const [editOrderShipDate, setEditOrderShipDate] = useState("");
@@ -60,9 +60,7 @@ const Orders = () => {
 
   //delete
   const handleDelete = (ordersId) => {
-    if (
-      window.confirm("Are you sure you want to delete this Order") === true
-    ) {
+    if (window.confirm("Are you sure you want to delete this Order") === true) {
       axios
         .delete(`https://localhost:7061/api/Category/${ordersId}`)
         .then((result) => {
@@ -88,7 +86,7 @@ const Orders = () => {
       City: editCity,
       Country: editCountry,
       ZipCode: editZipCode,
-      DiscountId: editDiscountId ,
+      DiscountId: editDiscountId,
     };
     axios
       .put(url, data)
@@ -112,7 +110,6 @@ const Orders = () => {
     setEditDiscountID("");
   };
 
-  
   return (
     <Fragment>
       <ToastContainer></ToastContainer>
@@ -155,14 +152,14 @@ const Orders = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.ordersId)}
                       >
-                        Edit
+                        <i class="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.ordersId)}
                       >
-                        Delete
+                        <i class="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>
@@ -231,7 +228,7 @@ const Orders = () => {
                     value={editAddress}
                     onChange={(e) => setEditAddress(e.target.value)}
                   />
-                  </Form.Group>
+                </Form.Group>
                 <Form.Group controlId="fromCity">
                   <Form.Label>City</Form.Label>
                   <Form.Control
@@ -240,7 +237,7 @@ const Orders = () => {
                     value={editCity}
                     onChange={(e) => setEditCity(e.target.value)}
                   />
-                  </Form.Group>
+                </Form.Group>
                 <Form.Group controlId="fromCountry">
                   <Form.Label>Country</Form.Label>
                   <Form.Control
@@ -249,7 +246,7 @@ const Orders = () => {
                     value={editCountry}
                     onChange={(e) => setEditCountry(e.target.value)}
                   />
-                  </Form.Group>
+                </Form.Group>
                 <Form.Group controlId="fromZipCode">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
@@ -258,7 +255,7 @@ const Orders = () => {
                     value={editZipCode}
                     onChange={(e) => setEditZipCode(e.target.value)}
                   />
-                  </Form.Group>
+                </Form.Group>
                 <Form.Group controlId="fromDiscountId">
                   <Form.Label>DiscountId</Form.Label>
                   <Form.Control
@@ -294,5 +291,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-

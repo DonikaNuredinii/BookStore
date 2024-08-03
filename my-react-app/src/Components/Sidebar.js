@@ -41,13 +41,17 @@ function Sidebar() {
           <span>Aksesoret</span>
         </Link>
         <Link to="./Orders" className="list-group-item py-2 ">
-          <i className="bi bi-book fs-5 me-3"></i>
+          <i class="bi bi-cart2 fs-5 me-3"></i>
           <span>Porosite</span>
         </Link>
 
         <Link to="./ContactUs" className="list-group-item py-2 ">
-          <i className="bi bi-book fs-5 me-3"></i>
+          <i class="bi bi-inbox fs-5 me-3"></i>
           <span>Contact</span>
+        </Link>
+        <Link to="./GiftCards" className="list-group-item py-2 ">
+          <i class="bi bi-postcard fs-5 me-3"></i>
+          <span>GiftCard</span>
         </Link>
       </div>
     </div>

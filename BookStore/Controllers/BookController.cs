@@ -71,25 +71,39 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-            _booksContext.Books.Add(book);
-            await _booksContext.SaveChangesAsync();
-
-            // Handle Book-Category relationships
-            if (book.CategoryBooks != null && book.CategoryBooks.Any())
+            using (var transaction = await _booksContext.Database.BeginTransactionAsync())
             {
-                foreach (var categoryBook in book.CategoryBooks)
+                try
                 {
-                    _booksContext.CategoryBooks.Add(new CategoryBook
-                    {
-                        BookID = book.BookID,
-                        CategoryID = categoryBook.CategoryID
-                    });
-                }
-                await _booksContext.SaveChangesAsync();
-            }
+                    _booksContext.Books.Add(book);
+                    await _booksContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
+                    // Handle Book-Category relationships
+                    if (book.CategoryBooks != null && book.CategoryBooks.Any())
+                    {
+                        foreach (var categoryBook in book.CategoryBooks)
+                        {
+                            _booksContext.CategoryBooks.Add(new CategoryBook
+                            {
+                                BookID = book.BookID,
+                                CategoryID = categoryBook.CategoryID
+                            });
+                        }
+                        await _booksContext.SaveChangesAsync();
+                    }
+
+                    await transaction.CommitAsync();
+                    return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return StatusCode(500, $"An error occurred while saving the entity changes: {ex.Message} {ex.InnerException?.Message}");
+                }
+            }
         }
+
+
 
         // PUT: api/Book/5
         [HttpPut("{bookID}")]

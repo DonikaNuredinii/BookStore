@@ -8,123 +8,125 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ContactUs = () => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
-    const [editContactID, setEditContactID] = useState("");
-    const [editName, setEditName] = useState("");
-    const [editEmail, setEditEmail] = useState("");
-    const [editMessage, setEditMessage] = useState("");
-    
-    const [data, setData] = useState([]);
-  
-    useEffect(() => {
-      getData();
-    }, []);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const getData = () => {
-        axios
-          .get(`https://localhost:7061/api/ContactUs`)
-          .then((result) => {
-            setData(result.data);
-            console.log("Contact Data:", result.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    };
+  const [editContactID, setEditContactID] = useState("");
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editMessage, setEditMessage] = useState("");
 
-    const handleEdit = (contactId) => {
-        if (!contactId) {
-          toast.error("ContactID is not valid");
-          return;
-        }
+  const [data, setData] = useState([]);
 
-        handleShow();
-        setEditContactID(contactId);
-        axios
-            .get(`https://localhost:7061/api/ContactUs/${contactId}`)
-            .then((result) => {
-              const contactData = result.data; 
-              setEditName(contactData.name);
-              setEditEmail(contactData.email);
-              setEditMessage(contactData.message);
-            })
-            .catch((error) => {
-              toast.error("Failed to get User: " + error.message);
-            });
-    };
+  useEffect(() => {
+    getData();
+  }, []);
 
-    const handleDelete = (contactId) => {
-        if (window.confirm("Are you sure you want to delete this contact message?")) {
-          axios
-            .delete(`https://localhost:7061/api/ContactUs/${contactId}`)
-            .then((result) => {
-              if (result.status === 200) {
-                toast.success("Message has been deleted");
-                getData();
-              }
-            })
-            .catch((error) => {
-              toast.error("Failed to delete Message: " + error.message);
-            });
-        }
-    };
+  const getData = () => {
+    axios
+      .get(`https://localhost:7061/api/ContactUs`)
+      .then((result) => {
+        setData(result.data);
+        console.log("Contact Data:", result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    const handleUpdate = async () => {
-        const url = `https://localhost:7061/api/ContactUs/${editContactID}`;
-    
-        const contactData = {
-          ContactID: editContactID,
-          Name: editName,
-          Email: editEmail,
-          Message: editMessage,
-        };
-    
-        axios
-          .put(url, contactData)
-          .then((result) => {
-            handleClose();
+  const handleEdit = (contactId) => {
+    if (!contactId) {
+      toast.error("ContactID is not valid");
+      return;
+    }
+
+    handleShow();
+    setEditContactID(contactId);
+    axios
+      .get(`https://localhost:7061/api/ContactUs/${contactId}`)
+      .then((result) => {
+        const contactData = result.data;
+        setEditName(contactData.name);
+        setEditEmail(contactData.email);
+        setEditMessage(contactData.message);
+      })
+      .catch((error) => {
+        toast.error("Failed to get User: " + error.message);
+      });
+  };
+
+  const handleDelete = (contactId) => {
+    if (
+      window.confirm("Are you sure you want to delete this contact message?")
+    ) {
+      axios
+        .delete(`https://localhost:7061/api/ContactUs/${contactId}`)
+        .then((result) => {
+          if (result.status === 200) {
+            toast.success("Message has been deleted");
             getData();
-            clear();
-            toast.success("Message has been updated");
-          })
-          .catch((error) => {
-            toast.error("Failed to edit Message: " + error.message);
+          }
+        })
+        .catch((error) => {
+          toast.error("Failed to delete Message: " + error.message);
         });
+    }
+  };
+
+  const handleUpdate = async () => {
+    const url = `https://localhost:7061/api/ContactUs/${editContactID}`;
+
+    const contactData = {
+      ContactID: editContactID,
+      Name: editName,
+      Email: editEmail,
+      Message: editMessage,
     };
 
-    const clear = () => {
-        setEditName("");
-        setEditEmail("");
-        setEditMessage("");
-    };
+    axios
+      .put(url, contactData)
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success("Message has been updated");
+      })
+      .catch((error) => {
+        toast.error("Failed to edit Message: " + error.message);
+      });
+  };
 
-    return (
-        <Fragment>
-          <ToastContainer></ToastContainer>
-          <div className="add-button">
-            <Link to="../add-contact">
-              <Button variant="dark" className="btn-add">
-                Add
-              </Button>
-            </Link>
-          </div>
-          <Table striped bordered hover className="tables">
-            <thead className="table-dark">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th >
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody>
+  const clear = () => {
+    setEditName("");
+    setEditEmail("");
+    setEditMessage("");
+  };
+
+  return (
+    <Fragment>
+      <ToastContainer></ToastContainer>
+      <div className="add-button">
+        <Link to="../add-contact">
+          <Button variant="dark" className="btn-add">
+            Add
+          </Button>
+        </Link>
+      </div>
+      <Table striped bordered hover className="tables">
+        <thead className="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
           {data && data.length > 0
             ? data.map((item, index) => {
                 return (
-                  <tr key={item.contactID}> 
+                  <tr key={item.contactID}>
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
@@ -135,14 +137,14 @@ const ContactUs = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.contactID)}
                       >
-                        Edit
+                        <i class="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.contactID)}
                       >
-                        Delete
+                        <i class="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>

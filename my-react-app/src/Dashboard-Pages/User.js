@@ -179,14 +179,14 @@ const User = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.userID)}
                       >
-                        Edit
+                        <i class="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.userID)}
                       >
-                        Delete
+                        <i class="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>
@@ -319,11 +319,7 @@ const User = () => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button
-                variant="dark"
-                type="button"
-                onClick={handleUpdate}
-              >
+              <Button variant="dark" type="button" onClick={handleUpdate}>
                 Save Changes
               </Button>
             </Modal.Footer>

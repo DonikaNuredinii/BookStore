@@ -20,6 +20,8 @@ import AddOrders from "../Components/AddOrders";
 import Orders from "../Dashboard-Pages/Orders";
 import AddContact from "../Components/AddContact";
 import ContactUs from "../Dashboard-Pages/ContactUs";
+import GiftCards from "../Dashboard-Pages/GiftCards";
+import AddGiftCard from "../Components/AddGiftCard";
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
 
@@ -56,7 +58,8 @@ function Dashboard() {
             <Route path="Orders" element={<Orders />} />
             <Route path="/add-contact" element={<AddContact />} />
             <Route path="ContactUs" element={<ContactUs />} />
-          
+            <Route path="/GiftCards" element={<GiftCards />} />
+            <Route path="/add-GiftCard" element={<AddGiftCard />} />
           </Routes>
         </div>
       </div>

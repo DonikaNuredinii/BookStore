@@ -131,14 +131,14 @@ const Categories = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.categoryId)}
                       >
-                        Edit
+                        <i class="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.categoryId)}
                       >
-                        Delete
+                        <i class="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>

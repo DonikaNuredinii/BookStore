@@ -277,7 +277,7 @@ const AddBooks = () => {
         <Col>
           <Link to="../Books">
             <Button variant="dark" className="btn-add" onClick={handleSave}>
-              Add Authors
+              Add Books
             </Button>
           </Link>
         </Col>

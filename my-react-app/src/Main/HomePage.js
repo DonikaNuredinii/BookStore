@@ -70,14 +70,9 @@ const HomePage = ({ addToCart }) => {
     delay: 1000,
     config: { duration: 3000 },
   });
+
   const handleSubmit = (book) => {
-    // Extract the book ID
-    const bookId = book.bookID;
-
-    // Call the addToCart function with the book ID
-    addToCart(bookId);
-
-    // Set the selected book and show the modal
+    addToCart(book);
     setSelectedBook(book);
     setShowModal(true);
   };
@@ -131,7 +126,7 @@ const HomePage = ({ addToCart }) => {
               <div key={book.bookID} className="card-item">
                 <div className="card-image">
                   <img
-                    src={imagePath || "/images/placeholder.jpg"}
+                    src={book.image || "/images/placeholder.jpg"}
                     alt={book.title}
                     className="book-image"
                   />

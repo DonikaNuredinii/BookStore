@@ -1,11 +1,11 @@
 ﻿using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,69 +20,149 @@ namespace WebApplication1.Controllers
 
         // GET: api/OrderDetails
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrderDetails>>> GetOrderDetails()
+        public async Task<IActionResult> GetOrderDetails()
         {
-            return await _context.OrderDetails.ToListAsync();
+            try
+            {
+                var orderDetails = await _context.OrderDetails.Include(od => od.CartItem).ToListAsync();
+                return Ok(orderDetails);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         // GET: api/OrderDetails/5
-        [HttpGet("{OrderDetailsID}")]
-        public async Task<ActionResult<OrderDetails>> GetOrderDetails(int OrderDetailsID)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderDetails>> GetOrderDetails(int id)
         {
-            var orderDetails = await _context.OrderDetails.FindAsync(OrderDetailsID);
-
-            if (orderDetails == null)
+            try
             {
-                return NotFound();
-            }
+                var orderDetails = await _context.OrderDetails.Include(od => od.CartItem).FirstOrDefaultAsync(od => od.OrderDetailsID == id);
 
-            return orderDetails;
+                if (orderDetails == null)
+                {
+                    return NotFound();
+                }
+
+                return orderDetails;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         // POST: api/OrderDetails
         [HttpPost]
-        public async Task<ActionResult<OrderDetails>> PostOrderDetails(OrderDetails orderDetails)
+        public async Task<IActionResult> PostOrderDetails(OrderDetails orderDetails)
         {
-            _context.OrderDetails.Add(orderDetails);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            return CreatedAtAction(nameof(GetOrderDetails), new {OrderDetailsID = orderDetails.OrderDetailsID }, orderDetails);
+                // Convert 0 to null for foreign key properties in CartItem
+                if (orderDetails.CartItem != null)
+                {
+                    if (orderDetails.CartItem.BookId == 0)
+                    {
+                        orderDetails.CartItem.BookId = null;
+                    }
+                    if (orderDetails.CartItem.AccessoriesID == 0)
+                    {
+                        orderDetails.CartItem.AccessoriesID = null;
+                    }
+                    if (orderDetails.CartItem.GiftCardId == 0)
+                    {
+                        orderDetails.CartItem.GiftCardId = null;
+                    }
+                }
+
+                _context.OrderDetails.Add(orderDetails);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetOrderDetails), new { id = orderDetails.OrderDetailsID }, orderDetails);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while saving the entity changes.");
+            }
         }
 
         // DELETE: api/OrderDetails/5
-        [HttpDelete("{OrderDetailsID}")]
-        public async Task<IActionResult> DeleteOrderDetails(int OrderDetailsID)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrderDetails(int id)
         {
-            var orderDetails = await _context.OrderDetails.FindAsync(OrderDetailsID);
-            if (orderDetails == null)
+            try
             {
-                return NotFound();
+                var orderDetails = await _context.OrderDetails.FindAsync(id);
+                if (orderDetails == null)
+                {
+                    return NotFound();
+                }
+
+                _context.OrderDetails.Remove(orderDetails);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
             }
-
-            _context.OrderDetails.Remove(orderDetails);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while deleting the entity.");
+            }
         }
 
         // PUT: api/OrderDetails/5
-        [HttpPut("{OrderDetailsID}")]
-        public async Task<IActionResult> PutOrderDetails(int OrderDetailsID, OrderDetails orderDetails)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutOrderDetails(int id, OrderDetails orderDetails)
         {
-            if (OrderDetailsID != orderDetails.OrderDetailsID)
+            if (id != orderDetails.OrderDetailsID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(orderDetails).State = EntityState.Modified;
-
             try
             {
+                // Convert 0 to null for foreign key properties in CartItem
+                if (orderDetails.CartItem != null)
+                {
+                    if (orderDetails.CartItem.BookId == 0)
+                    {
+                        orderDetails.CartItem.BookId = null;
+                    }
+                    if (orderDetails.CartItem.AccessoriesID == 0)
+                    {
+                        orderDetails.CartItem.AccessoriesID = null;
+                    }
+                    if (orderDetails.CartItem.GiftCardId == 0)
+                    {
+                        orderDetails.CartItem.GiftCardId = null;
+                    }
+                }
+
+                _context.Entry(orderDetails).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderDetailsExists(OrderDetailsID))
+                if (!OrderDetailsExists(id))
                 {
                     return NotFound();
                 }
@@ -91,13 +171,20 @@ namespace WebApplication1.Controllers
                     throw;
                 }
             }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while updating the entity.");
+            }
 
             return NoContent();
         }
 
-        private bool OrderDetailsExists(int OrderDetailsID)
+        private bool OrderDetailsExists(int id)
         {
-            return _context.OrderDetails.Any(e => e.OrderDetailsID == OrderDetailsID);
+            return _context.OrderDetails.Any(e => e.OrderDetailsID == id);
         }
     }
 }
