@@ -21,7 +21,23 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _categoriesContext.Categories.ToListAsync();
+            return Ok(await _categoriesContext.Categories.ToListAsync());
+        }
+
+        [HttpGet("paged")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetPagedCategories(int page = 1, int pageSize = 10)
+        {
+            var categories = await _categoriesContext.Categories
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            var totalCategories = await _categoriesContext.Categories.CountAsync();
+
+            return Ok(new
+            {
+                TotalCategories = totalCategories,
+                Categories = categories
+            });
         }
 
         [HttpGet("{CategoryId}")]

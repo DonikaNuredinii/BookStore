@@ -3,6 +3,9 @@ import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { GrPrevious, GrNext} from "react-icons/gr";
+
+
 
 const CategoriesF = ({ addToCart }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -11,7 +14,10 @@ const CategoriesF = ({ addToCart }) => {
   const [bookCategories, setBookCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);   
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 20;
+  const maxPageNumbers = 3;
 
   const closeModal = () => {
     setShowModal(false);
@@ -19,6 +25,8 @@ const CategoriesF = ({ addToCart }) => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    setCurrentPage(1); 
+
   };
 
   // Import images
@@ -281,6 +289,36 @@ const CategoriesF = ({ addToCart }) => {
     ? categoryBooks[selectedCategory.categoryId] || []
     : books;
 
+    //logic for pagination
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+  const currentBooks = filteredBooks.slice((currentPage - 1) * booksPerPage, currentPage * booksPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const getPageNumbers = () => {
+    const startPage = Math.max(currentPage - 1, 1);
+    const endPage = Math.min(startPage + maxPageNumbers - 1, totalPages);
+    const pageNumbers = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  };
+
   return (
     <>
       <div className="fourth-section">
@@ -313,8 +351,8 @@ const CategoriesF = ({ addToCart }) => {
         </div>
 
         <div className="cards">
-          {filteredBooks.length > 0 ? (
-            filteredBooks.map((book) => {
+          {currentBooks.length > 0 ? (
+            currentBooks.map((book) => {
               const imagePath = preprocessImagePath(book.image);
               return (
                 <div key={book.bookID} className="card-item">
@@ -362,6 +400,23 @@ const CategoriesF = ({ addToCart }) => {
           ) : (
             <p>No books available for the selected category.</p>
           )}
+        </div>
+        <div className="pagination">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          <GrPrevious />
+          </button>
+          {getPageNumbers().map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className={currentPage === pageNumber ? "active" : ""}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <GrNext />
+            </button>
         </div>
       </div>
       {showModal && selectedBook && (
