@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\",
+  "WorkspaceRootPath": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -172,170 +172,171 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527222047_Book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240512135050_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
@@ -346,8 +347,516 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "20240803170001_order-details.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803170001_order-details.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803170001_order-details.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T17:00:01.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GifCardController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\GifCardController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAQwF0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "20240803190339_giftcard.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T19:03:40.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "GiftCard.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\GiftCard.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeToolTip": "BookStore\\Models\\GiftCard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "ContactUsController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\ContactUsController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T16:23:13.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "ContactUs.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+              "RelativeToolTip": "BookStore\\Models\\ContactUs.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T16:23:05.737Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "OrderDetalisController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\OrderDetalisController.cs",
+              "ViewState": "AQIAAKEAAAAAAAAAAAAAAL4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:39:20.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "CartItemController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CartItemController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\CartItemController.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAGIAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:32:51.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Author.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
+              "RelativeToolTip": "BookStore\\Models\\Author.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeToolTip": "BookStore\\Models\\CartItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:28:53.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "OrderDetails.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+              "RelativeToolTip": "BookStore\\Models\\OrderDetails.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAYwBwAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:00:09.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "MyContext.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\MyContext.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "RelativeToolTip": "BookStore\\Models\\MyContext.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAF0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Book.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "RelativeToolTip": "BookStore\\Models\\Book.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Orders.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeToolTip": "BookStore\\Models\\Orders.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAwCEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\BookController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "MyContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "ViewState": "AQIAAFsCAAAAAAAAAAAhwG8CAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T12:53:07.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "UserOrder.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\UserOrder.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeToolTip": "BookStore\\Models\\UserOrder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:11:54.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "Accessories.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Accessories.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:32:32.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+              "RelativeDocumentMoniker": "BookStore\\Program.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+              "RelativeToolTip": "BookStore\\Program.cs",
+              "ViewState": "AQIAAAQAAAAAAIBj2twiwBkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:00:15.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAqwEoAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T17:34:53.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+              "RelativeToolTip": "BookStore\\Models\\Payment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:32:35.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "Discount.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+              "RelativeToolTip": "BookStore\\Models\\Discount.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:49:12.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "DiscountController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\DiscountController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\DiscountController.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAADUAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:57:33.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeToolTip": "BookStore\\Models\\User.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwA0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T20:56:23.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "BookAuthors.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+              "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:40:21.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "BookAuthorsController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookAuthorsController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\BookAuthorsController.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAqwHQAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T14:41:02.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "BookResponse.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\BookResponse.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+              "RelativeToolTip": "BookStore\\DTOs\\BookResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T13:07:56.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+              "RelativeToolTip": "BookStore\\Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T20:56:12.6Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "AuthorController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\AuthorController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\AuthorController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "categoryBookController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\categoryBookController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\categoryBookController.cs",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAAAJQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:13:28.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAqwEwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:13:59.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "CategoryBook.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\CategoryBook.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Models\\CategoryBook.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T19:31:31.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "PublishingHouse.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\PublishingHouse.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
+              "RelativeToolTip": "BookStore\\Models\\PublishingHouse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:19:26.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\PaymentController.cs",
+              "ViewState": "AQIAACYAAAAAAICZ3FsswDAAAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:40:56.508Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "CountryController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CountryController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\CountryController.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAUwGQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T19:00:53.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "UserOrderController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserOrderController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\UserOrderController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T19:01:58.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "AccessoriesController.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\AccessoriesController.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\AccessoriesController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAiwBcAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T19:05:36.446Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "Country.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Country.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+              "RelativeToolTip": "BookStore\\Models\\Country.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T18:56:06.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "Roles.cs",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Roles.cs",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
+              "RelativeToolTip": "BookStore\\Models\\Roles.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T20:57:30.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "BookStore.csproj",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "RelativeToolTip": "BookStore\\BookStore.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-28T19:31:31.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "BookStore",
+              "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
+              "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "RelativeToolTip": "BookStore\\BookStore.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-28T19:31:31.302Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -359,18 +868,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T18:43:57.14Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "20240803170001_order-details.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803170001_order-details.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\20240803170001_order-details.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-03T17:00:01.762Z"
             },
             {
               "$type": "Document",
@@ -398,19 +895,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GifCardController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\GifCardController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
-              "ViewState": "AQIAAGwAAAAAAAAAAAAAAIkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "20240803184539_giftcard.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs",
@@ -420,18 +904,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T18:45:39.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "20240803190339_giftcard.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-03T19:03:40.05Z"
             },
             {
               "$type": "Document",
@@ -447,126 +919,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "GiftCard.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\GiftCard.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
-              "RelativeToolTip": "BookStore\\Models\\GiftCard.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.234Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "ContactUsController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\ContactUsController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-03T16:23:13.17Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "ContactUs.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
-              "RelativeToolTip": "BookStore\\Models\\ContactUs.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-03T16:23:05.737Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "OrderDetalisController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\OrderDetalisController.cs",
-              "ViewState": "AQIAAKEAAAAAAAAAAAAAAL4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:39:20.631Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "CartItemController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\CartItemController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\CartItemController.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAAAGIAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:32:51.501Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "Author.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Author.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
-              "RelativeToolTip": "BookStore\\Models\\Author.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\CartItem.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
-              "RelativeToolTip": "BookStore\\Models\\CartItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:28:53.552Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "OrderDetails.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
-              "RelativeToolTip": "BookStore\\Models\\OrderDetails.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAYwBwAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:00:09.36Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "MyContext.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\MyContext.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
-              "RelativeToolTip": "BookStore\\Models\\MyContext.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAAAF0AAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.242Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Book.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
-              "RelativeToolTip": "BookStore\\Models\\Book.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.226Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "20240727202908_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs",
@@ -576,78 +928,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T20:29:09.077Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "Orders.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Orders.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
-              "RelativeToolTip": "BookStore\\Models\\Orders.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAwCEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.307Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "BookController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\BookController.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.24Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "MyContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "ViewState": "AQIAAFsCAAAAAAAAAAAhwG8CAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T12:53:07.255Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "UserOrder.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\UserOrder.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
-              "RelativeToolTip": "BookStore\\Models\\UserOrder.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:11:54.356Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "Accessories.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Accessories.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
-              "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:32:32.842Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
-              "RelativeDocumentMoniker": "BookStore\\Program.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
-              "RelativeToolTip": "BookStore\\Program.cs",
-              "ViewState": "AQIAAAQAAAAAAIBj2twiwBkAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:00:15.518Z"
             },
             {
               "$type": "Document",
@@ -699,18 +979,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "OrdersController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrdersController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAqwEoAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T17:34:53.147Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 11,
               "Title": "20240727173844_order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs",
@@ -735,18 +1003,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
-              "RelativeToolTip": "BookStore\\Models\\Payment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:32:35.695Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 13,
               "Title": "20240727170125_Order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs",
@@ -756,114 +1012,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:01:25.419Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "Discount.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
-              "RelativeToolTip": "BookStore\\Models\\Discount.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:49:12.856Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "DiscountController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\DiscountController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\DiscountController.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAAADUAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:57:33.795Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
-              "RelativeToolTip": "BookStore\\Models\\User.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAmwA0AAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T20:56:23.011Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
-              "Title": "BookAuthors.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
-              "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:40:21.393Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 81,
-              "Title": "BookAuthorsController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookAuthorsController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\BookAuthorsController.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAqwHQAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T14:41:02.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 82,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.309Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 83,
-              "Title": "BookResponse.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
-              "RelativeDocumentMoniker": "BookStore\\DTOs\\BookResponse.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
-              "RelativeToolTip": "BookStore\\DTOs\\BookResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T13:07:56.695Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 84,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
-              "RelativeToolTip": "BookStore\\Models\\Category.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T20:56:12.6Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 85,
-              "Title": "AuthorController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\AuthorController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\AuthorController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIQAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.217Z"
             },
             {
               "$type": "Document",
@@ -891,30 +1039,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
-              "Title": "categoryBookController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\categoryBookController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\categoryBookController.cs",
-              "ViewState": "AQIAAHcAAAAAAAAAAAAAAJQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T14:13:28.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 87,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAqwEwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T14:13:59.429Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 16,
               "Title": "20240719150123_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs",
@@ -936,18 +1060,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:57:51.513Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 88,
-              "Title": "CategoryBook.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\CategoryBook.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
-              "RelativeToolTip": "BookStore\\Models\\CategoryBook.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T19:31:31.232Z"
             },
             {
               "$type": "Document",
@@ -1047,18 +1159,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
-              "Title": "PublishingHouse.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\PublishingHouse.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
-              "RelativeToolTip": "BookStore\\Models\\PublishingHouse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:19:26.328Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 26,
               "Title": "20240602214726_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs",
@@ -1155,42 +1255,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
-              "Title": "PaymentController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\PaymentController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\PaymentController.cs",
-              "ViewState": "AQIAACYAAAAAAICZ3FsswDAAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:40:56.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 91,
-              "Title": "CountryController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\CountryController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\CountryController.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAUwGQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T19:00:53.064Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 92,
-              "Title": "UserOrderController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserOrderController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\UserOrderController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T19:01:58.431Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 34,
               "Title": "20240530204602_Cart-Order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs",
@@ -1203,18 +1267,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
-              "Title": "AccessoriesController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\AccessoriesController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\AccessoriesController.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAiwBcAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T19:05:36.446Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 35,
               "Title": "20240530190752_Cart-Orders.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
@@ -1224,53 +1276,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T19:07:53.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 94,
-              "Title": "Country.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Country.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
-              "RelativeToolTip": "BookStore\\Models\\Country.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T18:56:06.936Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 95,
-              "Title": "Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Roles.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
-              "RelativeToolTip": "BookStore\\Models\\Roles.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T20:57:30.848Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 96,
-              "Title": "BookStore.csproj",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
-              "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
-              "RelativeToolTip": "BookStore\\BookStore.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-28T19:31:31.249Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 97,
-              "Title": "BookStore",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
-              "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
-              "RelativeToolTip": "BookStore\\BookStore.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-28T19:31:31.302Z"
             },
             {
               "$type": "Document",
@@ -1497,9 +1502,9 @@
               "DocumentIndex": 56,
               "Title": "20240512135050_User.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240512135050_User.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240512135050_User.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T13:50:50.503Z"
             }
