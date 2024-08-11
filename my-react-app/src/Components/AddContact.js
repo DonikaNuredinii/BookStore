@@ -81,10 +81,12 @@ const AddContact = () => {
       </Row>
       <Row>
         <Col>
-          <Button variant="primary" className="btn-add" onClick={handleSave}>
+          <Button variant="dark" className="btn-add" onClick={handleSave}>
             Save
           </Button>
-          <Button variant="secondary" className="btn-add" onClick={clearForm}>
+        </Col>
+        <Col>
+          <Button variant="dark" className="btn-add" onClick={clearForm}>
             Clear
           </Button>
         </Col>

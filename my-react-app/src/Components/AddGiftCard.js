@@ -159,11 +159,13 @@ const AddGiftCard = () => {
         </Col>
       </Row>
       <Row>
-        <Link to="../GiftCards">
-          <Button variant="dark" className="btn-add" onClick={handleSave}>
-            Add GiftCard
-          </Button>
-        </Link>
+        <Col>
+          <Link to="../GiftCards">
+            <Button variant="dark" className="btn-add" onClick={handleSave}>
+              Add GiftCard
+            </Button>
+          </Link>
+        </Col>
         <Col>
           <Button variant="dark" onClick={clearForm}>
             Clear

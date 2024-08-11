@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 import Pages from "./Main/Pages";
 import Dashboard from "./Main/Dashboard";
 
@@ -21,17 +20,10 @@ function App() {
         <Route
           path="/dashboard/*"
           element={<Dashboard toggle={toggle} Toggle={Toggle} />}
-        />{" "}
-        {/* Route for the dashboard */}
+        />
       </Routes>
     </div>
   );
 }
 
-export default function Root() {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-}
+export default App;
