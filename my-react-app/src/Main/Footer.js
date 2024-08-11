@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaInstagram } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { FaRegCopyright } from "react-icons/fa6";
 
 const Footer = () => {
   const [name, setName] = useState("");
@@ -24,10 +29,10 @@ const Footer = () => {
 
     const errors = {};
 
-    if (!name || !email || !message ) {
-      toast.error("Please fill out all required fields.");
-      return;
-    }
+    // if (!name || !email || !message ) {
+    //   toast.error("Please fill out all required fields.");
+    //   return;
+    // }
       
 
     if (!validateName(name)) {
@@ -69,8 +74,15 @@ const Footer = () => {
 
   return (
     <div className="footer-section">
+        <div className="first-partCU">
+            <div className="title-footer">
+                <h2>READOPIA</h2>
+                <h3>Dive into the world of books</h3>
+            </div>
+        </div>
+
       <ToastContainer />
-      <div className="first-partCU">
+      {/* <div className="first-partCU">
         <div className="left-partCU">
           <p className="p1">Say hi to the team</p>
           <h1>Contact Us</h1>
@@ -112,52 +124,81 @@ const Footer = () => {
               Send
             </button>
           </form>
-        </div>
-        <div className="right-partCU">
-          <div className="list">
-            <ul>
-              <li className="h">opening hours</li>
-              <li>Monday - Friday</li>
-              <li>9pm - 7pm</li>
-              <li>Weekend</li>
-              <li>Closed</li>
-            </ul>
-            <ul>
-              <li className="h">address</li>
-              <li>Sheshi Nena Tereza nr.106</li>
-            </ul>
-            <ul>
-              <li className="h">contact details</li>
-              <li>readopia@gmail.com</li>
-              <li>+383 44 444 888</li>
-            </ul>
-          </div>
+        </div> */}
+        <div className="right-Footer">
+            <div className="right-partCU">
+                <div className="list">
+                    <ul>
+                        <li className="h">opening hours</li>
+                        <li>Monday - Friday</li>
+                        <li>9pm - 7pm</li>
+                        <li>Weekend</li>
+                        <li>Closed</li>
+                    </ul>
+                </div>
+                <div className="list">
+                    <ul>
+                        <li className="h">address</li>
+                        <li>Sheshi Nena Tereza nr.106</li>
+                    </ul>
+                </div>
+                <div className="list">
 
-          <div className="last-partF">
-            <p>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Instagram
-              </a>
-            </p>
-            <p>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Threads
-              </a>
-            </p>
-            <p>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Facebook
-              </a>
-            </p>
-            <p>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Dribbble
-              </a>
-            </p>
-          </div>
+                    <ul>
+                        <li className="h">contact details</li>
+                        <li>readopia@gmail.com</li>
+                        <li>+383 44 444 888</li>
+                    </ul>
+                </div>
+
+
+
+
+
+                <div className="list">
+
+                    <ul>
+                        <li className="h">Follow</li>
+                        
+                    </ul>
+                    <div className="last-partF">
+                    
+                        <p>
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                          <FaInstagram />
+                          </a>
+                        </p>
+                        <p>
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                          <FaFacebookF />
+                          </a>
+                        </p>
+                        <p>
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                          <FaThreads />
+                          </a>
+                        </p>
+                        <p>
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                          <FaLinkedinIn />
+                          </a>
+                        </p>
+                    </div>
+                </div>
+       
+            </div>
+
+            
+           
         </div>
-      </div>
-    </div>
+
+        <div className="copyright">
+            <p><FaRegCopyright /> All rights reserved 2024</p>
+        </div>
+          
+
+        
+    // </div>
   );
 };
 
