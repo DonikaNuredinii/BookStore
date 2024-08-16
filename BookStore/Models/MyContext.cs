@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Models
 {
     public class MyContext : DbContext
     {
-        public MyContext(DbContextOptions options) : base(options) { }
+        public MyContext(DbContextOptions<MyContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -26,6 +25,8 @@ namespace BookStore.Models
         public DbSet<Discount> Discount { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Ebook> Ebooks { get; set; }
+        public DbSet<EbookLoan> EbookLoans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,7 +45,6 @@ namespace BookStore.Models
             modelBuilder.Entity<OrderDetails>()
                 .Property(o => o.TotalPrice)
                 .HasColumnType("decimal(18,2)");
-
 
             modelBuilder.Entity<Payment>()
                 .Property(p => p.Amount)
@@ -95,6 +95,25 @@ namespace BookStore.Models
                 .HasOne(cb => cb.Category)
                 .WithMany(c => c.CategoryBooks)
                 .HasForeignKey(cb => cb.CategoryID);
+
+            modelBuilder.Entity<Book>()
+                .ToTable("Books");
+
+            modelBuilder.Entity<Ebook>()
+                .ToTable("Ebooks");
+
+            modelBuilder.Entity<EbookLoan>()
+       .HasOne(el => el.Ebook)
+       .WithMany()
+       .HasForeignKey(el => el.EbookID)
+       .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EbookLoan>()
+                .HasOne(el => el.User)
+                .WithMany()
+                .HasForeignKey(el => el.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
 
             base.OnModelCreating(modelBuilder);

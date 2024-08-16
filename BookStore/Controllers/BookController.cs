@@ -1,5 +1,6 @@
 using BookStore.DTOs;
 using BookStore.Models;
+using BookStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -13,13 +14,14 @@ namespace WebApplication1.Controllers
     public class BookController : ControllerBase
     {
         private readonly MyContext _booksContext;
+        private readonly BookService _bookService;
 
-        public BookController(MyContext booksContext)
+        public BookController(MyContext booksContext, BookService bookService)
         {
             _booksContext = booksContext;
+            _bookService = bookService;
         }
 
-        // GET: api/Book
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
@@ -38,7 +40,6 @@ namespace WebApplication1.Controllers
             return Ok(books);
         }
 
-        // GET: api/Book/5
         [HttpGet("{bookID}")]
         public async Task<ActionResult<BookResponse>> GetBook(int bookID)
         {
@@ -67,45 +68,13 @@ namespace WebApplication1.Controllers
             return Ok(result);
         }
 
-        // POST: api/Book
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-            using (var transaction = await _booksContext.Database.BeginTransactionAsync())
-            {
-                try
-                {
-                    _booksContext.Books.Add(book);
-                    await _booksContext.SaveChangesAsync();
-
-                    // Handle Book-Category relationships
-                    if (book.CategoryBooks != null && book.CategoryBooks.Any())
-                    {
-                        foreach (var categoryBook in book.CategoryBooks)
-                        {
-                            _booksContext.CategoryBooks.Add(new CategoryBook
-                            {
-                                BookID = book.BookID,
-                                CategoryID = categoryBook.CategoryID
-                            });
-                        }
-                        await _booksContext.SaveChangesAsync();
-                    }
-
-                    await transaction.CommitAsync();
-                    return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    return StatusCode(500, $"An error occurred while saving the entity changes: {ex.Message} {ex.InnerException?.Message}");
-                }
-            }
+            await _bookService.AddBookAsync(book);
+            return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
         }
 
-
-
-        // PUT: api/Book/5
         [HttpPut("{bookID}")]
         public async Task<IActionResult> PutBook(int bookID, Book book)
         {
@@ -126,10 +95,8 @@ namespace WebApplication1.Controllers
             existingBook.Title = book.Title;
             // Update other fields as necessary
 
-            // Remove existing CategoryBooks
             _booksContext.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
 
-            // Add new CategoryBooks
             if (book.CategoryBooks != null && book.CategoryBooks.Any())
             {
                 foreach (var categoryBook in book.CategoryBooks)
@@ -163,7 +130,6 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Book/5
         [HttpDelete("{bookID}")]
         public async Task<IActionResult> DeleteBook(int bookID)
         {
@@ -176,14 +142,13 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            // Remove CategoryBooks relationships
             _booksContext.CategoryBooks.RemoveRange(book.CategoryBooks);
-
             _booksContext.Books.Remove(book);
             await _booksContext.SaveChangesAsync();
 
             return NoContent();
         }
+
         [HttpPost("AddBookWithAuthors")]
         public async Task<IActionResult> AddBookWithAuthors(AddBookWithAuthorsRequest request)
         {
@@ -196,17 +161,16 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    // Add the book
-                    _booksContext.Books.Add(request.Book);
                     _booksContext.Books.Add(request.Book);
                     await _booksContext.SaveChangesAsync();
 
-                    // Add book-author relationships
                     foreach (var authorId in request.AuthorIds)
                     {
                         _booksContext.BookAuthors.Add(new BookAuthors
                         {
                             BookID = request.Book.BookID,
+
+
                             AuthorID = authorId
                         });
                     }

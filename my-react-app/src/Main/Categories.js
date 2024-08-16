@@ -3,9 +3,7 @@ import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { GrPrevious, GrNext} from "react-icons/gr";
-
-
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 const CategoriesF = ({ addToCart }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -14,7 +12,7 @@ const CategoriesF = ({ addToCart }) => {
   const [bookCategories, setBookCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedBook, setSelectedBook] = useState(null);   
+  const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 20;
   const maxPageNumbers = 3;
@@ -25,13 +23,12 @@ const CategoriesF = ({ addToCart }) => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setCurrentPage(1); 
-
+    setCurrentPage(1);
+    console.log("Selected category:", category);
   };
 
   // Import images
   const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
-  
 
   useEffect(() => {
     fetchCategories();
@@ -48,7 +45,7 @@ const CategoriesF = ({ addToCart }) => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Category`);
-      console.log("Categories fetched:", response.data); // Debugging line
+      console.log("Categories fetched:", response.data);
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -58,7 +55,7 @@ const CategoriesF = ({ addToCart }) => {
   const fetchBooks = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Book`);
-      console.log("Books fetched:", response.data); // Debugging line
+      console.log("Books fetched:", response.data);
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -70,7 +67,7 @@ const CategoriesF = ({ addToCart }) => {
       const response = await axios.get(
         `https://localhost:7061/api/CategoryBooks`
       );
-      console.log("BookCategories fetched:", response.data); // Debugging line
+      console.log("BookCategories fetched:", response.data);
       setBookCategories(response.data);
     } catch (error) {
       console.error("Error fetching book categories:", error);
@@ -79,8 +76,8 @@ const CategoriesF = ({ addToCart }) => {
 
   const preprocessImagePath = (path) => {
     if (!path) {
-      console.error('No path provided for the image.');
-      return null;
+      console.error("No path provided for the image.");
+      return "/images/placeholder.jpg";
     }
 
     const imageName = path.split("/").pop();
@@ -88,7 +85,7 @@ const CategoriesF = ({ addToCart }) => {
       return images(`./${imageName}`);
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
-      return null;
+      return "/images/placeholder.jpg";
     }
   };
 
@@ -108,12 +105,22 @@ const CategoriesF = ({ addToCart }) => {
 
   // Filter books by selected category
   const filteredBooks = selectedCategory
-    ? categoryBooks[selectedCategory.categoryId] || []
+    ? bookCategories
+        .filter(
+          (item) => item.category.categoryId === selectedCategory.categoryId
+        )
+        .map((item) => item.book)
     : books;
 
-    //logic for pagination
-    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-  const currentBooks = filteredBooks.slice((currentPage - 1) * booksPerPage, currentPage * booksPerPage);
+  // Debugging
+  console.log("Filtered Books:", filteredBooks);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+  const currentBooks = filteredBooks.slice(
+    (currentPage - 1) * booksPerPage,
+    currentPage * booksPerPage
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -225,7 +232,7 @@ const CategoriesF = ({ addToCart }) => {
         </div>
         <div className="pagination">
           <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          <GrPrevious />
+            <GrPrevious />
           </button>
           {getPageNumbers().map((pageNumber) => (
             <button
@@ -236,9 +243,12 @@ const CategoriesF = ({ addToCart }) => {
               {pageNumber}
             </button>
           ))}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          <GrNext />
-            </button>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <GrNext />
+          </button>
         </div>
       </div>
       {showModal && selectedBook && (

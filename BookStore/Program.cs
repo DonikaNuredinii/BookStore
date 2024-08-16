@@ -2,19 +2,28 @@ using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
+using BookStore.Services;
+using BookStore.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<MyContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDS")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDS"))
+           .EnableSensitiveDataLogging());
+
+builder.Services.AddScoped<EbookService>();
+builder.Services.AddScoped<BookService>();
+builder.Services.AddHttpClient<EbooksController>();
 
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<GiftCardService>();
+
+// Register HttpClient
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -23,7 +32,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-      app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();
 }
 else
 {
@@ -31,16 +40,21 @@ else
     app.UseHsts();
 }
 
+app.UseHttpsRedirection();
+
+// Ensure static files are served before the routing and authorization
+app.UseStaticFiles();
+
 app.UseCors(builder =>
 {
     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 });
-app.UseHttpsRedirection();
+
+// Ensure routing is configured before authorization
+app.UseRouting();
 
 app.UseAuthorization();
-app.UseStaticFiles();
 
-app.MapControllers();
 app.Use(async (context, next) =>
 {
     try
@@ -57,5 +71,6 @@ app.Use(async (context, next) =>
     }
 });
 
+app.MapControllers();
 
 app.Run();

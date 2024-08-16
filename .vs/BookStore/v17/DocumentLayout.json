@@ -1,163 +1,318 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\",
+  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\ebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\ebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\ebookloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\ebookloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816152816_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240816152816_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\services\\ebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\services\\ebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816130030_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240816130030_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816125556_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240816125556_Ebook-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816124059_Ebooks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240816124059_Ebooks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\services\\giftcardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\services\\giftcardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812123417_update-ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240812123417_update-ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812120235_Ebooks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240812120235_Ebooks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240803184539_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240803184356_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240803164835_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240803164736_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240803162745_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727202908_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727180628_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727175730_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727175338_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727175153_orderDetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727173844_order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727170448_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240727170125_Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719153025_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719151559_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719150123_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719145751_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719145234_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719144749_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719142225_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719141523_CategoryBook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719140202_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719131004_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719125719_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240719123824_AuthorFK.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602214726_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602214631_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602214354_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602214154_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602213843_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602213655_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602201200_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240602200934_order-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240530204602_Cart-Order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240530190752_Cart-Orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528202528_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528202206_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528201501_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528200813_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528200604_Book-update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528195648_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528195512_Book-author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528195053_BookStore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528194517_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528194121_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528194003_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528193920_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528193849_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528193753_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528193559_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240528193207_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240528184913_Accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -175,168 +330,120 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240803170001_order-details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240803190339_giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\mycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\publishinghouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\accessoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\admin\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\bookstore.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240812113948_ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240812113948_ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -346,316 +453,234 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GifCardController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\GifCardController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAQwF0AAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "20240816152816_Ebook-update.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816152816_Ebook-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240816152816_Ebook-update.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816152816_Ebook-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240816152816_Ebook-update.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.555Z",
+              "WhenOpened": "2024-08-16T15:28:16.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "20240803170001_order-details.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803170001_order-details.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\20240803170001_order-details.cs",
+              "DocumentIndex": 8,
+              "Title": "20240816130030_Ebook-update.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816130030_Ebook-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240816130030_Ebook-update.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816130030_Ebook-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240816130030_Ebook-update.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.393Z"
+              "WhenOpened": "2024-08-16T13:00:30.813Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "20240803190339_giftcard.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "DocumentIndex": 10,
+              "Title": "20240816125556_Ebook-update.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816125556_Ebook-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240816125556_Ebook-update.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816125556_Ebook-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240816125556_Ebook-update.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.567Z"
+              "WhenOpened": "2024-08-16T12:55:56.245Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "GiftCard.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\GiftCard.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
-              "RelativeToolTip": "BookStore\\Models\\GiftCard.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.574Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "ContactUsController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\ContactUsController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
+              "DocumentIndex": 13,
+              "Title": "20240816124059_Ebooks.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816124059_Ebooks.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240816124059_Ebooks.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240816124059_Ebooks.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240816124059_Ebooks.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.58Z"
+              "WhenOpened": "2024-08-16T12:40:59.834Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "ContactUs.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
-              "RelativeToolTip": "BookStore\\Models\\ContactUs.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "EbooksController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\EbooksController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\EbooksController.cs",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAqwJUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.586Z"
+              "WhenOpened": "2024-08-16T12:38:42.756Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "OrderDetalisController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\OrderDetalisController.cs",
-              "ViewState": "AQIAAKEAAAAAAAAAAAAAAL4AAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "EbookLoansController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\EbookLoansController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\EbookLoansController.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.592Z"
+              "WhenOpened": "2024-08-16T12:38:34.233Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "CartItemController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\CartItemController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\CartItemController.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAAAGIAAABCAAAA",
+              "DocumentIndex": 7,
+              "Title": "EbookService.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\EbookService.cs",
+              "RelativeDocumentMoniker": "BookStore\\Services\\EbookService.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\EbookService.cs",
+              "RelativeToolTip": "BookStore\\Services\\EbookService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABUAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.599Z"
+              "WhenOpened": "2024-08-16T12:35:34.73Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "Author.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Author.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
-              "RelativeToolTip": "BookStore\\Models\\Author.cs",
+              "DocumentIndex": 5,
+              "Title": "EbookLoan.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\EbookLoan.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\EbookLoan.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\EbookLoan.cs",
+              "RelativeToolTip": "BookStore\\Models\\EbookLoan.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAuwA0AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T12:34:45.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Ebook.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Ebook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Ebook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Ebook.cs",
+              "RelativeToolTip": "BookStore\\Models\\Ebook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.605Z"
+              "WhenOpened": "2024-08-16T12:34:35.005Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\CartItem.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
-              "RelativeToolTip": "BookStore\\Models\\CartItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+              "RelativeDocumentMoniker": "BookStore\\Program.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+              "RelativeToolTip": "BookStore\\Program.cs",
+              "ViewState": "AQIAAAIAAAAAAAAcAH79vxIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.613Z"
+              "WhenOpened": "2024-08-08T12:04:02.67Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "OrderDetails.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
-              "RelativeToolTip": "BookStore\\Models\\OrderDetails.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAYwBwAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.619Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 3,
               "Title": "MyContext.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\MyContext.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
               "RelativeToolTip": "BookStore\\Models\\MyContext.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAAAF0AAAAvAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAowG8AAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.627Z"
+              "WhenOpened": "2024-08-08T12:04:02.627Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 14,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "BookStore\\Services\\BookService.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\BookService.cs",
+              "RelativeToolTip": "BookStore\\Services\\BookService.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T12:37:17.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "20240812120235_Ebooks.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812120235_Ebooks.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240812120235_Ebooks.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812120235_Ebooks.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240812120235_Ebooks.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T12:02:35.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BookAuthors.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+              "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Book.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
               "RelativeToolTip": "BookStore\\Models\\Book.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAApAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAA0wBYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.633Z"
+              "WhenOpened": "2024-08-08T12:04:02.633Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "Orders.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Orders.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
-              "RelativeToolTip": "BookStore\\Models\\Orders.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAwCEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.638Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 15,
               "Title": "BookController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\BookController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\BookController.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGsAAAAAAAAA",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAqwLYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T12:04:02.644Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "MyContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "RelativeToolTip": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
-              "ViewState": "AQIAAFsCAAAAAAAAAAAhwG8CAAAAAAAA",
+              "DocumentIndex": 11,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Author.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Author.cs",
+              "RelativeToolTip": "BookStore\\Models\\Author.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.65Z"
+              "WhenOpened": "2024-08-08T12:04:02.605Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "UserOrder.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\UserOrder.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
-              "RelativeToolTip": "BookStore\\Models\\UserOrder.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.657Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "Accessories.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Accessories.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
-              "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.663Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
-              "RelativeDocumentMoniker": "BookStore\\Program.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
-              "RelativeToolTip": "BookStore\\Program.cs",
-              "ViewState": "AQIAAAQAAAAAAIBj2twiwBkAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.67Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "OrdersController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrdersController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAqwEoAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.677Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
-              "RelativeToolTip": "BookStore\\Models\\Payment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.684Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "Discount.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
-              "RelativeToolTip": "BookStore\\Models\\Discount.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.691Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "DiscountController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
-              "RelativeDocumentMoniker": "BookStore\\Controllers\\DiscountController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
-              "RelativeToolTip": "BookStore\\Controllers\\DiscountController.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAAADUAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.698Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
-              "RelativeToolTip": "BookStore\\Models\\User.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAmwA0AAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.705Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
-              "Title": "BookAuthors.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
-              "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
-              "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:04:02.712Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 18,
               "Title": "BookAuthorsController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\BookAuthorsController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\BookAuthorsController.cs",
               "ViewState": "AQIAAGAAAAAAAAAAAAAqwHQAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -663,11 +688,275 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 17,
+              "Title": "20240812123417_update-ebook.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812123417_update-ebook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240812123417_update-ebook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812123417_update-ebook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240812123417_update-ebook.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T12:34:17.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "20240812113948_EbookLoan.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812113948_EbookLoan.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240812113948_EbookLoan.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240812113948_EbookLoan.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240812113948_EbookLoan.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T11:39:48.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GifCardController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\GifCardController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GiftCardService.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\GiftCardService.cs",
+              "RelativeDocumentMoniker": "BookStore\\Services\\GiftCardService.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\GiftCardService.cs",
+              "RelativeToolTip": "BookStore\\Services\\GiftCardService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T12:44:45.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "OrderDetails.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+              "RelativeToolTip": "BookStore\\Models\\OrderDetails.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAYwBQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "OrderDetalisController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\OrderDetalisController.cs",
+              "ViewState": "AQIAAKEAAAAAAAAAAAAqwLUAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAqwFMAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeToolTip": "BookStore\\Models\\CartItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Orders.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeToolTip": "BookStore\\Models\\Orders.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAA4wBoAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "GiftCard.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\GiftCard.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeToolTip": "BookStore\\Models\\GiftCard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DiscountController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\DiscountController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\DiscountController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\DiscountController.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAADUAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "CartItemController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CartItemController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\CartItemController.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAGIAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "ContactUs.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+              "RelativeToolTip": "BookStore\\Models\\ContactUs.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+              "RelativeToolTip": "BookStore\\Models\\Payment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.684Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "ContactUsController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\ContactUsController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "20240803190339_giftcard.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803190339_giftcard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "20240803170001_order-details.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803170001_order-details.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803170001_order-details.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803170001_order-details.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "MyContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
+              "ViewState": "AQIAAFsCAAAAAAAAAAAhwG8CAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.65Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "UserOrder.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\UserOrder.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeToolTip": "BookStore\\Models\\UserOrder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "Accessories.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Accessories.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "Discount.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+              "RelativeToolTip": "BookStore\\Models\\Discount.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeToolTip": "BookStore\\Models\\User.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwA0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T12:04:02.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
               "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\UserController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -675,11 +964,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 96,
               "Title": "BookResponse.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\BookResponse.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
               "RelativeToolTip": "BookStore\\DTOs\\BookResponse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -687,11 +976,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 97,
               "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
               "RelativeToolTip": "BookStore\\Models\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -699,11 +988,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 98,
               "Title": "AuthorController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\AuthorController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\AuthorController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAIQAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -711,11 +1000,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 99,
               "Title": "categoryBookController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\categoryBookController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\categoryBookController.cs",
               "ViewState": "AQIAAHcAAAAAAAAAAAAAAJQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -723,11 +1012,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 100,
               "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\CategoryController.cs",
               "ViewState": "AQIAADcAAAAAAAAAAAAqwEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -735,11 +1024,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 101,
               "Title": "CategoryBook.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\CategoryBook.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
               "RelativeToolTip": "BookStore\\Models\\CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -747,11 +1036,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 102,
               "Title": "PublishingHouse.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\PublishingHouse.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\PublishingHouse.cs",
               "RelativeToolTip": "BookStore\\Models\\PublishingHouse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -759,11 +1048,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 103,
               "Title": "PaymentController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\PaymentController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\PaymentController.cs",
               "ViewState": "AQIAACYAAAAAAICZ3FsswDAAAABRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -771,11 +1060,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 104,
               "Title": "CountryController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\CountryController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CountryController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\CountryController.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAAAUwGQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -783,11 +1072,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 105,
               "Title": "UserOrderController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\UserOrderController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\UserOrderController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -795,11 +1084,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 106,
               "Title": "AccessoriesController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\AccessoriesController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AccessoriesController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\AccessoriesController.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAiwBcAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -807,11 +1096,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 107,
               "Title": "Country.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Country.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
               "RelativeToolTip": "BookStore\\Models\\Country.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -819,11 +1108,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 108,
               "Title": "Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Roles.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Roles.cs",
               "RelativeToolTip": "BookStore\\Models\\Roles.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -831,11 +1120,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 109,
               "Title": "BookStore.csproj",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
               "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
               "RelativeToolTip": "BookStore\\BookStore.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -843,614 +1132,614 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 110,
               "Title": "BookStore",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
               "RelativeDocumentMoniker": "BookStore\\BookStore.csproj",
-              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.csproj",
               "RelativeToolTip": "BookStore\\BookStore.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-08-08T12:04:02.955Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 28,
               "Title": "20240803184356_giftcard.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803184356_giftcard.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184356_giftcard.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803184356_giftcard.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T18:43:57.14Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 29,
               "Title": "20240803164835_order-details.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803164835_order-details.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164835_order-details.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803164835_order-details.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T16:48:35.684Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 30,
               "Title": "20240803164736_order-details.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803164736_order-details.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803164736_order-details.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803164736_order-details.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T16:47:36.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 27,
               "Title": "20240803184539_giftcard.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803184539_giftcard.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803184539_giftcard.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803184539_giftcard.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T18:45:39.432Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 31,
               "Title": "20240803162745_User.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240803162745_User.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240803162745_User.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240803162745_User.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T16:27:45.943Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 32,
               "Title": "20240727202908_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727202908_orderDetails.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727202908_orderDetails.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727202908_orderDetails.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T20:29:09.077Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 33,
               "Title": "20240727180628_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727180628_orderDetails.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727180628_orderDetails.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727180628_orderDetails.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T18:06:28.575Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 34,
               "Title": "20240727175730_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727175730_orderDetails.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175730_orderDetails.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727175730_orderDetails.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:57:30.374Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 35,
               "Title": "20240727175338_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727175338_orderDetails.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175338_orderDetails.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727175338_orderDetails.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAiwBcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:53:38.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 36,
               "Title": "20240727175153_orderDetails.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727175153_orderDetails.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727175153_orderDetails.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727175153_orderDetails.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:51:53.468Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 37,
               "Title": "20240727173844_order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727173844_order.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727173844_order.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727173844_order.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAmwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:38:44.75Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 38,
               "Title": "20240727170448_Order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727170448_Order.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170448_Order.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727170448_Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:04:48.787Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 39,
               "Title": "20240727170125_Order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240727170125_Order.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240727170125_Order.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240727170125_Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T17:01:25.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 40,
               "Title": "20240719153025_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719153025_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719153025_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719153025_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T15:30:25.379Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 41,
               "Title": "20240719151559_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719151559_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719151559_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719151559_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T15:15:59.608Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 42,
               "Title": "20240719150123_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719150123_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719150123_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719150123_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T15:01:23.56Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 43,
               "Title": "20240719145751_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719145751_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145751_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719145751_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:57:51.513Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 44,
               "Title": "20240719145234_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719145234_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719145234_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719145234_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:52:35.062Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 45,
               "Title": "20240719144749_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719144749_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719144749_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719144749_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:47:49.998Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 46,
               "Title": "20240719142225_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719142225_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719142225_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719142225_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:22:25.258Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 47,
               "Title": "20240719141523_CategoryBook.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719141523_CategoryBook.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719141523_CategoryBook.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719141523_CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:15:23.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 48,
               "Title": "20240719140202_AuthorFK.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719140202_AuthorFK.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719140202_AuthorFK.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719140202_AuthorFK.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T14:02:02.331Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 49,
               "Title": "20240719131004_AuthorFK.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719131004_AuthorFK.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719131004_AuthorFK.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719131004_AuthorFK.cs",
               "ViewState": "AQIAAAIAAAAAAADQJrTyvwAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T13:10:04.365Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 50,
               "Title": "20240719125719_AuthorFK.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719125719_AuthorFK.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719125719_AuthorFK.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719125719_AuthorFK.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T12:57:19.421Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 51,
               "Title": "20240719123824_AuthorFK.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240719123824_AuthorFK.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240719123824_AuthorFK.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240719123824_AuthorFK.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T12:38:25.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 52,
               "Title": "20240602214726_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602214726_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214726_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602214726_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:47:26.989Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 56,
               "Title": "20240602213843_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602213843_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213843_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602213843_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:38:43.309Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 55,
               "Title": "20240602214154_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602214154_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214154_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602214154_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:41:54.324Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 54,
               "Title": "20240602214354_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602214354_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214354_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602214354_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:43:54.524Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 53,
               "Title": "20240602214631_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602214631_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602214631_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602214631_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:46:31.688Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 57,
               "Title": "20240602213655_cart.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602213655_cart.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602213655_cart.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602213655_cart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:36:55.6Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 58,
               "Title": "20240602201200_order-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602201200_order-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602201200_order-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602201200_order-update.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T20:12:00.36Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 59,
               "Title": "20240602200934_order-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240602200934_order-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240602200934_order-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240602200934_order-update.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T20:09:34.394Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 60,
               "Title": "20240530204602_Cart-Order.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240530204602_Cart-Order.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530204602_Cart-Order.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240530204602_Cart-Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T20:46:02.166Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 61,
               "Title": "20240530190752_Cart-Orders.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240530190752_Cart-Orders.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T19:07:53.016Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 62,
               "Title": "20240528202528_Book-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528202528_Book-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202528_Book-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528202528_Book-update.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T20:25:28.318Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 63,
               "Title": "20240528202206_Book-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528202206_Book-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528202206_Book-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528202206_Book-update.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T20:22:06.59Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 64,
               "Title": "20240528201501_Book-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528201501_Book-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528201501_Book-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528201501_Book-update.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T20:15:01.657Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 65,
               "Title": "20240528200813_Book-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528200813_Book-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200813_Book-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528200813_Book-update.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T20:08:14.081Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 66,
               "Title": "20240528200604_Book-update.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528200604_Book-update.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528200604_Book-update.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528200604_Book-update.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T20:06:04.763Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 67,
               "Title": "20240528195648_Book-author.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528195648_Book-author.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195648_Book-author.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528195648_Book-author.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:56:48.931Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 68,
               "Title": "20240528195512_Book-author.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528195512_Book-author.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195512_Book-author.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528195512_Book-author.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:55:12.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 69,
               "Title": "20240528195053_BookStore.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528195053_BookStore.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528195053_BookStore.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528195053_BookStore.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:50:53.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 70,
               "Title": "20240528194517_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528194517_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194517_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528194517_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:45:17.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 71,
               "Title": "20240528194121_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528194121_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194121_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528194121_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:41:21.625Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 72,
               "Title": "20240528194003_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528194003_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528194003_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528194003_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:40:03.743Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 73,
               "Title": "20240528193920_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528193920_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193920_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528193920_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:39:20.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 74,
               "Title": "20240528193849_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528193849_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193849_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528193849_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:38:49.457Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 75,
               "Title": "20240528193753_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528193753_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193753_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528193753_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:37:53.454Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 76,
               "Title": "20240528193559_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528193559_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193559_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528193559_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:35:59.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 77,
               "Title": "20240528193207_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240528193207_Accessories.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240528193207_Accessories.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240528193207_Accessories.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T19:32:07.751Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 78,
               "Title": "20240528184913_Accessories.cs",
               "DocumentMoniker": "C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240528184913_Accessories.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240528184913_Accessories.cs",
@@ -1461,7 +1750,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 79,
               "Title": "20240527223409_BookStore.cs",
               "DocumentMoniker": "C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527223409_BookStore.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527223409_BookStore.cs",
@@ -1472,7 +1761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 80,
               "Title": "20240527222712_Books.cs",
               "DocumentMoniker": "C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527222712_Books.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527222712_Books.cs",
@@ -1483,7 +1772,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 81,
               "Title": "20240527222047_Book.cs",
               "DocumentMoniker": "C:\\Users\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527222047_Book.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\COMPUTER SHOP\\Desktop\\BookStore\\BookStore\\Migrations\\20240527222047_Book.cs",
@@ -1494,7 +1783,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 82,
               "Title": "20240512135050_User.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\rusin\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240512135050_User.cs",

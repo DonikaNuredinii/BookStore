@@ -149,7 +149,9 @@ namespace BookStore.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("BookStore.Models.BookAuthors", b =>
@@ -301,6 +303,43 @@ namespace BookStore.Migrations
                     b.HasKey("DiscountID");
 
                     b.ToTable("Discount");
+                });
+
+            modelBuilder.Entity("BookStore.Models.EbookLoan", b =>
+                {
+                    b.Property<int>("EbookLoanID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EbookLoanID"));
+
+                    b.Property<int?>("EbookBookID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EbookID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LoanDueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LoanStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EbookLoanID");
+
+                    b.HasIndex("EbookBookID");
+
+                    b.HasIndex("EbookID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("EbookLoans");
                 });
 
             modelBuilder.Entity("BookStore.Models.GiftCard", b =>
@@ -591,6 +630,17 @@ namespace BookStore.Migrations
                     b.ToTable("OrderDetailsOrders");
                 });
 
+            modelBuilder.Entity("Ebook", b =>
+                {
+                    b.HasBaseType("BookStore.Models.Book");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Ebooks", (string)null);
+                });
+
             modelBuilder.Entity("BookStore.Models.Book", b =>
                 {
                     b.HasOne("BookStore.Models.PublishingHouse", null)
@@ -642,6 +692,29 @@ namespace BookStore.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BookStore.Models.EbookLoan", b =>
+                {
+                    b.HasOne("Ebook", null)
+                        .WithMany("EbookLoans")
+                        .HasForeignKey("EbookBookID");
+
+                    b.HasOne("Ebook", "Ebook")
+                        .WithMany()
+                        .HasForeignKey("EbookID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Ebook");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BookStore.Models.OrderDetails", b =>
@@ -702,6 +775,15 @@ namespace BookStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Ebook", b =>
+                {
+                    b.HasOne("BookStore.Models.Book", null)
+                        .WithOne()
+                        .HasForeignKey("Ebook", "BookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BookStore.Models.Author", b =>
                 {
                     b.Navigation("BookAuthors");
@@ -717,6 +799,11 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Navigation("CategoryBooks");
+                });
+
+            modelBuilder.Entity("Ebook", b =>
+                {
+                    b.Navigation("EbookLoans");
                 });
 #pragma warning restore 612, 618
         }

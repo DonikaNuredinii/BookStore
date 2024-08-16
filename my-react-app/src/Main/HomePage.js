@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
-
 const HomePage = ({ addToCart }) => {
   const [toggle, setToggle] = useState(true);
+  const [allBooks, setAllBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -24,17 +24,40 @@ const HomePage = ({ addToCart }) => {
     fetchBooks();
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      displayRandomBooks();
+    }, 3 * 60 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, [allBooks]);
+
   const fetchBooks = async () => {
     try {
       const response = await axios.get(`https://localhost:7061/api/Book`);
-      const initialBooks = response.data.map((book) => ({
+      const fetchedBooks = response.data.map((book) => ({
         ...book,
         isFavorite: false,
       }));
-      setBooks(initialBooks);
+      setAllBooks(fetchedBooks);
+      displayRandomBooks(fetchedBooks);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
+  };
+
+  const displayRandomBooks = (fetchedBooks = allBooks) => {
+    if (fetchedBooks.length > 0) {
+      const randomBooks = shuffleArray(fetchedBooks).slice(0, 24);
+      setBooks(randomBooks);
+    }
+  };
+
+  const shuffleArray = (array) => {
+    return array
+      .map((item) => ({ item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
   };
 
   const preprocessImagePath = (path) => {
@@ -111,22 +134,14 @@ const HomePage = ({ addToCart }) => {
         <Slider />
       </div>
       <div className="fourth-section">
-        <div className="language">
-          <Link to="/" className="language-link">
-            English
-          </Link>
-          <Link to="/" className="language-link">
-            Albanian
-          </Link>
-        </div>
-        <div className="cards">
+        <div className="cards-Home">
           {books.map((book) => {
             const imagePath = preprocessImagePath(book.image);
             return (
               <div key={book.bookID} className="card-item">
                 <div className="card-image">
                   <img
-                    src={book.image || "/images/placeholder.jpg"}
+                    src={preprocessImagePath(book.image)}
                     alt={book.title}
                     className="book-image"
                   />

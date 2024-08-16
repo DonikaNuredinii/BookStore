@@ -7,12 +7,14 @@ import Buttons from "../Components/Buttons";
 import Account from "../Main/Account";
 import Categories from "../Main/Categories";
 import GiftCard from "../Main/GiftCard";
-import Cart from "../Main/Cart"; // Import Cart component
+import Cart from "../Main/Cart";
 import Accessories from "./Accessories";
 import AuthorList from "./AuthorList";
 import CheckoutForm from "./CheckoutForm";
 import AuthorDetails from "./AuthorDetails";
 import Invoice from "./Invoice";
+import EbookList from "./EbookList";
+import EbookDetails from "./EbookDetails";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
@@ -59,11 +61,13 @@ function Pages() {
         />
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="/CheckoutForm" element={<CheckoutForm />} />
-        <Route path="/Invoice" element={<Invoice />} />
-        <Route path="/Accessories" element={<Accessories />} />
-        <Route path="/AuthorList" element={<AuthorList />} />
-        <Route path="/AuthorDetails/:authorID" element={<AuthorDetails />} />
+        <Route path="/checkout" element={<CheckoutForm />} />
+        <Route path="/invoice" element={<Invoice />} />
+        <Route path="/accessories" element={<Accessories />} />
+        <Route path="/author-list" element={<AuthorList />} />
+        <Route path="/author/:authorID" element={<AuthorDetails />} />
+        <Route path="/ebooks" element={<EbookList addToCart={addToCart} />} />
+        <Route path="/EbookDetails/:id" element={<EbookDetails />} />
       </Routes>
       <Footer Toggle={Toggle} />
     </div>

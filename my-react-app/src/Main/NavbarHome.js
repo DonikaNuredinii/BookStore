@@ -74,6 +74,9 @@ const NavbarHome = () => {
         <Link to="/about" className="navbar-link">
           About
         </Link>
+        <Link to="/ebooks" className="navbar-link">
+          Ebooks
+        </Link>
         <Link to="/giftcard" className="navbar-link">
           Gift card
         </Link>
