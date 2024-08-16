@@ -31,131 +31,7 @@ const CategoriesF = ({ addToCart }) => {
 
   // Import images
   const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
-  const imagesArkitekture = require.context(
-    "../Images/Arkitekture",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesArt = require.context(
-    "../Images/Art",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesArkeologji = require.context(
-    "../Images/Arkeologji",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesAnektoda = require.context(
-    "../Images/Anektoda",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesBiografi = require.context(
-    "../Images/Biografi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesEkonomi = require.context(
-    "../Images/Ekonomi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesEnciklopedi = require.context(
-    "../Images/Enciklopedi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesFantashkence = require.context(
-    "../Images/Fantashkence",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesFilozofi = require.context(
-    "../Images/Filozofi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesGjuhesi = require.context(
-    "../Images/Gjuhesi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesHistori = require.context(
-    "../Images/Histori",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesKlasike = require.context(
-    "../Images/Klasike",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesKritike = require.context(
-    "../Images/Kritike",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesMister = require.context(
-    "../Images/Mister",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesMuzik = require.context(
-    "../Images/Muzik",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesPoezi = require.context(
-    "../Images/Poezi",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesPsikologji = require.context(
-    "../Images/Psikologji",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesRomance = require.context(
-    "../Images/Romance",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesShkencaTeknike = require.context(
-    "../Images/ShkencaTeknike",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesShkence = require.context(
-    "../Images/Shkence",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesShkencaNatyrore = require.context(
-    "../Images/ShkencaNatyrore",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesSociologji = require.context(
-    "../Images/Sociologji",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesSport = require.context(
-    "../Images/Sport",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesTeater = require.context(
-    "../Images/Teater",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
-  const imagesNovelaG = require.context(
-    "../Images/NovelaG",
-    false,
-    /\.(png|jpe?g|svg)$/
-  );
+  
 
   useEffect(() => {
     fetchCategories();
@@ -203,67 +79,13 @@ const CategoriesF = ({ addToCart }) => {
 
   const preprocessImagePath = (path) => {
     if (!path) {
-      console.error("Path is null or undefined.");
+      console.error('No path provided for the image.');
       return null;
     }
 
     const imageName = path.split("/").pop();
     try {
-      if (path.includes("Art")) {
-        return imagesArt(`./${imageName}`);
-      } else if (path.includes("Arkeologji")) {
-        return imagesArkeologji(`./${imageName}`);
-      } else if (path.includes("Arkitekture")) {
-        return imagesArkitekture(`./${imageName}`);
-      } else if (path.includes("Anektoda")) {
-        return imagesAnektoda(`./${imageName}`);
-      } else if (path.includes("Biografi")) {
-        return imagesBiografi(`./${imageName}`);
-      } else if (path.includes("Ekonomi")) {
-        return imagesEkonomi(`./${imageName}`);
-      } else if (path.includes("Enciklopedi")) {
-        return imagesEnciklopedi(`./${imageName}`);
-      } else if (path.includes("Fantashkence")) {
-        return imagesFantashkence(`./${imageName}`);
-      } else if (path.includes("Filozofi")) {
-        return imagesFilozofi(`./${imageName}`);
-      } else if (path.includes("Gjuhesi")) {
-        return imagesGjuhesi(`./${imageName}`);
-      } else if (path.includes("Histori")) {
-        return imagesHistori(`./${imageName}`);
-      } else if (path.includes("Klasike")) {
-        return imagesKlasike(`./${imageName}`);
-      } else if (path.includes("Kritike")) {
-        return imagesKritike(`./${imageName}`);
-      } else if (path.includes("Mister")) {
-        return imagesMister(`./${imageName}`);
-      } else if (path.includes("Muzik")) {
-        return imagesMuzik(`./${imageName}`);
-      } else if (path.includes("Poezi")) {
-        return imagesPoezi(`./${imageName}`);
-      } else if (path.includes("Psikologji")) {
-        return imagesPsikologji(`./${imageName}`);
-      } else if (path.includes("Romance")) {
-        return imagesRomance(`./${imageName}`);
-      } else if (path.includes("ShkencaTeknike")) {
-        return imagesShkencaTeknike(`./${imageName}`);
-      } else if (path.includes("ShkencaNatyrore")) {
-        return imagesShkencaNatyrore(`./${imageName}`);
-      } else if (path.includes("Shkence")) {
-        return imagesShkence(`./${imageName}`);
-      } else if (path.includes("Sociologji")) {
-        return imagesSociologji(`./${imageName}`);
-      } else if (path.includes("Sport")) {
-        return imagesSport(`./${imageName}`);
-      } else if (path.includes("Teater")) {
-        return imagesTeater(`./${imageName}`);
-      }else if (path.includes("NovelaG")) {
-        return imagesNovelaG(`./${imageName}`);
-      }
-       else {
-        console.error("Folder not found for the provided image path.");
-        return null;
-      }
+      return images(`./${imageName}`);
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
       return null;
