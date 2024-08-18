@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240816124059_Ebooks")]
-    partial class Ebooks
+    [Migration("20240818120648_Ebook")]
+    partial class Ebook
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -316,6 +316,9 @@ namespace BookStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EbookLoanID"));
 
+                    b.Property<int?>("EbookBookID")
+                        .HasColumnType("int");
+
                     b.Property<int>("EbookID")
                         .HasColumnType("int");
 
@@ -332,6 +335,8 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EbookLoanID");
+
+                    b.HasIndex("EbookBookID");
 
                     b.HasIndex("EbookID");
 
@@ -694,16 +699,20 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Models.EbookLoan", b =>
                 {
-                    b.HasOne("Ebook", "Ebook")
+                    b.HasOne("Ebook", null)
                         .WithMany("EbookLoans")
+                        .HasForeignKey("EbookBookID");
+
+                    b.HasOne("Ebook", "Ebook")
+                        .WithMany()
                         .HasForeignKey("EbookID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BookStore.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Ebook");
