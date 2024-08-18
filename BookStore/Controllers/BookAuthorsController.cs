@@ -74,6 +74,17 @@ public class BookAuthorsController : ControllerBase
 
         return Ok(bookAuthors);
     }
+    [HttpGet("author/{authorID}")]
+    public async Task<ActionResult<IEnumerable<Book>>> GetBooksByAuthor(int authorID)
+    {
+        var books = await _context.BookAuthors
+            .Where(ba => ba.AuthorID == authorID)
+            .Include(ba => ba.Book)
+            .Select(ba => ba.Book)
+            .ToListAsync();
+
+        return Ok(books);
+    }
 
     // POST: api/BookAuthors
     [HttpPost]

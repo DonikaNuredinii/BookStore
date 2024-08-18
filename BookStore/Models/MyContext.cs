@@ -27,6 +27,8 @@ namespace BookStore.Models
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Ebook> Ebooks { get; set; }
         public DbSet<EbookLoan> EbookLoans { get; set; }
+        public DbSet<Quote> Quotes { get; set; }
+        public DbSet<AuthorQuotes> AuthorQuotes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,7 +86,7 @@ namespace BookStore.Models
                 .HasForeignKey(ba => ba.AuthorID);
 
             modelBuilder.Entity<CategoryBook>()
-                .HasKey(cb => new { cb.BookID, cb.CategoryID });
+               .HasKey(cb => new { cb.BookID, cb.CategoryID });
 
             modelBuilder.Entity<CategoryBook>()
                 .HasOne(cb => cb.Book)
@@ -103,16 +105,28 @@ namespace BookStore.Models
                 .ToTable("Ebooks");
 
             modelBuilder.Entity<EbookLoan>()
-       .HasOne(el => el.Ebook)
-       .WithMany()
-       .HasForeignKey(el => el.EbookID)
-       .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(p => p.Ebook)
+                .WithMany(b => b.EbookLoans)
+                .HasForeignKey(p => p.EbookID);
 
             modelBuilder.Entity<EbookLoan>()
                 .HasOne(el => el.User)
                 .WithMany()
                 .HasForeignKey(el => el.UserID)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AuthorQuotes>()
+               .HasKey(aq => new { aq.AuthorID, aq.QuoteID });
+
+            modelBuilder.Entity<AuthorQuotes>()
+                .HasOne(aq => aq.Author)
+                .WithMany(a => a.AuthorQuotes)
+                .HasForeignKey(aq => aq.AuthorID);
+
+            modelBuilder.Entity<AuthorQuotes>()
+                .HasOne(aq => aq.Quote)
+                .WithMany(q => q.AuthorQuotes)
+                .HasForeignKey(aq => aq.QuoteID);
 
 
 

@@ -17,6 +17,9 @@ const CategoriesF = ({ addToCart }) => {
   const booksPerPage = 20;
   const maxPageNumbers = 3;
 
+  const [authors, setAuthors] = useState([]);
+  const [bookAuthors, setBookAuthors] = useState([]);
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -34,6 +37,8 @@ const CategoriesF = ({ addToCart }) => {
     fetchCategories();
     fetchBooks();
     fetchBookCategories();
+    fetchAuthors();
+    fetchBookAuthors();
   }, []);
 
   const handleSubmit = (book) => {
@@ -74,6 +79,28 @@ const CategoriesF = ({ addToCart }) => {
     }
   };
 
+  const fetchAuthors = async () => {
+    try {
+      const response = await axios.get(`https://localhost:7061/api/Author`);
+      console.log("Authors fetched:", response.data);
+      setAuthors(response.data);
+    } catch (error) {
+      console.error("Error fetching authors:", error);
+    }
+  };
+
+  const fetchBookAuthors = async () => {
+    try {
+      const response = await axios.get(
+        `https://localhost:7061/api/BookAuthors`
+      );
+      console.log("BookAuthors fetched:", response.data);
+      setBookAuthors(response.data);
+    } catch (error) {
+      console.error("Error fetching book authors:", error);
+    }
+  };
+
   const preprocessImagePath = (path) => {
     if (!path) {
       console.error("No path provided for the image.");
@@ -82,7 +109,9 @@ const CategoriesF = ({ addToCart }) => {
 
     const imageName = path.split("/").pop();
     try {
-      return images(`./${imageName}`);
+      const imagePath = images(`./${imageName}`);
+      console.log("Processed image path:", imagePath);
+      return imagePath;
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
       return "/images/placeholder.jpg";
@@ -93,27 +122,32 @@ const CategoriesF = ({ addToCart }) => {
     setIsFavorite(!isFavorite);
   };
 
-  // Map bookCategories to books
-  const categoryBooks = bookCategories.reduce((acc, item) => {
-    const { category, book } = item;
-    if (!acc[category.categoryId]) {
-      acc[category.categoryId] = [];
-    }
-    acc[category.categoryId].push(book);
-    return acc;
-  }, {});
+  // Link books with authors
+  const getAuthorsForBook = (bookID) => {
+    return bookAuthors
+      .filter((ba) => ba.bookID === bookID)
+      .map((ba) => {
+        const author = authors.find((a) => a.authorID === ba.authorID);
+        return author ? author.name : "";
+      });
+  };
 
-  // Filter books by selected category
+  // Filter books by selected category and include authors
   const filteredBooks = selectedCategory
     ? bookCategories
         .filter(
           (item) => item.category.categoryId === selectedCategory.categoryId
         )
-        .map((item) => item.book)
-    : books;
+        .map((item) => ({
+          ...item.book,
+          authors: getAuthorsForBook(item.book.bookID), // Link authors to books
+        }))
+    : books.map((book) => ({
+        ...book,
+        authors: getAuthorsForBook(book.bookID), // Link authors to books
+      }));
 
-  // Debugging
-  console.log("Filtered Books:", filteredBooks);
+  console.log("Filtered Books after selection:", filteredBooks);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
@@ -150,7 +184,7 @@ const CategoriesF = ({ addToCart }) => {
 
   return (
     <>
-      <div className="fourth-section">
+      <div className="Books-category">
         <div className="language">
           <Link to="/" className="language-link">
             English
@@ -209,7 +243,9 @@ const CategoriesF = ({ addToCart }) => {
                     <div className="dropup-content">
                       <p className="card-price">Price: €{book.price}</p>
                       <h3 className="card-title">{book.title}</h3>
-                      <p className="card-author">Author: {book.author}</p>
+                      <p className="card-author">
+                        Author: {book.authors.join(", ")}
+                      </p>
                       <button
                         className="buy-now-btn"
                         onClick={() => handleSubmit(book)}
@@ -220,7 +256,9 @@ const CategoriesF = ({ addToCart }) => {
                   </div>
                   <div className="card-content">
                     <h3 className="card-title">{book.title}</h3>
-                    <p className="card-author">Author: {book.author}</p>
+                    <p className="card-author">
+                      Author: {book.authors.join(", ")}
+                    </p>
                     <p className="card-price">Price: €{book.price}</p>
                   </div>
                 </div>

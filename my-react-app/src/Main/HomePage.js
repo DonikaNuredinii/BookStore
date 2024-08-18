@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
+
 const HomePage = ({ addToCart }) => {
   const [toggle, setToggle] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [quote, setQuote] = useState({ text: "", authors: [] }); // State for the quote
 
   const closeModal = () => {
     setShowModal(false);
@@ -22,6 +24,7 @@ const HomePage = ({ addToCart }) => {
 
   useEffect(() => {
     fetchBooks();
+    fetchDailyQuote(); // Fetch the daily quote when the component mounts
   }, []);
 
   useEffect(() => {
@@ -43,6 +46,39 @@ const HomePage = ({ addToCart }) => {
       displayRandomBooks(fetchedBooks);
     } catch (error) {
       console.error("Error fetching books:", error);
+    }
+  };
+
+  const fetchDailyQuote = async () => {
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+    const storedQuoteDate = localStorage.getItem("quoteDate");
+    const storedQuote = localStorage.getItem("quote");
+
+    if (storedQuoteDate === today && storedQuote) {
+      // If the quote was already shown today, use it
+      setQuote(JSON.parse(storedQuote));
+    } else {
+      // Otherwise, fetch a new random quote
+      try {
+        const response = await axios.get(
+          `https://localhost:7061/api/AuthorQuotes`
+        );
+        const randomQuote =
+          response.data[Math.floor(Math.random() * response.data.length)];
+
+        const newQuote = {
+          text: randomQuote.quoteText,
+          authors: [randomQuote.authorName], // Assuming each quote has one author
+        };
+
+        setQuote(newQuote);
+
+        // Store the new quote and date in local storage
+        localStorage.setItem("quote", JSON.stringify(newQuote));
+        localStorage.setItem("quoteDate", today);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      }
     }
   };
 
@@ -132,6 +168,20 @@ const HomePage = ({ addToCart }) => {
       </div>
       <div className="third-section">
         <Slider />
+      </div>
+      <div className="quote-section">
+        <h1 className="quote-title">Quote Of The Day</h1>
+        <p className="quote-content">“{quote.text}”</p>
+        <p className="quote-author">
+          -{" "}
+          {quote.authors &&
+            quote.authors.map((author, index) => (
+              <span key={index}>
+                {author}
+                {index < quote.authors.length - 1 && ", "}
+              </span>
+            ))}
+        </p>
       </div>
       <div className="fourth-section">
         <div className="cards-Home">

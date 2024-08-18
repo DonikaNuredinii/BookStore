@@ -33,8 +33,15 @@ namespace BookStore.Controllers
                     Book = new
                     {
                         cb.Book.BookID,
-                        cb.Book.Title
-                        // Add other properties as needed
+                        cb.Book.Title,
+                         cb.Book.Image,  
+                        cb.Book.Price,
+                        Authors = cb.Book.BookAuthors.Select(ba => new
+                        {
+                            ba.Author.AuthorID,
+                            ba.Author.Name
+                        }).ToList()
+
                     },
                     Category = new
                     {

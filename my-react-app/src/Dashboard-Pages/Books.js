@@ -274,8 +274,6 @@ const Books = () => {
               const imagePath = preprocessImagePath(item.image);
               const authors = Array.isArray(item.authors) ? item.authors : [];
               const publishingHouse = item.publishingHouse || {};
-              const stock = item.stock || {};
-              console.log("item.authors:", item.authors);
 
               return (
                 <tr key={item.bookID}>

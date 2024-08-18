@@ -13,5 +13,8 @@ namespace BookStore.Models
 
         [JsonIgnore]
         public ICollection<BookAuthors> BookAuthors { get; set; } = new HashSet<BookAuthors>();
-    }
+        [JsonIgnore]
+        public ICollection<AuthorQuotes> AuthorQuotes { get; set; } = new HashSet<AuthorQuotes>();
+    
+}
 }

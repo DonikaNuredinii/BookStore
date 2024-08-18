@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240818120648_Ebook")]
-    partial class Ebook
+    [Migration("20240818163833_Quotes")]
+    partial class Quotes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,6 +98,21 @@ namespace BookStore.Migrations
                     b.HasKey("AuthorID");
 
                     b.ToTable("Author");
+                });
+
+            modelBuilder.Entity("BookStore.Models.AuthorQuotes", b =>
+                {
+                    b.Property<int>("AuthorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuoteID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuthorID", "QuoteID");
+
+                    b.HasIndex("QuoteID");
+
+                    b.ToTable("AuthorQuotes");
                 });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>
@@ -316,9 +331,6 @@ namespace BookStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EbookLoanID"));
 
-                    b.Property<int?>("EbookBookID")
-                        .HasColumnType("int");
-
                     b.Property<int>("EbookID")
                         .HasColumnType("int");
 
@@ -335,8 +347,6 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EbookLoanID");
-
-                    b.HasIndex("EbookBookID");
 
                     b.HasIndex("EbookID");
 
@@ -512,6 +522,23 @@ namespace BookStore.Migrations
                     b.ToTable("PublishingHouses");
                 });
 
+            modelBuilder.Entity("BookStore.Models.Quote", b =>
+                {
+                    b.Property<int>("QuoteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuoteID"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuoteID");
+
+                    b.ToTable("Quotes");
+                });
+
             modelBuilder.Entity("BookStore.Models.Roles", b =>
                 {
                     b.Property<int>("RolesID")
@@ -644,6 +671,25 @@ namespace BookStore.Migrations
                     b.ToTable("Ebooks", (string)null);
                 });
 
+            modelBuilder.Entity("BookStore.Models.AuthorQuotes", b =>
+                {
+                    b.HasOne("BookStore.Models.Author", "Author")
+                        .WithMany("AuthorQuotes")
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.Quote", "Quote")
+                        .WithMany("AuthorQuotes")
+                        .HasForeignKey("QuoteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Quote");
+                });
+
             modelBuilder.Entity("BookStore.Models.Book", b =>
                 {
                     b.HasOne("BookStore.Models.PublishingHouse", null)
@@ -699,14 +745,10 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Models.EbookLoan", b =>
                 {
-                    b.HasOne("Ebook", null)
-                        .WithMany("EbookLoans")
-                        .HasForeignKey("EbookBookID");
-
                     b.HasOne("Ebook", "Ebook")
-                        .WithMany()
+                        .WithMany("EbookLoans")
                         .HasForeignKey("EbookID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BookStore.Models.User", "User")
@@ -789,6 +831,8 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Models.Author", b =>
                 {
+                    b.Navigation("AuthorQuotes");
+
                     b.Navigation("BookAuthors");
                 });
 
@@ -802,6 +846,11 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Navigation("CategoryBooks");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Quote", b =>
+                {
+                    b.Navigation("AuthorQuotes");
                 });
 
             modelBuilder.Entity("Ebook", b =>

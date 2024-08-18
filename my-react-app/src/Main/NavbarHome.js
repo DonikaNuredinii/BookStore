@@ -68,7 +68,7 @@ const NavbarHome = () => {
         <Link to="/accessories" className="navbar-link">
           Accessories
         </Link>
-        <Link to="/authorList" className="navbar-link">
+        <Link to="/author-List" className="navbar-link">
           Authors
         </Link>
         <Link to="/about" className="navbar-link">

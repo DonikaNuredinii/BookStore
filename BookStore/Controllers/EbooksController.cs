@@ -123,10 +123,14 @@ namespace BookStore.Controllers
 
             try
             {
-                var response = await _httpClient.GetAsync(pdfUrl);
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30)); // 30 seconds timeout
+                var response = await _httpClient.GetAsync(pdfUrl, cts.Token);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsByteArrayAsync();
+
+                    // Optionally cache the content here
+
                     return File(content, "application/pdf");
                 }
                 else
@@ -135,11 +139,16 @@ namespace BookStore.Controllers
                     return StatusCode((int)response.StatusCode, $"Error fetching PDF: {errorMessage}");
                 }
             }
+            catch (TaskCanceledException)
+            {
+                return StatusCode(504, "Request timed out while fetching the PDF.");
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
 
         private bool EbookExists(int id)
         {

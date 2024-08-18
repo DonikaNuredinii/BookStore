@@ -63,9 +63,15 @@ function Pages() {
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/checkout" element={<CheckoutForm />} />
         <Route path="/invoice" element={<Invoice />} />
-        <Route path="/accessories" element={<Accessories />} />
+        <Route
+          path="/accessories"
+          element={<Accessories addToCart={addToCart} />}
+        />
         <Route path="/author-list" element={<AuthorList />} />
-        <Route path="/author/:authorID" element={<AuthorDetails />} />
+        <Route
+          path="/AuthorDetails/:authorID"
+          element={<AuthorDetails addToCart={addToCart} />}
+        />
         <Route path="/ebooks" element={<EbookList addToCart={addToCart} />} />
         <Route path="/EbookDetails/:id" element={<EbookDetails />} />
       </Routes>
