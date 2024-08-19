@@ -2,7 +2,7 @@ import React from "react";
 import BookLight from "../Images/ImazhetAksesorie/book-light.jpeg";
 import LeatherPageHolder from "../Images/ImazhetAksesorie/Leather-page-holder.jpeg";
 import FlyingBoyBookend from "../Images/ImazhetAksesorie/The_Flying_Boy_Bookends.jpeg";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../App.css";
 const AccessoriesBanner = () => {
   return (
@@ -16,9 +16,9 @@ const AccessoriesBanner = () => {
         </p>
       </div>
       <div className="accessories-items">
-        <img src={BookLight} alt="Accessory Item 1" />
-        <img src={LeatherPageHolder} alt="Accessory Item 2" />
-        <img src={FlyingBoyBookend} alt="Accessory Item 3" />
+        <img src={BookLight} alt="Book Light" />
+        <img src={LeatherPageHolder} alt="Leather Page Holder" />
+        <img src={FlyingBoyBookend} alt="Flying Boy Bookend" />
       </div>
     </div>
   );

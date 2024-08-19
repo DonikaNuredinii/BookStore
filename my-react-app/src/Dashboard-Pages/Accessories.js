@@ -1,13 +1,13 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { Row, Col, Form, Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.css";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
-import { Row, Col, Form, Button } from "react-bootstrap";
-import "react-toastify/dist/ReactToastify.css";
-import "../App.css";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import "../App.css";
 
 const image = require.context(
   "../Images/ImazhetAksesorie",
@@ -116,13 +116,13 @@ const Accessories = () => {
     const stockId = parseInt(selectedStock) || null;
 
     const data = {
-      accessoriesID: editAccessoriesID,
-      image: editImage,
-      name: editName,
-      description: editDescription,
-      dimensions: editDimensions,
-      price: editPrice,
-      dateOfAddition: editDateOfAddition,
+      accessoriesID: editAccessoriesID ,
+      image: editImage || "string",
+      name: editName || "string",
+      description: editDescription || "string",
+      dimensions: editDimensions || "string",
+      price: parseFloat(editPrice) || 0.0,
+      dateOfAddition: editDateOfAddition || new Date().toISOString(),
       stockId: stockId,
     };
 
@@ -200,7 +200,7 @@ const Accessories = () => {
             <th>Description</th>
             <th>Dimensions</th>
             <th>Price</th>
-            <th>DateOfAddition</th>
+            <th>Date Of Addition</th>
             <th>Stock</th>
             <th>Actions</th>
           </tr>
@@ -209,25 +209,24 @@ const Accessories = () => {
           {data && data.length > 0 ? (
             data.map((item, index) => {
               const imagePath = preprocessImagePath(item.image);
-              const stock = item.stock || {};
+              const Stock = item.Stock || {};
 
               return (
                 <tr key={item.accessoriesID}>
                   <td>{index + 1}</td>
                   <td>
-                    <img
-                      src={imagePath || "/Images/placeholder.jpg"}
-                      alt="Accessory Item"
+                    <img src={imagePath || "/Images/placeholder.jpg"} alt="Accessory Item" 
+                    style={{ width: "100px", height: "100px", marginLeft:"110px" }} 
                     />
                   </td>
                   <td>{item.name}</td>
                   <td>{item.seller}</td>
-                  <td>{item.description}</td>
+                  <td  style={{width:"900px"}}>{item.description}</td>
                   <td>{item.dimensions}</td>
                   <td>{item.price}</td>
                   <td>{item.dateOfAddition}</td>
                   <td>
-                    {stockList.find((stock) => stock.stockId === item.stockId)
+                    {stockList.find((Stock) => Stock.stockId === item.stockId)
                       ?.quantity || "-"}
                   </td>
                   <td colSpan={2} className="btn">
@@ -252,7 +251,7 @@ const Accessories = () => {
           ) : (
             <tr>
               <td colSpan="13" className="text-center">
-                No Books Available
+                No Accessories Available!
               </td>
             </tr>
           )}
@@ -381,26 +380,26 @@ const Accessories = () => {
                 </Form.Group>
               </Col>
             </Row>
-            {/* 
+            
             <Row>
                 <Col>
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>
                   <Form.Control
                     as="select"
-                    value={editStock}
-                    onChange={(e) => setEditStock(e.target.value)}
+                    value={selectedStock}
+                    onChange={(e) => setSelectedStock(e.target.value)}
                   >
                     <option value="">Select Stock</option>
-                    {editStock.map((Stock) => (
-                      <option key={Stock.id} value={Stock.id}>
-                        {Stock.amount}
+                    {stockList.map((Stock) => (
+                      <option key={Stock.stockId} value={Stock.stockId}>
+                        {Stock.quantity}
                       </option>
                     ))}
                   </Form.Control>
                 </Form.Group>
               </Col>
-            </Row> */}
+            </Row>
           </Form>
         </Modal.Body>
 
