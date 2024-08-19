@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Books from "../Images/books.jpg";
 import Slider from "../Components/Slider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
@@ -97,6 +96,7 @@ const HomePage = ({ addToCart }) => {
   };
 
   const preprocessImagePath = (path) => {
+    if (!path) return null;
     const imageName = path.split("/").pop();
     try {
       return images(`./${imageName}`);
@@ -106,7 +106,8 @@ const HomePage = ({ addToCart }) => {
     }
   };
 
-  const handleFavoriteClick = (bookID) => {
+  const handleFavoriteClick = (e, bookID) => {
+    e.stopPropagation();
     setBooks((prevBooks) =>
       prevBooks.map((book) =>
         book.bookID === bookID
@@ -114,6 +115,13 @@ const HomePage = ({ addToCart }) => {
           : book
       )
     );
+  };
+
+  const handleAddToCartClick = (e, book) => {
+    e.stopPropagation();
+    addToCart(book);
+    setSelectedBook(book);
+    setShowModal(true);
   };
 
   const textSpring = useSpring({
@@ -129,12 +137,6 @@ const HomePage = ({ addToCart }) => {
     delay: 1000,
     config: { duration: 3000 },
   });
-
-  const handleSubmit = (book) => {
-    addToCart(book);
-    setSelectedBook(book);
-    setShowModal(true);
-  };
 
   const handleBookClick = (bookID) => {
     navigate(`/bookdetails/${bookID}`);
@@ -199,26 +201,20 @@ const HomePage = ({ addToCart }) => {
               >
                 <div className="card-image">
                   <img
-                    src={preprocessImagePath(book.image)}
-                    alt={book.title}
+                    src={imagePath || "default-image.jpg"}
+                    alt={book.title || "Book Image"}
                     className="book-image"
                   />
                   <div className="icon-container">
                     {book.isFavorite ? (
                       <MdFavorite
                         className="favorite-icon"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleFavoriteClick(book.bookID);
-                        }}
+                        onClick={(e) => handleFavoriteClick(e, book.bookID)}
                       />
                     ) : (
                       <MdFavoriteBorder
                         className="favorite-icon"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleFavoriteClick(book.bookID);
-                        }}
+                        onClick={(e) => handleFavoriteClick(e, book.bookID)}
                       />
                     )}
                   </div>
@@ -230,7 +226,7 @@ const HomePage = ({ addToCart }) => {
                     <p className="card-author">Author: {book.author}</p>
                     <button
                       className="buy-now-btn"
-                      onClick={() => handleSubmit(book)}
+                      onClick={(e) => handleAddToCartClick(e, book)}
                     >
                       Add to Cart
                     </button>
@@ -256,15 +252,18 @@ const HomePage = ({ addToCart }) => {
               <>
                 <p>Item added to cart</p>
                 <img
-                  src={preprocessImagePath(selectedBook.image)}
-                  alt={selectedBook.title}
+                  src={
+                    preprocessImagePath(selectedBook.image) ||
+                    "default-image.jpg"
+                  }
+                  alt={selectedBook.title || "Book Image"}
                   className="design-preview"
                 />
                 <p>Amount: €{selectedBook.price}</p>
               </>
             )}
             <div className="view-cart-container">
-              <Link to="./cart" className="view-cart-button">
+              <Link to="/cart" className="view-cart-button">
                 View Cart
               </Link>
             </div>

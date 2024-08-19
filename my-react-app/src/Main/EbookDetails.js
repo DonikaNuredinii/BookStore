@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { getDocument, GlobalWorkerOptions } from "pdfjs-dist/build/pdf";
 import { useParams } from "react-router-dom";
 import "pdfjs-dist/build/pdf.worker.entry";
 import "../App.css";

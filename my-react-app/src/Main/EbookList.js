@@ -41,7 +41,7 @@ const EbookList = ({ addToCart }) => {
       return images(`./${imageName}`);
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
-      return "/images/placeholder.jpg"; // Fallback image
+      return "/images/placeholder.jpg";
     }
   };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
 const CategoriesF = ({ addToCart }) => {
@@ -19,6 +19,8 @@ const CategoriesF = ({ addToCart }) => {
 
   const [authors, setAuthors] = useState([]);
   const [bookAuthors, setBookAuthors] = useState([]);
+
+  const navigate = useNavigate();
 
   const closeModal = () => {
     setShowModal(false);
@@ -41,7 +43,8 @@ const CategoriesF = ({ addToCart }) => {
     fetchBookAuthors();
   }, []);
 
-  const handleSubmit = (book) => {
+  const handleSubmit = (e, book) => {
+    e.stopPropagation(); // Prevent triggering book card click
     addToCart(book);
     setSelectedBook(book);
     setShowModal(true);
@@ -118,8 +121,13 @@ const CategoriesF = ({ addToCart }) => {
     }
   };
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (e, bookID) => {
+    e.stopPropagation(); // Prevent triggering book card click
     setIsFavorite(!isFavorite);
+  };
+
+  const handleBookClick = (bookID) => {
+    navigate(`/bookdetails/${bookID}`);
   };
 
   // Link books with authors
@@ -218,7 +226,11 @@ const CategoriesF = ({ addToCart }) => {
             currentBooks.map((book) => {
               const imagePath = preprocessImagePath(book.image);
               return (
-                <div key={book.bookID} className="card-item">
+                <div
+                  key={book.bookID}
+                  className="card-item"
+                  onClick={() => handleBookClick(book.bookID)}
+                >
                   <div className="card-image">
                     <img
                       src={imagePath || "/images/placeholder.jpg"}
@@ -229,12 +241,12 @@ const CategoriesF = ({ addToCart }) => {
                       {isFavorite ? (
                         <MdFavorite
                           className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
+                          onClick={(e) => handleFavoriteClick(e, book.bookID)}
                         />
                       ) : (
                         <MdFavoriteBorder
                           className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
+                          onClick={(e) => handleFavoriteClick(e, book.bookID)}
                         />
                       )}
                     </div>
@@ -248,7 +260,7 @@ const CategoriesF = ({ addToCart }) => {
                       </p>
                       <button
                         className="buy-now-btn"
-                        onClick={() => handleSubmit(book)}
+                        onClick={(e) => handleSubmit(e, book)}
                       >
                         Add to Cart
                       </button>

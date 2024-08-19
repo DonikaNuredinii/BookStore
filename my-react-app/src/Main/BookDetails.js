@@ -82,7 +82,7 @@ const BookDetails = ({ addToCart }) => {
         </div>
         <div className="book-detail-content">
           <div className="book-detail-info">
-            <div className="img-box">
+            <div className="img-box-book">
               <img
                 src={preprocessImagePath(book.image)}
                 alt={book.title || "Book Image"}

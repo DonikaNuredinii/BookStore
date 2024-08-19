@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+
+const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const AuthorDetails = ({ addToCart }) => {
   const { authorID } = useParams();
@@ -10,11 +12,11 @@ const AuthorDetails = ({ addToCart }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteBooks, setFavoriteBooks] = useState(new Set());
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -60,18 +62,33 @@ const AuthorDetails = ({ addToCart }) => {
     }
   };
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+  const handleFavoriteClick = (e, bookID) => {
+    e.stopPropagation();
+    setFavoriteBooks((prevFavorites) => {
+      const updatedFavorites = new Set(prevFavorites);
+      if (updatedFavorites.has(bookID)) {
+        updatedFavorites.delete(bookID);
+      } else {
+        updatedFavorites.add(bookID);
+      }
+      return updatedFavorites;
+    });
   };
 
-  const handleSubmit = (book) => {
+  const handleAddToCartClick = (e, book) => {
+    e.stopPropagation();
     addToCart(book);
     setSelectedBook(book);
     setShowModal(true);
   };
 
+  const handleBookClick = (bookID) => {
+    navigate(`/bookdetails/${bookID}`);
+  };
+
   const closeModal = () => {
     setShowModal(false);
+    setSelectedBook(null);
   };
 
   if (!authorID) {
@@ -91,67 +108,75 @@ const AuthorDetails = ({ addToCart }) => {
   }
 
   return (
-    <div className="author-details-container">
-      <div className="author-card">
-        <h2 className="author-name">{author.name}</h2>
-        <p className="author-dob">Date of Birth: {author.dateOfBirth}</p>
-        <p className="author-biography">{author.biography}</p>
-        <p className="author-awards">Awards: {author.awards}</p>
-        <p className="author-genre">Genre: {author.genre}</p>
-      </div>
+    <>
+      <div className="author-details-container">
+        <div className="author-card">
+          <h2 className="author-name">{author.name}</h2>
+          <p className="author-dob">
+            Date of Birth: {author.dateOfBirth || "Unknown"}
+          </p>
+          <p className="author-biography">{author.biography}</p>
+          <p className="author-awards">Awards: {author.awards}</p>
+          <p className="author-genre">Genre: {author.genre}</p>
+        </div>
 
-      <div className="author-books">
-        <h1>All Books by {author.name}</h1>
-        <div className="cards">
-          {books.length > 0 ? (
-            books.map((book) => {
-              const imagePath = preprocessImagePath(book.image);
-              return (
-                <div key={book.bookID} className="card-item">
-                  <div className="card-image">
-                    <img
-                      src={imagePath || "/images/placeholder.jpg"}
-                      alt={book.title}
-                      className="book-image"
-                    />
-                    <div className="icon-container">
-                      {isFavorite ? (
-                        <MdFavorite
-                          className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
-                        />
-                      ) : (
-                        <MdFavoriteBorder
-                          className="favorite-icon"
-                          onClick={() => handleFavoriteClick(book.bookID)}
-                        />
-                      )}
+        <div className="author-books">
+          <h1>All Books by {author.name}</h1>
+          <div className="cards-Home">
+            {books.length > 0 ? (
+              books.map((book) => {
+                const imagePath = preprocessImagePath(book.image);
+                return (
+                  <div
+                    key={book.bookID}
+                    className="card-item"
+                    onClick={() => handleBookClick(book.bookID)}
+                  >
+                    <div className="card-image">
+                      <img
+                        src={imagePath || "default-image.jpg"}
+                        alt={book.title || "Book Image"}
+                        className="book-image"
+                      />
+                      <div className="icon-container">
+                        {favoriteBooks.has(book.bookID) ? (
+                          <MdFavorite
+                            className="favorite-icon"
+                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                          />
+                        ) : (
+                          <MdFavoriteBorder
+                            className="favorite-icon"
+                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="dropup">
-                    <div className="dropup-content">
-                      <p className="card-price">Price: €{book.price}</p>
+                    <div className="dropup">
+                      <div className="dropup-content">
+                        <p className="card-price">Price: €{book.price}</p>
+                        <h3 className="card-title">{book.title}</h3>
+                        <p className="card-author">Author: {author.name}</p>
+                        <button
+                          className="buy-now-btn"
+                          onClick={(e) => handleAddToCartClick(e, book)}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-content">
                       <h3 className="card-title">{book.title}</h3>
                       <p className="card-author">Author: {author.name}</p>
-                      <button
-                        className="buy-now-btn"
-                        onClick={() => handleSubmit(book)}
-                      >
-                        Add to Cart
-                      </button>
+                      <p className="card-price">Price: €{book.price}</p>
                     </div>
                   </div>
-                  <div className="card-content">
-                    <h3 className="card-title">{book.title}</h3>
-                    <p className="card-author">Author: {author.name}</p>
-                    <p className="card-price">Price: €{book.price}</p>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <p>No books available for this author.</p>
-          )}
+                );
+              })
+            ) : (
+              <p>No books available for this author.</p>
+            )}
+          </div>
         </div>
       </div>
 
@@ -163,8 +188,10 @@ const AuthorDetails = ({ addToCart }) => {
             </span>
             <p>Item added to cart</p>
             <img
-              src={preprocessImagePath(selectedBook.image)}
-              alt={selectedBook.title}
+              src={
+                preprocessImagePath(selectedBook.image) || "default-image.jpg"
+              }
+              alt={selectedBook.title || "Book Image"}
               className="design-preview"
             />
             <p>Amount: €{selectedBook.price}</p>
@@ -181,7 +208,7 @@ const AuthorDetails = ({ addToCart }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -50,7 +50,7 @@ const Cart = ({ cart = [], setCart }) => {
   const preprocessImagePath = (path) => {
     if (!path) {
       console.warn("Image path is not defined");
-      return null; // Return null or a default image
+      return null;
     }
 
     const imageName = path.split("/").pop();
@@ -58,7 +58,7 @@ const Cart = ({ cart = [], setCart }) => {
       return images(`./${imageName}`);
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
-      return null; // Return null or a default image
+      return null;
     }
   };
 
@@ -68,9 +68,9 @@ const Cart = ({ cart = [], setCart }) => {
       bookId: item.book ? item.book.id : null,
       accessoriesId: item.accessories ? item.accessories.id : null,
       giftCardId: item.giftCard ? item.giftCard.id : null,
-      image: item.image || "", // Include image URL
-      price: item.price || 0, // Include price
-      title: item.title || "No Title", // Include title
+      image: item.image || "",
+      price: item.price || 0,
+      title: item.title || "No Title",
     }));
 
     const totalPrice = cartData.reduce(

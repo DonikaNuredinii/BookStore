@@ -1,20 +1,30 @@
-import { MdFavoriteBorder, MdFavorite, MdOutlineCancel } from "react-icons/md";
+import React, { useState, useEffect } from "react";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import AccessoriesBanner from "../Components/AccessoriesBanner";
 import { GrPrevious, GrNext } from "react-icons/gr";
-import React, { useState, useEffect } from "react";
+import { IoMdClose } from "react-icons/io";
 import { BsArrowUpShort } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
 import axios from "axios";
 import "../App.css";
+import { Link } from "react-router-dom";
+import { useSpring, animated } from "react-spring";
 
-const ImazhetEAksesoriev = require.context("../Images/ImazhetAksesorie", false, /\.(png|jpe?g|svg)$/);
+const ImazhetEAksesoriev = require.context(
+  "../Images/ImazhetAksesorie",
+  false,
+  /\.(png|jpe?g|svg)$/
+);
 
 const Accessories = ({ addToCart }) => {
   const [detail, setDetail] = useState([]);
   const [close, setClose] = useState(false);
   const [accessories, setAccessories] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);  
+  const [isFavorite, setIsFavorite] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedAccessory, setSelectedAccessory] = useState(null);
+
   const AccessoriesPerPage = 18;
   const maxPageNumbers = 4;
 
@@ -27,7 +37,7 @@ const Accessories = ({ addToCart }) => {
     setClose(true);
   };
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (accessoryID) => {
     setIsFavorite(!isFavorite);
   };
 
@@ -68,26 +78,21 @@ const Accessories = ({ addToCart }) => {
     const firstQuarterY = window.innerHeight / 3;
     window.scrollTo(0, firstQuarterY);
   };
-  
+
   useEffect(() => {
     scrollToFirstQuarter();
   }, [currentPage]);
 
-
   const fetchAccessories = async () => {
     try {
-      const response = await axios.get(`https://localhost:7061/api/Accessories`);
+      const response = await axios.get(
+        `https://localhost:7061/api/Accessories`
+      );
       console.log("Accessories fetched:", response.data);
       setAccessories(response.data);
     } catch (error) {
       console.error("Error fetching accessories:", error);
     }
-  };
-  
-  // const ImazhetEAksesoriev = require.context("../Images/ImazhetAksesorie", false, /\.(png|jpe?g|svg)$/);
-
-  const handleSubmit = (accessory) => {
-    addToCart(accessory);
   };
 
   const preprocessImagePath = (path) => {
@@ -107,9 +112,21 @@ const Accessories = ({ addToCart }) => {
     }
   };
 
+  const handleSubmit = (accessory) => {
+    addToCart(accessory);
+    setSelectedAccessory(accessory);
+    setShowModal(true);
+  };
+
   const top = () => {
     window.scrollTo(0, 0);
   };
+
+  const modalSpring = useSpring({
+    opacity: showModal ? 1 : 0,
+    transform: showModal ? "translateY(0)" : "translateY(-50px)",
+  });
+
   return (
     <div className="accessories">
       <div className="second-section">
@@ -119,19 +136,13 @@ const Accessories = ({ addToCart }) => {
         <div className="Acc-detail-container">
           <div className="Acc-detail-content">
             <button onClick={() => setClose(false)} className="Acc-close">
-              <MdOutlineCancel />
+              <IoMdClose />
             </button>
             {detail.map((x, index) => (
               <div key={`${x.id}-${index}`} className="Acc-detail-info">
                 <div className="Acc-img-box">
                   <img src={preprocessImagePath(x.image)} alt={x.name} />
                   <br></br>
-                  <button className="cont-button-link " onClick={() => handleSubmit(x)}>
-                    <CiShoppingCart />
-                  </button>
-                  <button className="cont-button-link" > 
-                    <MdFavorite />
-                  </button >
                 </div>
                 <div className="Accessory_Details">
                   <h4>{x.name}</h4>
@@ -140,16 +151,22 @@ const Accessories = ({ addToCart }) => {
                   <p>Pershkrimi: {x.description}</p>
                   <p>Permasat: {x.dimensions}</p>
                   <p>Data e Shtimit: {x.dateofAddition}</p>
-                  <p>Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"} <a href="/cart" class="button-link">
-                    View Cart
-                  </a></p>
-                  {/* FIX OUT OF STOCK ????????????????????????????????????
-                  ???????????????????????????????????????????????????
-                  ????????????????????????????????????????????????/ */}
-
-                  {/* FIX DASHBOARD ADDITTION ????????????????????????????????????
-                  ???????????????????????????????????????????????????
-                  ????????????????????????????????????????????????/ */}
+                  <p>Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"} </p>
+                  <div className="book-buttons">
+                    <button
+                      className="buy-now-btn"
+                      onClick={() => handleSubmit(x)}
+                    >
+                      <CiShoppingCart /> Add to Cart
+                    </button>
+                    <button
+                      className="favorite-btn"
+                      onClick={() => handleFavoriteClick(x.id)}
+                    >
+                      {isFavorite ? <MdFavorite /> : <MdFavoriteBorder />} Add
+                      to Wish List
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -206,28 +223,58 @@ const Accessories = ({ addToCart }) => {
         })}
       </div>
       <div className="pagination">
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
           <GrPrevious />
+        </button>
+        {getPageNumbers().map((pageNumber) => (
+          <button
+            key={pageNumber}
+            onClick={() => handlePageChange(pageNumber)}
+            className={currentPage === pageNumber ? "active" : ""}
+          >
+            {pageNumber}
           </button>
-          {getPageNumbers().map((pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => handlePageChange(pageNumber)}
-              className={currentPage === pageNumber ? "active" : ""}
-            >
-              {pageNumber}
-            </button>
-          ))}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        ))}
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           <GrNext />
-            </button>
-        </div>
+        </button>
+      </div>
       <p className="Acc-btn-p">
         Jump Up
         <button onClick={top} className="Acc-Topbtn">
           <BsArrowUpShort />
         </button>
       </p>
+      {showModal && selectedAccessory && (
+        <animated.div className="modal-cart" style={modalSpring}>
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowModal(false)}>
+              &times;
+            </span>
+            {selectedAccessory && (
+              <>
+                <p>Item added to cart</p>
+                <img
+                  src={preprocessImagePath(selectedAccessory.image)}
+                  alt={selectedAccessory.name}
+                  className="design-preview"
+                />
+                <p>Amount: €{selectedAccessory.price}</p>
+              </>
+            )}
+            <div className="view-cart-container">
+              <Link to="./cart" className="view-cart-button">
+                View Cart
+              </Link>
+            </div>
+            <div className="view-cart-container">
+              <Link to="/" className="continue-shopping">
+                Continue Shopping
+              </Link>
+            </div>
+          </div>
+        </animated.div>
+      )}
     </div>
   );
 };
