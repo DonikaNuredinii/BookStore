@@ -11,12 +11,13 @@ import axios from "axios";
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const HomePage = ({ addToCart }) => {
-  const [toggle, setToggle] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
   const [quote, setQuote] = useState({ text: "", authors: [] });
+  const [authors, setAuthors] = useState([]);
+  const [bookAuthors, setBookAuthors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const HomePage = ({ addToCart }) => {
   };
 
   useEffect(() => {
-    fetchBooks();
+    fetchData();
     fetchDailyQuote();
   }, []);
 
@@ -38,17 +39,36 @@ const HomePage = ({ addToCart }) => {
     return () => clearInterval(intervalId);
   }, [allBooks]);
 
-  const fetchBooks = async () => {
+  const fetchData = async () => {
     try {
-      const response = await axios.get(`https://localhost:7061/api/Book`);
-      const fetchedBooks = response.data.map((book) => ({
+      const [booksResponse, authorsResponse, bookAuthorsResponse] =
+        await Promise.all([
+          axios.get(`https://localhost:7061/api/Book`),
+          axios.get("https://localhost:7061/api/Author"),
+          axios.get("https://localhost:7061/api/BookAuthors"),
+        ]);
+
+      const fetchedBooks = booksResponse.data;
+      const fetchedAuthors = authorsResponse.data;
+      const fetchedBookAuthors = bookAuthorsResponse.data;
+
+      setAuthors(fetchedAuthors);
+      setBookAuthors(fetchedBookAuthors);
+
+      const booksWithAuthors = fetchedBooks.map((book) => ({
         ...book,
+        authors: getAuthorsForBook(
+          book.bookID,
+          fetchedBookAuthors,
+          fetchedAuthors
+        ),
         isFavorite: false,
       }));
-      setAllBooks(fetchedBooks);
-      displayRandomBooks(fetchedBooks);
+
+      setAllBooks(booksWithAuthors);
+      displayRandomBooks(booksWithAuthors);
     } catch (error) {
-      console.error("Error fetching books:", error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -79,6 +99,17 @@ const HomePage = ({ addToCart }) => {
         console.error("Error fetching quote:", error);
       }
     }
+  };
+
+  const getAuthorsForBook = (bookID, bookAuthors, authors) => {
+    return (
+      bookAuthors
+        .filter((ba) => ba.bookID === bookID)
+        .map((ba) => {
+          const author = authors.find((a) => a.authorID === ba.authorID);
+          return author ? author.name : "";
+        }) || []
+    );
   };
 
   const displayRandomBooks = (fetchedBooks = allBooks) => {
@@ -223,7 +254,12 @@ const HomePage = ({ addToCart }) => {
                   <div className="dropup-content">
                     <p className="card-price">Price: €{book.price}</p>
                     <h3 className="card-title">{book.title}</h3>
-                    <p className="card-author">Author: {book.author}</p>
+                    <p className="card-author">
+                      Author:{" "}
+                      {book.authors.length > 0
+                        ? book.authors.join(", ")
+                        : "Unknown"}
+                    </p>
                     <button
                       className="buy-now-btn"
                       onClick={(e) => handleAddToCartClick(e, book)}
@@ -234,7 +270,12 @@ const HomePage = ({ addToCart }) => {
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">{book.title}</h3>
-                  <p className="card-author">Author: {book.author}</p>
+                  <p className="card-author">
+                    Author:{" "}
+                    {book.authors.length > 0
+                      ? book.authors.join(", ")
+                      : "Unknown"}
+                  </p>
                   <p className="card-price">Price: €{book.price}</p>
                 </div>
               </div>

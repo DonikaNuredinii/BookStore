@@ -1,7 +1,7 @@
-import React from 'react';
-import { useWishlist } from '../Components/Wishlist'; // Import the custom hook
-import { Link } from 'react-router-dom';
-import { MdDelete } from 'react-icons/md';
+import React from "react";
+import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
+import { Link } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 import "../App.css";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
@@ -9,7 +9,7 @@ const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 const preprocessImagePath = (path) => {
   if (!path) {
     console.error("No path provided for the image.");
-    return "/images/placeholder.jpg"; 
+    return "/images/placeholder.jpg";
   }
 
   try {
@@ -41,7 +41,9 @@ const WishlistPage = ({ addToCart }) => {
             />
             <div className="wishlist-details">
               <h4>{item.title}</h4>
-              <p>Author: {item.author}</p> 
+              <p>
+                Author: {item.authors ? item.authors.join(", ") : "Unknown"}
+              </p>
               <p>Price: €{item.price}</p>
               <div className="wishlist-actions">
                 <button

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import { MdFavoriteBorder, MdFavorite, MdDelete } from "react-icons/md";
@@ -23,7 +22,13 @@ const CategoriesF = ({ addToCart }) => {
   const [message, setMessage] = useState(""); // State for the message
   const [messageTimeout, setMessageTimeout] = useState(null); // State for message timeout
 
-  const { wishlist, addToWishlist, removeFromWishlist, clearWishlist, isBookInWishlist } = useWishlist();
+  const {
+    wishlist,
+    addToWishlist,
+    removeFromWishlist,
+    clearWishlist,
+    isBookInWishlist,
+  } = useWishlist();
   const navigate = useNavigate();
 
   const closeModal = () => {
@@ -73,7 +78,9 @@ const CategoriesF = ({ addToCart }) => {
 
   const fetchBookCategories = async () => {
     try {
-      const response = await axios.get("https://localhost:7061/api/CategoryBooks");
+      const response = await axios.get(
+        "https://localhost:7061/api/CategoryBooks"
+      );
       setBookCategories(response.data);
     } catch (error) {
       console.error("Error fetching book categories:", error);
@@ -91,7 +98,9 @@ const CategoriesF = ({ addToCart }) => {
 
   const fetchBookAuthors = async () => {
     try {
-      const response = await axios.get("https://localhost:7061/api/BookAuthors");
+      const response = await axios.get(
+        "https://localhost:7061/api/BookAuthors"
+      );
       setBookAuthors(response.data);
     } catch (error) {
       console.error("Error fetching book authors:", error);
@@ -112,22 +121,22 @@ const CategoriesF = ({ addToCart }) => {
       console.error(`Image not found: ${path}`);
       return "/images/placeholder.jpg";
     }
-  }    
+  };
 
   const handleFavoriteClick = (e, bookID) => {
     e.stopPropagation();
     const book = books.find((b) => b.bookID === bookID);
-  
+
     if (isBookInWishlist(bookID)) {
       removeFromWishlist(bookID);
       setSelectedBooks((prevSelectedBooks) =>
         prevSelectedBooks.filter((b) => b.bookID !== bookID)
       );
       setMessage("Book removed from wishlist");
-  
+
       // Close the wishlist modal when a book is unfavorited
       setShowWishlistModal(false);
-  
+
       if (messageTimeout) {
         clearTimeout(messageTimeout); // Clear existing timeout
       }
@@ -135,17 +144,16 @@ const CategoriesF = ({ addToCart }) => {
     } else {
       addToWishlist(book);
       setSelectedBooks((prevSelectedBooks) => [...prevSelectedBooks, book]);
-  
+
       // Open the wishlist modal when a book is favorited
       setShowWishlistModal(true);
     }
   };
-  
 
   const handleBookClick = (bookID) => {
     navigate(`/bookdetails/${bookID}`);
   };
-  
+
   const getAuthorsForBook = (bookID) => {
     return (
       bookAuthors
@@ -159,7 +167,9 @@ const CategoriesF = ({ addToCart }) => {
 
   const filteredBooks = selectedCategory
     ? bookCategories
-        .filter((item) => item.category.categoryId === selectedCategory.categoryId)
+        .filter(
+          (item) => item.category.categoryId === selectedCategory.categoryId
+        )
         .map((item) => ({
           ...item.book,
           authors: getAuthorsForBook(item.book.bookID) || [],
@@ -218,31 +228,30 @@ const CategoriesF = ({ addToCart }) => {
               <ul>
                 {categories.map((category) => (
                   <li key={category.categoryId}>
-                  <a
-                    href={`#${category.genre.toLowerCase()}`}
-                    onClick={() => handleCategoryClick(category)}
-                    className={selectedCategory === category ? "active" : ""}
-                  >
-                    {category.genre}
-                  </a>
-                </li>
-                
+                    <a
+                      href={`#${category.genre.toLowerCase()}`}
+                      onClick={() => handleCategoryClick(category)}
+                      className={selectedCategory === category ? "active" : ""}
+                    >
+                      {category.genre}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </nav>
           </div>
         </div>
 
-        <div className="cards">
+        <div className="cards-Home">
           {currentBooks.length > 0 ? (
             currentBooks.map((book) => {
               const imagePath = preprocessImagePath(book.image);
               return (
                 <div
-                key={book.bookID}
-                className="card-item"
-                onClick={() => handleBookClick(book.bookID)}
-              >
+                  key={book.bookID}
+                  className="card-item"
+                  onClick={() => handleBookClick(book.bookID)}
+                >
                   <div className="card-image">
                     <img
                       src={imagePath || "/images/placeholder.jpg"}
@@ -268,7 +277,8 @@ const CategoriesF = ({ addToCart }) => {
                       <p className="card-price">Price: €{book.price}</p>
                       <h3 className="card-title">{book.title}</h3>
                       <p className="card-author">
-                        Author: {book.authors ? book.authors.join(", ") : "Unknown"}
+                        Author:{" "}
+                        {book.authors ? book.authors.join(", ") : "Unknown"}
                       </p>
                       <button
                         className="buy-now-btn"
@@ -281,7 +291,8 @@ const CategoriesF = ({ addToCart }) => {
                   <div className="card-content">
                     <h3 className="card-title">{book.title}</h3>
                     <p className="card-author">
-                      Author: {book.authors ? book.authors.join(", ") : "Unknown"}
+                      Author:{" "}
+                      {book.authors ? book.authors.join(", ") : "Unknown"}
                     </p>
                     <p className="card-price">Price: €{book.price}</p>
                   </div>
@@ -306,39 +317,42 @@ const CategoriesF = ({ addToCart }) => {
               {pageNumber}
             </button>
           ))}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
             <GrNext />
           </button>
         </div>
       </div>
 
-       {/* Cart Modal */}
-       {showCartModal && selectedBooks[0] && (
-  <div className="modal-cart">
-    <div className="modal-content">
-      <span className="close" onClick={closeModal}>
-        &times;
-      </span>
-      <p>Item added to cart</p>
-      <img
-        src={preprocessImagePath(selectedBooks[0].image)}
-        alt={selectedBooks[0].title}
-        className="design-preview"
-      />
-      <p>Amount: €{selectedBooks[0].price}</p>
-      <div className="view-cart-container">
-        <Link to="./cart" className="view-cart-button">
-          View Cart
-        </Link>
-      </div>
-      <div className="view-cart-container">
-        <Link to="/" className="continue-shopping">
-          Continue Shopping
-        </Link>
-      </div>
-    </div>
-  </div>
-)}
+      {/* Cart Modal */}
+      {showCartModal && selectedBooks[0] && (
+        <div className="modal-cart">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <p>Item added to cart</p>
+            <img
+              src={preprocessImagePath(selectedBooks[0].image)}
+              alt={selectedBooks[0].title}
+              className="design-preview"
+            />
+            <p>Amount: €{selectedBooks[0].price}</p>
+            <div className="view-cart-container">
+              <Link to="./cart" className="view-cart-button">
+                View Cart
+              </Link>
+            </div>
+            <div className="view-cart-container">
+              <Link to="/" className="continue-shopping">
+                Continue Shopping
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Wishlist Modal */}
       {showWishlistModal && (
@@ -359,7 +373,10 @@ const CategoriesF = ({ addToCart }) => {
                     />
                     <div className="wishlist-details">
                       <h4>{book.title}</h4>
-                      <p>Author: {book.authors ? book.authors.join(", ") : "Unknown"}</p>
+                      <p>
+                        Author:{" "}
+                        {book.authors ? book.authors.join(", ") : "Unknown"}
+                      </p>
                       <p>Price: €{book.price}</p>
                     </div>
                   </div>
@@ -371,7 +388,7 @@ const CategoriesF = ({ addToCart }) => {
                 className="view-wishlist-button"
                 onClick={() => {
                   setShowWishlistModal(false);
-                  navigate('/WishlistPage');
+                  navigate("/WishlistPage");
                 }}
               >
                 View Wishlist
@@ -391,13 +408,9 @@ const CategoriesF = ({ addToCart }) => {
       )}
 
       {/* Feedback Message */}
-      {message && (
-        <div className="feedback-message">
-          {message}
-        </div>
-      )}
+      {message && <div className="feedback-message">{message}</div>}
     </>
   );
 };
 
-export default CategoriesF;   
+export default CategoriesF;

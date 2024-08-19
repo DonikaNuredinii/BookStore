@@ -18,12 +18,14 @@ import EbookList from "./EbookList";
 import EbookDetails from "./EbookDetails";
 import BookDetails from "./BookDetails";
 import WishlistPage from "./WishlistPage";
+import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
   const [cart, setCart] = useState([]);
+  const { wishlist } = useWishlist(); // Get the wishlist from the custom hook
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -46,7 +48,11 @@ function Pages() {
     <div>
       <NavbarHome Toggle={Toggle} />
       {location.pathname !== "/account" && (
-        <Buttons isSticky={isSticky} cartCount={cart.length} />
+        <Buttons
+          isSticky={isSticky}
+          cartCount={cart.length}
+          wishlistCount={wishlist.length} // Pass the wishlist count to the Buttons component
+        />
       )}
       <Routes>
         <Route
@@ -67,8 +73,10 @@ function Pages() {
             <Categories addToCart={addToCart} cart={cart} setCart={setCart} />
           }
         />
-         <Route path="/wishlistPage" element={<WishlistPage addToCart={addToCart} />} />
-
+        <Route
+          path="/wishlistPage"
+          element={<WishlistPage addToCart={addToCart} />}
+        />
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/checkout" element={<CheckoutForm />} />

@@ -405,6 +405,7 @@
   justify-content: space-evenly;
   align-items: center;
   width: 200px;
+  z-index: 1000;
 }
 
 .link-on {
@@ -839,13 +840,6 @@ form .signUp-link {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 150px;
-  margin-right: 20px;
-}
 .cards-Home {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -2250,7 +2244,7 @@ label {
   -webkit-columns: 4;
   -moz-columns: 4;
   column-gap: 20px; /* Hapësira ndërmjet kolonave */
-  margin: 40px 120px;
+  margin: 90px 120px;
 }
 
 .author-list li {
@@ -2397,6 +2391,68 @@ label {
 }
 
 /*Ebooks*/
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 40px;
+  background-color: #f5f5f5;
+  margin: 120px 90px;
+}
+
+.image-collage {
+  display: grid;
+  grid-template-areas:
+    "large small"
+    "medium medium";
+  grid-gap: 20px;
+}
+
+.collage-image {
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.collage-image.large {
+  grid-area: large;
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.collage-image.medium {
+  grid-area: medium;
+  width: 200px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.collage-image.small {
+  grid-area: small;
+  width: 170px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hero-content {
+  max-width: 500px;
+  margin-left: 20px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #030e26;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  color: #0f4365;
+}
 
 .ebook-details-container {
   max-width: 900px;
@@ -2652,8 +2708,6 @@ label {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-
-
 .wishlist-button {
   position: fixed;
   bottom: 30px;
@@ -2671,10 +2725,10 @@ label {
 
 .wishlist-modal {
   position: fixed;
-  top: 70px; 
+  top: 70px;
   right: 30px;
-  width: 400px; 
-  max-height: 500px; 
+  width: 400px;
+  max-height: 500px;
   background-color: white;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -2696,8 +2750,8 @@ label {
 }
 
 .wishlist-image {
-  width: 60px; 
-  height: 90px; 
+  width: 60px;
+  height: 90px;
   object-fit: cover;
   margin-right: 15px;
   border-radius: 5px;
@@ -2761,7 +2815,7 @@ label {
 
 .view-wishlist-button {
   background-color: white;
-  color: #555;
+  color: #030e26;
   border: 1px solid #ccc;
 }
 
@@ -2770,7 +2824,7 @@ label {
 }
 
 .add-all-to-cart-button {
-  background-color: #2c3e50;
+  background-color: #030e26;
   color: #fff;
 }
 
@@ -2781,7 +2835,7 @@ label {
 /* Close button style */
 .modal-content .close {
   font-size: 1.5rem;
-  color: #333;
+  color: #030e26;
   cursor: pointer;
   position: absolute;
   top: 15px;
@@ -2792,15 +2846,13 @@ label {
   color: #e04850;
 }
 
-
-
 /* wishlist-page */
 
 .wishlist-page {
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f4;
 }
 
@@ -2808,7 +2860,7 @@ label {
   text-align: center;
   font-size: 2.2rem;
   margin-bottom: 30px;
-  color: #2c3e50;
+  color: #030e26;
   font-weight: 600;
 }
 
@@ -2846,14 +2898,14 @@ label {
 .wishlist-details h4 {
   font-size: 1.6rem;
   margin-bottom: 12px;
-  color: #34495e;
+  color: #030e26;
   font-weight: 500;
 }
 
 .wishlist-details p {
   font-size: 1.1rem;
   margin-bottom: 10px;
-  color: #7f8c8d;
+  color: #13516e;
 }
 
 .wishlist-actions {
@@ -2877,7 +2929,7 @@ label {
 }
 
 .add-to-cart-button {
-  background-color: #2c3e50;
+  background-color: #030e26;
   border: none;
   color: #ffffff;
   padding: 10px 20px;
@@ -2899,8 +2951,6 @@ label {
   color: #95a5a6;
   margin-top: 60px;
 }
-
-
 
 @media (max-width: 768px) {
   .wishlist-item {
@@ -2931,8 +2981,6 @@ label {
     margin-right: 0;
     margin-bottom: 10px;
   }
-
- 
 }
 
 @media (max-width: 480px) {
@@ -2953,7 +3001,6 @@ label {
     font-size: 1rem;
     padding: 8px 16px;
   }
-
 }
 .feedback-message {
   position: fixed;
