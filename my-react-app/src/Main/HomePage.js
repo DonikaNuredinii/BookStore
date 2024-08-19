@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Books from "../Images/books.jpg";
 import Slider from "../Components/Slider";
+import { Link } from "react-router-dom";
 import "../App.css";
 import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
@@ -16,15 +17,18 @@ const HomePage = ({ addToCart }) => {
   const [books, setBooks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [quote, setQuote] = useState({ text: "", authors: [] }); // State for the quote
+  const [quote, setQuote] = useState({ text: "", authors: [] });
+
+  const navigate = useNavigate();
 
   const closeModal = () => {
     setShowModal(false);
+    setSelectedBook(null);
   };
 
   useEffect(() => {
     fetchBooks();
-    fetchDailyQuote(); // Fetch the daily quote when the component mounts
+    fetchDailyQuote();
   }, []);
 
   useEffect(() => {
@@ -50,15 +54,13 @@ const HomePage = ({ addToCart }) => {
   };
 
   const fetchDailyQuote = async () => {
-    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split("T")[0];
     const storedQuoteDate = localStorage.getItem("quoteDate");
     const storedQuote = localStorage.getItem("quote");
 
     if (storedQuoteDate === today && storedQuote) {
-      // If the quote was already shown today, use it
       setQuote(JSON.parse(storedQuote));
     } else {
-      // Otherwise, fetch a new random quote
       try {
         const response = await axios.get(
           `https://localhost:7061/api/AuthorQuotes`
@@ -68,12 +70,10 @@ const HomePage = ({ addToCart }) => {
 
         const newQuote = {
           text: randomQuote.quoteText,
-          authors: [randomQuote.authorName], // Assuming each quote has one author
+          authors: [randomQuote.authorName],
         };
 
         setQuote(newQuote);
-
-        // Store the new quote and date in local storage
         localStorage.setItem("quote", JSON.stringify(newQuote));
         localStorage.setItem("quoteDate", today);
       } catch (error) {
@@ -136,6 +136,10 @@ const HomePage = ({ addToCart }) => {
     setShowModal(true);
   };
 
+  const handleBookClick = (bookID) => {
+    navigate(`/bookdetails/${bookID}`);
+  };
+
   return (
     <>
       <div className="first-section">
@@ -188,7 +192,11 @@ const HomePage = ({ addToCart }) => {
           {books.map((book) => {
             const imagePath = preprocessImagePath(book.image);
             return (
-              <div key={book.bookID} className="card-item">
+              <div
+                key={book.bookID}
+                className="card-item"
+                onClick={() => handleBookClick(book.bookID)}
+              >
                 <div className="card-image">
                   <img
                     src={preprocessImagePath(book.image)}
@@ -199,12 +207,18 @@ const HomePage = ({ addToCart }) => {
                     {book.isFavorite ? (
                       <MdFavorite
                         className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleFavoriteClick(book.bookID);
+                        }}
                       />
                     ) : (
                       <MdFavoriteBorder
                         className="favorite-icon"
-                        onClick={() => handleFavoriteClick(book.bookID)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleFavoriteClick(book.bookID);
+                        }}
                       />
                     )}
                   </div>
@@ -238,13 +252,17 @@ const HomePage = ({ addToCart }) => {
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <p>Item added to cart</p>
-            <img
-              src={preprocessImagePath(selectedBook.image)}
-              alt={selectedBook.title}
-              className="design-preview"
-            />
-            <p>Amount: €{selectedBook.price}</p>
+            {selectedBook && (
+              <>
+                <p>Item added to cart</p>
+                <img
+                  src={preprocessImagePath(selectedBook.image)}
+                  alt={selectedBook.title}
+                  className="design-preview"
+                />
+                <p>Amount: €{selectedBook.price}</p>
+              </>
+            )}
             <div className="view-cart-container">
               <Link to="./cart" className="view-cart-button">
                 View Cart
