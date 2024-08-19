@@ -16,6 +16,7 @@ import Invoice from "./Invoice";
 import EbookList from "./EbookList";
 import EbookDetails from "./EbookDetails";
 import BookDetails from "./BookDetails";
+import WishlistPage from "./WishlistPage";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
@@ -64,6 +65,8 @@ function Pages() {
             <Categories addToCart={addToCart} cart={cart} setCart={setCart} />
           }
         />
+         <Route path="/wishlistPage" element={<WishlistPage addToCart={addToCart} />} />
+
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/checkout" element={<CheckoutForm />} />
