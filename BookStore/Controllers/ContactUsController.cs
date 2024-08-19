@@ -20,20 +20,20 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ContactUs>>> GetContact()
+        public async Task<ActionResult<IEnumerable<ContactUs>>> GetContacts()
         {
-            var contact = await _contactUsContext.Contact.ToListAsync();
-            if (contact == null || contact.Count == 0)
+            var contacts = await _contactUsContext.Contacts.ToListAsync();
+            if (contacts == null || contacts.Count == 0)
             {
                 return NotFound();
             }
-            return contact;
+            return contacts;
         }
 
         [HttpGet("{ContactID}")]
         public async Task<ActionResult<ContactUs>> GetContact(int ContactID)
         {
-            var contact = await _contactUsContext.Contact.FindAsync(ContactID);
+            var contact = await _contactUsContext.Contacts.FindAsync(ContactID);
             if (contact == null)
             {
                 return NotFound();
@@ -44,15 +44,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<ContactUs>> PostContact(ContactUs contactUs)
         {
-            _contactUsContext.Contact.Add(contactUs);
+            _contactUsContext.Contacts.Add(contactUs);
             await _contactUsContext.SaveChangesAsync();
             return CreatedAtAction(nameof(GetContact), new { ContactID = contactUs.ContactID }, contactUs);
         }
 
         [HttpPut("{ContactID}")]
-        public async Task<ActionResult> PutContact(int ContactID, ContactUs contactUs)
+        public async Task<IActionResult> PutContact(int ContactID, ContactUs contactUs)
         {
-             if (ContactID != contactUs.ContactID)
+            if (ContactID != contactUs.ContactID)
             {
                 return BadRequest();
             }
@@ -64,7 +64,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_contactUsContext.Contact.Any(e => e.ContactID == ContactID))
+                if (!_contactUsContext.Contacts.Any(e => e.ContactID == ContactID))
                 {
                     return NotFound();
                 }
@@ -78,15 +78,15 @@ namespace WebApplication1.Controllers
         }
 
         [HttpDelete("{ContactID}")]
-        public async Task<ActionResult> DeleteContact(int ContactID)
+        public async Task<IActionResult> DeleteContact(int ContactID)
         {
-            var contact = await _contactUsContext.Contact.FindAsync(ContactID);
+            var contact = await _contactUsContext.Contacts.FindAsync(ContactID);
             if (contact == null)
             {
                 return NotFound();
             }
 
-            _contactUsContext.Contact.Remove(contact);
+            _contactUsContext.Contacts.Remove(contact);
             await _contactUsContext.SaveChangesAsync();
 
             return NoContent();

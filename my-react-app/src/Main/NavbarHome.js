@@ -71,14 +71,14 @@ const NavbarHome = () => {
         <Link to="/author-List" className="navbar-link">
           Authors
         </Link>
-        <Link to="/about" className="navbar-link">
-          About
-        </Link>
         <Link to="/ebooks" className="navbar-link">
           Ebooks
         </Link>
         <Link to="/giftcard" className="navbar-link">
           Gift card
+        </Link>
+        <Link to="/contact" className="navbar-link">
+          Contact Us
         </Link>
         <Link to="/account" className="navbar-link">
           Account

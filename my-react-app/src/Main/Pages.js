@@ -5,6 +5,7 @@ import NavbarHome from "./NavbarHome";
 import Footer from "./Footer";
 import Buttons from "../Components/Buttons";
 import Account from "../Main/Account";
+import Contact from "../Main/Contact";
 import Categories from "../Main/Categories";
 import GiftCard from "../Main/GiftCard";
 import Cart from "../Main/Cart";
@@ -59,6 +60,7 @@ function Pages() {
           element={<BookDetails addToCart={addToCart} />}
         />
         <Route path="/account" element={<Account />} />
+        <Route path="/contact" element={<Contact />} />
         <Route
           path="/categories"
           element={
