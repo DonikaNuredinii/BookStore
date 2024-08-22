@@ -32,7 +32,6 @@
   margin: 10px;
   padding: 10px;
 }
-
 .list-group a {
   height: auto;
   background-color: #303539;
@@ -123,7 +122,14 @@
 }
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000;
 }
 .navbar-menu {
   display: flex;
@@ -134,10 +140,10 @@
   display: none;
 }
 
-.navbar-menu.hidden {
+/* .navbar-menu.hidden {
   opacity: 0;
   visibility: hidden;
-}
+} */
 .navbar-link {
   color: #303539;
   text-decoration: none;
@@ -163,13 +169,6 @@
   height: 20%;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
 .search-icon {
   position: absolute;
   right: 10px;
@@ -179,27 +178,95 @@
 }
 
 .search-input {
-  display: none;
-  width: 0;
-  position: relative;
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
+  border-bottom: 1px solid #ccc;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 50px;
+  width: 100%;
+  margin: 0 20px;
   outline: none;
+  transition: all 0.5s ease;
   opacity: 0;
-  transition: width 5s ease-in-out, opacity 0.3s ease;
+  visibility: hidden;
+  background: transparent;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.search-container.collapsed .search-input {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .search-container.expanded .search-input {
-  display: block;
-  width: 500px;
   opacity: 1;
+  visibility: visible;
+  width: 100%;
+}
+.expanded .search-input {
+  margin: 10px 25px;
+  border: none;
+  outline: none;
+}
+
+.search-container.collapsed {
+  width: 40px;
+}
+
+.search-container.expanded {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 3px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  margin: 2% 30%;
 }
 
 .search-active .navbar-menu {
   display: none;
 }
+.suggestions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  background-color: #fff;
+  max-height: none;
+  position: absolute;
+  top: 80%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+  background-color: #f0f0f0;
+}
+strong {
+  color: #1d6a96;
+}
 .navbar-toggle {
   display: none;
 }
@@ -807,7 +874,7 @@ form .signUp-link {
   color: #ecf0f1;
   bottom: 30%;
   border-radius: 30px;
-  margin: 350px 20px;
+  margin: 500px 20px;
   height: 70%;
   border-radius: 12%;
   transition: width 0.3s ease;
@@ -3018,25 +3085,24 @@ label {
   opacity: 0;
 }
 
-
 /* Contact Us Page */
 
-.CUsection{
+.CUsection {
   width: 100%;
   padding: 20px;
 }
 
-.introCU{
+.introCU {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content:flex-end;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
-.intro1Cu{
+.intro1Cu {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -3044,26 +3110,24 @@ label {
   width: 700px;
 }
 
-.intro1Cu p{
+.intro1Cu p {
   text-align: center;
 }
 
-.intro1Cu h2{
+.intro1Cu h2 {
   color: #135784;
 }
 
-
-.partOneCu{
+.partOneCu {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background-color: #e6e6e6;
-  
 }
 
-.leftPartCu{
+.leftPartCu {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3077,17 +3141,16 @@ label {
   margin-bottom: 80px;
 }
 
-.p1{
+.p1 {
   color: #d1d1d1;
   margin-left: -135px;
   margin-top: 20px;
 }
 
-.leftPartCu H1{
-  color:#0f4365;
+.leftPartCu H1 {
+  color: #0f4365;
   font-size: 66px;
   margin-left: -160px;
- 
 }
 
 /* .leftPartCu p{
@@ -3096,64 +3159,62 @@ label {
   
 } */
 
-
-form{
+form {
   width: 330px;
 }
 
-.inputs-contact{
+.inputs-contact {
   position: relative;
   width: 100%;
   height: 50px;
   margin: 30px 0;
 }
 
-.inputs-contact input{
+.inputs-contact input {
   width: 100%;
   height: 100%;
   background-color: transparent;
-  border: none; 
-  border-bottom: 1px solid #888888; 
-  color:#303539;
+  border: none;
+  border-bottom: 1px solid #888888;
+  color: #303539;
   outline: none;
   padding: 30px 45px 30px 30px;
-  
 }
 
 .inputs-contact-Message textarea {
-  width: 100%; 
-  min-height: 100px; 
+  width: 100%;
+  min-height: 100px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #888888; 
+  border-bottom: 1px solid #888888;
   color: #303539;
   outline: none;
-  padding: 10px 15px; 
+  padding: 10px 15px;
   box-sizing: border-box;
   resize: vertical;
-  overflow: auto; 
+  overflow: auto;
 }
 
-.inputs-contact input::placeholder{
-  color:grey;
+.inputs-contact input::placeholder {
+  color: grey;
 }
 
-.button-CU{
+.button-CU {
   width: 330px;
   height: 40px;
   border: none;
   border-radius: 2px;
-  background-color:#0f4365;
+  background-color: #0f4365;
   color: #d1d1d1;
 }
 
-.button-CU:hover{
-  background-color:#e6e6e6;
+.button-CU:hover {
+  background-color: #e6e6e6;
   transition: 0.3s;
-  color:#0f4365;
+  color: #0f4365;
 }
 
-.rightPartCu{
+.rightPartCu {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3168,18 +3229,18 @@ form{
   margin-top: 50px;
 }
 
-.errorCu{
+.errorCu {
   color: red;
   padding-bottom: 15px;
 }
 
-.listC ul{
+.listC ul {
   list-style: none;
-  color:#0f4365;
+  color: #0f4365;
   margin-bottom: 30px;
 }
 
-.mapCu{
+.mapCu {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -3187,13 +3248,12 @@ form{
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.mapCu h2{
-  color:#135784;
+.mapCu h2 {
+  color: #135784;
   margin-bottom: 30px;
 }
 
-.mapcomponant{
+.mapcomponant {
   display: flex;
   width: 900px;
-
 }

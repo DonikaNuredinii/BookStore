@@ -55,7 +55,12 @@ const HomePage = ({ addToCart }) => {
       setAuthors(fetchedAuthors);
       setBookAuthors(fetchedBookAuthors);
 
-      const booksWithAuthors = fetchedBooks.map((book) => ({
+      // Filter out books of type 'Ebook'
+      const filteredBooks = fetchedBooks.filter(
+        (book) => book.type !== "Ebook"
+      );
+
+      const booksWithAuthors = filteredBooks.map((book) => ({
         ...book,
         authors: getAuthorsForBook(
           book.bookID,

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
@@ -27,7 +29,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return contacts;
+            return Ok(contacts); // Use Ok() to return status 200 with data
         }
 
         [HttpGet("{ContactID}")]
@@ -38,7 +40,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return contact;
+            return Ok(contact); // Use Ok() to return status 200 with data
         }
 
         [HttpPost]
@@ -47,55 +49,52 @@ namespace WebApplication1.Controllers
             _contactUsContext.Contacts.Add(contactUs);
             await _contactUsContext.SaveChangesAsync();
 
-           
-            SendEmailToAdmin(contactUs);
+            // Call async email method
+            await SendEmailToAdminAsync(contactUs);
 
             return CreatedAtAction(nameof(GetContact), new { ContactID = contactUs.ContactID }, contactUs);
         }
 
         private async Task SendEmailToAdminAsync(ContactUs contactUs)
-{
-            var adminEmails = _contactUsContext.Users
+        {
+            var adminEmails = await _contactUsContext.Users
                                 .Where(user => user.RolesID == 3)
                                 .Select(user => user.Email)
-                                .ToList();
+                                .ToListAsync();
 
             if (!adminEmails.Any())
             {
                 return;
             }
 
-                var fromAddress = new MailAddress("your-email@gmail.com", "Your Website");
-                const string fromPassword = "ajzb yfiz afbc czhf";
-                const string subject = "New Contact Us Message";
-                string body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
+            var fromAddress = new MailAddress("your-email@gmail.com", "Your Website");
+            const string fromPassword = "your-email-password"; // Replace with your email password
+            const string subject = "New Contact Us Message";
+            string body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
 
-                var smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
 
-                foreach (var adminEmail in adminEmails)
+            foreach (var adminEmail in adminEmails)
+            {
+                var toAddress = new MailAddress(adminEmail);
+                using (var message = new MailMessage(fromAddress, toAddress)
                 {
-                    var toAddress = new MailAddress(adminEmail);
-                    using (var message = new MailMessage(fromAddress, toAddress)
-                    {
-                        Subject = subject,
-                        Body = body
-                    })
-                    {
-                        await smtp.SendMailAsync(message);
-                    }
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    await smtp.SendMailAsync(message);
                 }
-}
-
-
-
+            }
+        }
 
         [HttpPut("{ContactID}")]
         public async Task<IActionResult> PutContact(int ContactID, ContactUs contactUs)
