@@ -84,6 +84,9 @@ namespace BookStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EventsID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -93,6 +96,8 @@ namespace BookStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AuthorID");
+
+                    b.HasIndex("EventsID");
 
                     b.ToTable("Author");
                 });
@@ -284,7 +289,7 @@ namespace BookStore.Migrations
 
                     b.HasKey("ContactID");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("BookStore.Models.Country", b =>
@@ -350,6 +355,37 @@ namespace BookStore.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("EbookLoans");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Event", b =>
+                {
+                    b.Property<int>("EventsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventsID"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("time");
+
+                    b.HasKey("EventsID");
+
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("BookStore.Models.GiftCard", b =>
@@ -668,6 +704,13 @@ namespace BookStore.Migrations
                     b.ToTable("Ebooks", (string)null);
                 });
 
+            modelBuilder.Entity("BookStore.Models.Author", b =>
+                {
+                    b.HasOne("BookStore.Models.Event", null)
+                        .WithMany("Authors")
+                        .HasForeignKey("EventsID");
+                });
+
             modelBuilder.Entity("BookStore.Models.AuthorQuotes", b =>
                 {
                     b.HasOne("BookStore.Models.Author", "Author")
@@ -843,6 +886,11 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Navigation("CategoryBooks");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Event", b =>
+                {
+                    b.Navigation("Authors");
                 });
 
             modelBuilder.Entity("BookStore.Models.Quote", b =>

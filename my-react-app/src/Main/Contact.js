@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MapComponent from "./MapComponent"; 
+import MapComponent from "./MapComponent";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -16,7 +16,7 @@ const Contact = () => {
   };
 
   const validateName = (name) => {
-    const nameRegex = /^[A-Z][a-zA-Z]*$/;
+    const nameRegex = /^[A-Z][a-zA-Z\s]*$/;
     return nameRegex.test(name);
   };
 
@@ -26,10 +26,14 @@ const Contact = () => {
     const errors = {};
 
     if (!validateName(name)) {
-      errors.name = "Name should start with a capital letter.";
+      errors.name =
+        "Name should start with a capital letter and can include spaces.";
     }
     if (!validateEmail(email)) {
       errors.email = "Invalid Email.";
+    }
+    if (!message.trim()) {
+      errors.message = "Message cannot be empty.";
     }
 
     if (Object.keys(errors).length > 0) {
@@ -52,7 +56,10 @@ const Contact = () => {
         clearForm();
       })
       .catch((error) => {
-        toast.error("Error registering Contact: " + error.message);
+        toast.error(
+          "Error registering Contact: " + error.response?.data?.message ||
+            error.message
+        );
       });
   };
 
@@ -79,19 +86,18 @@ const Contact = () => {
         <div className="rightPartCu">
           <div className="listC">
             <ul>
-              <li className="h">opening hours</li>
+              <li className="h">Opening Hours</li>
               <li>Monday - Friday</li>
-              <li>9pm - 7pm</li>
+              <li>9am - 7pm</li>
               <li>Weekend</li>
               <li>Closed</li>
             </ul>
             <ul>
-              <li className="h">address</li>
+              <li className="h">Address</li>
               <li>Sheshi Nena Tereza nr.106</li>
-              
             </ul>
             <ul>
-              <li className="h">contact details</li>
+              <li className="h">Contact Details</li>
               <li>readopia@gmail.com</li>
               <li>+383 44 444 888</li>
             </ul>
@@ -110,6 +116,7 @@ const Contact = () => {
                 placeholder="Your Name.."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                aria-label="Name"
               />
               {formErrors.name && <p className="errorCu">{formErrors.name}</p>}
             </div>
@@ -119,35 +126,36 @@ const Contact = () => {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                aria-label="Email"
               />
-              {formErrors.email && <p className="errorCu">{formErrors.email}</p>}
+              {formErrors.email && (
+                <p className="errorCu">{formErrors.email}</p>
+              )}
             </div>
             <div className="inputs-contact-Message">
-            <textarea
+              <textarea
                 placeholder="Tell us all about it"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-            />
+                aria-label="Message"
+              />
+              {formErrors.message && (
+                <p className="errorCu">{formErrors.message}</p>
+              )}
             </div>
             <button type="submit" className="button-CU">
               Send
             </button>
           </form>
-          
         </div>
-        
-        
       </div>
-      
       <div className="mapCu">
-      <h2>Find Our Location Below</h2>
+        <h2>Find Our Location Below</h2>
         <div className="mapcomponant">
-          
           <MapComponent />
         </div>
-          
       </div>
-     
+      <ToastContainer />
     </div>
   );
 };

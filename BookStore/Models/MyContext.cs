@@ -36,6 +36,8 @@ namespace BookStore.Models
             modelBuilder.Entity<Book>()
                 .Property(b => b.Price)
                 .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Event>()
+            .HasKey(e => e.EventsID);
 
             modelBuilder.Entity<Accessories>()
                 .Property(a => a.Price)

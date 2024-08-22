@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
 using BookStore.Services;
 using BookStore.Controllers;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +16,16 @@ builder.Services.AddDbContext<MyContext>(options =>
 builder.Services.AddScoped<EbookService>();
 builder.Services.AddScoped<BookService>();
 builder.Services.AddHttpClient<EbooksController>();
+builder.Services.AddTransient<EmailService>();
 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<GiftCardService>();
+
+// Register SmtpSettings
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 // Register HttpClient
 builder.Services.AddHttpClient();

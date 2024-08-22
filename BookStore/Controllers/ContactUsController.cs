@@ -1,99 +1,110 @@
 using BookStore.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MimeKit;
+using MailKit.Net.Smtp;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
+using MailKit.Security;
 
-namespace WebApplication1.Controllers
+namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ContactUsController : ControllerBase
     {
-        private readonly MyContext _contactUsContext;
+        private readonly MyContext _context;
+        private readonly SmtpSettings _smtpSettings;
 
-        public ContactUsController(MyContext contactUsContext)
+        public ContactUsController(MyContext context, IOptions<SmtpSettings> smtpSettings)
         {
-            _contactUsContext = contactUsContext;
+            _context = context;
+            _smtpSettings = smtpSettings.Value;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ContactUs>>> GetContacts()
         {
-            var contacts = await _contactUsContext.Contacts.ToListAsync();
-            if (contacts == null || contacts.Count == 0)
+            var contacts = await _context.Contacts.ToListAsync();
+            if (contacts == null || !contacts.Any())
             {
                 return NotFound();
             }
-            return Ok(contacts); // Use Ok() to return status 200 with data
+            return Ok(contacts);
         }
 
         [HttpGet("{ContactID}")]
         public async Task<ActionResult<ContactUs>> GetContact(int ContactID)
         {
-            var contact = await _contactUsContext.Contacts.FindAsync(ContactID);
+            var contact = await _context.Contacts.FindAsync(ContactID);
             if (contact == null)
             {
                 return NotFound();
             }
-            return Ok(contact); // Use Ok() to return status 200 with data
+            return Ok(contact);
         }
 
         [HttpPost]
         public async Task<ActionResult<ContactUs>> PostContact(ContactUs contactUs)
         {
-            _contactUsContext.Contacts.Add(contactUs);
-            await _contactUsContext.SaveChangesAsync();
+            _context.Contacts.Add(contactUs);
+            await _context.SaveChangesAsync();
 
-            // Call async email method
-            await SendEmailToAdminAsync(contactUs);
+            try
+            {
+                await SendEmailToAdminAsync(contactUs);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while sending the email.", error = ex.Message });
+            }
 
             return CreatedAtAction(nameof(GetContact), new { ContactID = contactUs.ContactID }, contactUs);
         }
 
         private async Task SendEmailToAdminAsync(ContactUs contactUs)
         {
-            var adminEmails = await _contactUsContext.Users
-                                .Where(user => user.RolesID == 3)
-                                .Select(user => user.Email)
-                                .ToListAsync();
+            // Retrieve admin emails
+            var adminEmails = await _context.Users
+                .Where(user => user.RolesID == 3) // Assuming RolesID = 3 corresponds to Admin
+                .Select(user => user.Email)
+                .ToListAsync();
 
             if (!adminEmails.Any())
             {
-                return;
+                throw new InvalidOperationException("No admin email addresses found.");
             }
 
-            var fromAddress = new MailAddress("your-email@gmail.com", "Your Website");
-            const string fromPassword = "your-email-password"; // Replace with your email password
-            const string subject = "New Contact Us Message";
-            string body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
+            var subject = "New Contact Us Message";
+            var body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
 
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(contactUs.Name, contactUs.Email)); // Use user's email as the "From" address
+            message.Sender = new MailboxAddress(_smtpSettings.From, _smtpSettings.From);
+    
 
+            // Add the user's email as the Reply-To address
+            message.ReplyTo.Add(new MailboxAddress(contactUs.Name, contactUs.Email));
+
+            // Add each admin email to the 'To' field
             foreach (var adminEmail in adminEmails)
             {
-                var toAddress = new MailAddress(adminEmail);
-                using (var message = new MailMessage(fromAddress, toAddress)
+                if (!string.IsNullOrWhiteSpace(adminEmail))
                 {
-                    Subject = subject,
-                    Body = body
-                })
-                {
-                    await smtp.SendMailAsync(message);
+                    message.To.Add(new MailboxAddress("", adminEmail));
                 }
             }
+
+            message.Subject = subject;
+            message.Body = new TextPart("plain") { Text = body };
+
+            using var client = new SmtpClient();
+            await client.ConnectAsync(_smtpSettings.Host, _smtpSettings.Port, SecureSocketOptions.StartTls);
+            await client.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
         }
 
         [HttpPut("{ContactID}")]
@@ -104,14 +115,14 @@ namespace WebApplication1.Controllers
                 return BadRequest();
             }
 
-            _contactUsContext.Entry(contactUs).State = EntityState.Modified;
+            _context.Entry(contactUs).State = EntityState.Modified;
             try
             {
-                await _contactUsContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_contactUsContext.Contacts.Any(e => e.ContactID == ContactID))
+                if (!_context.Contacts.Any(e => e.ContactID == ContactID))
                 {
                     return NotFound();
                 }
@@ -127,14 +138,14 @@ namespace WebApplication1.Controllers
         [HttpDelete("{ContactID}")]
         public async Task<IActionResult> DeleteContact(int ContactID)
         {
-            var contact = await _contactUsContext.Contacts.FindAsync(ContactID);
+            var contact = await _context.Contacts.FindAsync(ContactID);
             if (contact == null)
             {
                 return NotFound();
             }
 
-            _contactUsContext.Contacts.Remove(contact);
-            await _contactUsContext.SaveChangesAsync();
+            _context.Contacts.Remove(contact);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

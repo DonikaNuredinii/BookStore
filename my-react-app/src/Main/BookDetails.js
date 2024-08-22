@@ -13,6 +13,7 @@ const BookDetails = ({ addToCart }) => {
   const [book, setBook] = useState(null);
   const [authors, setAuthors] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [publishingHouseName, setPublishingHouseName] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
   const [rating, setRating] = useState(3);
   const [hover, setHover] = useState(null);
@@ -29,6 +30,14 @@ const BookDetails = ({ addToCart }) => {
         setBook(data.book);
         setAuthors(data.authors);
         setCategories(data.categories);
+
+        // Fetch the publishing house name
+        if (data.book && data.book.publishingHouseId) {
+          const publishingHouseResponse = await axios.get(
+            `https://localhost:7061/api/PublishingHouses/${data.book.publishingHouseId}`
+          );
+          setPublishingHouseName(publishingHouseResponse.data.houseName);
+        }
       } catch (error) {
         setError("Failed to fetch book details. Please try again later.");
       }
@@ -120,8 +129,8 @@ const BookDetails = ({ addToCart }) => {
                   : "Invalid Date"}
               </p>
               <p>
-                <strong>Publishing House ID:</strong>{" "}
-                {book.publishingHouseId || "Not available"}
+                <strong>Publishing House:</strong>{" "}
+                {publishingHouseName || "Not available"}
               </p>
 
               {categories.length > 0 ? (

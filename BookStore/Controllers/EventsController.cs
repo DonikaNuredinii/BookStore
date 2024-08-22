@@ -1,115 +1,108 @@
-﻿using BookStore.Models; // Adjust namespace if needed
-using Microsoft.AspNetCore.Http;
+﻿using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class EventController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EventController : ControllerBase
+    private readonly MyContext _context;
+
+    public EventController(MyContext context)
     {
-        private readonly MyContext _context;
+        _context = context;
+    }
 
-        public EventController(MyContext context)
+    // GET: api/Events
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+    {
+        var events = await _context.Events
+            .Include(e => e.Authors)
+            .ToListAsync();
+
+        if (events == null || !events.Any())
         {
-            _context = context;
+            return NotFound();
         }
 
-        // GET: api/Events
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+        return Ok(events);
+    }
+
+    // GET: api/Events/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Event>> GetEvent(int id)
+    {
+        var eventItem = await _context.Events
+            .Include(e => e.Authors)
+            .FirstOrDefaultAsync(e => e.EventsID == id);
+
+        if (eventItem == null)
         {
-            var events = await _context.Events
-                .Include(e => e.Authors) // Ensure `Authors` is a navigation property in the `Event` model
-                .ToListAsync();
-
-            if (events == null || !events.Any())
-            {
-                return NotFound();
-            }
-
-            return Ok(events);
+            return NotFound();
         }
 
-        // GET: api/Events/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Event>> GetEvent(int id)
+        return Ok(eventItem);
+    }
+
+    // POST: api/Events
+    [HttpPost]
+    public async Task<ActionResult<Event>> PostEvent(Event eventItem)
+    {
+        _context.Events.Add(eventItem);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetEvent), new { id = eventItem.EventsID }, eventItem);
+    }
+
+    // PUT: api/Events/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutEvent(int id, Event eventItem)
+    {
+        if (id != eventItem.EventsID)
         {
-            var eventItem = await _context.Events
-                .Include(e => e.Authors) // Ensure `Authors` is a navigation property in the `Event` model
-                .FirstOrDefaultAsync(e => e.EventsID == id); // Ensure `EventsID` is the correct property name
-
-            if (eventItem == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(eventItem);
+            return BadRequest();
         }
 
-        // POST: api/Events
-        [HttpPost]
-        public async Task<ActionResult<Event>> PostEvent(Event eventItem)
+        _context.Entry(eventItem).State = EntityState.Modified;
+
+        try
         {
-            _context.Events.Add(eventItem);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetEvent), new { id = eventItem.EventsID }, eventItem); // Ensure `EventsID` is the correct property name
         }
-
-        // PUT: api/Events/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEvent(int id, Event eventItem)
+        catch (DbUpdateConcurrencyException)
         {
-            if (id != eventItem.EventsID) // Ensure `EventsID` is the correct property name
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(eventItem).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // DELETE: api/Events/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
-        {
-            var eventItem = await _context.Events.FindAsync(id);
-            if (eventItem == null)
+            if (!EventExists(id))
             {
                 return NotFound();
             }
-
-            _context.Events.Remove(eventItem);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else
+            {
+                throw;
+            }
         }
 
-        private bool EventExists(int id)
+        return NoContent();
+    }
+
+    // DELETE: api/Events/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteEvent(int id)
+    {
+        var eventItem = await _context.Events.FindAsync(id);
+        if (eventItem == null)
         {
-            return _context.Events.Any(e => e.EventsID == id); // Ensure `EventsID` is the correct property name
+            return NotFound();
         }
+
+        _context.Events.Remove(eventItem);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    private bool EventExists(int id)
+    {
+        return _context.Events.Any(e => e.EventsID == id);
     }
 }

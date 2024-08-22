@@ -545,3 +545,10 @@ C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\obj\Debug\net8.0\refint\BookS
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\obj\Debug\net8.0\BookStore.pdb
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\obj\Debug\net8.0\BookStore.genruntimeconfig.cache
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\obj\Debug\net8.0\ref\BookStore.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\MailKit.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\MimeKit.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Formats.Asn1.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\SendGrid.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEcdsa.dll
