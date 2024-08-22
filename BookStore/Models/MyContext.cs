@@ -29,6 +29,7 @@ namespace BookStore.Models
         public DbSet<EbookLoan> EbookLoans { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<AuthorQuotes> AuthorQuotes { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

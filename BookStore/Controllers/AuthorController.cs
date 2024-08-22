@@ -9,99 +9,92 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class EventsController : ControllerBase
     {
         private readonly MyContext _context;
 
-        public AuthorController(MyContext context)
+        public EventsController(MyContext context)
         {
             _context = context;
         }
 
-        // GET: api/Author
+        // GET: api/Events
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<object>>> GetAuthors()
+        public async Task<ActionResult<IEnumerable<object>>> GetEvents()
         {
-            var authors = await _context.Author
-                .Include(a => a.BookAuthors)
-                .ThenInclude(ba => ba.Book)
+            var events = await _context.Events
                 .ToListAsync();
 
-            if (authors == null || !authors.Any())
+            if (events == null || !events.Any())
             {
                 return NotFound();
             }
 
-            var result = authors.Select(a => new
+            var result = events.Select(e => new
             {
-                a.AuthorID,
-                a.Name,
-                a.DateOfBirth,
-                a.Biography,
-                a.Awards,
-                a.Genre,
-                Books = a.BookAuthors.Select(ba => new
-                {
-                    ba.Book.BookID,
-                    ba.Book.Title
-                })
+                e.EventsID,
+                e.EventName,
+                e.Location,
+                e.Date,
+                e.Time,
+                e.Description
+                // Add related entities here if needed
             });
 
             return Ok(result);
         }
 
-        // GET: api/Author/{authorID}
-        [HttpGet("{authorID}")]
-        public async Task<ActionResult<object>> GetAuthor(int authorID)
+        // GET: api/Events/{eventID}
+        [HttpGet("{eventID}")]
+        public async Task<ActionResult<object>> GetEvent(int eventID)
         {
-            var author = await _context.Author
-                .Include(a => a.BookAuthors)
-                .ThenInclude(ba => ba.Book)
-                .FirstOrDefaultAsync(a => a.AuthorID == authorID);
+            var eventItem = await _context.Events
+                .FirstOrDefaultAsync(e => e.EventsID == eventID);
 
-            if (author == null)
+            if (eventItem == null)
             {
                 return NotFound();
             }
 
             var result = new
             {
-                AuthorID = author.AuthorID,
-                Name = author.Name,
-                DateOfBirth = author.DateOfBirth,
-                Biography = author.Biography,
-                Awards = author.Awards,
-                Genre = author.Genre,
-                Books = author.BookAuthors.Select(ba => new
-                {
-                    ba.Book.BookID,
-                    ba.Book.Title
-                })
+                eventItem.EventsID,
+                eventItem.EventName,
+                eventItem.Location,
+                eventItem.Date,
+                eventItem.Time,
+                eventItem.Description
+                // Add related entities here if needed
             };
 
             return Ok(result);
         }
 
-        // POST: api/Author
+        // POST: api/Events
         [HttpPost]
-        public async Task<ActionResult<Author>> PostAuthor(Author author)
+        public async Task<ActionResult<Event>> PostEvent(Event eventItem)
         {
-            _context.Author.Add(author);
+            if (eventItem == null)
+            {
+                return BadRequest("Event cannot be null.");
+            }
+
+            _context.Events.Add(eventItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAuthor), new { authorID = author.AuthorID }, author);
+            return CreatedAtAction(nameof(GetEvent), new { eventID = eventItem.EventsID }, eventItem);
         }
 
-        // PUT: api/Author/{authorID}
-        [HttpPut("{authorID}")]
-        public async Task<IActionResult> PutAuthor(int authorID, Author author)
+        // PUT: api/Events/{eventID}
+        [HttpPut("{eventID}")]
+        public async Task<IActionResult> PutEvent(int eventID, Event eventItem)
         {
-            if (authorID != author.AuthorID)
+            if (eventID != eventItem.EventsID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(author).State = EntityState.Modified;
+            _context.Entry(eventItem).State = EntityState.Modified;
 
             try
             {
@@ -109,38 +102,38 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(authorID))
+                if (!EventExists(eventID))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Concurrency error occurred.");
                 }
             }
 
             return NoContent();
         }
 
-        // DELETE: api/Author/{authorID}
-        [HttpDelete("{authorID}")]
-        public async Task<IActionResult> DeleteAuthor(int authorID)
+        // DELETE: api/Events/{eventID}
+        [HttpDelete("{eventID}")]
+        public async Task<IActionResult> DeleteEvent(int eventID)
         {
-            var author = await _context.Author.FindAsync(authorID);
-            if (author == null)
+            var eventItem = await _context.Events.FindAsync(eventID);
+            if (eventItem == null)
             {
                 return NotFound();
             }
 
-            _context.Author.Remove(author);
+            _context.Events.Remove(eventItem);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AuthorExists(int authorID)
+        private bool EventExists(int eventID)
         {
-            return _context.Author.Any(e => e.AuthorID == authorID);
+            return _context.Events.Any(e => e.EventsID == eventID);
         }
     }
 }

@@ -163,6 +163,9 @@ const NavbarHome = () => {
         <Link to="/author-List" className="navbar-link">
           Authors
         </Link>
+        <Link to="/events" className="navbar-link">
+          Events
+        </Link>
         <Link to="/ebooks" className="navbar-link">
           Ebooks
         </Link>
