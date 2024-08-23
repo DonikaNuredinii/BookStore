@@ -11,14 +11,12 @@ const Account = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [action, setAction] = useState("");
-  const [selectedRole, setSelectedRole] = useState(2);
-  const [formErrors, setFormErrors] = useState({});
-
   const [formData, setFormData] = useState({
     confirmPassword: "",
     agreeTerms: false,
   });
+  const [action, setAction] = useState("");
+  const [formErrors, setFormErrors] = useState({});
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,14 +36,6 @@ const Account = () => {
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;
     return passwordRegex.test(password);
-  };
-
-  const handleSave = () => {
-
-    if (!firstName || !lastName || !email || !username || !password) {
-      toast.error("Please fill out all required fields.");
-      return;
-    }
   };
 
   const signUpLink = () => {
@@ -71,7 +61,6 @@ const Account = () => {
 
     const errors = {};
 
-
     if (!validateName(firstName)) {
       errors.firstName = "First name should start with a capital letter.";
     }
@@ -79,7 +68,7 @@ const Account = () => {
       errors.lastName = "Last name should start with a capital letter.";
     }
     if (!validatePhoneNumber(phoneNumber)) {
-      errors.phoneNumber = "Invalid phone number. It should be 10 digits.";
+      errors.phoneNumber = "Invalid phone number.";
     }
     if (!validateEmail(email)) {
       errors.email = "Invalid email address.";
@@ -105,17 +94,41 @@ const Account = () => {
       Email: email,
       Username: username,
       Password: password,
-      RolesID: 3,
+      RolesID: 2, // Assuming default role is 2 for User
     };
 
     axios
-      .post("https://localhost:7061/api/User", userData)
+      .post("https://localhost:7061/api/User/register", userData)
       .then((response) => {
         toast.success("User registered successfully!");
         clearForm();
       })
       .catch((error) => {
         toast.error("Error registering user: " + error.message);
+      });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (!username || !password) {
+      toast.error("Please fill out both fields.");
+      return;
+    }
+
+    axios
+      .post("https://localhost:7061/api/User/login", {
+        Username: username,
+        Password: password,
+      })
+      .then((response) => {
+        const token = response.data.token;
+        localStorage.setItem("token", token); // Store token in localStorage
+        toast.success("Login successful!");
+        // Redirect to dashboard or store the user information as needed
+      })
+      .catch((error) => {
+        toast.error("Invalid username or password.");
       });
   };
 
@@ -137,14 +150,26 @@ const Account = () => {
       <ToastContainer />
       <div className={`wrapper ${action}`}>
         <div className="form-box logIn">
-          <form className="accountform">
+          <form onSubmit={handleLogin} className="accountform">
             <h1>Log In</h1>
             <div className="inputs-logIn">
-              <input type="text" placeholder="Username" required />
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
               <FaUser className="icon" />
             </div>
             <div className="inputs-logIn">
-              <input type="password" placeholder="Password" required />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
               <FaLock className="icon" />
             </div>
             <div className="remember-forgot">
@@ -170,24 +195,21 @@ const Account = () => {
             <div className="inputs-logIn-row">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
-              
               <input
                 type="text"
-                placeholder="Surname"
+                placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
-              
             </div>
             <div className="inputs-login-row-error">
               <div className="error-message">{formErrors.firstName}</div>
               <div className="error-message">{formErrors.lastName}</div>
             </div>
-
             <div className="inputs-logIn">
               <input
                 type="text"
@@ -197,7 +219,6 @@ const Account = () => {
               />
             </div>
             <div className="error-message">{formErrors.phoneNumber}</div>
-
             <div className="inputs-logIn-row">
               <input
                 type="text"
@@ -213,10 +234,9 @@ const Account = () => {
               />
             </div>
             <div className="inputs-login-row-error">
-                <div className="error-message">{formErrors.email}</div>
-                <div className="error-message">{formErrors.rusinovci}</div>
+              <div className="error-message">{formErrors.email}</div>
+              <div className="error-message">{formErrors.username}</div>
             </div>
-
             <div className="inputs-logIn">
               <input
                 type="password"
@@ -224,7 +244,6 @@ const Account = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              
             </div>
             <div className="error-message">{formErrors.password}</div>
             <div className="inputs-logIn">
@@ -236,7 +255,6 @@ const Account = () => {
                 onChange={handleChange}
                 required
               />
-              
             </div>
             <div className="error-message">{formErrors.confirmPassword}</div>
             <div className="remember-forgot">
@@ -256,10 +274,7 @@ const Account = () => {
             </button>
             <div className="signUp-link">
               <p>
-                Already have an account?{" "}
-                <a href="#" onClick={logInLink}>
-                  Log In
-                </a>
+                Already have an account? <a href="#" onClick={logInLink}>Log In</a>
               </p>
             </div>
           </form>

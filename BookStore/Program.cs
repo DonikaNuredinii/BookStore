@@ -5,6 +5,9 @@ using System.Text.Json;
 using BookStore.Services;
 using BookStore.Controllers;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +20,34 @@ builder.Services.AddScoped<EbookService>();
 builder.Services.AddScoped<BookService>();
 builder.Services.AddHttpClient<EbooksController>();
 builder.Services.AddTransient<EmailService>();
-
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<GiftCardService>();
+
+// Configure CORS to allow requests from http://localhost:3003
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3003",
+        builder => builder
+            .WithOrigins("http://localhost:3003")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
+
+// Configure JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
+        };
+    });
 
 // Register SmtpSettings
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
@@ -30,36 +55,23 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 // Register HttpClient
 builder.Services.AddHttpClient();
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
 app.UseHttpsRedirection();
-
-// Ensure static files are served before the routing and authorization
 app.UseStaticFiles();
 
-app.UseCors(builder =>
-{
-    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-});
+app.UseCors("AllowLocalhost3003"); // Apply the CORS policy here
 
-// Ensure routing is configured before authorization
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+// Global exception handler middleware
 app.Use(async (context, next) =>
 {
     try
@@ -77,5 +89,16 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
 app.Run();

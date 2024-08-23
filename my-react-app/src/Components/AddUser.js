@@ -28,11 +28,11 @@ const AddUser = () => {
       Email: email,
       Username: username,
       Password: password,
-      RolesID: parseInt(selectedRole),
+      RolesID: parseInt(selectedRole), // Ensure RolesID is an integer
     };
 
     axios
-      .post(`https://localhost:7061/api/User`, userData)
+      .post("https://localhost:7061/api/User/register", userData) // Corrected URL string
       .then((response) => {
         console.log("User added successfully:", response.data);
         clearForm();
@@ -138,7 +138,7 @@ const AddUser = () => {
             <Form.Control
               as="select"
               value={selectedRole.toString()}
-              onChange={(e) => setSelectedRole(e.target.value)}
+              onChange={(e) => setSelectedRole(parseInt(e.target.value))}
             >
               <option value="2">User</option>
               <option value="3">Admin</option>

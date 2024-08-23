@@ -30,17 +30,18 @@ const User = () => {
 
   const getData = () => {
     axios
-      .get(`https://localhost:7061/api/User`)
+      .get("https://localhost:7061/api/User") // Correct endpoint
       .then((result) => {
         setData(result.data);
         console.log("User Data:", result.data); // Log user data
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Failed to fetch users: " + error.message);
       });
 
     axios
-      .get(`https://localhost:7061/api/Roles`)
+      .get("https://localhost:7061/api/Roles")
       .then((result) => {
         setRoles(result.data);
         console.log("Roles Data:", result.data); // Log roles data
@@ -59,8 +60,9 @@ const User = () => {
 
     handleShow();
     setEditUserId(userId);
+    // Correct endpoint for fetching a single user
     axios
-      .get(`https://localhost:7061/api/User/${userId}`)
+      .get(`https://localhost:7061/api/User/${userId}`) // Correct endpoint
       .then((result) => {
         const userData = result.data;
         setEditFirstName(userData.firstName);
@@ -78,8 +80,9 @@ const User = () => {
 
   const handleDelete = (userId) => {
     if (window.confirm("Are you sure you want to delete this User?")) {
+      // Correct endpoint for deleting a user
       axios
-        .delete(`https://localhost:7061/api/User/${userId}`)
+        .delete(`https://localhost:7061/api/User/${userId}`) // Correct endpoint
         .then((result) => {
           if (result.status === 200) {
             toast.success("User has been deleted");
@@ -93,7 +96,8 @@ const User = () => {
   };
 
   const handleUpdate = async () => {
-    const url = `https://localhost:7061/api/User/${editUserId}`;
+    // Correct endpoint for updating a user
+    const url = `https://localhost:7061/api/User/${editUserId}`; // Correct endpoint
 
     const userData = {
       UserID: editUserId,
@@ -171,7 +175,7 @@ const User = () => {
                     <td>{item.phoneNumber}</td>
                     <td>{item.email}</td>
                     <td>{item.username}</td>
-                    <td>{item.password}</td>
+                    <td>{"******"}</td>
                     <td>{roleName}</td>
                     <td colSpan={2} className="btn">
                       <Button
@@ -179,14 +183,14 @@ const User = () => {
                         className="btn-edit"
                         onClick={() => handleEdit(item.userID)}
                       >
-                        <i class="bi bi-pencil-square"></i>
+                        <i className="bi bi-pencil-square"></i>
                       </Button>
                       <Button
                         variant="outline-dark"
                         className="btn-delete"
                         onClick={() => handleDelete(item.userID)}
                       >
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                       </Button>
                     </td>
                   </tr>
