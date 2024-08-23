@@ -552,3 +552,10 @@ C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Formats
 C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\SendGrid.dll
 C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEcdsa.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\MailKit.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\MimeKit.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\SendGrid.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEcdsa.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Formats.Asn1.dll

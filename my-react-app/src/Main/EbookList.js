@@ -6,14 +6,19 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import ebooksImage from "../Images/ebooks.jpg";
 import ebooksImage2 from "../Images/ebooks2.jpg";
 import ebooksImage3 from "../Images/ebooks3.jpg";
+import { useWishlist } from "../Components/Wishlist";
 
 const EbookList = () => {
   const [ebooks, setEbooks] = useState([]);
   const [bookAuthors, setBookAuthors] = useState([]);
   const [authors, setAuthors] = useState([]);
-  const [favoriteBooks, setFavoriteBooks] = useState(new Set());
   const [showModal, setShowModal] = useState(false);
   const [selectedEbook, setSelectedEbook] = useState(null);
+  const [showWishlistModal, setShowWishlistModal] = useState(false);
+  const [message, setMessage] = useState(""); // State for the message
+  const [messageTimeout, setMessageTimeout] = useState(null); 
+
+  const { wishlist, addToWishlist, removeFromWishlist, clearWishlist, isBookInWishlist } = useWishlist();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,15 +67,19 @@ const EbookList = () => {
   };
 
   const handleFavoriteClick = (ebookID) => {
-    setFavoriteBooks((prevFavorites) => {
-      const updatedFavorites = new Set(prevFavorites);
-      if (updatedFavorites.has(ebookID)) {
-        updatedFavorites.delete(ebookID);
-      } else {
-        updatedFavorites.add(ebookID);
-      }
-      return updatedFavorites;
-    });
+    const book = ebooks.find((b) => b.bookID === ebookID);
+    if (isBookInWishlist(ebookID)) {
+      removeFromWishlist(ebookID);
+      setMessage("Book removed from wishlist");
+    } else {
+      addToWishlist(book);
+      setMessage("Book added to wishlist");
+      setShowWishlistModal(true);
+    }
+    if (messageTimeout) {
+      clearTimeout(messageTimeout); // Clear existing timeout
+    }
+    setMessageTimeout(setTimeout(() => setMessage(""), 1000)); // Hide message after 1 second
   };
 
   const handleLoan = (ebook) => {
@@ -81,6 +90,7 @@ const EbookList = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setShowWishlistModal(false);
   };
 
   const getAuthorsForBook = (bookID) => {
@@ -93,6 +103,22 @@ const EbookList = () => {
       .map((author) => author.name)
       .join(", ");
   };
+
+  const handleAddAllToCart = () => {
+    wishlist.forEach((book) => {
+      addToCart(book);
+    });
+    clearWishlist();
+    setShowWishlistModal(false);
+  };
+
+  const addToCart = (book) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(book);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(`Added ${book.title} to cart`);
+  };
+  
 
   return (
     <>
@@ -134,7 +160,7 @@ const EbookList = () => {
                   className="book-image"
                 />
                 <div className="icon-container">
-                  {favoriteBooks.has(ebook.bookID) ? (
+                  {isBookInWishlist(ebook.bookID) ? (
                     <MdFavorite
                       className="favorite-icon"
                       onClick={() => handleFavoriteClick(ebook.bookID)}
@@ -199,6 +225,57 @@ const EbookList = () => {
           </div>
         </div>
       )}
+      {showWishlistModal && (
+        <div className="wishlist-modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h3>Wishlist</h3>
+            {wishlist.length > 0 ? (
+              <div className="wishlist-items">
+                {wishlist.map((book) => (
+                  <div key={book.bookID} className="wishlist-item">
+                    <img
+                      src={preprocessImagePath(book.image)}
+                      alt={book.title}
+                      className="wishlist-image"
+                    />
+                    <div className="wishlist-details">
+                      <h4>{book.title}</h4>
+                      <p>
+                        Author:{" "}
+                        {getAuthorsForBook(book.bookID) || "Unknown"}
+                      </p>
+                      <p>Price: €{book.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>No items in wishlist.</p>
+            )}
+            <div className="wishlist-buttons">
+              <button
+                className="view-wishlist-button"
+                onClick={() => {
+                  setShowWishlistModal(false);
+                  navigate("/WishlistPage");
+                }}
+              >
+                View Wishlist
+              </button>
+              <button
+                className="add-all-to-cart-button"
+                onClick={handleAddAllToCart}
+              >
+                Add All to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {message && <div className="feedback-message">{message}</div>}
     </>
   );
 };

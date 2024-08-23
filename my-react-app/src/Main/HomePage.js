@@ -7,6 +7,7 @@ import "../App.css";
 import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
+import { useWishlist } from "../Components/Wishlist"; 
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
@@ -18,12 +19,21 @@ const HomePage = ({ addToCart }) => {
   const [quote, setQuote] = useState({ text: "", authors: [] });
   const [authors, setAuthors] = useState([]);
   const [bookAuthors, setBookAuthors] = useState([]);
-
+  const [showCartModal, setShowCartModal] = useState(false);
+  const [showWishlistModal, setShowWishlistModal] = useState(false);
+  const [selectedBooks, setSelectedBooks] = useState([]); 
+  const [message, setMessage] = useState(""); 
+  const [messageTimeout, setMessageTimeout] = useState(null);
   const navigate = useNavigate();
+
+ 
+  const { isBookInWishlist, removeFromWishlist, addToWishlist } = useWishlist();
 
   const closeModal = () => {
     setShowModal(false);
     setSelectedBook(null);
+    setShowCartModal(false);
+    setShowWishlistModal(false);
   };
 
   useEffect(() => {
@@ -144,13 +154,25 @@ const HomePage = ({ addToCart }) => {
 
   const handleFavoriteClick = (e, bookID) => {
     e.stopPropagation();
-    setBooks((prevBooks) =>
-      prevBooks.map((book) =>
-        book.bookID === bookID
-          ? { ...book, isFavorite: !book.isFavorite }
-          : book
-      )
-    );
+    const book = books.find((b) => b.bookID === bookID);
+  
+    if (isBookInWishlist(bookID)) {
+      removeFromWishlist(bookID);
+      setSelectedBooks((prevSelectedBooks) =>
+        prevSelectedBooks.filter((b) => b.bookID !== bookID)
+      );
+      setMessage("Book removed from wishlist");
+      setShowWishlistModal(false);
+  
+      if (messageTimeout) {
+        clearTimeout(messageTimeout); 
+      }
+      setMessageTimeout(setTimeout(() => setMessage(""), 1000)); 
+    } else {
+      addToWishlist(book);
+      setSelectedBooks((prevSelectedBooks) => [...prevSelectedBooks, book]);
+      setShowWishlistModal(true);
+    }
   };
 
   const handleAddToCartClick = (e, book) => {
@@ -158,7 +180,7 @@ const HomePage = ({ addToCart }) => {
     addToCart(book);
     setSelectedBook(book);
     setShowModal(true);
-  };
+  }; 
 
   const textSpring = useSpring({
     from: { opacity: 0, transform: "translateY(20px)" },
@@ -178,6 +200,23 @@ const HomePage = ({ addToCart }) => {
     navigate(`/bookdetails/${bookID}`);
   };
 
+  const handleSubmit = (e, book) => {
+    e.stopPropagation();
+    addToCart(book);
+    setSelectedBooks([book]); 
+    setShowCartModal(true);
+    if (isBookInWishlist(book.bookID)) {
+      removeFromWishlist(book.bookID);
+    }
+  };
+  const handleAddAllToCart = () => {
+    selectedBooks.forEach((book) => {
+      addToCart(book);          
+      removeFromWishlist(book.bookID); 
+    });
+    setShowWishlistModal(false);
+  };
+  
   return (
     <>
       <div className="first-section">
@@ -242,7 +281,7 @@ const HomePage = ({ addToCart }) => {
                     className="book-image"
                   />
                   <div className="icon-container">
-                    {book.isFavorite ? (
+                  {isBookInWishlist(book.bookID) ? (
                       <MdFavorite
                         className="favorite-icon"
                         onClick={(e) => handleFavoriteClick(e, book.bookID)}
@@ -277,9 +316,7 @@ const HomePage = ({ addToCart }) => {
                   <h3 className="card-title">{book.title}</h3>
                   <p className="card-author">
                     Author:{" "}
-                    {book.authors.length > 0
-                      ? book.authors.join(", ")
-                      : "Unknown"}
+                    Author: {book.authors ? book.authors.join(", ") : "Unknown"}
                   </p>
                   <p className="card-price">Price: €{book.price}</p>
                 </div>
@@ -321,8 +358,57 @@ const HomePage = ({ addToCart }) => {
           </div>
         </div>
       )}
+      {/* Wishlist Modal */}
+      {showWishlistModal && (
+        <div className="wishlist-modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h3> Wishlist</h3>
+            {selectedBooks.length > 0 && (
+              <div className="wishlist-items">
+                {selectedBooks.map((book) => (
+                  <div key={book.bookID} className="wishlist-item">
+                    <img
+                      src={preprocessImagePath(book.image)}
+                      alt={book.title}
+                      className="wishlist-image"
+                    />
+                    <div className="wishlist-details">
+                      <h4>{book.title}</h4>
+                      <p>
+                        Author:{" "}
+                        {book.authors ? book.authors.join(", ") : "Unknown"}
+                      </p>
+                      <p>Price: €{book.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="wishlist-buttons">
+              <button
+                className="view-wishlist-button"
+                onClick={() => {
+                  setShowWishlistModal(false);
+                  navigate("/WishlistPage");
+                }}
+              >
+                View Wishlist
+              </button>
+              <button
+                className="add-all-to-cart-button"
+                onClick={handleAddAllToCart}
+              >
+                Add All to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {message && <div className="feedback-message">{message}</div>}
     </>
   );
 };
-
 export default HomePage;

@@ -32,31 +32,31 @@ const WishlistPage = ({ addToCart }) => {
       </Link>
       <h2>Your Wishlist</h2>
       {wishlist.length > 0 ? (
-        wishlist.map((item) => (
-          <div key={item.bookID} className="wishlist-item">
+        wishlist.map((book) => (
+          <div key={book.bookID} className="wishlist-item">
             <img
-              src={preprocessImagePath(item.image)} // Use preprocessImagePath to get the correct image path
-              alt={item.title}
+              src={preprocessImagePath(book.image)} 
+              alt={book.title}
               className="wishlist-image"
             />
             <div className="wishlist-details">
-              <h4>{item.title}</h4>
+              <h4>{book.title}</h4>
               <p>
-                Author: {item.authors ? item.authors.join(", ") : "Unknown"}
+                Author(s): {book.authors ? book.authors.join(", ") : "Unknown"}
               </p>
-              <p>Price: €{item.price}</p>
+              <p>Price: €{book.price}</p>
               <div className="wishlist-actions">
                 <button
                   className="remove-wishlist"
-                  onClick={() => removeFromWishlist(item.bookID)}
+                  onClick={() => removeFromWishlist(book.bookID)}
                 >
                   <MdDelete />
                 </button>
                 <button
                   className="add-to-cart-button"
                   onClick={() => {
-                    addToCart(item);
-                    removeFromWishlist(item.bookID);
+                    addToCart(book);
+                    removeFromWishlist(book.bookID);
                   }}
                 >
                   Add to Cart
