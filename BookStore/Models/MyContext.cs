@@ -30,6 +30,8 @@ namespace BookStore.Models
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<AuthorQuotes> AuthorQuotes { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<LanguageCategory> LanguageCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -130,6 +132,19 @@ namespace BookStore.Models
                 .HasOne(aq => aq.Quote)
                 .WithMany(q => q.AuthorQuotes)
                 .HasForeignKey(aq => aq.QuoteID);
+
+            modelBuilder.Entity<LanguageCategory>()
+               .HasKey(lc => new { lc.LanguageId, lc.CategoryId }); 
+
+            modelBuilder.Entity<LanguageCategory>()
+                .HasOne(lc => lc.Language)
+                .WithMany(l => l.LanguageCategories)
+                .HasForeignKey(lc => lc.LanguageId);
+
+            modelBuilder.Entity<LanguageCategory>()
+                .HasOne(lc => lc.Category)
+                .WithMany(c => c.LanguageCategories)
+                .HasForeignKey(lc => lc.CategoryId);
 
 
 

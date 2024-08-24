@@ -11,5 +11,8 @@ namespace BookStore.Models
         [JsonIgnore]
         public ICollection<CategoryBook> CategoryBooks { get; set; } = new HashSet<CategoryBook>();
 
+        [JsonIgnore]
+        public ICollection<LanguageCategory> LanguageCategories { get; set; } = new HashSet<LanguageCategory>();
     }
+
 }
