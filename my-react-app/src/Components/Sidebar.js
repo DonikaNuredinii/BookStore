@@ -53,6 +53,10 @@ function Sidebar() {
           <i class="bi bi-postcard fs-5 me-3"></i>
           <span>GiftCard</span>
         </Link>
+        <Link to="./Quotes" className="list-group-item py-2 ">
+          <i class="bi bi-quote fs-5 me-3"></i>
+          <span>Quotes</span>
+        </Link>
       </div>
     </div>
   );

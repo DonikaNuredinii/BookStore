@@ -22,6 +22,9 @@ import AddContact from "../Components/AddContact";
 import ContactUs from "../Dashboard-Pages/ContactUs";
 import GiftCards from "../Dashboard-Pages/GiftCards";
 import AddGiftCard from "../Components/AddGiftCard";
+import Quotes from "../Dashboard-Pages/Quotes";
+import AddQuotes from "../Components/AddQuotes";
+
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
 
@@ -60,6 +63,8 @@ function Dashboard() {
             <Route path="ContactUs" element={<ContactUs />} />
             <Route path="/GiftCards" element={<GiftCards />} />
             <Route path="/add-GiftCard" element={<AddGiftCard />} />
+            <Route path="/Quotes" element={<Quotes />} />
+            <Route path="/add-Quotes" element={<AddQuotes />} />
           </Routes>
         </div>
       </div>

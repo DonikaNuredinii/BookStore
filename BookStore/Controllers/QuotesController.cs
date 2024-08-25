@@ -47,15 +47,24 @@ namespace BookStore.Controllers
         }
 
         // POST: api/Quotes
+
         [HttpPost]
-        public async Task<ActionResult<Quote>> PostQuote(Quote quote)
+        public async Task<ActionResult<Quote>> PostQuote([FromBody] Quote quote)
         {
-            // Assuming the incoming quote has the text and a list of Author IDs in AuthorQuotes
+            if (quote == null || string.IsNullOrWhiteSpace(quote.Text))
+            {
+                return BadRequest("Quote text is required.");
+            }
+
+            // Add the quote to the Quotes table
             _context.Quotes.Add(quote);
             await _context.SaveChangesAsync();
 
+            // Return the created quote
             return CreatedAtAction(nameof(GetQuote), new { id = quote.QuoteID }, quote);
         }
+
+
 
         // PUT: api/Quotes/5
         [HttpPut("{id}")]

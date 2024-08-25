@@ -1,13 +1,19 @@
-using BookStore.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Text.Json;
-using BookStore.Services;
-using BookStore.Controllers;
-using Microsoft.Extensions.Options;
+using System.Text.Json; // Ensure this using directive is included
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using BookStore.Models;
+using BookStore.Services;
+using BookStore.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,16 +28,16 @@ builder.Services.AddHttpClient<EbooksController>();
 builder.Services.AddTransient<EmailService>();
 builder.Services.AddSingleton<GiftCardService>();
 
-// Configure CORS to allow requests from http://localhost:3003
+// Configure CORS to allow requests from localhost on any port
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost3003",
-        builder => builder
-            .WithOrigins("http://localhost:3003")
+    options.AddPolicy("AllowLocalhostAnyPort",
+        policy => policy
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost") // Allow any localhost origin
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+            .AllowCredentials());
 });
-
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -64,9 +70,10 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCors("AllowLocalhost3003"); // Apply the CORS policy here
-
 app.UseRouting();
+
+// Apply the CORS policy here
+app.UseCors("AllowLocalhostAnyPort");
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -570,3 +570,6 @@ C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEc
 C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Text.Json.dll

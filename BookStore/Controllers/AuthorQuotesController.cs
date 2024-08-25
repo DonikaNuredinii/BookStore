@@ -27,6 +27,8 @@ namespace BookStore.Controllers
                 .Include(aq => aq.Quote)
                 .Select(aq => new
                 {
+                    AuthorID = aq.AuthorID,
+                    QuoteID = aq.QuoteID,
                     AuthorName = aq.Author.Name,
                     QuoteText = aq.Quote.Text
                 })
@@ -35,8 +37,7 @@ namespace BookStore.Controllers
             return Ok(authorQuotes);
         }
 
-
-        // GET: api/AuthorQuotes/5
+        // GET: api/AuthorQuotes/{authorId}/{quoteId}
         [HttpGet("{authorId}/{quoteId}")]
         public async Task<ActionResult<object>> GetAuthorQuote(int authorId, int quoteId)
         {
@@ -46,6 +47,8 @@ namespace BookStore.Controllers
                 .Where(aq => aq.AuthorID == authorId && aq.QuoteID == quoteId)
                 .Select(aq => new
                 {
+                    AuthorID = aq.AuthorID,
+                    QuoteID = aq.QuoteID,
                     AuthorName = aq.Author.Name,
                     QuoteText = aq.Quote.Text
                 })
@@ -59,47 +62,102 @@ namespace BookStore.Controllers
             return Ok(authorQuote);
         }
 
-        // POST: api/AuthorQuotes
+        // POST: api/AuthorQuotes/AddAuthorToQuote
         [HttpPost]
-        public async Task<ActionResult<AuthorQuotes>> PostAuthorQuote(AuthorQuotes authorQuote)
+        public async Task<IActionResult> PostAuthorQuote([FromBody] AuthorQuoteRequest request)
         {
+            if (request == null || request.AuthorID <= 0 || request.QuoteID <= 0)
+            {
+                return BadRequest("Invalid AuthorID or QuoteID.");
+            }
+
+            // Check if the Author and Quote exist
+            var authorExists = await _context.Author.AnyAsync(a => a.AuthorID == request.AuthorID);
+            var quoteExists = await _context.Quotes.AnyAsync(q => q.QuoteID == request.QuoteID);
+
+            if (!authorExists)
+            {
+                return BadRequest("Author not found.");
+            }
+
+            if (!quoteExists)
+            {
+                return BadRequest("Quote not found.");
+            }
+
+            // Check if the relationship already exists
+            var existingAuthorQuote = await _context.AuthorQuotes
+                .FirstOrDefaultAsync(aq => aq.AuthorID == request.AuthorID && aq.QuoteID == request.QuoteID);
+
+            if (existingAuthorQuote != null)
+            {
+                return Conflict("This author-quote relationship already exists.");
+            }
+
+            // Add the new relationship
+            var authorQuote = new AuthorQuotes
+            {
+                AuthorID = request.AuthorID,
+                QuoteID = request.QuoteID
+            };
+
             _context.AuthorQuotes.Add(authorQuote);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAuthorQuote), new { authorId = authorQuote.AuthorID, quoteId = authorQuote.QuoteID }, authorQuote);
+            return CreatedAtAction(nameof(GetAuthorQuote), new { authorId = request.AuthorID, quoteId = request.QuoteID }, authorQuote);
         }
 
-        // PUT: api/AuthorQuotes/5
-        [HttpPut("{authorId}/{quoteId}")]
-        public async Task<IActionResult> PutAuthorQuote(int authorId, int quoteId, AuthorQuotes authorQuote)
+        [HttpPut("{quoteId}")]
+        public async Task<IActionResult> PutAuthorQuote(int quoteId, [FromBody] AuthorQuoteUpdateRequest request)
         {
-            if (authorId != authorQuote.AuthorID || quoteId != authorQuote.QuoteID)
+            if (request == null || request.AuthorId <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid AuthorID.");
             }
 
-            _context.Entry(authorQuote).State = EntityState.Modified;
+            // Find the existing AuthorQuotes entry for the given QuoteID
+            var existingAuthorQuote = await _context.AuthorQuotes
+                .FirstOrDefaultAsync(aq => aq.QuoteID == quoteId);
+
+            if (existingAuthorQuote == null)
+            {
+                return NotFound(new { message = "Author-Quote relationship not found." });
+            }
+
+            // Remove the existing entry
+            _context.AuthorQuotes.Remove(existingAuthorQuote);
+            await _context.SaveChangesAsync(); // Save changes to remove the old relationship
+
+            // Check if the new author exists
+            var authorExists = await _context.Author.AnyAsync(a => a.AuthorID == request.AuthorId);
+            if (!authorExists)
+            {
+                return BadRequest("New Author not found.");
+            }
+
+            // Create a new entry with the updated AuthorID
+            var newAuthorQuote = new AuthorQuotes
+            {
+                AuthorID = request.AuthorId,
+                QuoteID = quoteId
+            };
+
+            _context.AuthorQuotes.Add(newAuthorQuote);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Save changes to add the new relationship
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!AuthorQuoteExists(authorId, quoteId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while updating the author-quote relationship.", details = ex.Message });
             }
 
             return NoContent();
         }
 
-        // DELETE: api/AuthorQuotes/5
+
+        // DELETE: api/AuthorQuotes/{authorId}/{quoteId}
         [HttpDelete("{authorId}/{quoteId}")]
         public async Task<IActionResult> DeleteAuthorQuote(int authorId, int quoteId)
         {
@@ -117,10 +175,31 @@ namespace BookStore.Controllers
             return NoContent();
         }
 
-        private bool AuthorQuoteExists(int authorId, int quoteId)
+        [HttpGet("Quote/{quoteId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAuthorsByQuoteId(int quoteId)
         {
-            return _context.AuthorQuotes.Any(aq => aq.AuthorID == authorId && aq.QuoteID == quoteId);
+            var authors = await _context.AuthorQuotes
+                .Include(aq => aq.Author)
+                .Where(aq => aq.QuoteID == quoteId)
+                .Select(aq => new
+                {
+                    AuthorID = aq.Author.AuthorID,
+                    QuoteID = aq.QuoteID,
+                    AuthorName = aq.Author.Name,
+                })
+                .ToListAsync();
+
+            if (!authors.Any())
+            {
+                return Ok(new List<object>());
+            }
+
+            return Ok(authors);
+        }
+
+        private bool AuthorQuoteExists(int id)
+        {
+            return _context.AuthorQuotes.Any(e => e.QuoteID == id);
         }
     }
 }
-    
