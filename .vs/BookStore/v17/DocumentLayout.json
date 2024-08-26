@@ -124,8 +124,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\BookController.cs",
               "ViewState": "AQIAAKYAAAAAAAAAAAAqwLQAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:44:39.94Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T17:44:39.94Z"
             },
             {
               "$type": "Document",
@@ -137,8 +136,7 @@
               "RelativeToolTip": "BookStore\\DTOs\\AuthorUpdateRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:42:21.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T17:42:21.37Z"
             },
             {
               "$type": "Document",
@@ -150,8 +148,7 @@
               "RelativeToolTip": "BookStore\\DTOs\\AuthorQuoteRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:03:54.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T17:03:54.697Z"
             },
             {
               "$type": "Document",
@@ -163,8 +160,7 @@
               "RelativeToolTip": "BookStore\\Models\\Book.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T16:26:06.321Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T16:26:06.321Z"
             },
             {
               "$type": "Document",
@@ -176,8 +172,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240825160951_authorquotesId.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T16:09:51.87Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T16:09:51.87Z"
             },
             {
               "$type": "Document",
@@ -189,8 +184,7 @@
               "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:54:40.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T15:54:40.011Z"
             },
             {
               "$type": "Document",
@@ -202,8 +196,7 @@
               "RelativeToolTip": "BookStore\\Models\\AuthorQuotes.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:50:10.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T15:50:10.942Z"
             },
             {
               "$type": "Document",
@@ -215,8 +208,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\BookAuthorsController.cs",
               "ViewState": "AQIAAHgAAAAAAAAAAAAqwJUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:21:20.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T15:21:20.416Z"
             },
             {
               "$type": "Document",
@@ -228,8 +220,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\QuotesController.cs",
               "ViewState": "AQIAAEQAAAAAAAAAAAAqwGEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T14:54:32.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T14:54:32.676Z"
             },
             {
               "$type": "Document",
@@ -241,8 +232,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\AuthorQuotesController.cs",
               "ViewState": "AQIAAEMAAAAAAACVd7QCwHMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T14:54:17.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T14:54:17.886Z"
             },
             {
               "$type": "Document",
@@ -267,8 +257,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240825155618_authorquotesId.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:56:18.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T15:56:18.45Z"
             },
             {
               "$type": "Document",
@@ -280,8 +269,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240825155204_authorquotesId.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:52:05.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T15:52:05.061Z"
             },
             {
               "$type": "Document",
@@ -293,8 +281,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T11:00:46.625Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T11:00:46.625Z"
             },
             {
               "$type": "Document",
@@ -306,8 +293,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240824110031_Language.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T11:00:31.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T11:00:31.243Z"
             },
             {
               "$type": "Document",
@@ -319,8 +305,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\MyContextModelSnapshot.cs",
               "ViewState": "AQIAAMADAAAAAAAAACBjwMkDAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:54:04.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:54:04.947Z"
             },
             {
               "$type": "Document",
@@ -332,8 +317,7 @@
               "RelativeToolTip": "BookStore\\Migrations\\20240728113006_User.cs",
               "ViewState": "AQIAAJ0BAAAAAAAAAAAIwKoBAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:37:17.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:37:17.342Z"
             },
             {
               "$type": "Document",
@@ -345,8 +329,7 @@
               "RelativeToolTip": "BookStore\\Models\\Language.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAAwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:24:27.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:24:27.527Z"
             },
             {
               "$type": "Document",
@@ -380,8 +363,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\LanguageCategoryController.cs",
               "ViewState": "AQIAAG8AAAAAAAAAAAAUwH8AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:29:15.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:29:15.391Z"
             },
             {
               "$type": "Document",
@@ -393,8 +375,7 @@
               "RelativeToolTip": "BookStore\\Controllers\\LanguageController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:28:25.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:28:25.594Z"
             },
             {
               "$type": "Document",
@@ -406,8 +387,7 @@
               "RelativeToolTip": "BookStore\\Models\\MyContext.cs",
               "ViewState": "AQIAAH8AAAAAAAAAAAAcwJEAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:26:52.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:26:52.816Z"
             },
             {
               "$type": "Document",
@@ -419,8 +399,7 @@
               "RelativeToolTip": "BookStore\\Models\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:26:29.766Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:26:29.766Z"
             },
             {
               "$type": "Document",
@@ -432,8 +411,7 @@
               "RelativeToolTip": "BookStore\\Models\\LanguageCategory.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T10:24:57.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T10:24:57.612Z"
             }
           ]
         }
