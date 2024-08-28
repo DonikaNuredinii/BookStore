@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 
 const Account = () => {
@@ -17,6 +18,7 @@ const Account = () => {
   });
   const [action, setAction] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -102,6 +104,7 @@ const Account = () => {
       .then((response) => {
         toast.success("User registered successfully!");
         clearForm();
+        navigate('/login'); // Redirect after successful registration
       })
       .catch((error) => {
         toast.error("Error registering user: " + error.message);
@@ -123,9 +126,9 @@ const Account = () => {
       })
       .then((response) => {
         const token = response.data.token;
-        localStorage.setItem("token", token); // Store token in localStorage
+        localStorage.setItem("token", token); 
         toast.success("Login successful!");
-        // Redirect to dashboard or store the user information as needed
+        navigate('/account-settings'); // Redirect after successful login
       })
       .catch((error) => {
         toast.error("Invalid username or password.");
@@ -149,7 +152,7 @@ const Account = () => {
     <div className="container-logIn">
       <ToastContainer />
       <div className={`wrapper ${action}`}>
-        <div className="form-box logIn">
+        <div className={`form-box logIn ${action === "" ? "active" : ""}`}>
           <form onSubmit={handleLogin} className="accountform">
             <h1>Log In</h1>
             <div className="inputs-logIn">
@@ -174,7 +177,7 @@ const Account = () => {
             </div>
             <div className="remember-forgot">
               <label>
-                <input type="checkbox" />Remember me
+                <input type="checkbox" /> Remember me
               </label>
               <a href="#">Forgot password?</a>
             </div>
@@ -189,7 +192,7 @@ const Account = () => {
           </form>
         </div>
 
-        <div className="form-box register">
+        <div className={`form-box register ${action === "active" ? "active" : ""}`}>
           <form onSubmit={handleSubmit} className="accountform">
             <h1>Sign Up</h1>
             <div className="inputs-logIn-row">
@@ -212,30 +215,31 @@ const Account = () => {
             </div>
             <div className="inputs-logIn">
               <input
-                type="text"
+                type="tel"
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                required
               />
             </div>
             <div className="error-message">{formErrors.phoneNumber}</div>
-            <div className="inputs-logIn-row">
+            <div className="inputs-logIn">
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
+            </div>
+            <div className="error-message">{formErrors.email}</div>
+            <div className="inputs-logIn">
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-            </div>
-            <div className="inputs-login-row-error">
-              <div className="error-message">{formErrors.email}</div>
-              <div className="error-message">{formErrors.username}</div>
             </div>
             <div className="inputs-logIn">
               <input
@@ -250,10 +254,9 @@ const Account = () => {
               <input
                 type="password"
                 placeholder="Confirm Password"
-                name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                required
+                name="confirmPassword"
               />
             </div>
             <div className="error-message">{formErrors.confirmPassword}</div>
@@ -261,12 +264,11 @@ const Account = () => {
               <label>
                 <input
                   type="checkbox"
-                  name="agreeTerms"
                   checked={formData.agreeTerms}
                   onChange={handleChange}
-                  required
-                />
-                I agree to the terms & conditions
+                  name="agreeTerms"
+                />{" "}
+                I agree to the <a href="#">terms and conditions</a>
               </label>
             </div>
             <button type="submit" className="acc-button">
