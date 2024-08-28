@@ -32,6 +32,8 @@ namespace BookStore.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<LanguageCategory> LanguageCategories { get; set; }
+        public DbSet<LanguageBook> LanguageBooks { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -145,6 +147,19 @@ namespace BookStore.Models
                 .HasOne(lc => lc.Category)
                 .WithMany(c => c.LanguageCategories)
                 .HasForeignKey(lc => lc.CategoryId);
+            modelBuilder.Entity<LanguageBook>()
+              .HasKey(lb => lb.LanguageBookID);
+
+            modelBuilder.Entity<LanguageBook>()
+                .HasOne(lb => lb.Book)
+                .WithMany(b => b.LanguageBooks)
+                .HasForeignKey(lb => lb.BookID);
+
+            modelBuilder.Entity<LanguageBook>()
+                .HasOne(lb => lb.Language)
+                .WithMany(l => l.LanguageBooks)
+                .HasForeignKey(lb => lb.LanguageID);
+
 
 
 

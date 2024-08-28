@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SendGrid.Helpers.Mail;
 
 namespace WebApplication1.Controllers
 {
@@ -40,6 +41,7 @@ namespace WebApplication1.Controllers
             });
         }
 
+
         [HttpGet("{CategoryId}")]
         public async Task<ActionResult<Category>> GetCategory(int CategoryId)
         {
@@ -50,6 +52,17 @@ namespace WebApplication1.Controllers
             }
             return category;
         }
+        [HttpGet("GetCategoriesByLanguage/{languageId}")]
+        public IActionResult GetCategoriesByLanguage(int languageId)
+        {
+            var categories = _categoriesContext.LanguageCategories
+                .Where(lc => lc.LanguageId == languageId)
+                .Select(lc => lc.Category)
+                .ToList();
+
+            return Ok(categories);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)

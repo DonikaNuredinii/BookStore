@@ -40,6 +40,7 @@ namespace WebApplication1.Controllers
             return Ok(books);
         }
 
+
         [HttpGet("{bookID}")]
         public async Task<ActionResult<BookResponse>> GetBook(int bookID)
         {
@@ -66,6 +67,22 @@ namespace WebApplication1.Controllers
             };
 
             return Ok(result);
+        }
+        [HttpGet("GetBooksByLanguage/{languageId}")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByLanguage(int languageId)
+        {
+            var books = await _booksContext.LanguageBooks
+                .Include(lb => lb.Book)
+                .Where(lb => lb.LanguageID == languageId)
+                .Select(lb => lb.Book)
+                .ToListAsync();
+
+            if (!books.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(books);
         }
 
         [HttpPost]

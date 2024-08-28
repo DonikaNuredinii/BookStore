@@ -84,6 +84,31 @@ namespace BookStore.Controllers
             return Ok(languageCategory);
         }
 
+        // GET: api/LanguageCategory/GetCategoriesByLanguage/1
+        [HttpGet("GetCategoriesByLanguage/{languageId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetCategoriesByLanguage(int languageId)
+        {
+            var categories = await _context.LanguageCategories
+                .Where(lc => lc.LanguageId == languageId)
+                .Include(lc => lc.Category)  // Include Category to get full category data
+                .Select(lc => new
+                {
+                    lc.Category.CategoryId,
+                    lc.Category.Genre,
+                    lc.Category.CategoryDescription,
+                    lc.Category.CreatioDate
+                })
+                .Distinct()  // Ensure no duplicate categories
+                .ToListAsync();
+
+            if (!categories.Any())
+            {
+                return NotFound("No categories found for the specified language.");
+            }
+
+            return Ok(categories);
+        }
+
         // POST: api/LanguageCategory
         [HttpPost]
         public async Task<ActionResult<LanguageCategory>> PostLanguageCategory(LanguageCategory languageCategory)

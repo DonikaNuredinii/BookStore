@@ -574,3 +574,4 @@ C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BCrypt.Net-Nex
 C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\System.Text.Json.dll

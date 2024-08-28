@@ -34,7 +34,7 @@ namespace BookStore.Controllers
                     {
                         cb.Book.BookID,
                         cb.Book.Title,
-                         cb.Book.Image,  
+                        cb.Book.Image,
                         cb.Book.Price,
                         Authors = cb.Book.BookAuthors.Select(ba => new
                         {
@@ -90,6 +90,7 @@ namespace BookStore.Controllers
 
             return Ok(categoryBook);
         }
+
 
         // POST: api/CategoryBooks
         [HttpPost]
