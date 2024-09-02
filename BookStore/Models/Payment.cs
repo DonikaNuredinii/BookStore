@@ -1,19 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Models
 {
     public class Payment
     {
+        [Key]
         public int PaymentID { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Amount { get; set; }
+
+        [Required]
         public string PaymentMethod { get; set; }
-        public string CardNumber { get; set; }
-        public string ExpiryDate { get; set; }
-        public string CVV { get; set; }
 
+        [StringLength(4)]
+        public string LastFourDigits { get; set; } 
 
-        [ForeignKey("OrdersId")]
+        [ForeignKey("Orders")]
         public int OrdersId { get; set; }
-        
+        public virtual Orders Orders { get; set; }
+
+        public string TransactionID { get; set; } 
     }
 }

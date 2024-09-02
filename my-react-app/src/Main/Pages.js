@@ -6,20 +6,19 @@ import Footer from "./Footer";
 import Buttons from "../Components/Buttons";
 import Account from "../Main/Account";
 import AccountSettings from "../Main/AccountSettings";
-
 import Contact from "../Main/Contact";
 import Categories from "../Main/Categories";
 import GiftCard from "../Main/GiftCard";
 import Cart from "../Main/Cart";
 import Accessories from "./Accessories";
 import AuthorList from "./AuthorList";
-import CheckoutForm from "./CheckoutForm";
 import AuthorDetails from "./AuthorDetails";
 import Invoice from "./Invoice";
 import EbookList from "./EbookList";
 import EbookDetails from "./EbookDetails";
 import BookDetails from "./BookDetails";
 import WishlistPage from "./WishlistPage";
+import StripeContainer from "../Components/StripeContainer";
 import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
 
 function Pages() {
@@ -39,7 +38,34 @@ function Pages() {
   }, [cart]);
 
   const addToCart = (item) => {
-    setCart((prevCart) => [...prevCart, item]);
+    setCart((prevCart) => {
+      // Check if the item already exists in the cart
+      const existingItemIndex = prevCart.findIndex(
+        (cartItem) => cartItem.bookId === item.bookId
+      );
+
+      if (existingItemIndex !== -1) {
+        // If it exists, update the quantity
+        const updatedCart = [...prevCart];
+        updatedCart[existingItemIndex].quantity += item.quantity || 1;
+        return updatedCart;
+      }
+
+      // If it doesn't exist, add the new item
+      const newItem = {
+        bookId: item.bookId ?? null, // Ensure this is correctly set
+        accessoriesID: item.accessoriesID ?? null,
+        giftCardId: item.giftCardId ?? null,
+        quantity: item.quantity || 1,
+        image: item.image || "",
+        price: item.price || 0,
+        title: item.title || "No Title",
+      };
+
+      console.log("New item added to cart:", newItem); // Debug log
+
+      return [...prevCart, newItem];
+    });
   };
 
   const Toggle = () => {
@@ -82,7 +108,8 @@ function Pages() {
         />
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="/checkout" element={<CheckoutForm />} />
+        <Route path="/checkout" element={<StripeContainer />} />{" "}
+        {/* Use StripeContainer */}
         <Route path="/invoice" element={<Invoice />} />
         <Route
           path="/accessories"

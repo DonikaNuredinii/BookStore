@@ -1060,13 +1060,12 @@ form h1 {
   border: 0.5px solid #e2e2e2;
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease; 
+  transition: box-shadow 0.3s ease;
 }
 
 .inputs-logIn-row input:focus {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 .accountform {
   width: 550px;
@@ -1085,15 +1084,13 @@ form h1 {
   margin: 5px 0 10px;
   border: 0.5px solid #e2e2e2;
   border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: box-shadow 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .inputs-logIn input:focus {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .inputs-logIn-row input::placeholder {
   color: #666;
@@ -1996,10 +1993,10 @@ form .signUp-link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  margin-right: 10px;
+  padding: 30px;
+  margin: 40px;
   background-color: #f7f7f7;
-  border: 1px solid #ddd;
+  border: 1px solid #1d6a963e;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 500px;
@@ -2012,7 +2009,24 @@ form .signUp-link {
   border-radius: 40%;
   margin-bottom: 10px;
 }
+.apply-gift-card-button {
+  background-color: #030e26;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
+.apply-gift-card-button:hover {
+  background-color: #1d6a96;
+  transform: scale(1.05);
+  color: #ffffff;
+}
 .design-options {
   display: flex;
   margin-bottom: 50px;
@@ -2030,7 +2044,7 @@ form .signUp-link {
   font-family: Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
-  color: #030e26;
+  color: #0f4365;
   text-align: left;
 }
 
@@ -2273,7 +2287,6 @@ form .signUp-link {
   font-weight: bold;
   margin-left: 50%;
 }
-
 .cart-summary {
   margin-top: 20px;
   text-align: right;
@@ -2389,6 +2402,7 @@ form .signUp-link {
   }
 }
 /*CheckOut*/
+/* Overall container styling */
 .checkout-container {
   display: flex;
   flex-direction: row;
@@ -2396,6 +2410,7 @@ form .signUp-link {
   padding: 20px;
 }
 
+/* Form styling */
 .checkout-form {
   display: flex;
   flex-direction: row;
@@ -2404,16 +2419,48 @@ form .signUp-link {
   margin: 0 auto;
 }
 
+/* Left and right section styling */
 .left-section,
 .right-section {
   flex: 1;
-  margin: 10px;
+  margin: 15px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.item-image-img {
+  width: 120px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+.summary {
+  overflow: hidden;
+}
+.summary-details {
+  position: relative;
+  padding-top: 20px;
+  margin-top: 50px;
+}
 
+.summary-details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 1px;
+  background-color: #1d6a96;
+}
+.summary ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Form group styling */
 .contact,
 .delivery,
 .shipping-method,
@@ -2422,11 +2469,13 @@ form .signUp-link {
   margin-bottom: 20px;
 }
 
+/* Heading styling */
 h2 {
   font-size: 1.2em;
   margin-bottom: 10px;
 }
 
+/* Input fields styling */
 .checkout-container input[type="email"],
 .checkout-container input[type="text"],
 .checkout-container input[type="tel"],
@@ -2436,17 +2485,30 @@ h2 {
   margin: 5px 0 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
 }
 
+/* Input focus styling */
+.checkout-container input[type="email"]:focus,
+.checkout-container input[type="text"]:focus,
+.checkout-container input[type="tel"]:focus,
+.checkout-container select:focus {
+  border-color: #0f4365;
+}
+
+/* Checkbox and radio styling */
 .checkout-container input[type="checkbox"],
 .checkout-container input[type="radio"] {
   margin-right: 10px;
 }
 
+/* Label styling */
 label {
   font-size: 0.9em;
 }
 
+/* Flexbox layout for checkboxes and radio options */
 .whatsapp-update,
 .save-info,
 .shipping-option,
@@ -2456,6 +2518,7 @@ label {
   margin-bottom: 10px;
 }
 
+/* Button styling */
 .complete-order {
   width: 100%;
   padding: 15px;
@@ -2473,10 +2536,12 @@ label {
   color: #fff;
 }
 
+/* Right section constraints */
 .right-section {
   max-width: 400px;
 }
 
+/* Order item and summary styling */
 .order-item,
 .order-summary {
   padding: 10px 0;
@@ -2486,6 +2551,8 @@ label {
 .order-summary p {
   margin: 5px 0;
 }
+
+/* Payment method styling */
 .payment-methods {
   display: flex;
   justify-content: space-around;
@@ -2495,6 +2562,16 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.credit-card-details {
+  margin: 50px;
+  margin-left: 90px;
+  width: 300px;
+}
+
+.save-payment-info {
+  margin-top: 40px;
 }
 
 .payment-method input[type="radio"] {
@@ -2518,6 +2595,27 @@ label {
 .payment-method svg {
   font-size: 2rem;
   transition: color 0.3s ease;
+}
+
+.card-element {
+  padding: 10px 14px;
+  border: 1px solid #1d6a967b;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.card-element:focus {
+  border-color: #0f4365;
+}
+
+.StripeElement--invalid {
+  border-color: #e04850;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }
 
 /* Accessories */
@@ -3916,8 +4014,6 @@ label {
   
 } */
 
-
-
 .inputs-contact {
   position: relative;
   width: 100%;
@@ -4013,7 +4109,6 @@ label {
   width: 900px;
 }
 
-
 /* App Settings */
 
 .container-accountsettings {
@@ -4040,7 +4135,6 @@ label {
   margin: 10px 0;
   color: #1d6a96;
   text-decoration: none;
-
 }
 
 .sidebar-acc a:hover {
@@ -4055,8 +4149,6 @@ label {
 
   box-shadow: 0 8px 47px rgba(0, 0, 0, 0.1), 0 4px 32px rgba(0, 0, 0, 0.1); /* More pronounced shadow effect */
 }
-
-
 
 .inputs-logIn-acc {
   margin-bottom: 15px;

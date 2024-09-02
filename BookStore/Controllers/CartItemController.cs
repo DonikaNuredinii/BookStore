@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
+using BookStore.DTOs;
 
 namespace BookStore.Controllers
 {
@@ -41,26 +42,43 @@ namespace BookStore.Controllers
 
         // POST: api/CartItems
         [HttpPost]
-        public async Task<ActionResult<CartItem>> PostCartItem(CartItem cartItem)
+        public async Task<IActionResult> CreateCartItems([FromBody] List<CartItemDto> cartItemDtos)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var cartItems = cartItemDtos.Select(cartItemDto => new CartItem
+            {
+                Quantity = cartItemDto.Quantity,
+                BookId = cartItemDto.BookId == 0 ? (int?)null : cartItemDto.BookId,
+                AccessoriesID = cartItemDto.AccessoriesID == 0 ? (int?)null : cartItemDto.AccessoriesID,
+                GiftCardId = cartItemDto.GiftCardId == 0 ? (int?)null : cartItemDto.GiftCardId
+            }).ToList();
+
             try
             {
-                _context.CartItems.Add(cartItem);
+                _context.CartItems.AddRange(cartItems);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException ex)
-            {
-                // Log the exception (not shown here for brevity)
-                return StatusCode(500, "An error occurred while saving the cart item.");
-            }
 
-            return CreatedAtAction(nameof(GetCartItem), new { id = cartItem.CartItemId }, cartItem);
+                return CreatedAtAction(nameof(GetCartItems), new { }, cartItems);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while saving the entity changes.");
+            }
         }
+
+
+
+
 
         // PUT: api/CartItems/5
         [HttpPut("{id}")]

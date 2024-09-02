@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "../App.css";
-import Invoice from "./Invoice"; // Import the Invoice component
 import { CiCreditCard1 } from "react-icons/ci";
 import { LuPackageCheck } from "react-icons/lu";
+import { FaCcVisa, FaCcMastercard, FaPaypal } from "react-icons/fa";
 
-// Import images
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const CheckoutForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
   const location = useLocation();
+
   const {
     cartData = [],
     totalPrice = 0,
@@ -21,7 +24,7 @@ const CheckoutForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     getOrderUpdatesOnWhatsApp: false,
-    country: "Kosovo",
+    countryID: "", // Updated to use countryID instead of country name
     firstName: "",
     lastName: "",
     address: "",
@@ -30,29 +33,27 @@ const CheckoutForm = () => {
     phoneNumber: "",
     saveInfo: false,
     shippingMethod: "shipping",
-    paymentMethod: "creditCard",
+    paymentMethod: "creditCard", // default to credit card
     billingSameAsShipping: true,
-    creditCardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    savePaymentInfo: false,
     giftCardCode: "",
     giftCardAmount: 0,
+    discountID: null,
+    giftCardID: null,
   });
 
   const [currentDiscountedPrice, setCurrentDiscountedPrice] =
     useState(discountedPrice);
-
-  const [orderDetails, setOrderDetails] = useState(null); // New state for order details
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    // Fetch countries from backend
     const fetchCountries = async () => {
       try {
         const response = await fetch("https://localhost:7061/api/Countries");
         if (response.ok) {
           const data = await response.json();
-          // Sort countries alphabetically by countryName
           const sortedCountries = data.sort((a, b) =>
             a.countryName.localeCompare(b.countryName)
           );
@@ -76,35 +77,23 @@ const CheckoutForm = () => {
     });
   };
 
-  const handleCountryChange = (e) => {
-    const selectedCountry = countries.find(
-      (c) => c.countryID === e.target.value
-    );
-    setFormData({
-      ...formData,
-      country: selectedCountry ? selectedCountry.countryName : "",
-    });
-  };
-
   const applyGiftCard = async () => {
+    setLoading(true);
+    setError("");
     const { giftCardCode } = formData;
     try {
-      // Fetch the gift card details
       const response = await fetch(
         `https://localhost:7061/api/GiftCard/${giftCardCode}`
       );
       if (response.ok) {
         const giftCard = await response.json();
-        if (giftCard && giftCard.IsActive) {
-          // Update the form data with gift card information
+        if (giftCard && giftCard.isActive) {
           setFormData((prevData) => ({
             ...prevData,
-            giftCardAmount: giftCard.Amount,
+            giftCardAmount: giftCard.amount,
+            giftCardID: giftCard.giftCardID, // Store GiftCardID for backend
           }));
-          // Update the discounted price
-          setCurrentDiscountedPrice(totalPrice - giftCard.Amount);
-
-          // Mark the gift card as inactive
+          setCurrentDiscountedPrice(totalPrice - giftCard.amount);
           await fetch(`https://localhost:7061/api/GiftCard/${giftCardCode}`, {
             method: "PUT",
             headers: {
@@ -112,73 +101,188 @@ const CheckoutForm = () => {
             },
             body: JSON.stringify({
               ...giftCard,
-              IsActive: false,
+              isActive: false,
             }),
           });
         } else {
-          alert("Invalid or inactive gift card");
+          setError("Invalid or inactive gift card");
         }
       } else {
-        console.error("Failed to apply gift card");
+        setError("Failed to apply gift card");
       }
     } catch (error) {
-      console.error("Error applying gift card:", error);
+      setError("Error applying gift card");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const preprocessImagePath = (path) => {
+    const imageName = path.split("/").pop();
+    try {
+      return require(`../Images/${imageName}`);
+    } catch (err) {
+      console.error(`Image not found: ${imageName}`);
+      return "/images/placeholder.jpg";
     }
   };
 
   const handleCheckout = async () => {
-    const orderDetails = {
-      ...formData,
-      totalPrice: totalPrice,
-      discountedPrice: currentDiscountedPrice,
-    };
+    if (!stripe || !elements) {
+      return;
+    }
 
+    setLoading(true);
+    setError("");
+
+    // Create order first
     try {
-      const response = await fetch("https://localhost:7061/api/Order", {
+      const orderResponse = await fetch("https://localhost:7061/api/Orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(orderDetails),
+        body: JSON.stringify({
+          OrderDate: new Date().toISOString(),
+          Address: formData.address,
+          City: formData.city,
+          CountryID: formData.countryID,
+          ZipCode: formData.postalCode,
+          DiscountID: formData.discountID,
+          GiftCardID: formData.giftCardID,
+        }),
       });
-      if (response.ok) {
-        console.log("Order placed successfully");
-        setOrderDetails(orderDetails); // Set order details for invoice
-      } else {
-        console.error("Failed to place order");
+
+      if (!orderResponse.ok) {
+        throw new Error("Failed to create order");
+      }
+
+      const createdOrder = await orderResponse.json();
+
+      // Proceed with payment only if the order is successfully created
+      if (formData.paymentMethod === "creditCard") {
+        // Stripe payment logic
+        const paymentResponse = await fetch(
+          "https://localhost:7061/api/Payments",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              OrdersId: createdOrder.OrdersId,
+              Amount: currentDiscountedPrice,
+              PaymentMethod: "creditCard",
+              LastFourDigits: "", // Set later based on actual payment
+              PaymentMethodId: "", // Set with actual Stripe PaymentMethod ID
+            }),
+          }
+        );
+
+        if (!paymentResponse.ok) {
+          throw new Error("Failed to process payment");
+        }
+
+        const cardElement = elements.getElement(CardElement);
+        const paymentIntentData = await paymentResponse.json();
+        const paymentResult = await stripe.confirmCardPayment(
+          paymentIntentData.clientSecret,
+          {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: `${formData.firstName} ${formData.lastName}`,
+                email: formData.email,
+                address: {
+                  line1: formData.address,
+                  city: formData.city,
+                  postal_code: formData.postalCode,
+                  country: formData.countryID,
+                },
+              },
+            },
+          }
+        );
+
+        if (paymentResult.error) {
+          setError(`Payment failed: ${paymentResult.error.message}`);
+        } else if (paymentResult.paymentIntent.status === "succeeded") {
+          setSuccessMessage("Payment successful! Your order has been placed.");
+          // Optional: Save the transaction details to the backend
+        }
+      } else if (formData.paymentMethod === "paypal") {
+        // Simulate PayPal payment handling
+        window.paypal
+          .Buttons({
+            createOrder: (data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: currentDiscountedPrice.toString(), // Use current discounted price
+                    },
+                  },
+                ],
+              });
+            },
+            onApprove: (data, actions) => {
+              return actions.order.capture().then((details) => {
+                setSuccessMessage(
+                  "Payment successful! Your order has been placed."
+                );
+                // You can handle saving the transaction details to your backend here
+              });
+            },
+            onError: (err) => {
+              setError("PayPal payment failed.");
+            },
+          })
+          .render("#paypal-button");
+      } else if (formData.paymentMethod === "cashOnDelivery") {
+        // Handle Cash on Delivery
+        setOrderDetails(createdOrder);
+        setLoading(false);
+        setSuccessMessage(
+          "Order placed! Payment will be collected on delivery."
+        );
       }
     } catch (error) {
-      console.error("Error placing order:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.paymentMethod === "creditCard") {
-      // Handle credit card payment logic here
-    }
     handleCheckout();
   };
 
-  const preprocessImagePath = (path) => {
-    if (!path) {
-      console.warn("Image path is not defined");
-      return null; // Return null or a default image
-    }
-
-    const imageName = path.split("/").pop();
-    try {
-      return images(`./${imageName}`);
-    } catch (err) {
-      console.error(`Image not found: ${imageName}`);
-      return null; // Return null or a default image
-    }
+  const cardElementOptions = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "Arial, sans-serif",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+        padding: "10px 14px",
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
   };
 
   return (
     <div className="checkout-container">
       {!orderDetails ? (
-        <form className="checkout-form" onSubmit={handleSubmit}>
+        <form
+          className="checkout-form"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
           <div className="left-section">
             <div className="contact">
               <h2>Contact</h2>
@@ -186,27 +290,33 @@ const CheckoutForm = () => {
                 type="email"
                 name="email"
                 placeholder="Email or mobile phone number"
+                className="form-input"
                 value={formData.email}
                 onChange={handleChange}
+                required
+                autoComplete="email"
               />
               <div className="whatsapp-update">
                 <input
                   type="checkbox"
                   name="getOrderUpdatesOnWhatsApp"
                   id="whatsapp"
+                  className="form-checkbox"
                   checked={formData.getOrderUpdatesOnWhatsApp}
                   onChange={handleChange}
                 />
                 <label htmlFor="whatsapp">Get order updates on WhatsApp</label>
               </div>
             </div>
-
             <div className="delivery">
               <h2>Delivery</h2>
               <select
-                name="country"
-                value={formData.country}
+                name="countryID"
+                value={formData.countryID}
+                className="form-select"
                 onChange={handleChange}
+                required
+                autoComplete="country"
               >
                 {countries.map((country) => (
                   <option key={country.countryID} value={country.countryID}>
@@ -214,54 +324,71 @@ const CheckoutForm = () => {
                   </option>
                 ))}
               </select>
-
               <input
                 type="text"
                 name="firstName"
                 placeholder="First name"
+                className="form-input"
                 value={formData.firstName}
                 onChange={handleChange}
+                required
+                autoComplete="given-name"
               />
               <input
                 type="text"
                 name="lastName"
                 placeholder="Last name"
+                className="form-input"
                 value={formData.lastName}
                 onChange={handleChange}
+                required
+                autoComplete="family-name"
               />
               <input
                 type="text"
                 name="address"
                 placeholder="Address"
+                className="form-input"
                 value={formData.address}
                 onChange={handleChange}
+                required
+                autoComplete="address-line1"
               />
               <input
                 type="text"
                 name="postalCode"
                 placeholder="Postal code"
+                className="form-input"
                 value={formData.postalCode}
                 onChange={handleChange}
+                required
+                autoComplete="postal-code"
               />
               <input
                 type="text"
                 name="city"
                 placeholder="City"
+                className="form-input"
                 value={formData.city}
                 onChange={handleChange}
+                required
+                autoComplete="address-level2"
               />
               <input
                 type="tel"
                 name="phoneNumber"
                 placeholder="Phone number for order updates"
+                className="form-input"
                 value={formData.phoneNumber}
                 onChange={handleChange}
+                autoComplete="tel"
               />
               <div className="save-info">
                 <input
                   type="checkbox"
                   name="saveInfo"
                   id="save-info"
+                  className="form-checkbox"
                   checked={formData.saveInfo}
                   onChange={handleChange}
                 />
@@ -270,7 +397,6 @@ const CheckoutForm = () => {
                 </label>
               </div>
             </div>
-
             <div className="payment">
               <h2>Payment</h2>
               <p>Select a payment method below.</p>
@@ -281,6 +407,7 @@ const CheckoutForm = () => {
                     name="paymentMethod"
                     id="creditCard"
                     value="creditCard"
+                    className="form-radio"
                     checked={formData.paymentMethod === "creditCard"}
                     onChange={handleChange}
                   />
@@ -289,32 +416,16 @@ const CheckoutForm = () => {
                   </label>
                   {formData.paymentMethod === "creditCard" && (
                     <div className="credit-card-details">
-                      <input
-                        type="text"
-                        name="creditCardNumber"
-                        placeholder="Credit card number"
-                        value={formData.creditCardNumber}
-                        onChange={handleChange}
-                      />
-                      <input
-                        type="text"
-                        name="expiryDate"
-                        placeholder="Expiry date (MM / YY)"
-                        value={formData.expiryDate}
-                        onChange={handleChange}
-                      />
-                      <input
-                        type="text"
-                        name="cvv"
-                        placeholder="CVV / CVC"
-                        value={formData.cvv}
-                        onChange={handleChange}
+                      <CardElement
+                        options={cardElementOptions}
+                        className="card-element"
                       />
                       <div className="save-payment-info">
                         <input
                           type="checkbox"
                           name="savePaymentInfo"
                           id="savePaymentInfo"
+                          className="form-checkbox"
                           checked={formData.savePaymentInfo}
                           onChange={handleChange}
                         />
@@ -329,35 +440,69 @@ const CheckoutForm = () => {
                   <input
                     type="radio"
                     name="paymentMethod"
+                    id="paypal"
+                    value="paypal"
+                    className="form-radio"
+                    checked={formData.paymentMethod === "paypal"}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="paypal">
+                    <FaPaypal />
+                  </label>
+                  {formData.paymentMethod === "paypal" && (
+                    <div id="paypal-button"></div>
+                  )}
+                </div>
+                <div className="payment-method">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
                     id="cashOnDelivery"
                     value="cashOnDelivery"
+                    className="form-radio"
                     checked={formData.paymentMethod === "cashOnDelivery"}
                     onChange={handleChange}
                   />
                   <label htmlFor="cashOnDelivery">
                     <LuPackageCheck />
                   </label>
+                  {formData.paymentMethod === "cashOnDelivery" && (
+                    <p className="payment-message">Payment on delivery</p>
+                  )}
                 </div>
               </div>
             </div>
-
             <div className="gift-card">
               <h2>Gift Card</h2>
               <input
                 type="text"
                 name="giftCardCode"
                 placeholder="Gift card code"
+                className="gift-card-input"
                 value={formData.giftCardCode}
                 onChange={handleChange}
               />
-              <button type="button" onClick={applyGiftCard}>
+              <button
+                type="button"
+                onClick={applyGiftCard}
+                className="apply-gift-card-button"
+                disabled={loading}
+              >
                 Apply Gift Card
               </button>
             </div>
-
-            <button type="submit">Place Order</button>
+            {error && <p className="error-message">{error}</p>}
+            {successMessage && (
+              <p className="success-message">{successMessage}</p>
+            )}
+            <button
+              type="submit"
+              className="apply-gift-card-button"
+              disabled={loading}
+            >
+              {loading ? "Processing..." : "Place Order"}
+            </button>
           </div>
-
           <div className="right-section">
             <div className="summary">
               <h2>Order Summary</h2>
@@ -366,37 +511,40 @@ const CheckoutForm = () => {
                   <li key={index}>
                     <div className="item-image">
                       <img
-                        src={preprocessImagePath(item.imagePath)}
+                        src={preprocessImagePath(item.image)}
                         alt={item.title}
+                        className="item-image-img"
                       />
                     </div>
                     <div className="item-details">
                       <p>{item.title}</p>
                       <p>
-                        {item.quantity} x $
-                        {item.rate ? item.rate.toFixed(2) : "0.00"}
+                        {item.quantity} x €
+                        {item.price ? item.price.toFixed(2) : "0.00"}
                       </p>
                     </div>
                     <div className="item-total">
-                      $
-                      {item.rate
-                        ? (item.quantity * item.rate).toFixed(2)
+                      €
+                      {item.price
+                        ? (item.quantity * item.price).toFixed(2)
                         : "0.00"}
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className="summary-details">
-                <p>Subtotal: ${totalPrice.toFixed(2)}</p>
-                <p>Discount: ${discount.toFixed(2)}</p>
-                <p>Gift Card Applied: ${formData.giftCardAmount.toFixed(2)}</p>
-                <p>Total: ${currentDiscountedPrice.toFixed(2)}</p>
-              </div>
+            </div>
+            <div className="summary-details">
+              <p>Subtotal: €{totalPrice.toFixed(2)}</p>
+              <p>Discount: €{discount.toFixed(2)}</p>
+              <p>Gift Card Applied: €{formData.giftCardAmount.toFixed(2)}</p>
+              <p>Total: €{currentDiscountedPrice.toFixed(2)}</p>
             </div>
           </div>
         </form>
       ) : (
-        <Invoice orderDetails={orderDetails} cartData={cartData} /> // Render Invoice component
+        <div className="invoice-container">
+          <p>Your order has been placed successfully!</p>
+        </div>
       )}
     </div>
   );

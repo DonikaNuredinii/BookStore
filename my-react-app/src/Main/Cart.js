@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 
-// Import images
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const Cart = ({ cart = [], setCart }) => {
@@ -10,18 +9,20 @@ const Cart = ({ cart = [], setCart }) => {
   const [discount, setDiscount] = useState(0);
   const navigate = useNavigate();
 
+  // Load cart from localStorage on mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storedCart);
     setQuantities(storedCart.map(() => 1));
   }, [setCart]);
 
+  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // Fetch discount from backend
   useEffect(() => {
-    // Fetch discount from backend
     const fetchDiscount = async () => {
       try {
         const response = await fetch("https://localhost:7061/api/Discounts");
@@ -29,7 +30,7 @@ const Cart = ({ cart = [], setCart }) => {
           const data = await response.json();
           setDiscount(data.discountAmount || 0);
         } else {
-          console.error("Failed to fetch discount");
+          console.error("Failed to fetch discount:", response.statusText);
         }
       } catch (error) {
         console.error("Error fetching discount:", error);
@@ -39,6 +40,7 @@ const Cart = ({ cart = [], setCart }) => {
     fetchDiscount();
   }, []);
 
+  // Handle quantity change
   const handleQuantityChange = (index, delta) => {
     setQuantities((prevQuantities) =>
       prevQuantities.map((quantity, i) =>
@@ -47,6 +49,7 @@ const Cart = ({ cart = [], setCart }) => {
     );
   };
 
+  // Preprocess image paths
   const preprocessImagePath = (path) => {
     if (!path) {
       console.warn("Image path is not defined");
@@ -62,16 +65,52 @@ const Cart = ({ cart = [], setCart }) => {
     }
   };
 
+  const saveCartItemsToBackend = async (cartData) => {
+    // Now sending an array of cart items
+    const formattedCartData = cartData.map((item) => ({
+      Quantity: item.quantity,
+      BookId: item.bookId || null,
+      AccessoriesID: item.accessoriesID || null,
+      GiftCardId: item.giftCardId || null,
+    }));
+
+    console.log("Data being sent to backend:", formattedCartData);
+
+    try {
+      const response = await fetch("https://localhost:7061/api/CartItems", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedCartData),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Failed to save cart items: ${errorText}`);
+        return false;
+      }
+
+      console.log("Cart items saved successfully!");
+      return true;
+    } catch (error) {
+      console.error("Error saving cart items:", error);
+      return false;
+    }
+  };
+
+  // Handle checkout
   const handleCheckout = async () => {
     const cartData = cart.map((item, index) => ({
+      cartItemId: item.cartItemId || 0,
       quantity: quantities[index],
-      bookId: item.book ? item.book.id : null,
-      accessoriesId: item.accessories ? item.accessories.id : null,
-      giftCardId: item.giftCard ? item.giftCard.id : null,
+      bookId: item.bookId ?? null,
+      accessoriesID: item.accessoriesID ?? null,
+      giftCardId: item.giftCardId ?? null,
       image: item.image || "",
       price: item.price || 0,
       title: item.title || "No Title",
     }));
+
+    console.log("Cart data prepared for checkout:", cartData);
 
     const totalPrice = cartData.reduce(
       (acc, item, index) => acc + item.price * quantities[index],
@@ -80,35 +119,23 @@ const Cart = ({ cart = [], setCart }) => {
 
     const discountedPrice = totalPrice * (1 - discount);
 
-    try {
-      const response = await fetch("https://localhost:7061/api/CartItems", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cartData),
-      });
-
-      if (response.ok) {
-        console.log("Checkout successful!");
-        navigate("/CheckoutForm", {
-          state: {
-            cartData: cartData,
-            totalPrice: totalPrice,
-            discountedPrice: discountedPrice,
-            discount: discount,
-          },
-        });
-        setCart([]);
-        setQuantities([]);
-      } else {
-        const errorDetails = await response.text();
-        console.error("Error checking out:", response.status);
-        console.log("Error details:", errorDetails);
-      }
-    } catch (error) {
-      console.error("Error checking out:", error);
+    const savedSuccessfully = await saveCartItemsToBackend(cartData);
+    if (!savedSuccessfully) {
+      alert("Failed to save cart items. Please try again.");
+      return;
     }
+
+    navigate("/checkout", {
+      state: {
+        cartData: cartData,
+        totalPrice: totalPrice,
+        discountedPrice: discountedPrice,
+        discount: discount,
+      },
+    });
   };
 
+  // Remove item from cart
   const removeFromCart = (index) => {
     const newCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
     const newQuantities = [
@@ -119,6 +146,7 @@ const Cart = ({ cart = [], setCart }) => {
     setQuantities(newQuantities);
   };
 
+  // Calculate total price
   const calculateTotalPrice = () => {
     return cart.reduce(
       (total, item, index) => total + item.price * quantities[index],
@@ -126,6 +154,7 @@ const Cart = ({ cart = [], setCart }) => {
     );
   };
 
+  // Calculate discounted price
   const calculateDiscountedPrice = () => {
     const totalPrice = calculateTotalPrice();
     return totalPrice * (1 - discount);
@@ -180,7 +209,7 @@ const Cart = ({ cart = [], setCart }) => {
       <div className="cart-summary">
         <p>
           {discount > 0 &&
-            `Discount (${discount * 100}%): -€${(
+            `Discount (${(discount * 100).toFixed(0)}%): -€${(
               calculateTotalPrice() * discount
             ).toFixed(2)}`}
         </p>

@@ -7,7 +7,7 @@ import "../App.css";
 import BookBanner from "../Components/BookBaner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import axios from "axios";
-import { useWishlist } from "../Components/Wishlist"; 
+import { useWishlist } from "../Components/Wishlist";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
@@ -21,12 +21,11 @@ const HomePage = ({ addToCart }) => {
   const [bookAuthors, setBookAuthors] = useState([]);
   const [showCartModal, setShowCartModal] = useState(false);
   const [showWishlistModal, setShowWishlistModal] = useState(false);
-  const [selectedBooks, setSelectedBooks] = useState([]); 
-  const [message, setMessage] = useState(""); 
+  const [selectedBooks, setSelectedBooks] = useState([]);
+  const [message, setMessage] = useState("");
   const [messageTimeout, setMessageTimeout] = useState(null);
   const navigate = useNavigate();
 
- 
   const { isBookInWishlist, removeFromWishlist, addToWishlist } = useWishlist();
 
   const closeModal = () => {
@@ -155,7 +154,7 @@ const HomePage = ({ addToCart }) => {
   const handleFavoriteClick = (e, bookID) => {
     e.stopPropagation();
     const book = books.find((b) => b.bookID === bookID);
-  
+
     if (isBookInWishlist(bookID)) {
       removeFromWishlist(bookID);
       setSelectedBooks((prevSelectedBooks) =>
@@ -163,11 +162,11 @@ const HomePage = ({ addToCart }) => {
       );
       setMessage("Book removed from wishlist");
       setShowWishlistModal(false);
-  
+
       if (messageTimeout) {
-        clearTimeout(messageTimeout); 
+        clearTimeout(messageTimeout);
       }
-      setMessageTimeout(setTimeout(() => setMessage(""), 1000)); 
+      setMessageTimeout(setTimeout(() => setMessage(""), 1000));
     } else {
       addToWishlist(book);
       setSelectedBooks((prevSelectedBooks) => [...prevSelectedBooks, book]);
@@ -177,10 +176,23 @@ const HomePage = ({ addToCart }) => {
 
   const handleAddToCartClick = (e, book) => {
     e.stopPropagation();
-    addToCart(book);
+
+    const itemToAdd = {
+      bookId: book.bookID ?? null,
+      accessoriesID: book.accessoriesID ?? null,
+      giftCardId: book.giftCardId ?? null,
+      quantity: 1,
+      image: book.image ?? "",
+      price: book.price ?? 0,
+      title: book.title ?? "No Title",
+    };
+
+    console.log("Item to be added to cart:", itemToAdd);
+
+    addToCart(itemToAdd);
     setSelectedBook(book);
     setShowModal(true);
-  }; 
+  };
 
   const textSpring = useSpring({
     from: { opacity: 0, transform: "translateY(20px)" },
@@ -203,7 +215,7 @@ const HomePage = ({ addToCart }) => {
   const handleSubmit = (e, book) => {
     e.stopPropagation();
     addToCart(book);
-    setSelectedBooks([book]); 
+    setSelectedBooks([book]);
     setShowCartModal(true);
     if (isBookInWishlist(book.bookID)) {
       removeFromWishlist(book.bookID);
@@ -211,12 +223,12 @@ const HomePage = ({ addToCart }) => {
   };
   const handleAddAllToCart = () => {
     selectedBooks.forEach((book) => {
-      addToCart(book);          
-      removeFromWishlist(book.bookID); 
+      addToCart(book);
+      removeFromWishlist(book.bookID);
     });
     setShowWishlistModal(false);
   };
-  
+
   return (
     <>
       <div className="first-section">
@@ -281,7 +293,7 @@ const HomePage = ({ addToCart }) => {
                     className="book-image"
                   />
                   <div className="icon-container">
-                  {isBookInWishlist(book.bookID) ? (
+                    {isBookInWishlist(book.bookID) ? (
                       <MdFavorite
                         className="favorite-icon"
                         onClick={(e) => handleFavoriteClick(e, book.bookID)}
@@ -315,8 +327,8 @@ const HomePage = ({ addToCart }) => {
                 <div className="card-content">
                   <h3 className="card-title">{book.title}</h3>
                   <p className="card-author">
-                    Author:{" "}
-                    Author: {book.authors ? book.authors.join(", ") : "Unknown"}
+                    Author: Author:{" "}
+                    {book.authors ? book.authors.join(", ") : "Unknown"}
                   </p>
                   <p className="card-price">Price: €{book.price}</p>
                 </div>

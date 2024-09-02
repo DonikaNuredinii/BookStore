@@ -1,11 +1,13 @@
-﻿using BookStore.Models;
+﻿using BookStore.DTOs;
+using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -30,7 +32,6 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult<Payment>> GetPayment(int PaymentID)
         {
             var payment = await _context.Payment.FindAsync(PaymentID);
-
             if (payment == null)
             {
                 return NotFound();
@@ -41,12 +42,50 @@ namespace WebApplication1.Controllers
 
         // POST: api/Payments
         [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        public async Task<ActionResult<Payment>> PostPayment([FromBody] CreatePaymentRequest request)
         {
-            _context.Payment.Add(payment);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtAction(nameof(GetPayment), new { PaymentID = payment.PaymentID }, payment);
+            // Process the payment using Stripe
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = (long)(request.Amount * 100), // Convert to cents
+                Currency = "eur",
+                PaymentMethod = request.PaymentMethodId,
+                Confirm = true,
+                Metadata = new Dictionary<string, string>
+                {
+                    { "OrderId", request.OrdersId.ToString() }
+                }
+            };
+
+            var service = new PaymentIntentService();
+            try
+            {
+                PaymentIntent paymentIntent = service.Create(options);
+
+                // Save the payment to the database
+                var payment = new Payment
+                {
+                    Amount = request.Amount,
+                    PaymentMethod = request.PaymentMethod,
+                    LastFourDigits = request.LastFourDigits,
+                    TransactionID = paymentIntent.Id,
+                    OrdersId = request.OrdersId
+                };
+
+                _context.Payment.Add(payment);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetPayment), new { PaymentID = payment.PaymentID }, payment);
+            }
+            catch (StripeException e)
+            {
+                return BadRequest(new { Error = e.StripeError.Message });
+            }
         }
 
         // DELETE: api/Payments/5

@@ -1,23 +1,23 @@
-using System.Text.Json; // Ensure this using directive is included
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using BookStore.Models;
 using BookStore.Services;
+using Stripe;
 using BookStore.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Securely configure Stripe API key
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+// Add services to the container
 builder.Services.AddDbContext<MyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDS"))
            .EnableSensitiveDataLogging());
@@ -33,7 +33,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhostAnyPort",
         policy => policy
-            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost") // Allow any localhost origin
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
@@ -55,12 +55,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Register SmtpSettings
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
-
-// Register HttpClient
-builder.Services.AddHttpClient();
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -69,12 +64,8 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-// Apply the CORS policy here
 app.UseCors("AllowLocalhostAnyPort");
-
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -1,8 +1,8 @@
+using BookStore.DTOs;
 using BookStore.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
             _ordersContext = ordersContext;
         }
 
+        // GET: api/Order
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
@@ -29,6 +30,7 @@ namespace WebApplication1.Controllers
             return orders;
         }
 
+        // GET: api/Order/{ordersId}
         [HttpGet("{ordersId}")]
         public async Task<ActionResult<Orders>> GetOrder(int ordersId)
         {
@@ -40,15 +42,35 @@ namespace WebApplication1.Controllers
             return order;
         }
 
+        // POST: api/Order
         [HttpPost]
-        public async Task<ActionResult<Orders>> PostOrder(Orders order)
+        public async Task<ActionResult<Orders>> CreateOrder([FromBody] OrdersDto ordersDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var order = new Orders
+            {
+                OrderDate = DateTime.Now,
+                Address = ordersDto.Address,
+                City = ordersDto.City,
+                CountryID = ordersDto.CountryID,
+                ZipCode = ordersDto.ZipCode,
+                DiscountID = ordersDto.DiscountID,
+                GiftCardID = ordersDto.GiftCardID,
+                OrderShipDate = ordersDto.OrderShipDate,
+                OrderDetails = new List<OrderDetails>()
+            };
+
             _ordersContext.Orders.Add(order);
             await _ordersContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetOrder), new { ordersId = order.OrdersId }, order);
         }
 
+        // PUT: api/Order/{ordersId}
         [HttpPut("{ordersId}")]
         public async Task<ActionResult> PutOrder(int ordersId, Orders order)
         {
@@ -71,6 +93,7 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
+        // DELETE: api/Order/{ordersId}
         [HttpDelete("{ordersId}")]
         public async Task<ActionResult> DeleteOrder(int ordersId)
         {

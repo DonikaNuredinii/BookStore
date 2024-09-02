@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStore.Models;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace WebApplication1.Controllers
 {
@@ -64,14 +63,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<GiftCard>> PostGiftCard(GiftCard giftCard)
         {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning("Invalid model state for gift card: {ModelState}", ModelState);
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    _logger.LogWarning("Invalid model state for gift card: {ModelState}", ModelState);
-                    return BadRequest(ModelState);
-                }
-
                 // Generate a new gift card code and ensure it's unique
                 string generatedCode;
                 do
@@ -93,29 +92,33 @@ namespace WebApplication1.Controllers
             }
         }
 
+        // PUT: api/GiftCard/5
         [HttpPut("{GiftCardID}")]
         public async Task<IActionResult> PutGiftCard(int GiftCardID, [FromBody] GiftCard giftCard)
         {
             if (GiftCardID != giftCard.GiftCardID)
             {
+                _logger.LogWarning("GiftCardID mismatch: {GiftCardID}", GiftCardID);
                 return BadRequest("GiftCardID mismatch");
             }
 
-            var existingGiftCard = await _context.GiftCards.FindAsync(GiftCardID);
-            if (existingGiftCard == null)
-            {
-                return NotFound();
-            }
-
-            existingGiftCard.Code = giftCard.Code;
-            existingGiftCard.Amount = giftCard.Amount;
-            existingGiftCard.RecipientName = giftCard.RecipientName;
-            existingGiftCard.IsActive = giftCard.IsActive;
-
             try
             {
+                var existingGiftCard = await _context.GiftCards.FindAsync(GiftCardID);
+                if (existingGiftCard == null)
+                {
+                    return NotFound();
+                }
+
+                existingGiftCard.Code = giftCard.Code;
+                existingGiftCard.Amount = giftCard.Amount;
+                existingGiftCard.RecipientName = giftCard.RecipientName;
+                existingGiftCard.IsActive = giftCard.IsActive;
+
                 _context.Entry(existingGiftCard).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
+
+                return NoContent();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -132,10 +135,7 @@ namespace WebApplication1.Controllers
                 _logger.LogError(ex, "Error updating gift card with ID {GiftCardID}", GiftCardID);
                 return StatusCode(500, "Internal server error");
             }
-
-            return NoContent();
         }
-
 
         // DELETE: api/GiftCard/5
         [HttpDelete("{GiftCardID}")]
