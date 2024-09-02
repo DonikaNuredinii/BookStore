@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
@@ -96,7 +97,7 @@ const Account = () => {
       Email: email,
       Username: username,
       Password: password,
-      RolesID: 2, // Assuming default role is 2 for User
+      RolesID: 3, 
     };
 
     axios
@@ -104,7 +105,7 @@ const Account = () => {
       .then((response) => {
         toast.success("User registered successfully!");
         clearForm();
-        navigate('/login'); // Redirect after successful registration
+        navigate('/login'); 
       })
       .catch((error) => {
         toast.error("Error registering user: " + error.message);
@@ -126,10 +127,13 @@ const Account = () => {
       })
       .then((response) => {
         const token = response.data.token;
-        localStorage.setItem("token", token); 
+        const userID = response.data.userID;
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userID", response.data.userId); 
         toast.success("Login successful!");
-        navigate('/account-settings'); // Redirect after successful login
+        navigate('/account-settings'); 
       })
+      
       .catch((error) => {
         toast.error("Invalid username or password.");
       });

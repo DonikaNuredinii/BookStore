@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookStore.Models;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
@@ -29,25 +30,13 @@ namespace BookStore.Controllers
         {
             try
             {
-                
-                Console.WriteLine($"Registering user: {user.Username}, RoleID: {user.RolesID}");
-
-               
                 user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
                 _usersContext.Users.Add(user);
                 await _usersContext.SaveChangesAsync();
-
                 return CreatedAtAction(nameof(GetUser), new { UserID = user.UserID }, user);
             }
             catch (Exception ex)
             {
-                
-                Console.WriteLine($"Error during registration: {ex.Message}");
-                if (ex.InnerException != null)
-                {
-                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                }
                 return StatusCode(500, new { message = "An error occurred during registration.", detail = ex.InnerException?.Message });
             }
         }
@@ -55,26 +44,25 @@ namespace BookStore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
-            Console.WriteLine("GetAllUsers endpoint hit");
             var users = await _usersContext.Users.ToListAsync();
             return Ok(users);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Login model)
-        {
-            var user = await _usersContext.Users
-                .FirstOrDefaultAsync(u => u.Username == model.Username);
+public async Task<IActionResult> Login([FromBody] Login model)
+{
+    var user = await _usersContext.Users
+        .FirstOrDefaultAsync(u => u.Username == model.Username);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
-            {
-                return Unauthorized(new { message = "Invalid username or password" });
-            }
+    if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
+    {
+        return Unauthorized(new { message = "Invalid username or password" });
+    }
 
-            var token = GenerateJwtToken(user);
+    var token = GenerateJwtToken(user);
+    return Ok(new { token, userId = user.UserID, message = "Login successful" });
+}
 
-            return Ok(new { token, message = "Login successful" });
-        }
 
         private string GenerateJwtToken(User user)
         {
@@ -85,7 +73,8 @@ namespace BookStore.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
+               
             };
 
             var token = new JwtSecurityToken(
@@ -98,6 +87,7 @@ namespace BookStore.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        [Authorize]
         [HttpGet("{UserID}")]
         public async Task<ActionResult<User>> GetUser(int UserID)
         {
@@ -109,6 +99,7 @@ namespace BookStore.Controllers
             return user;
         }
 
+        [Authorize]
         [HttpPut("{UserID}")]
         public async Task<ActionResult> PutUser(int UserID, User user)
         {

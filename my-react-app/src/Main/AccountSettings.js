@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from 'jwt-decode';
+
+
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
@@ -13,30 +15,79 @@ const AccountSettings = () => {
     username: "",
   });
   const [formErrors, setFormErrors] = useState({});
-  // const navigate = useNavigate(); 
+
+  const checkTokenValidity = () => {
+    const token = localStorage.getItem("token");
+  
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token); 
+        console.log("Decoded Token:", decodedToken);
+  
+        
+        const currentTime = Date.now() / 1000;
+  
+        
+        if (decodedToken.exp < currentTime) {
+          console.log("Token expired");
+        
+          localStorage.removeItem("token");
+          return false;
+        } else {
+          console.log("Token is valid");
+          return true; 
+        }
+      } catch (error) {
+        console.error("Error decoding token", error);
+        // If the token is invalid or malformed, remove it from localStorage
+        localStorage.removeItem("token");
+        return false;
+      }
+    } else {
+      console.log("No token found in localStorage");
+      return false;
+    }
+  };
+  
+  // Usage
+  const isTokenValid = checkTokenValidity();
+  console.log("Is token valid?", isTokenValid);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("https://localhost:7061/api/User/current", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUserData({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          phoneNumber: response.data.phoneNumber,
-          email: response.data.email,
-          username: response.data.username,
-        });
-      })
-      .catch((error) => {
-        toast.error("Error fetching user data: " + error.message);
-      });
+    const isTokenValid = checkTokenValidity();
+  
+    if (isTokenValid) {
+      const userId = localStorage.getItem("userID");
+      const token = localStorage.getItem("token");
+  
+      if (userId) {
+        axios
+          .get(`https://localhost:7061/api/User/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            setUserData({
+              firstName: response.data.firstName,
+              lastName: response.data.lastName,
+              phoneNumber: response.data.phoneNumber,
+              email: response.data.email,
+              username: response.data.username,
+            });
+          })
+          .catch((error) => {
+            toast.error("Error fetching user data: " + error.message);
+          });
+      } else {
+        toast.error("No user ID found.");
+      }
+    } else {
+      // Redirect the user to the login page if the token is not valid
+      window.location.href = "/login";
+    }
   }, []);
-
+  
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -59,6 +110,20 @@ const AccountSettings = () => {
       [name]: value,
     }));
   };
+
+
+  const handleLogout = () => {
+    // Remove user-related data from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("userID");
+  
+    // Optionally show a notification
+    toast.success("Logged out successfully!");
+  
+    // Redirect to the login page or homepage
+    window.location.href = "/account";
+  };
+  
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -88,7 +153,7 @@ const AccountSettings = () => {
     const token = localStorage.getItem("token");
 
     axios
-      .put("https://localhost:7061/api/User/update", userData, {
+      .put(`https://localhost:7061/api/User/${localStorage.getItem("userID")}`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -101,22 +166,15 @@ const AccountSettings = () => {
       });
   };
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("token");
-  //   navigate("/login"); // Redirect to login page
-  // };
-
   return (
     <div className="container-accountsettings">
       <div className="sidebar-acc">
         <a href="#">Profile</a>
         <a href="#">Notifications</a>
         <a href="#">E-books</a>
-        <a href="/account" >Log Out</a> {/* Logout link */}
+        <a href="#" onClick={handleLogout}>Log Out</a>
       </div>
-      <div className="middlepart-acc">
-        {/* Add content if needed */}
-      </div>
+      
       <div className="form-containerA">
         <h1>My Profile</h1>
         <form onSubmit={handleUpdate} className="accountsettings">
@@ -167,7 +225,7 @@ const AccountSettings = () => {
               name="username"
               value={userData.username}
               onChange={handleInputChange}
-              disabled // Disable editing username
+              disabled
             />
           </div>
           <button type="submit" className="acc-button1">
