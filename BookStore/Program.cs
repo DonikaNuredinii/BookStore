@@ -55,22 +55,33 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Build the app
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(); 
+
 app.UseRouting();
 app.UseCors("AllowLocalhostAnyPort");
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Global exception handler middleware
 app.Use(async (context, next) =>
 {
     try
@@ -88,16 +99,5 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
 
 app.Run();

@@ -581,3 +581,4 @@ C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.net.dll
 C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\RestSharp.dll
 C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.dll
 C:\Users\rusin\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.net.dll
+C:\Users\hp\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BookStore.staticwebassets.runtime.json

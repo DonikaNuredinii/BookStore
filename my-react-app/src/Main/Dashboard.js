@@ -24,7 +24,8 @@ import GiftCards from "../Dashboard-Pages/GiftCards";
 import AddGiftCard from "../Components/AddGiftCard";
 import Quotes from "../Dashboard-Pages/Quotes";
 import AddQuotes from "../Components/AddQuotes";
-
+import Ebooks from "../Dashboard-Pages/Ebooks";
+import AddEbooks from "../Components/AddEbooks";
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
 
@@ -65,6 +66,9 @@ function Dashboard() {
             <Route path="/add-GiftCard" element={<AddGiftCard />} />
             <Route path="/Quotes" element={<Quotes />} />
             <Route path="/add-Quotes" element={<AddQuotes />} />
+            <Route path="/Quotes" element={<Quotes />} />
+            <Route path="/Ebooks" element={<Ebooks />} />
+            <Route path="/add-Ebooks" element={<AddEbooks />} />
           </Routes>
         </div>
       </div>

@@ -27,6 +27,10 @@ function Sidebar() {
           <i className="bi bi-book fs-5 me-3"></i>
           <span>Libra</span>
         </Link>
+        <Link to="./Ebooks" className="list-group-item py-2 ">
+          <i class="bi bi-tablet fs-5 me-3"></i>
+          <span>Ebooks</span>
+        </Link>
         <Link to="./Categories" className="list-group-item py-2 ">
           <i class="bi bi-grid-1x2 fs-5 me-3"></i>
           <span>Kategorite</span>

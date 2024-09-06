@@ -195,7 +195,7 @@ const BookDetails = ({ addToCart }) => {
                 })}
               </div>
               <div className="book-buttons">
-                <button className="buy-now-btn" onClick={handleSubmit}>
+                <button className="favorite-btn" onClick={handleSubmit}>
                   <CiShoppingCart /> Add to Cart
                 </button>
                 <button className="favorite-btn" onClick={handleFavoriteClick}>

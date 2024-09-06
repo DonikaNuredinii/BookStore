@@ -1477,13 +1477,20 @@ form .signUp-link {
 
 @media (max-width: 768px) {
   .cards-Home {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 10px;
   }
 
   .card-item {
     max-width: 100%;
+  }
+  .card-item .dropup {
+    position: absolute;
+    bottom: -30%;
+    width: 120px;
+    height: 110%;
+    display: none;
   }
 
   .card-image {
@@ -3433,8 +3440,47 @@ label {
 .ebook-description {
   margin-bottom: 20px;
 }
-/*Responsive Ebook Details*/
+/*Responsive Ebook */
+@media (max-width: 1170px) {
+  .hero-section {
+    margin: 90px 20px;
+    gap: 20px;
+  }
+  .collage-image.large {
+    grid-area: large;
+    width: 900px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .collage-image.medium {
+    grid-area: medium;
+    width: 800px;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .collage-image.small {
+    grid-area: small;
+    width: 170px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .hero-content h1 {
+    font-size: 1.9rem;
+  }
+  .hero-content p {
+    font-size: 1.3rem;
+  }
+}
 @media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 1.3rem;
+  }
+  .hero-content p {
+    font-size: 0.8rem;
+  }
   .ebook-details-container {
     margin: 60px auto;
     padding: 15px;
@@ -3457,6 +3503,16 @@ label {
   }
 }
 @media (max-width: 480px) {
+  .hero-section {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .hero-content h1 {
+    font-size: 1.4rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
   .ebook-details-container {
     margin: 30px auto;
     padding: 10px;
@@ -3629,7 +3685,52 @@ label {
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+/*Book details responsive*/
+@media (max-width: 1024px) {
+  .book-detail-container {
+    width: 700px;
+  }
+  .book-detail-info {
+    padding: 20px;
+  }
 
+  .book-detail-info .img-box-book {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    max-height: 350px;
+  }
+
+  .book-buttons {
+    flex-direction: column;
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-detail-container {
+    width: 95%;
+    padding: 15px 10px;
+    margin: 90px auto;
+  }
+  .book-detail-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .book-detail-info .book-details h4 {
+    font-size: 1.2em;
+  }
+
+  .book-detail-info .book-details h5,
+  .book-detail-info .book-details p {
+    font-size: 0.9em;
+  }
+  .book-buttons .favorite-btn {
+    padding: 7px;
+  }
+}
+/*Wishlist*/
 .wishlist-button {
   position: fixed;
   bottom: 30px;
@@ -4186,4 +4287,13 @@ label {
   color: #1d6a96;
   background-color: #f4f4f4;
   transition: 0.5s;
+}
+.truncated-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
 }

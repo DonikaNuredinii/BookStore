@@ -147,6 +147,26 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
+        [HttpGet("Book/{bookID}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetCategoriesByBookID(int bookID)
+        {
+            var categoryBooks = await _context.CategoryBooks
+                .Where(cb => cb.BookID == bookID)
+                .Include(cb => cb.Category)
+                .Select(cb => new
+                {
+                    cb.Category.CategoryId,
+                    cb.Category.Genre
+                })
+                .ToListAsync();
+
+            if (categoryBooks == null || !categoryBooks.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(categoryBooks);
+        }
 
         private bool CategoryBookExists(int id)
         {

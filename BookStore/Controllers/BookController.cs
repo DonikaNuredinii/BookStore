@@ -3,6 +3,7 @@ using BookStore.Models;
 using BookStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -93,14 +94,16 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPut("{bookID}")]
-        public async Task<IActionResult> PutBook(int bookID, Book book)
+        public async Task<IActionResult> PutBook(int bookID, [FromBody] BookUpdateRequest request)
         {
-            if (bookID != book.BookID)
+            if (bookID != request.Book.BookID)
             {
-                return BadRequest();
+                return BadRequest("Book ID mismatch");
             }
 
+            // Fetch the existing book record
             var existingBook = await _booksContext.Books
+                .Include(b => b.BookAuthors)
                 .Include(b => b.CategoryBooks)
                 .FirstOrDefaultAsync(b => b.BookID == bookID);
 
@@ -109,25 +112,41 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            existingBook.Title = book.Title;
-            // Update other fields as necessary
+            // Update the book's basic details
+            existingBook.Title = request.Book.Title;
+            existingBook.ISBN = request.Book.ISBN;
+            existingBook.PublicationDate = request.Book.PublicationDate;
+            existingBook.PageNumber = request.Book.PageNumber;
+            existingBook.Price = request.Book.Price;
+            existingBook.Description = request.Book.Description;
+            existingBook.DateOfadition = request.Book.DateOfadition;
+            existingBook.Type = request.Book.Type;
+            existingBook.PublishingHouseId = request.Book.PublishingHouseId;
+            existingBook.StockId = request.Book.StockId;
 
-            _booksContext.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
-
-            if (book.CategoryBooks != null && book.CategoryBooks.Any())
+            // Handle the authors
+            _booksContext.BookAuthors.RemoveRange(existingBook.BookAuthors);
+            foreach (var authorId in request.AuthorIds)
             {
-                foreach (var categoryBook in book.CategoryBooks)
+                _booksContext.BookAuthors.Add(new BookAuthors
                 {
-                    _booksContext.CategoryBooks.Add(new CategoryBook
-                    {
-                        BookID = book.BookID,
-                        CategoryID = categoryBook.CategoryID
-                    });
-                }
+                    BookID = bookID,
+                    AuthorID = authorId
+                });
             }
 
-            _booksContext.Entry(existingBook).State = EntityState.Modified;
+            // Handle the categories
+            _booksContext.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
+            foreach (var categoryId in request.CategoryIds)
+            {
+                _booksContext.CategoryBooks.Add(new CategoryBook
+                {
+                    BookID = bookID,
+                    CategoryID = categoryId
+                });
+            }
 
+            // Save changes
             try
             {
                 await _booksContext.SaveChangesAsync();
@@ -146,6 +165,7 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
+
 
         [HttpDelete("{bookID}")]
         public async Task<IActionResult> DeleteBook(int bookID)

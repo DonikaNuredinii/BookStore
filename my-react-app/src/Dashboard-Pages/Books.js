@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 const Books = () => {
@@ -33,15 +34,50 @@ const Books = () => {
   const [selectedStock, setSelectedStock] = useState("");
   const [publishingHouseList, setPublishingHouseList] = useState([]);
   const [stockList, setStockList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     getAuthors();
     getPublishingHouses();
+    getCategories();
     getStocks();
     getData();
   }, []);
 
+  useEffect(() => {
+    const initializeTooltips = () => {
+      // Inside your useEffect to initialize tooltips
+      if (window.bootstrap) {
+        const tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+          new window.bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      } else {
+        console.error("Bootstrap is not properly initialized.");
+      }
+    };
+
+    if (data.length > 0) {
+      const tooltipTimeout = setTimeout(initializeTooltips, 100);
+    }
+
+    return () => {
+      const tooltips = document.querySelectorAll(".tooltip");
+      tooltips.forEach((tooltip) => tooltip.remove());
+    };
+  }, [data]);
+
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
   const getAuthors = () => {
     axios
       .get("https://localhost:7061/api/Author")
@@ -74,36 +110,54 @@ const Books = () => {
         toast.error("Failed to get stocks: " + error.message);
       });
   };
+  const getCategories = () => {
+    axios
+      .get("https://localhost:7061/api/Category")
+      .then((response) => {
+        setCategoriesList(response.data);
+      })
+      .catch((error) => {
+        toast.error("Failed to get categories: " + error.message);
+      });
+  };
 
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Book");
-      console.log("API Response:", response.data); // Add this line
 
       if (response.status === 200) {
-        setData(response.data);
+        const booksWithAuthorsAndCategoriesPromises = response.data
+          .filter((book) => book.type !== "Ebook") // Add this line to filter out ebooks
+          .map(async (book) => {
+            try {
+              const bookAuthorsResponse = await axios.get(
+                `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
+              );
+              const bookCategoriesResponse = await axios.get(
+                `https://localhost:7061/api/CategoryBooks/Book/${book.bookID}`
+              );
 
-        // Fetch authors for each book
-        const booksWithAuthorsPromises = response.data.map(async (book) => {
-          try {
-            const bookAuthorsResponse = await axios.get(
-              `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
-            );
-            const authors = Array.isArray(bookAuthorsResponse.data)
-              ? bookAuthorsResponse.data
-              : [];
-            return { ...book, authors };
-          } catch (authorError) {
-            console.error(
-              `Failed to fetch authors for book ${book.bookID}:`,
-              authorError
-            );
-            return { ...book, authors: [] }; // Return book with empty authors if an error occurs
-          }
-        });
+              const authors = Array.isArray(bookAuthorsResponse.data)
+                ? bookAuthorsResponse.data
+                : [];
+              const categories = Array.isArray(bookCategoriesResponse.data)
+                ? bookCategoriesResponse.data
+                : [];
 
-        const booksWithAuthors = await Promise.all(booksWithAuthorsPromises);
-        setData(booksWithAuthors);
+              return { ...book, authors, categories };
+            } catch (error) {
+              console.error(
+                `Failed to fetch authors/categories for book ${book.bookID}:`,
+                error
+              );
+              return { ...book, authors: [], categories: [] };
+            }
+          });
+
+        const booksWithAuthorsAndCategories = await Promise.all(
+          booksWithAuthorsAndCategoriesPromises
+        );
+        setData(booksWithAuthorsAndCategories);
       } else {
         throw new Error(`Unexpected response status: ${response.status}`);
       }
@@ -121,56 +175,67 @@ const Books = () => {
         const bookData = result.data;
 
         seteditBookId(bookID);
-        setEditISBN(bookData.isbn);
-        setEditImage(bookData.image);
-        setEditTitle(bookData.title);
-        setEditPublicationDate(bookData.publicationDate);
-        setEditPageNumber(bookData.pageNumber);
-        setEditDescription(bookData.description);
-        setEditPrice(bookData.price);
-        setEditDateOfAddition(bookData.dateOfadition);
-        setEditType(bookData.type);
-        setEditAuthors(bookData.authors || []);
-        setSelectedAuthors(
-          (bookData.authors || []).map((author) => author.authorID)
+        setEditISBN(bookData.book.isbn || "");
+        setEditImage(bookData.book.image || "");
+        setEditTitle(bookData.book.title || "");
+        setEditPublicationDate(bookData.book.publicationDate || "");
+        setEditPageNumber(bookData.book.pageNumber || "");
+        setEditDescription(bookData.book.description || "");
+        setEditPrice(bookData.book.price || "");
+        setEditDateOfAddition(bookData.book.dateOfadition || "");
+        setEditType(bookData.book.type || "");
+
+        // Set the publishing house correctly
+        setSelectedPublishingHouse(bookData.book.publishingHouseId || "");
+
+        // Handle authors and categories
+        setSelectedAuthors(bookData.authors.map((author) => author.authorID));
+        setSelectedCategories(
+          bookData.categories.map((category) => category.categoryId)
         );
-        setEditPublishingHouse(bookData.publishingHouse);
-        setSelectedPublishingHouse(
-          bookData.publishingHouse?.publishingHouseId || ""
-        );
-        setEditStock(bookData.stock);
-        setSelectedStock(bookData.stock?.stockId || "");
+
+        setSelectedStock(bookData.book.stockId || "");
       })
       .catch((error) => {
-        toast.error("Failed to get Book: " + error.message);
+        toast.error("Failed to fetch Book: " + error.message);
       });
   };
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log("Edit id:", editBookId);
 
-    // Ensure valid publishing house and stock data
-    const publishingHouseId = parseInt(selectedPublishingHouse) || null;
-    const stockId = parseInt(selectedStock) || null;
+    // Ensure all required fields are present
+    if (
+      !editTitle ||
+      !editISBN ||
+      !editPrice ||
+      !selectedAuthors.length ||
+      !selectedCategories.length
+    ) {
+      toast.error(
+        "Please ensure all fields are filled out, including authors and categories."
+      );
+      return;
+    }
 
-    // Prepare data for update
     const data = {
-      bookID: editBookId,
-      isbn: parseInt(editISBN) || 0,
-      image: editImage || "string",
-      title: editTitle || "string",
-      publicationDate: editPublicationDate || new Date().toISOString(),
-      pageNumber: parseInt(editPageNumber) || 0,
-      description: editDescription || "string",
-      price: parseFloat(editPrice) || 0.0,
-      dateOfadition: editDateOfAddition || new Date().toISOString(),
-      type: editType || "string",
-      publishingHouseId: publishingHouseId,
-      stockId: stockId,
+      book: {
+        bookID: editBookId || 0,
+        isbn: editISBN || "N/A",
+        image: editImage || "/path/to/default/image.jpg",
+        title: editTitle || "Untitled",
+        publicationDate: editPublicationDate || new Date().toISOString(),
+        pageNumber: parseInt(editPageNumber, 10) || 1,
+        description: editDescription || "No description",
+        price: parseFloat(editPrice) || 0.0,
+        dateOfadition: editDateOfAddition || new Date().toISOString(),
+        type: editType || "Paperback",
+        publishingHouseId: parseInt(selectedPublishingHouse, 10) || null,
+        stockId: parseInt(selectedStock, 10) || null,
+      },
+      authorIds: selectedAuthors.map(Number), // Send selected authors
+      categoryIds: selectedCategories.map(Number), // Send selected categories
     };
-
-    console.log("Data being sent:", data);
 
     axios
       .put(`https://localhost:7061/api/Book/${editBookId}`, data)
@@ -185,9 +250,7 @@ const Books = () => {
           "Failed to edit Book:",
           error.response ? error.response.data : error.message
         );
-        const errorMessage =
-          error.response?.data?.title || error.message || "Unknown error";
-        toast.error(`Failed to edit Book: ${errorMessage}`);
+        toast.error("Failed to edit Book: " + error.message);
       });
   };
 
@@ -237,6 +300,7 @@ const Books = () => {
     setEditDateOfAddition("");
     setEditType("");
     setEditStock("");
+    setSelectedCategories([]);
   };
 
   return (
@@ -249,7 +313,7 @@ const Books = () => {
           </Button>
         </Link>
       </div>
-      <Table striped bordered hover className="tables">
+      <Table striped bordered hover className="tables table-sm">
         <thead className="table-dark">
           <tr>
             <th>#</th>
@@ -265,14 +329,25 @@ const Books = () => {
             <th>Date of Addition</th>
             <th>Type</th>
             <th>Stock</th>
+            <th>Categories</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data && data.length > 0 ? (
             data.map((item, index) => {
+              console.log(
+                "Book ID:",
+                item.bookID,
+                "Categories:",
+                item.categories
+              );
+
               const imagePath = preprocessImagePath(item.image);
               const authors = Array.isArray(item.authors) ? item.authors : [];
+              const categories = Array.isArray(item.categories)
+                ? item.categories
+                : []; // Ensure categories are array
               const publishingHouse = item.publishingHouse || {};
 
               return (
@@ -288,10 +363,7 @@ const Books = () => {
                   </td>
                   <td>{item.title}</td>
                   <td>
-                    {item.authors &&
-                      item.authors
-                        .map((author) => author.author.name)
-                        .join(", ")}
+                    {authors.map((author) => author.author.name).join(", ")}
                   </td>
                   <td>
                     {publishingHouseList.find(
@@ -302,27 +374,42 @@ const Books = () => {
                   <td>{item.publicationDate}</td>
                   <td>{item.pageNumber}</td>
                   <td>{item.price}</td>
-                  <td>{item.description}</td>
+                  <td>
+                    <span
+                      className="truncated-description"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title={item.description}
+                    >
+                      {truncateText(item.description, 50)}
+                    </span>
+                  </td>
                   <td>{item.dateOfadition}</td>
                   <td>{item.type}</td>
                   <td>
                     {stockList.find((stock) => stock.stockId === item.stockId)
                       ?.quantity || "-"}
                   </td>
+                  <td>
+                    {categories.length > 0
+                      ? categories.map((category) => category.genre).join(", ")
+                      : "No categories available"}
+                  </td>
+
                   <td colSpan={2} className="btn">
                     <Button
                       variant="outline-dark"
                       className="btn-edit"
                       onClick={() => handleEdit(item.bookID)}
                     >
-                      <i class="bi bi-pencil-square"></i>
+                      <i className="bi bi-pencil-square"></i>
                     </Button>
                     <Button
                       variant="outline-dark"
                       className="btn-delete"
                       onClick={() => handleDelete(item.bookID)}
                     >
-                      <i class="bi bi-trash"></i>
+                      <i className="bi bi-trash"></i>
                     </Button>
                   </td>
                 </tr>
@@ -330,7 +417,7 @@ const Books = () => {
             })
           ) : (
             <tr>
-              <td colSpan="13" className="text-center">
+              <td colSpan="14" className="text-center">
                 No Books Available
               </td>
             </tr>
@@ -419,6 +506,7 @@ const Books = () => {
                   </Form.Control>
                 </Form.Group>
               </Col>
+
               <Col>
                 <Form.Group controlId="formAuthors">
                   <Form.Label>Authors</Form.Label>
@@ -511,6 +599,33 @@ const Books = () => {
                     {stockList.map((stock) => (
                       <option key={stock.stockId} value={stock.stockId}>
                         {stock.quantity}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="formCategories">
+                  <Form.Label>Categories</Form.Label>
+                  <Form.Control
+                    as="select"
+                    multiple
+                    value={selectedCategories}
+                    onChange={(e) =>
+                      setSelectedCategories(
+                        Array.from(
+                          e.target.selectedOptions,
+                          (option) => option.value
+                        )
+                      )
+                    }
+                  >
+                    {categoriesList.map((category) => (
+                      <option
+                        key={category.categoryId}
+                        value={category.categoryId}
+                      >
+                        {category.genre}
                       </option>
                     ))}
                   </Form.Control>

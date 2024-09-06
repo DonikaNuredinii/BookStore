@@ -18,16 +18,19 @@ const AddBooks = () => {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
   const [selectedStock, setSelectedStock] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState([]); // Add selected categories
 
   const [authorsList, setAuthorsList] = useState([]);
   const [publishingHouseList, setPublishingHouseList] = useState([]);
   const [stockList, setStockList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]); // Categories list
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     getAuthors();
     getPublishingHouses();
     getStocks();
+    getCategories(); // Fetch categories on load
   }, []);
 
   const getAuthors = () => {
@@ -55,6 +58,15 @@ const AddBooks = () => {
       .catch((error) => toast.error("Failed to get stocks: " + error.message));
   };
 
+  const getCategories = () => {
+    axios
+      .get("https://localhost:7061/api/Category")
+      .then((response) => setCategoriesList(response.data))
+      .catch((error) =>
+        toast.error("Failed to get categories: " + error.message)
+      );
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     const url = "https://localhost:7061/api/Book/AddBookWithAuthors";
@@ -72,16 +84,19 @@ const AddBooks = () => {
         publishingHouseId: selectedPublishingHouse,
         stockId: selectedStock,
       },
-      AuthorIds: selectedAuthors.map((authorId) => parseInt(authorId)),
+      AuthorIds: selectedAuthors.map((authorId) => parseInt(authorId)), // Authors
+      CategoryIds: selectedCategories.map((categoryId) => parseInt(categoryId)), // Categories
     };
 
     try {
       const response = await axios.post(url, requestData);
       clear();
-      toast.success("Book has been added with authors");
+      toast.success("Book has been added with authors and categories");
       setSuccess(true);
     } catch (error) {
-      toast.error("Failed to add Book with Authors: " + error.message);
+      toast.error(
+        "Failed to add Book with Authors and Categories: " + error.message
+      );
     }
   };
 
@@ -97,6 +112,7 @@ const AddBooks = () => {
     setSelectedAuthors([]);
     setSelectedPublishingHouse("");
     setSelectedStock("");
+    setSelectedCategories([]); // Clear categories
   };
 
   return (
@@ -181,6 +197,29 @@ const AddBooks = () => {
             </Form.Control>
           </Form.Group>
         </Col>
+        <Col>
+          <Form.Group controlId="formCategories">
+            <Form.Label>Categories</Form.Label>
+            <Form.Control
+              as="select"
+              multiple
+              value={selectedCategories}
+              onChange={(e) =>
+                setSelectedCategories(
+                  Array.from(e.target.selectedOptions, (option) => option.value)
+                )
+              }
+            >
+              {categoriesList.map((category) => (
+                <option key={category.categoryId} value={category.categoryId}>
+                  {category.genre}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
         <Col>
           <Form.Group controlId="formDescription">
             <Form.Label>Description</Form.Label>

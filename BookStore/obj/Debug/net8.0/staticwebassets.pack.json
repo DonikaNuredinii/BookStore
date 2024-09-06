@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\5dk2c51h.bxm.jpg",
+      "PackagePath": "staticwebassets\\images\\5dk2c51h.bxm.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\h2oodpn2.tbm.jpg",
+      "PackagePath": "staticwebassets\\images\\h2oodpn2.tbm.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\jse1yb4t.oex.jpg",
+      "PackagePath": "staticwebassets\\images\\jse1yb4t.oex.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\qhtg1tpd.tma.jpg",
+      "PackagePath": "staticwebassets\\images\\qhtg1tpd.tma.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\clueacmr.kw2.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\clueacmr.kw2.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\hweipzoq.455.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\hweipzoq.455.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\oiz20l1h.ozv.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\oiz20l1h.ozv.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\zilf05zb.4ms.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\zilf05zb.4ms.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BookStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BookStore.props",
+      "PackagePath": "build\\BookStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BookStore.props",
+      "PackagePath": "buildMultiTargeting\\BookStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BookStore.props",
+      "PackagePath": "buildTransitive\\BookStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
