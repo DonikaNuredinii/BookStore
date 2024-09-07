@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QFjLy5wyUBxivC+1p9FW1W254HeQFKtwgaKvu7A7SVI=",
+  "Hash": "xJ8dD3SiMe0wJxR0xhRboIiLzVsdfmoEuQW0ZtyBwo4=",
   "Source": "BookStore",
   "BasePath": "_content/BookStore",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BookStore\\wwwroot",
       "Source": "BookStore",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\5dk2c51h.bxm.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\images\\5dk2c51h.bxm.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "images/5dk2c51h.bxm.jpg",
       "AssetKind": "All",
@@ -36,10 +36,29 @@
       "OriginalItemSpec": "wwwroot\\images\\5dk2c51h.bxm.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\h2oodpn2.tbm.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\images\\ax0tlyr1.5ap.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
+      "BasePath": "_content/BookStore",
+      "RelativePath": "images/ax0tlyr1.5ap.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ax0tlyr1.5ap.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\images\\h2oodpn2.tbm.jpg",
+      "SourceId": "BookStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "images/h2oodpn2.tbm.jpg",
       "AssetKind": "All",
@@ -55,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\images\\h2oodpn2.tbm.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\jse1yb4t.oex.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\images\\jse1yb4t.oex.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "images/jse1yb4t.oex.jpg",
       "AssetKind": "All",
@@ -74,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\images\\jse1yb4t.oex.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\images\\qhtg1tpd.tma.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\images\\qhtg1tpd.tma.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "images/qhtg1tpd.tma.jpg",
       "AssetKind": "All",
@@ -93,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\images\\qhtg1tpd.tma.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\clueacmr.kw2.pdf",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\pdfs\\clueacmr.kw2.pdf",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "pdfs/clueacmr.kw2.pdf",
       "AssetKind": "All",
@@ -112,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\pdfs\\clueacmr.kw2.pdf"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\hweipzoq.455.pdf",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\pdfs\\hweipzoq.455.pdf",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "pdfs/hweipzoq.455.pdf",
       "AssetKind": "All",
@@ -131,10 +150,29 @@
       "OriginalItemSpec": "wwwroot\\pdfs\\hweipzoq.455.pdf"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\oiz20l1h.ozv.pdf",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\pdfs\\nqxzf05p.vgf.pdf",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
+      "BasePath": "_content/BookStore",
+      "RelativePath": "pdfs/nqxzf05p.vgf.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pdfs\\nqxzf05p.vgf.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\pdfs\\oiz20l1h.ozv.pdf",
+      "SourceId": "BookStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "pdfs/oiz20l1h.ozv.pdf",
       "AssetKind": "All",
@@ -150,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\pdfs\\oiz20l1h.ozv.pdf"
     },
     {
-      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\pdfs\\zilf05zb.4ms.pdf",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\pdfs\\zilf05zb.4ms.pdf",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "pdfs/zilf05zb.4ms.pdf",
       "AssetKind": "All",

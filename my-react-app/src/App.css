@@ -4243,6 +4243,41 @@ label {
   color: white;
 }
 
+
+button#button-link.navbar-link1 {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  }
+  
+  button#button-link.navbar-link1:hover {
+  color: #1d6a96;
+  }
+  
+  button#button-link.navbar-link1 svg {
+    font-size: 24px; 
+  }
+  
+  
+  
+  button.linkaccbutton{
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    color: #1d6a96;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+  }
+  
+  
+  .linkaccbutton:hover {
+    background-color: #1d6a96;
+    color: white;
+  }
+
 .form-containerA {
   width: 560px;
   padding: 20px;

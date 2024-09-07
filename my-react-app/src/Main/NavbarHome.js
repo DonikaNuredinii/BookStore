@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
 import logo from "../Images/logo1.png";
+import { IoPerson } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
+import { jwtDecode } from "jwt-decode";
 
 const NavbarHome = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -149,6 +151,30 @@ const NavbarHome = () => {
     }
   };
 
+  const handleAccountClick = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp > currentTime) {
+          navigate("/account-settings");
+        } else {
+          localStorage.removeItem("token");
+          navigate("/account");
+        }
+      } catch (error) {
+        console.error("Error decoding token", error);
+        localStorage.removeItem("token");
+        navigate("/account");
+      }
+    } else {
+     
+      navigate("/account");
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="logo-container">
@@ -170,7 +196,7 @@ const NavbarHome = () => {
         <Link to="/accessories" className="navbar-link" onClick={closeMenu}>
           Accessories
         </Link>
-        <Link to="/author-List" className="navbar-link" onClick={closeMenu}>
+        <Link to="/author-list" className="navbar-link" onClick={closeMenu}>
           Authors
         </Link>
         <Link to="/events" className="navbar-link" onClick={closeMenu}>
@@ -185,14 +211,17 @@ const NavbarHome = () => {
         <Link to="/contact" className="navbar-link" onClick={closeMenu}>
           Contact Us
         </Link>
-        <Link to="/account" className="navbar-link" onClick={closeMenu}>
-          Account
-        </Link>
+        
         <Link to="/dashboard" className="navbar-link" onClick={closeMenu}>
           Dashboard
         </Link>
+        <button className="navbar-link1" id="button-link" onClick={handleAccountClick}>
+        <IoPerson />
+        </button>
       </div>
+   
       <div className={`search-container ${isSearchOpen ? "expanded" : ""}`}>
+      
         <input
           type="text"
           id="search-input"
