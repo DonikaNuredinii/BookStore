@@ -3,7 +3,6 @@ import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 
 const Account = () => {
@@ -98,7 +97,7 @@ const Account = () => {
       Email: email,
       Username: username,
       Password: password,
-      RolesID: 3,
+      RolesID: 2,
     };
 
     axios
@@ -129,20 +128,12 @@ const Account = () => {
       .then((response) => {
         const token = response.data.token;
         const userID = response.data.userID;
-        localStorage.setItem("token", token);
-        localStorage.setItem("userID", userID);
-
-        // Decode token and possibly use user information
-        try {
-          const decodedToken = jwtDecode(token);
-          console.log(decodedToken); // Log or use decoded token as needed
-        } catch (error) {
-          console.error("Failed to decode token:", error);
-        }
-
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userID", response.data.userId);
         toast.success("Login successful!");
         navigate("/account-settings");
       })
+
       .catch((error) => {
         toast.error("Invalid username or password.");
       });
@@ -286,7 +277,7 @@ const Account = () => {
                   onChange={handleChange}
                   name="agreeTerms"
                 />{" "}
-                I agree to the terms and conditions
+                I agree to the <a href="#">terms and conditions</a>
               </label>
             </div>
             <button type="submit" className="acc-button">

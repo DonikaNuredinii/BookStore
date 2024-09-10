@@ -29,30 +29,53 @@ const User = () => {
   }, []);
 
   const getData = () => {
+    const token = localStorage.getItem('token'); 
+  
+    if (!token) {
+      toast.error("You are not authenticated. Please log in.");
+      return;
+    }
+  
     axios
-      .get("https://localhost:7061/api/User") // Correct endpoint
+      .get("https://localhost:7061/api/User", {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      })
       .then((result) => {
         setData(result.data);
-        console.log("User Data:", result.data); // Log user data
+        console.log("User Data:", result.data);
       })
       .catch((error) => {
-        console.log(error);
-        toast.error("Failed to fetch users: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please log in again.");
+        } else {
+          toast.error("Failed to fetch users: " + error.message);
+        }
       });
-
+  
     axios
-      .get("https://localhost:7061/api/Roles")
+    .get("https://localhost:7061/api/Roles/roles", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((result) => {
         setRoles(result.data);
-        console.log("Roles Data:", result.data); // Log roles data
+        console.log("Roles Data:", result.data); 
       })
       .catch((error) => {
-        console.error("Error fetching Roles:", error);
-        toast.error("Failed to get roles: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please log in again.");
+        } else {
+          toast.error("Failed to get roles: " + error.message);
+        }
       });
   };
+  
 
   const handleEdit = (userId) => {
+    const token = localStorage.getItem('token'); 
     if (!userId) {
       toast.error("UserID is not valid");
       return;
@@ -60,9 +83,13 @@ const User = () => {
 
     handleShow();
     setEditUserId(userId);
-    // Correct endpoint for fetching a single user
+  
     axios
-      .get(`https://localhost:7061/api/User/${userId}`) // Correct endpoint
+      .get(`https://localhost:7061/api/User/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      })
       .then((result) => {
         const userData = result.data;
         setEditFirstName(userData.firstName);
@@ -77,16 +104,22 @@ const User = () => {
         toast.error("Failed to get User: " + error.message);
       });
   };
+  
 
   const handleDelete = (userId) => {
+    const token = localStorage.getItem('token'); 
+  
     if (window.confirm("Are you sure you want to delete this User?")) {
-      // Correct endpoint for deleting a user
       axios
-        .delete(`https://localhost:7061/api/User/${userId}`) // Correct endpoint
+        .delete(`https://localhost:7061/api/User/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        })
         .then((result) => {
-          if (result.status === 200) {
+          if (result.status === 200 || result.status === 204) {
             toast.success("User has been deleted");
-            getData();
+            getData(); 
           }
         })
         .catch((error) => {
@@ -94,11 +127,12 @@ const User = () => {
         });
     }
   };
+  
 
   const handleUpdate = async () => {
-    // Correct endpoint for updating a user
-    const url = `https://localhost:7061/api/User/${editUserId}`; // Correct endpoint
-
+    const token = localStorage.getItem('token'); 
+    const url = `https://localhost:7061/api/User/${editUserId}`; 
+  
     const userData = {
       UserID: editUserId,
       FirstName: editFirstName,
@@ -109,20 +143,27 @@ const User = () => {
       Password: editPassword,
       RolesID: parseInt(editRoles),
     };
-
+  
     axios
-      .put(url, userData)
+      .put(url, userData, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      })
       .then((result) => {
-        handleClose();
-        getData();
-        clear();
+        handleClose(); 
+        getData(); 
         toast.success("User has been updated");
       })
       .catch((error) => {
-        toast.error("Failed to edit User: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please log in again.");
+        } else {
+          toast.error("Failed to update User: " + error.message);
+        }
       });
   };
-
+  
   const clear = () => {
     setEditFirstName("");
     setEditLastName("");
@@ -162,11 +203,11 @@ const User = () => {
             ? data.map((item, index) => {
                 let roleName = "N/A";
                 if (item.rolesID === 2) {
-                  roleName = "Admin";
-                } else if (item.rolesID === 3) {
                   roleName = "User";
+                } else if (item.rolesID === 3) {
+                  roleName = "Admin";
                 }
-                console.log("Role ID:", item.rolesID, "Role Name:", roleName); // Log role mapping
+                console.log("Role ID:", item.rolesID, "Role Name:", roleName); 
                 return (
                   <tr key={item.userID}>
                     <td>{index + 1}</td>
@@ -313,8 +354,8 @@ const User = () => {
                     onChange={(e) => setEditRoles(e.target.value)}
                   >
                     <option value="">Select Role</option>
-                    <option value="2">Admin</option>
-                    <option value="3">User</option>
+                    <option value="2">User</option>
+                    <option value="3">Admin</option>
                   </Form.Control>
                 </Form.Group>
               </Col>

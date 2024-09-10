@@ -1,6 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookStore.Models; 
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using BookStore.Models;
+using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
@@ -15,10 +23,13 @@ namespace BookStore.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [Authorize]
+        [HttpGet("roles")]
         public async Task<ActionResult<IEnumerable<Roles>>> GetRoles()
         {
-            return await _context.Roles.ToListAsync();
+            var roles = await _context.Roles.ToListAsync();
+            return Ok(roles);
         }
-    }
+
+        }
 }

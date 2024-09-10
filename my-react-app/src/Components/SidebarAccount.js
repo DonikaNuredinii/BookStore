@@ -13,7 +13,7 @@ const SidebarAccount = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("userID");
       toast.success("Logged out successfully!");
-      logInLink();
+      navigate("/account")
     };
   
     return (

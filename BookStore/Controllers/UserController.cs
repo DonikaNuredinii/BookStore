@@ -98,37 +98,8 @@ namespace BookStore.Controllers
         }
 
         [Authorize]
-        [HttpPut("{UserID}")]
-        public async Task<ActionResult> PutUser(int UserID, User user)
-        {
-            if (UserID != user.UserID)
-            {
-                return BadRequest();
-            }
-
-            _usersContext.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _usersContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_usersContext.Users.Any(e => e.UserID == UserID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         [HttpDelete("{UserID}")]
-        public async Task<ActionResult> DeleteUser(int UserID)
+        public async Task<IActionResult> DeleteUser(int UserID)
         {
             var user = await _usersContext.Users.FindAsync(UserID);
             if (user == null)
@@ -140,6 +111,66 @@ namespace BookStore.Controllers
             await _usersContext.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [Authorize]
+        [HttpPut("{UserID}")]
+        public async Task<ActionResult> PutUser(int UserID, User user)
+        {
+            if (UserID != user.UserID)
+            {
+                return BadRequest(new { message = "User ID mismatch" });
+            }
+
+            var existingUser = await _usersContext.Users.FindAsync(UserID);
+            if (existingUser == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            if (!string.IsNullOrEmpty(user.Password))
+            {
+                // Ensure the password meets your validation requirements
+                if (!IsValidPassword(user.Password))
+                {
+                    return BadRequest(new { message = "Password does not meet validation requirements" });
+                }
+
+                existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            }
+
+            existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
+            existingUser.PhoneNumber = user.PhoneNumber;
+            existingUser.Email = user.Email;
+            existingUser.Username = user.Username;
+            existingUser.RolesID = user.RolesID;
+
+            _usersContext.Entry(existingUser).State = EntityState.Modified;
+
+            try
+            {
+                await _usersContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_usersContext.Users.Any(e => e.UserID == UserID))
+                {
+                    return NotFound(new { message = "User not found during update" });
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool IsValidPassword(string password)
+        {
+            // Add your password validation logic here (e.g., length, complexity)
+            return password.Length >= 6; // Example validation
         }
     }
 }
