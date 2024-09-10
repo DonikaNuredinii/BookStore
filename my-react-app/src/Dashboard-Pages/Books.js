@@ -11,12 +11,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
+
 const Books = () => {
   const [show, setShow] = useState(false);
   const [authorsList, setAuthorsList] = useState([]);
   const [editBookId, seteditBookId] = useState("");
   const [editISBN, setEditISBN] = useState("");
-  const [editImage, setEditImage] = useState("");
+  const [editImage, setEditImage] = useState(null);
+  const [prevImage, setPrevImage] = useState(""); // For existing image
   const [editTitle, setEditTitle] = useState("");
   const [editAuthors, setEditAuthors] = useState([]);
   const [editPublicationDate, setEditPublicationDate] = useState("");
@@ -27,8 +29,7 @@ const Books = () => {
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
   const [editPublishingHouse, setEditPublishingHouse] = useState("");
-  const [editBook, setEditBook] = useState({});
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
   const [selectedStock, setSelectedStock] = useState("");
@@ -47,37 +48,6 @@ const Books = () => {
     getData();
   }, []);
 
-  useEffect(() => {
-    const initializeTooltips = () => {
-      // Inside your useEffect to initialize tooltips
-      if (window.bootstrap) {
-        const tooltipTriggerList = [].slice.call(
-          document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        );
-        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-          new window.bootstrap.Tooltip(tooltipTriggerEl);
-        });
-      } else {
-        console.error("Bootstrap is not properly initialized.");
-      }
-    };
-
-    if (data.length > 0) {
-      const tooltipTimeout = setTimeout(initializeTooltips, 100);
-    }
-
-    return () => {
-      const tooltips = document.querySelectorAll(".tooltip");
-      tooltips.forEach((tooltip) => tooltip.remove());
-    };
-  }, [data]);
-
-  const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.slice(0, maxLength) + "...";
-    }
-    return text;
-  };
   const getAuthors = () => {
     axios
       .get("https://localhost:7061/api/Author")
@@ -110,6 +80,7 @@ const Books = () => {
         toast.error("Failed to get stocks: " + error.message);
       });
   };
+
   const getCategories = () => {
     axios
       .get("https://localhost:7061/api/Category")
@@ -121,13 +92,20 @@ const Books = () => {
       });
   };
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
+
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Book");
 
       if (response.status === 200) {
         const booksWithAuthorsAndCategoriesPromises = response.data
-          .filter((book) => book.type !== "Ebook") // Add this line to filter out ebooks
+          .filter((book) => book.type !== "Ebook")
           .map(async (book) => {
             try {
               const bookAuthorsResponse = await axios.get(
@@ -167,44 +145,56 @@ const Books = () => {
     }
   };
 
+  const preprocessImagePath = (path) => {
+    if (!path) return null;
+    const imageName = path.split("/").pop();
+    try {
+      return images(`./${imageName}`);
+    } catch (err) {
+      console.error(`Image not found: ${imageName}`);
+      return `https://localhost:7061/${path}`; // Fallback to backend URL
+    }
+  };
+
   const handleEdit = (bookID) => {
     handleShow();
     axios
       .get(`https://localhost:7061/api/Book/${bookID}`)
       .then((result) => {
-        const bookData = result.data;
+        const bookData = result.data.book || result.data;
 
         seteditBookId(bookID);
-        setEditISBN(bookData.book.isbn || "");
-        setEditImage(bookData.book.image || "");
-        setEditTitle(bookData.book.title || "");
-        setEditPublicationDate(bookData.book.publicationDate || "");
-        setEditPageNumber(bookData.book.pageNumber || "");
-        setEditDescription(bookData.book.description || "");
-        setEditPrice(bookData.book.price || "");
-        setEditDateOfAddition(bookData.book.dateOfadition || "");
-        setEditType(bookData.book.type || "");
+        setEditISBN(bookData?.isbn || "");
+        setPrevImage(preprocessImagePath(bookData?.image) || ""); // Use preprocess for existing image
+        setEditTitle(bookData?.title || "");
+        setEditPublicationDate(bookData?.publicationDate || "");
+        setEditPageNumber(bookData?.pageNumber || "");
+        setEditDescription(bookData?.description || "");
+        setEditPrice(bookData?.price || "");
+        setEditDateOfAddition(bookData?.dateOfadition || "");
+        setEditType(bookData?.type || "");
+        setSelectedPublishingHouse(bookData?.publishingHouseId || "");
 
-        // Set the publishing house correctly
-        setSelectedPublishingHouse(bookData.book.publishingHouseId || "");
+        const authors =
+          bookData?.authors?.map((author) => author.authorID.toString()) || [];
+        const categories =
+          bookData?.categories?.map((category) =>
+            category.categoryID.toString()
+          ) || [];
 
-        // Handle authors and categories
-        setSelectedAuthors(bookData.authors.map((author) => author.authorID));
-        setSelectedCategories(
-          bookData.categories.map((category) => category.categoryId)
-        );
-
-        setSelectedStock(bookData.book.stockId || "");
+        setSelectedAuthors(authors); // Ensure authors are strings for selection
+        setSelectedCategories(categories); // Ensure categories are strings for selection
+        setSelectedStock(bookData?.stockId || "");
       })
       .catch((error) => {
+        console.error("Failed to fetch book details:", error);
         toast.error("Failed to fetch Book: " + error.message);
       });
   };
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // Ensure all required fields are present
     if (
       !editTitle ||
       !editISBN ||
@@ -218,49 +208,67 @@ const Books = () => {
       return;
     }
 
-    const data = {
-      book: {
-        bookID: editBookId || 0,
-        isbn: editISBN || "N/A",
-        image: editImage || "/path/to/default/image.jpg",
-        title: editTitle || "Untitled",
-        publicationDate: editPublicationDate || new Date().toISOString(),
-        pageNumber: parseInt(editPageNumber, 10) || 1,
-        description: editDescription || "No description",
-        price: parseFloat(editPrice) || 0.0,
-        dateOfadition: editDateOfAddition || new Date().toISOString(),
-        type: editType || "Paperback",
-        publishingHouseId: parseInt(selectedPublishingHouse, 10) || null,
-        stockId: parseInt(selectedStock, 10) || null,
-      },
-      authorIds: selectedAuthors.map(Number), // Send selected authors
-      categoryIds: selectedCategories.map(Number), // Send selected categories
-    };
+    const formData = new FormData();
 
-    axios
-      .put(`https://localhost:7061/api/Book/${editBookId}`, data)
-      .then((result) => {
-        handleClose();
-        getData();
-        clear();
-        toast.success("Book has been updated");
-      })
-      .catch((error) => {
-        console.error(
-          "Failed to edit Book:",
-          error.response ? error.response.data : error.message
-        );
-        toast.error("Failed to edit Book: " + error.message);
-      });
+    formData.append("bookID", editBookId || 0);
+    formData.append("isbn", editISBN || "N/A");
+    formData.append("image", editImage || prevImage); // Keep the old image if not changed
+    formData.append("title", editTitle || "Untitled");
+    formData.append(
+      "publicationDate",
+      editPublicationDate || new Date().toISOString()
+    );
+    formData.append("pageNumber", parseInt(editPageNumber, 10) || 1);
+    formData.append("description", editDescription || "No description");
+    formData.append("price", parseFloat(editPrice) || 0.0);
+    formData.append(
+      "dateOfadition",
+      editDateOfAddition || new Date().toISOString()
+    );
+    formData.append("type", editType || "Paperback");
+    formData.append(
+      "publishingHouseId",
+      parseInt(selectedPublishingHouse, 10) || null
+    );
+    formData.append("stockId", parseInt(selectedStock, 10) || null);
+
+    selectedAuthors.forEach((authorId) =>
+      formData.append("authorIds", authorId)
+    );
+    selectedCategories.forEach((categoryId) =>
+      formData.append("categoryIds", categoryId)
+    );
+
+    try {
+      await axios.put(
+        `https://localhost:7061/api/Book/${editBookId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      handleClose();
+      getData();
+      clear();
+      toast.success("Book has been updated");
+    } catch (error) {
+      console.error(
+        "Failed to edit Book:",
+        error.response ? error.response.data : error.message
+      );
+      toast.error("Failed to edit Book: " + error.message);
+    }
   };
-
   const handleDelete = async (bookID) => {
-    if (window.confirm("Are you sure you want to delete this Book")) {
+    if (window.confirm("Are you sure you want to delete this Book?")) {
       try {
         await axios.delete(`https://localhost:7061/api/Book/${bookID}`);
         toast.success("Book has been deleted");
         getData();
       } catch (error) {
+        console.error("Failed to delete book:", error);
         toast.error("Failed to delete book: " + error.message);
       }
     }
@@ -268,44 +276,30 @@ const Books = () => {
 
   const handleClose = () => {
     setShow(false);
-    setEditBook({});
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditBook({ ...editBook, [name]: value });
-  };
-
-  const preprocessImagePath = (path) => {
-    if (!path) return null;
-    const imageName = path.split("/").pop();
-    try {
-      return images(`./${imageName}`);
-    } catch (err) {
-      console.error(`Image not found: ${imageName}`);
-      return null;
-    }
+    clear();
   };
 
   const clear = () => {
+    seteditBookId("");
     setEditISBN("");
-    setEditImage("");
+    setEditImage(null);
+    setPrevImage("");
     setEditTitle("");
-    setEditAuthors("");
-    setEditPublishingHouse("");
     setEditPublicationDate("");
     setEditPageNumber("");
     setEditDescription("");
     setEditPrice("");
     setEditDateOfAddition("");
     setEditType("");
-    setEditStock("");
+    setSelectedPublishingHouse("");
+    setSelectedStock("");
+    setSelectedAuthors([]);
     setSelectedCategories([]);
   };
 
   return (
     <Fragment>
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
       <div className="add-button">
         <Link to="../add-books">
           <Button variant="dark" className="btn-add">
@@ -336,13 +330,6 @@ const Books = () => {
         <tbody>
           {data && data.length > 0 ? (
             data.map((item, index) => {
-              console.log(
-                "Book ID:",
-                item.bookID,
-                "Categories:",
-                item.categories
-              );
-
               const imagePath = preprocessImagePath(item.image);
               const authors = Array.isArray(item.authors) ? item.authors : [];
               const categories = Array.isArray(item.categories)
@@ -424,6 +411,7 @@ const Books = () => {
           )}
         </tbody>
       </Table>
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -463,12 +451,19 @@ const Books = () => {
               <Col>
                 <Form.Group controlId="formImage">
                   <Form.Label>Image</Form.Label>
+                  {prevImage && (
+                    <div>
+                      <img
+                        src={prevImage}
+                        alt="Selected book cover"
+                        style={{ width: "100px", marginBottom: "10px" }}
+                      />
+                    </div>
+                  )}
                   <Form.Control
-                    type="text"
-                    placeholder="Enter image URL"
+                    type="file"
                     name="image"
-                    value={editImage}
-                    onChange={(e) => setEditImage(e.target.value)}
+                    onChange={(e) => setEditImage(e.target.files[0])}
                   />
                 </Form.Group>
               </Col>
@@ -506,7 +501,6 @@ const Books = () => {
                   </Form.Control>
                 </Form.Group>
               </Col>
-
               <Col>
                 <Form.Group controlId="formAuthors">
                   <Form.Label>Authors</Form.Label>
@@ -514,14 +508,24 @@ const Books = () => {
                     as="select"
                     multiple
                     value={selectedAuthors}
-                    onChange={(e) =>
-                      setSelectedAuthors(
-                        Array.from(
-                          e.target.selectedOptions,
-                          (option) => option.value
-                        )
-                      )
-                    }
+                    onClick={(e) => {
+                      const selectedOptions = e.target.selectedOptions
+                        ? Array.from(e.target.selectedOptions).map(
+                            (option) => option.value
+                          )
+                        : [];
+                      const clickedValue = e.target.value;
+
+                      if (selectedAuthors.includes(clickedValue)) {
+                        setSelectedAuthors(
+                          selectedAuthors.filter(
+                            (author) => author !== clickedValue
+                          )
+                        );
+                      } else {
+                        setSelectedAuthors([...selectedAuthors, clickedValue]);
+                      }
+                    }}
                   >
                     {authorsList.map((author) => (
                       <option key={author.authorID} value={author.authorID}>
@@ -611,14 +615,27 @@ const Books = () => {
                     as="select"
                     multiple
                     value={selectedCategories}
-                    onChange={(e) =>
-                      setSelectedCategories(
-                        Array.from(
-                          e.target.selectedOptions,
-                          (option) => option.value
-                        )
-                      )
-                    }
+                    onClick={(e) => {
+                      const selectedOptions = e.target.selectedOptions
+                        ? Array.from(e.target.selectedOptions).map(
+                            (option) => option.value
+                          )
+                        : [];
+                      const clickedValue = e.target.value;
+
+                      if (selectedCategories.includes(clickedValue)) {
+                        setSelectedCategories(
+                          selectedCategories.filter(
+                            (category) => category !== clickedValue
+                          )
+                        );
+                      } else {
+                        setSelectedCategories([
+                          ...selectedCategories,
+                          clickedValue,
+                        ]);
+                      }
+                    }}
                   >
                     {categoriesList.map((category) => (
                       <option
@@ -680,4 +697,5 @@ const Books = () => {
     </Fragment>
   );
 };
+
 export default Books;

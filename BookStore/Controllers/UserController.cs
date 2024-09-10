@@ -49,20 +49,19 @@ namespace BookStore.Controllers
         }
 
         [HttpPost("login")]
-public async Task<IActionResult> Login([FromBody] Login model)
-{
-    var user = await _usersContext.Users
-        .FirstOrDefaultAsync(u => u.Username == model.Username);
+        public async Task<IActionResult> Login([FromBody] Login model)
+        {
+            var user = await _usersContext.Users
+                .FirstOrDefaultAsync(u => u.Username == model.Username);
 
-    if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
-    {
-        return Unauthorized(new { message = "Invalid username or password" });
-    }
+            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
+            {
+                return Unauthorized(new { message = "Invalid username or password" });
+            }
 
-    var token = GenerateJwtToken(user);
-    return Ok(new { token, userId = user.UserID, message = "Login successful" });
-}
-
+            var token = GenerateJwtToken(user);
+            return Ok(new { token, userId = user.UserID, message = "Login successful" });
+        }
 
         private string GenerateJwtToken(User user)
         {
@@ -74,7 +73,6 @@ public async Task<IActionResult> Login([FromBody] Login model)
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
-               
             };
 
             var token = new JwtSecurityToken(

@@ -3,11 +3,11 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddBooks = () => {
   const [isbn, setISBN] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [publicationDate, setPublicationDate] = useState("");
   const [pageNumber, setPageNumber] = useState("");
@@ -18,19 +18,21 @@ const AddBooks = () => {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
   const [selectedStock, setSelectedStock] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState([]); // Add selected categories
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const [authorsList, setAuthorsList] = useState([]);
   const [publishingHouseList, setPublishingHouseList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [categoriesList, setCategoriesList] = useState([]); // Categories list
+  const [categoriesList, setCategoriesList] = useState([]);
   const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAuthors();
     getPublishingHouses();
     getStocks();
-    getCategories(); // Fetch categories on load
+    getCategories();
   }, []);
 
   const getAuthors = () => {
@@ -69,40 +71,55 @@ const AddBooks = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const url = "https://localhost:7061/api/Book/AddBookWithAuthors";
-    const requestData = {
-      Book: {
-        isbn,
-        image,
-        title,
-        publicationDate,
-        pageNumber,
-        description,
-        price,
-        type,
-        dateOfadition,
-        publishingHouseId: selectedPublishingHouse,
-        stockId: selectedStock,
-      },
-      AuthorIds: selectedAuthors.map((authorId) => parseInt(authorId)), // Authors
-      CategoryIds: selectedCategories.map((categoryId) => parseInt(categoryId)), // Categories
-    };
+
+    const formData = new FormData();
+    formData.append("isbn", isbn);
+    formData.append("title", title);
+    formData.append("publicationDate", publicationDate);
+    formData.append("pageNumber", pageNumber);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("dateOfadition", dateOfadition);
+    formData.append("publishingHouseId", selectedPublishingHouse);
+    formData.append("stockId", selectedStock);
+
+    selectedAuthors.forEach((authorId) => {
+      formData.append("authorIds", authorId);
+    });
+
+    selectedCategories.forEach((categoryId) => {
+      formData.append("categoryIds", categoryId);
+    });
+
+    if (image) {
+      formData.append("image", image);
+    }
 
     try {
-      const response = await axios.post(url, requestData);
-      clear();
-      toast.success("Book has been added with authors and categories");
-      setSuccess(true);
+      const response = await axios.post(
+        "https://localhost:7061/api/Book",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Response:", response);
+
+      toast.success("Book has been added successfully");
     } catch (error) {
+      console.error("Error:", error);
       toast.error(
-        "Failed to add Book with Authors and Categories: " + error.message
+        "Failed to add Book: " + (error.response?.data || error.message)
       );
     }
   };
 
   const clear = () => {
     setISBN("");
-    setImage("");
+    setImage(null);
     setTitle("");
     setPublicationDate("");
     setPageNumber("");
@@ -112,11 +129,11 @@ const AddBooks = () => {
     setSelectedAuthors([]);
     setSelectedPublishingHouse("");
     setSelectedStock("");
-    setSelectedCategories([]); // Clear categories
+    setSelectedCategories([]);
   };
 
   return (
-    <Form className="bookForm">
+    <Form className="bookForm" onSubmit={handleSave}>
       <ToastContainer />
       <Row>
         <Col>
@@ -134,10 +151,8 @@ const AddBooks = () => {
           <Form.Group controlId="formImage">
             <Form.Label>Image</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter image URL"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </Form.Group>
         </Col>
@@ -183,11 +198,22 @@ const AddBooks = () => {
               as="select"
               multiple
               value={selectedAuthors}
-              onChange={(e) =>
-                setSelectedAuthors(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
+              onClick={(e) => {
+                const selectedOptions = e.target.selectedOptions
+                  ? Array.from(e.target.selectedOptions).map(
+                      (option) => option.value
+                    )
+                  : [];
+                const clickedValue = e.target.value;
+
+                if (selectedAuthors.includes(clickedValue)) {
+                  setSelectedAuthors(
+                    selectedAuthors.filter((author) => author !== clickedValue)
+                  );
+                } else {
+                  setSelectedAuthors([...selectedAuthors, clickedValue]);
+                }
+              }}
             >
               {authorsList.map((author) => (
                 <option key={author.authorID} value={author.authorID}>
@@ -204,11 +230,24 @@ const AddBooks = () => {
               as="select"
               multiple
               value={selectedCategories}
-              onChange={(e) =>
-                setSelectedCategories(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
+              onClick={(e) => {
+                const selectedOptions = e.target.selectedOptions
+                  ? Array.from(e.target.selectedOptions).map(
+                      (option) => option.value
+                    )
+                  : [];
+                const clickedValue = e.target.value;
+
+                if (selectedCategories.includes(clickedValue)) {
+                  setSelectedCategories(
+                    selectedCategories.filter(
+                      (category) => category !== clickedValue
+                    )
+                  );
+                } else {
+                  setSelectedCategories([...selectedCategories, clickedValue]);
+                }
+              }}
             >
               {categoriesList.map((category) => (
                 <option key={category.categoryId} value={category.categoryId}>
@@ -219,6 +258,7 @@ const AddBooks = () => {
           </Form.Group>
         </Col>
       </Row>
+
       <Row>
         <Col>
           <Form.Group controlId="formDescription">
@@ -314,11 +354,9 @@ const AddBooks = () => {
       </Row>
       <Row>
         <Col>
-          <Link to="../Books">
-            <Button variant="dark" className="btn-add" onClick={handleSave}>
-              Add Books
-            </Button>
-          </Link>
+          <Button variant="dark" className="btn-add" type="submit">
+            Add Book
+          </Button>
         </Col>
         <Col>
           <Button variant="dark" className="btn-add" onClick={clear}>

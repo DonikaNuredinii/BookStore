@@ -28,7 +28,7 @@ const Ebooks = () => {
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
   const [editPublishingHouse, setEditPublishingHouse] = useState("");
-  const [editContent, setEditContent] = useState(""); // For uploading PDF
+  const [editContent, setEditContent] = useState("");
   const [editEbook, setEditEbook] = useState({});
   const [data, setData] = useState("");
   const [selectedAuthors, setSelectedAuthors] = useState([]);
@@ -38,7 +38,8 @@ const Ebooks = () => {
   const [stockList, setStockList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-
+  const [prevImage, setPrevImage] = useState("");
+  const [prevContent, setPrevContent] = useState("");
   const handleShow = () => setShow(true);
 
   useEffect(() => {
@@ -169,33 +170,48 @@ const Ebooks = () => {
       toast.error("Failed to get ebooks: " + error.message);
     }
   };
-
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
   const handleEdit = (bookID) => {
     handleShow();
     axios
       .get(`https://localhost:7061/api/Book/${bookID}`)
       .then((result) => {
-        const bookData = result.data;
+        const bookData = result.data.book || result.data;
+        console.log("Fetched book data:", bookData);
 
         setEditEbookId(bookID);
-        setEditISBN(bookData.book.isbn || "");
-        setEditImage(bookData.book.image || "");
-        setEditTitle(bookData.book.title || "");
-        setEditPublicationDate(bookData.book.publicationDate || "");
-        setEditPageNumber(bookData.book.pageNumber || "");
-        setEditDescription(bookData.book.description || "");
-        setEditPrice(bookData.book.price || "");
-        setEditDateOfAddition(bookData.book.dateOfadition || "");
-        setEditType(bookData.book.type || "");
+        setEditISBN(bookData?.isbn || "");
+        setPrevImage(preprocessImagePath(bookData?.image) || "");
+        setPrevContent(bookData?.content || "");
+        setEditTitle(bookData?.title || "");
+        setEditPublicationDate(bookData?.publicationDate || "");
+        setEditPageNumber(bookData?.pageNumber || "");
+        setEditDescription(bookData?.description || "");
+        setEditPrice(bookData?.price || "");
+        setEditDateOfAddition(bookData?.dateOfadition || "");
+        setEditType(bookData?.type || "");
+        setSelectedPublishingHouse(bookData?.publishingHouseId || "");
+        setSelectedStock(bookData?.stockId || "");
 
-        setSelectedPublishingHouse(bookData.book.publishingHouseId || "");
-        setSelectedAuthors(bookData.authors.map((author) => author.authorID));
-        setSelectedCategories(
-          bookData.categories.map((category) => category.categoryId)
-        );
-        setSelectedStock(bookData.book.stockId || "");
+        const authors =
+          bookData?.authors?.map((author) => author.authorID.toString()) || [];
+        const categories =
+          bookData?.categories?.map((category) =>
+            category.categoryID.toString()
+          ) || [];
+
+        console.log("Selected Authors:", authors);
+        console.log("Selected Categories:", categories);
+
+        setSelectedAuthors(authors);
+        setSelectedCategories(categories);
       })
       .catch((error) => {
+        console.error("Failed to fetch book details:", error);
         toast.error("Failed to fetch Book: " + error.message);
       });
   };
@@ -203,13 +219,12 @@ const Ebooks = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    // Ensure all required fields are present
     if (
       !editTitle ||
       !editISBN ||
       !editPrice ||
-      !selectedAuthors.length ||
-      !selectedCategories.length
+      !selectedAuthors.length || // Ensure authors are selected
+      !selectedCategories.length // Ensure categories are selected
     ) {
       toast.error(
         "Please ensure all fields are filled out, including authors and categories."
@@ -217,12 +232,10 @@ const Ebooks = () => {
       return;
     }
 
-    // Create FormData for multipart/form-data request
     const formData = new FormData();
 
     formData.append("bookID", editEbookId || 0);
     formData.append("isbn", editISBN || "N/A");
-    formData.append("image", editImage || "/path/to/default/image.jpg");
     formData.append("title", editTitle || "Untitled");
     formData.append(
       "publicationDate",
@@ -242,25 +255,26 @@ const Ebooks = () => {
     );
     formData.append("stockId", parseInt(selectedStock, 10) || null);
 
-    // Append each author ID separately (to support arrays in FormData)
     selectedAuthors.forEach((authorId) => {
-      formData.append("authorIds[]", authorId); // Correct way to append arrays
+      formData.append("authorIds", authorId);
     });
 
-    // Append each category ID separately
     selectedCategories.forEach((categoryId) => {
-      formData.append("categoryIds[]", categoryId); // Correct way to append arrays
+      formData.append("categoryIds", categoryId);
     });
 
-    // Append the PDF content (if uploaded)
-    if (editContent) {
-      formData.append("pdfFile", editContent); // Make sure the name here matches the backend
+    if (editContent && editContent instanceof File) {
+      formData.append("pdfFile", editContent);
+    }
+
+    if (editImage && editImage instanceof File) {
+      formData.append("image", editImage);
     }
 
     axios
       .put(`https://localhost:7061/api/Ebooks/${editEbookId}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Important: Set the content type to multipart/form-data
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((result) => {
@@ -307,9 +321,16 @@ const Ebooks = () => {
   };
 
   const preprocessPdfPath = (path) => {
-    if (!path) return null;
-    return `https://localhost:7061/${path}`; // Server URL for PDFs
+    if (!path) return path;
+
+    const normalizedPath = path.replace(/\/{2,}/g, "/");
+    const fileName = normalizedPath.split("/").pop();
+
+    const shortUrl = `/${fileName}`;
+    const host = window.location.origin;
+    return `${host}${shortUrl}`;
   };
+
   const clear = () => {
     setEditISBN("");
     setEditImage("");
@@ -485,12 +506,19 @@ const Ebooks = () => {
               <Col>
                 <Form.Group controlId="formImage">
                   <Form.Label>Image</Form.Label>
+                  {prevImage && (
+                    <div>
+                      <img
+                        src={prevImage}
+                        alt="Selected book cover"
+                        style={{ width: "70px", height: "auto" }}
+                      />
+                    </div>
+                  )}
                   <Form.Control
-                    type="text"
-                    placeholder="Enter image URL"
+                    type="file"
                     name="image"
-                    value={editImage}
-                    onChange={(e) => setEditImage(e.target.value)}
+                    onChange={(e) => setEditImage(e.target.files[0])}
                   />
                 </Form.Group>
               </Col>
@@ -535,14 +563,24 @@ const Ebooks = () => {
                     as="select"
                     multiple
                     value={selectedAuthors}
-                    onChange={(e) =>
-                      setSelectedAuthors(
-                        Array.from(
-                          e.target.selectedOptions,
-                          (option) => option.value
-                        )
-                      )
-                    }
+                    onClick={(e) => {
+                      const selectedOptions = e.target.selectedOptions
+                        ? Array.from(e.target.selectedOptions).map(
+                            (option) => option.value
+                          )
+                        : [];
+                      const clickedValue = e.target.value;
+
+                      if (selectedAuthors.includes(clickedValue)) {
+                        setSelectedAuthors(
+                          selectedAuthors.filter(
+                            (author) => author !== clickedValue
+                          )
+                        );
+                      } else {
+                        setSelectedAuthors([...selectedAuthors, clickedValue]);
+                      }
+                    }}
                   >
                     {authorsList.map((author) => (
                       <option key={author.authorID} value={author.authorID}>
@@ -632,14 +670,27 @@ const Ebooks = () => {
                     as="select"
                     multiple
                     value={selectedCategories}
-                    onChange={(e) =>
-                      setSelectedCategories(
-                        Array.from(
-                          e.target.selectedOptions,
-                          (option) => option.value
-                        )
-                      )
-                    }
+                    onClick={(e) => {
+                      const selectedOptions = e.target.selectedOptions
+                        ? Array.from(e.target.selectedOptions).map(
+                            (option) => option.value
+                          )
+                        : [];
+                      const clickedValue = e.target.value;
+
+                      if (selectedCategories.includes(clickedValue)) {
+                        setSelectedCategories(
+                          selectedCategories.filter(
+                            (category) => category !== clickedValue
+                          )
+                        );
+                      } else {
+                        setSelectedCategories([
+                          ...selectedCategories,
+                          clickedValue,
+                        ]);
+                      }
+                    }}
                   >
                     {categoriesList.map((category) => (
                       <option
@@ -657,9 +708,22 @@ const Ebooks = () => {
               <Col>
                 <Form.Group controlId="formContent">
                   <Form.Label>PDF File</Form.Label>
+                  <p>
+                    {prevContent ? (
+                      <a
+                        href={preprocessPdfPath(prevContent)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View existing PDF
+                      </a>
+                    ) : (
+                      "No PDF selected"
+                    )}
+                  </p>
                   <Form.Control
                     type="file"
-                    onChange={(e) => setEditContent(e.target.files[0])}
+                    onChange={(e) => handleFileChange(e, setEditContent)}
                   />
                 </Form.Group>
               </Col>

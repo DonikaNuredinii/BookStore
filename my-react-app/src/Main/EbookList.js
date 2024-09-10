@@ -69,7 +69,7 @@ const EbookList = ({ addToCart }) => {
       return require(`../Images/${imageName}`);
     } catch (err) {
       console.error(`Image not found: ${imageName}`);
-      return "/images/placeholder.jpg";
+      return `https://localhost:7061/${path}`;
     }
   };
 

@@ -22,21 +22,29 @@ namespace BookStore.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: api/Ebooks
+        // Get all ebooks
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ebook>>> GetEbooks()
         {
             return await _context.Ebooks
                 .Include(e => e.EbookLoans)
+                .Include(e => e.BookAuthors)
+                    .ThenInclude(ba => ba.Author)  // Include authors
+                .Include(e => e.CategoryBooks)
+                    .ThenInclude(cb => cb.Category)  // Include categories
                 .ToListAsync();
         }
 
-        // GET: api/Ebooks/5
+        // Get ebook by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Ebook>> GetEbook(int id)
         {
             var ebook = await _context.Ebooks
                 .Include(e => e.EbookLoans)
+                .Include(e => e.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
+                .Include(e => e.CategoryBooks)
+                    .ThenInclude(cb => cb.Category)
                 .FirstOrDefaultAsync(e => e.BookID == id);
 
             if (ebook == null)
@@ -47,7 +55,6 @@ namespace BookStore.Controllers
             return ebook;
         }
 
-        // POST: api/Ebooks
         [HttpPost]
         public async Task<IActionResult> CreateEbook([FromForm] EbookUploadRequest request)
         {
@@ -58,33 +65,34 @@ namespace BookStore.Controllers
 
             try
             {
-                // Save the PDF file to /wwwroot/pdfs/
-                var pdfFilePath = SaveFile(request.PdfFile, "pdfs");
+                // Save PDF and image
+                var publicFolderPath = Path.Combine(_webHostEnvironment.ContentRootPath, "..", "my-react-app", "public");
+                var pdfFilePath = SaveFile(request.PdfFile, publicFolderPath);
 
-                // Save the image to /wwwroot/images/
-                var imageFilePath = SaveFile(request.Image, "Images");
+                var imageFolderPath = Path.Combine(_webHostEnvironment.ContentRootPath, "..", "my-react-app", "src", "Images");
+                var imageFilePath = SaveFile(request.Image, imageFolderPath);
 
-                // Create new Ebook entity and save to the database
+                // Create new Ebook entity
                 var newEbook = new Ebook
                 {
                     ISBN = request.ISBN,
                     Title = request.Title,
                     Description = request.Description,
-                    Content = pdfFilePath, // Store the relative path to the PDF file
-                    Image = imageFilePath, // Store the relative path to the Image file
+                    Content = pdfFilePath,
+                    Image = imageFilePath,
                     PublicationDate = request.PublicationDate,
                     PageNumber = request.PageNumber,
                     Price = request.Price,
                     DateOfadition = request.DateOfadition,
                     PublishingHouseId = request.PublishingHouseId,
                     StockId = request.StockId,
-                    Type = "Ebook" // Set the type explicitly
+                    Type = "Ebook"
                 };
 
                 _context.Ebooks.Add(newEbook);
                 await _context.SaveChangesAsync();
 
-                // Add authors and categories
+                // Handle authors: iterate through the list of author IDs
                 foreach (var authorId in request.AuthorIds)
                 {
                     _context.BookAuthors.Add(new BookAuthors
@@ -94,6 +102,7 @@ namespace BookStore.Controllers
                     });
                 }
 
+                // Handle categories: iterate through the list of category IDs
                 foreach (var categoryId in request.CategoryIds)
                 {
                     _context.CategoryBooks.Add(new CategoryBook
@@ -106,19 +115,15 @@ namespace BookStore.Controllers
                 await _context.SaveChangesAsync();
                 return Ok(newEbook);
             }
-            catch (DbUpdateException ex)
-            {
-                // Log the detailed error
-                return StatusCode(500, $"An error occurred while saving the entity changes: {ex.InnerException?.Message}");
-            }
             catch (Exception ex)
             {
-                // For any other general exceptions
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
-        // PUT: api/Ebooks/5
+
+
+        // Update ebook
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEbook(int id, [FromForm] EbookUploadRequest request)
         {
@@ -128,7 +133,6 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            // Update properties
             existingEbook.ISBN = request.ISBN;
             existingEbook.Title = request.Title;
             existingEbook.Description = request.Description;
@@ -137,17 +141,19 @@ namespace BookStore.Controllers
             existingEbook.Price = request.Price;
             existingEbook.DateOfadition = request.DateOfadition;
 
-            // Update PDF file if a new one is uploaded
+            // Save new PDF file if provided
             if (request.PdfFile != null)
             {
-                var pdfFilePath = SaveFile(request.PdfFile, "pdfs");
+                var publicFolderPath = Path.Combine(_webHostEnvironment.ContentRootPath, "..", "my-react-app", "public");
+                var pdfFilePath = SaveFile(request.PdfFile, publicFolderPath);
                 existingEbook.Content = pdfFilePath;
             }
 
-            // Update Image file if a new one is uploaded
+            // Save new image file if provided
             if (request.Image != null)
             {
-                var imageFilePath = SaveFile(request.Image, "images");
+                var imageFolderPath = Path.Combine(_webHostEnvironment.ContentRootPath, "..", "my-react-app", "src", "Images");
+                var imageFilePath = SaveFile(request.Image, imageFolderPath);
                 existingEbook.Image = imageFilePath;
             }
 
@@ -176,7 +182,8 @@ namespace BookStore.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Ebooks/5
+
+        // Delete ebook
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEbook(int id)
         {
@@ -191,38 +198,33 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
-        private string SaveFile(IFormFile file, string folder)
+        private string SaveFile(IFormFile file, string folderName)
         {
-            if (file == null || string.IsNullOrWhiteSpace(folder))
+            if (file == null)
             {
-                Console.WriteLine("File or folder is null.");
                 return null;
             }
 
-            // Ensure that the folder path is created dynamically if it doesn't exist
-            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath ?? string.Empty, folder);
-
-            if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
+            // Create the folder path relative to wwwroot
+            var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, folderName);
+            if (!Directory.Exists(folderPath))
             {
-                throw new InvalidOperationException("WebRootPath is not set.");
+                Directory.CreateDirectory(folderPath);
             }
 
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder);  // Create the folder if it doesn't exist
-            }
-
-            var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            var fileName = Path.GetFileName(file.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 file.CopyTo(fileStream);
             }
 
-            // Return the relative path of the file
-            return Path.Combine(folder, uniqueFileName).Replace("\\", "/");
+            // Return the path relative to the root URL
+            return $"/{folderName}/{fileName}";
         }
+
+
 
 
 

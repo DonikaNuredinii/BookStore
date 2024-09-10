@@ -80,16 +80,16 @@ const AddEbooks = () => {
     formData.append("dateOfadition", dateOfadition);
     formData.append("publishingHouseId", selectedPublishingHouse);
     formData.append("stockId", selectedStock);
-    formData.append(
-      "authorIds",
-      JSON.stringify(selectedAuthors.map((authorId) => parseInt(authorId)))
-    );
-    formData.append(
-      "categoryIds",
-      JSON.stringify(
-        selectedCategories.map((categoryId) => parseInt(categoryId))
-      )
-    );
+
+    // Append each author ID separately
+    selectedAuthors.forEach((authorId) => {
+      formData.append("authorIds", authorId);
+    });
+
+    // Append each category ID separately
+    selectedCategories.forEach((categoryId) => {
+      formData.append("categoryIds", categoryId);
+    });
 
     // Append files if selected
     if (pdfFile) {
@@ -200,11 +200,22 @@ const AddEbooks = () => {
               as="select"
               multiple
               value={selectedAuthors}
-              onChange={(e) =>
-                setSelectedAuthors(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
+              onClick={(e) => {
+                const selectedOptions = e.target.selectedOptions
+                  ? Array.from(e.target.selectedOptions).map(
+                      (option) => option.value
+                    )
+                  : [];
+                const clickedValue = e.target.value;
+
+                if (selectedAuthors.includes(clickedValue)) {
+                  setSelectedAuthors(
+                    selectedAuthors.filter((author) => author !== clickedValue)
+                  );
+                } else {
+                  setSelectedAuthors([...selectedAuthors, clickedValue]);
+                }
+              }}
             >
               {authorsList.map((author) => (
                 <option key={author.authorID} value={author.authorID}>
@@ -221,11 +232,24 @@ const AddEbooks = () => {
               as="select"
               multiple
               value={selectedCategories}
-              onChange={(e) =>
-                setSelectedCategories(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
+              onClick={(e) => {
+                const selectedOptions = e.target.selectedOptions
+                  ? Array.from(e.target.selectedOptions).map(
+                      (option) => option.value
+                    )
+                  : [];
+                const clickedValue = e.target.value;
+
+                if (selectedCategories.includes(clickedValue)) {
+                  setSelectedCategories(
+                    selectedCategories.filter(
+                      (category) => category !== clickedValue
+                    )
+                  );
+                } else {
+                  setSelectedCategories([...selectedCategories, clickedValue]);
+                }
+              }}
             >
               {categoriesList.map((category) => (
                 <option key={category.categoryId} value={category.categoryId}>

@@ -1,232 +1,241 @@
-using BookStore.DTOs;
-using BookStore.Models;
-using BookStore.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SendGrid.Helpers.Mail;
+using BookStore.Models;
+using System.IO;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class BookController(MyContext context, IWebHostEnvironment webHostEnvironment) : ControllerBase
     {
-        private readonly MyContext _booksContext;
-        private readonly BookService _bookService;
+        private readonly MyContext _context = context;
+        private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
 
-        public BookController(MyContext booksContext, BookService bookService)
-        {
-            _booksContext = booksContext;
-            _bookService = bookService;
-        }
-
+        // GET: api/Books
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            var books = await _booksContext.Books
+            return await _context.Books
                 .Include(b => b.BookAuthors)
-                    .ThenInclude(ba => ba.Author)
                 .Include(b => b.CategoryBooks)
-                    .ThenInclude(cb => cb.Category)
                 .ToListAsync();
-
-            if (!books.Any())
-            {
-                return NotFound();
-            }
-
-            return Ok(books);
         }
 
-
-        [HttpGet("{bookID}")]
-        public async Task<ActionResult<BookResponse>> GetBook(int bookID)
+        // GET: api/Books/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBook(int id)
         {
-            var book = await _booksContext.Books
+            var book = await _context.Books
                 .Include(b => b.BookAuthors)
                     .ThenInclude(ba => ba.Author)
                 .Include(b => b.CategoryBooks)
-                    .ThenInclude(cb => cb.Category)
-                .FirstOrDefaultAsync(b => b.BookID == bookID);
+                    .ThenInclude(cb => cb.Category)  
+                .FirstOrDefaultAsync(b => b.BookID == id);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            var authors = book.BookAuthors.Select(ba => ba.Author).ToList();
-            var categories = book.CategoryBooks.Select(cb => cb.Category).ToList();
-
-            var result = new BookResponse
+   
+            var response = new
             {
-                Book = book,
-                Authors = authors,
-                Categories = categories
+                book.BookID,
+                book.ISBN,
+                book.Title,
+                book.Description,
+                book.PublicationDate,
+                book.PageNumber,
+                book.Price,
+                book.DateOfadition,
+                book.Type,
+                book.PublishingHouseId,
+                book.StockId,
+                book.Image,
+                Authors = book.BookAuthors.Select(ba => new { ba.AuthorID, ba.Author.Name }),
+                Categories = book.CategoryBooks.Select(cb => new { cb.CategoryID, cb.Category.Genre })
             };
 
-            return Ok(result);
+            return Ok(response);
         }
-        [HttpGet("GetBooksByLanguage/{languageId}")]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByLanguage(int languageId)
-        {
-            var books = await _booksContext.LanguageBooks
-                .Include(lb => lb.Book)
-                .Where(lb => lb.LanguageID == languageId)
-                .Select(lb => lb.Book)
-                .ToListAsync();
 
-            if (!books.Any())
+
+        // POST: api/Books
+        [HttpPost]
+        public async Task<IActionResult> CreateBook([FromForm] BookUploadRequest request)
+        {
+            if (request == null || !ModelState.IsValid)
             {
-                return NotFound();
+                return BadRequest(ModelState);
             }
 
-            return Ok(books);
+            try
+            {
+              
+                var imageFilePath = SaveFile(request.Image, "src/Images");
+
+                var newBook = new Book
+                {
+                    ISBN = request.ISBN,
+                    Title = request.Title,
+                    Description = request.Description,
+                    Image = imageFilePath, 
+                    PublicationDate = request.PublicationDate,
+                    PageNumber = request.PageNumber,
+                    Price = request.Price,
+                    DateOfadition = request.DateOfadition,
+                    PublishingHouseId = request.PublishingHouseId,
+                    StockId = request.StockId,
+                    Type = request.Type
+                };
+
+                _context.Books.Add(newBook);
+                await _context.SaveChangesAsync();
+
+                // Handle authors and categories
+                foreach (var authorId in request.AuthorIds)
+                {
+                    _context.BookAuthors.Add(new BookAuthors
+                    {
+                        BookID = newBook.BookID,
+                        AuthorID = authorId
+                    });
+                }
+
+                foreach (var categoryId in request.CategoryIds)
+                {
+                    _context.CategoryBooks.Add(new CategoryBook
+                    {
+                        BookID = newBook.BookID,
+                        CategoryID = categoryId
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+                return Ok(newBook);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        // PUT: api/Books/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateBook(int id, [FromForm] BookUploadRequest request)
         {
-            await _bookService.AddBookAsync(book);
-            return CreatedAtAction(nameof(GetBook), new { bookID = book.BookID }, book);
-        }
-
-        [HttpPut("{bookID}")]
-        public async Task<IActionResult> PutBook(int bookID, [FromBody] BookUpdateRequest request)
-        {
-            if (bookID != request.Book.BookID)
+            if (id != request.BookID)
             {
                 return BadRequest("Book ID mismatch");
             }
 
-            // Fetch the existing book record
-            var existingBook = await _booksContext.Books
+            var existingBook = await _context.Books
                 .Include(b => b.BookAuthors)
                 .Include(b => b.CategoryBooks)
-                .FirstOrDefaultAsync(b => b.BookID == bookID);
+                .FirstOrDefaultAsync(b => b.BookID == id);
 
             if (existingBook == null)
             {
                 return NotFound();
             }
 
-            // Update the book's basic details
-            existingBook.Title = request.Book.Title;
-            existingBook.ISBN = request.Book.ISBN;
-            existingBook.PublicationDate = request.Book.PublicationDate;
-            existingBook.PageNumber = request.Book.PageNumber;
-            existingBook.Price = request.Book.Price;
-            existingBook.Description = request.Book.Description;
-            existingBook.DateOfadition = request.Book.DateOfadition;
-            existingBook.Type = request.Book.Type;
-            existingBook.PublishingHouseId = request.Book.PublishingHouseId;
-            existingBook.StockId = request.Book.StockId;
-
-            // Handle the authors
-            _booksContext.BookAuthors.RemoveRange(existingBook.BookAuthors);
-            foreach (var authorId in request.AuthorIds)
-            {
-                _booksContext.BookAuthors.Add(new BookAuthors
-                {
-                    BookID = bookID,
-                    AuthorID = authorId
-                });
-            }
-
-            // Handle the categories
-            _booksContext.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
-            foreach (var categoryId in request.CategoryIds)
-            {
-                _booksContext.CategoryBooks.Add(new CategoryBook
-                {
-                    BookID = bookID,
-                    CategoryID = categoryId
-                });
-            }
-
-            // Save changes
             try
             {
-                await _booksContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookExists(bookID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                // Update book properties
+                existingBook.ISBN = request.ISBN;
+                existingBook.Title = request.Title;
+                existingBook.Description = request.Description;
+                existingBook.PublicationDate = request.PublicationDate;
+                existingBook.PageNumber = request.PageNumber;
+                existingBook.Price = request.Price;
+                existingBook.DateOfadition = request.DateOfadition;
+                existingBook.PublishingHouseId = request.PublishingHouseId;
+                existingBook.StockId = request.StockId;
+                existingBook.Type = request.Type;
 
-            return NoContent();
+                // Check if a new image file is provided
+                if (request.Image != null)
+                {
+                    existingBook.Image = SaveFile(request.Image, "src/Images");
+                }
+
+                // Update authors
+                _context.BookAuthors.RemoveRange(existingBook.BookAuthors);
+                foreach (var authorId in request.AuthorIds)
+                {
+                    _context.BookAuthors.Add(new BookAuthors
+                    {
+                        BookID = existingBook.BookID,
+                        AuthorID = authorId
+                    });
+                }
+
+                // Update categories
+                _context.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
+                foreach (var categoryId in request.CategoryIds)
+                {
+                    _context.CategoryBooks.Add(new CategoryBook
+                    {
+                        BookID = existingBook.BookID,
+                        CategoryID = categoryId
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+
+                return Ok(existingBook);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
 
-        [HttpDelete("{bookID}")]
-        public async Task<IActionResult> DeleteBook(int bookID)
+        // DELETE: api/Books/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBook(int id)
         {
-            var book = await _booksContext.Books
-                .Include(b => b.CategoryBooks)
-                .FirstOrDefaultAsync(b => b.BookID == bookID);
-
+            var book = await _context.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            _booksContext.CategoryBooks.RemoveRange(book.CategoryBooks);
-            _booksContext.Books.Remove(book);
-            await _booksContext.SaveChangesAsync();
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        [HttpPost("AddBookWithAuthors")]
-        public async Task<IActionResult> AddBookWithAuthors(AddBookWithAuthorsRequest request)
+        private string SaveFile(IFormFile file, string folderName)
         {
-            if (request == null || request.Book == null || !request.AuthorIds.Any())
+            if (file == null)
             {
-                return BadRequest("Invalid book or author data");
+                return null;
             }
 
-            using (var transaction = await _booksContext.Database.BeginTransactionAsync())
+            var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, folderName);
+            if (!Directory.Exists(folderPath))
             {
-                try
-                {
-                    _booksContext.Books.Add(request.Book);
-                    await _booksContext.SaveChangesAsync();
-
-                    foreach (var authorId in request.AuthorIds)
-                    {
-                        _booksContext.BookAuthors.Add(new BookAuthors
-                        {
-                            BookID = request.Book.BookID,
-
-
-                            AuthorID = authorId
-                        });
-                    }
-                    await _booksContext.SaveChangesAsync();
-
-                    await transaction.CommitAsync();
-                    return Ok(request.Book);
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    return StatusCode(500, "An error occurred: " + ex.Message);
-                }
+                Directory.CreateDirectory(folderPath);
             }
+
+            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(folderPath, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            return $"/{folderName}/{uniqueFileName}".Replace("\\", "/");
         }
 
-        private bool BookExists(int bookID)
-        {
-            return _booksContext.Books.Any(e => e.BookID == bookID);
-        }
     }
 }

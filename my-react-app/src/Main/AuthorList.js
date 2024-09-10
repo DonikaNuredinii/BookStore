@@ -23,8 +23,9 @@ const AuthorList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="Author-page">
       <h2>Authors</h2>
+      <div className="styled-hr" />
       <ul className="author-list" style={{ listStyle: "none", padding: 0 }}>
         {authors.map((author) => (
           <li key={author.authorID} style={{ fontFamily: "Fantasy" }}>
@@ -37,6 +38,7 @@ const AuthorList = () => {
           </li>
         ))}
       </ul>
+      <div className="styled-hr2" />
     </div>
   );
 };

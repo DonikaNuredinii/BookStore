@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { jwtDecode } from 'jwt-decode';
-
-
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
@@ -12,96 +11,64 @@ const AccountSettings = () => {
     lastName: "",
     phoneNumber: "",
     email: "",
-    username: "",
   });
   const [formErrors, setFormErrors] = useState({});
-
-  const checkTokenValidity = () => {
-    const token = localStorage.getItem("token");
-  
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token); 
-        console.log("Decoded Token:", decodedToken);
-  
-        
-        const currentTime = Date.now() / 1000;
-  
-        
-        if (decodedToken.exp < currentTime) {
-          console.log("Token expired");
-        
-          localStorage.removeItem("token");
-          return false;
-        } else {
-          console.log("Token is valid");
-          return true; 
-        }
-      } catch (error) {
-        console.error("Error decoding token", error);
-        // If the token is invalid or malformed, remove it from localStorage
-        localStorage.removeItem("token");
-        return false;
-      }
-    } else {
-      console.log("No token found in localStorage");
-      return false;
-    }
-  };
-  
-  // Usage
-  const isTokenValid = checkTokenValidity();
-  console.log("Is token valid?", isTokenValid);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [userID, setUserId] = useState(localStorage.getItem("userID"));
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const isTokenValid = checkTokenValidity();
-  
-    if (isTokenValid) {
-      const userId = localStorage.getItem("userID");
-      const token = localStorage.getItem("token");
-  
-      if (userId) {
-        axios
-          .get(`https://localhost:7061/api/User/${userId}`, {
+    if (!token || !userID) {
+      navigate("/account"); // or redirect to the login page
+      return;
+    }
+
+    const checkTokenValidity = async () => {
+      try {
+        const decodedToken = jwtDecode(token);
+        const isExpired = Date.now() >= decodedToken.exp * 1000;
+
+        if (isExpired) {
+          toast.error("Token has expired. Please log in again.");
+          navigate("/login");
+        }
+      } catch (error) {
+        toast.error("Failed to decode token.");
+        navigate("/login");
+      }
+    };
+
+    checkTokenValidity();
+  }, [token, userID, navigate]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7061/api/User/${userID}`,
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          })
-          .then((response) => {
-            setUserData({
-              firstName: response.data.firstName,
-              lastName: response.data.lastName,
-              phoneNumber: response.data.phoneNumber,
-              email: response.data.email,
-              username: response.data.username,
-            });
-          })
-          .catch((error) => {
-            toast.error("Error fetching user data: " + error.message);
-          });
-      } else {
-        toast.error("No user ID found.");
+          }
+        );
+        setUserData({
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          phoneNumber: response.data.phoneNumber,
+          email: response.data.email,
+        });
+      } catch (error) {
+        console.error(
+          "Error fetching user data:",
+          error.response ? error.response.data : error.message
+        );
+        toast.error("Failed to fetch user data.");
       }
-    } else {
-      // Redirect the user to the login page if the token is not valid
-      window.location.href = "/login";
-    }
-  }, []);
-  
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+    };
 
-  const validatePhoneNumber = (phoneNumber) => {
-    const phoneRegex = /^\+?\d{1,4}-?\d{1,4}-?\d{1,9}$/;
-    return phoneRegex.test(phoneNumber);
-  };
-
-  const validateName = (name) => {
-    const nameRegex = /^[A-Z][a-zA-Z]*$/;
-    return nameRegex.test(name);
-  };
+    fetchUserData();
+  }, [userID]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -111,70 +78,54 @@ const AccountSettings = () => {
     }));
   };
 
-
-  const handleLogout = () => {
-    // Remove user-related data from localStorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("userID");
-  
-    // Optionally show a notification
-    toast.success("Logged out successfully!");
-  
-    // Redirect to the login page or homepage
-    window.location.href = "/account";
-  };
-  
-
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+
+    const { firstName, lastName, phoneNumber, email } = userData;
 
     const errors = {};
 
-    if (!validateName(userData.firstName)) {
-      errors.firstName = "First name should start with a capital letter.";
-    }
-    if (!validateName(userData.lastName)) {
-      errors.lastName = "Last name should start with a capital letter.";
-    }
-    if (!validatePhoneNumber(userData.phoneNumber)) {
-      errors.phoneNumber = "Invalid phone number.";
-    }
-    if (!validateEmail(userData.email)) {
-      errors.email = "Invalid email address.";
-    }
+    if (!firstName) errors.firstName = "First name is required.";
+    if (!lastName) errors.lastName = "Last name is required.";
+    if (!phoneNumber) errors.phoneNumber = "Phone number is required.";
+    if (!email) errors.email = "Email is required.";
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    } else {
-      setFormErrors({});
-    }
+    setFormErrors(errors);
 
-    const token = localStorage.getItem("token");
+    if (Object.keys(errors).length > 0) return;
 
-    axios
-      .put(`https://localhost:7061/api/User/${localStorage.getItem("userID")}`, userData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        toast.success("Account updated successfully!");
-      })
-      .catch((error) => {
-        toast.error("Error updating account: " + error.message);
+    try {
+      await axios.put(`https://localhost:7061/api/User/${userID}`, {
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
       });
+
+      toast.success("Profile updated successfully!");
+    } catch (error) {
+      toast.error("Failed to update profile.");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userID");
+    navigate("/account");
   };
 
   return (
     <div className="container-accountsettings">
+      <ToastContainer />
       <div className="sidebar-acc">
         <a href="#">Profile</a>
         <a href="#">Notifications</a>
         <a href="#">E-books</a>
-        <a href="#" onClick={handleLogout}>Log Out</a>
+        <a href="#" onClick={handleLogout}>
+          Log Out
+        </a>
       </div>
-      
+
       <div className="form-containerA">
         <h1>My Profile</h1>
         <form onSubmit={handleUpdate} className="accountsettings">
@@ -200,7 +151,7 @@ const AccountSettings = () => {
           </div>
           <div className="inputs-logIn-acc">
             <input
-              type="text"
+              type="tel"
               placeholder="Phone Number"
               name="phoneNumber"
               value={userData.phoneNumber}
@@ -210,7 +161,7 @@ const AccountSettings = () => {
           </div>
           <div className="inputs-logIn-acc">
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               name="email"
               value={userData.email}
@@ -218,18 +169,8 @@ const AccountSettings = () => {
             />
             <div className="error-message">{formErrors.email}</div>
           </div>
-          <div className="inputs-logIn-acc">
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-              value={userData.username}
-              onChange={handleInputChange}
-              disabled
-            />
-          </div>
-          <button type="submit" className="acc-button1">
-            Update Account
+          <button type="submit" className="acc-button">
+            Update Profile
           </button>
         </form>
       </div>

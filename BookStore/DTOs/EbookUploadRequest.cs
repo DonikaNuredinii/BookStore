@@ -12,8 +12,8 @@ public class EbookUploadRequest
     public DateTime DateOfadition { get; set; }
     public int PublishingHouseId { get; set; }
     public int StockId { get; set; }
-    public IFormFile PdfFile { get; set; } // PDF File
-    public IFormFile Image { get; set; } // Image File
-    public List<int> AuthorIds { get; set; } // List of authors' IDs
-    public List<int> CategoryIds { get; set; } // List of categories' IDs
+    public IFormFile PdfFile { get; set; }
+    public IFormFile Image { get; set; } 
+    public List<int> AuthorIds { get; set; } 
+    public List<int> CategoryIds { get; set; } 
 }
