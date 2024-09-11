@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Author = () => {
+const Author = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [editAuthorID, setEditAuthorID] = useState("");
   const [editName, setEditName] = useState("");
@@ -51,6 +51,24 @@ const Author = () => {
       .catch((error) => {
         toast.error("Failed to get Staff: " + error.message);
       });
+  };
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData(); // Refetch data if query is empty
+      return;
+    }
+
+    const filteredData = data.filter((author) =>
+      author.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
   };
 
   const handleDelete = (AuthorID) => {

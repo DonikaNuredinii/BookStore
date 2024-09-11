@@ -25,6 +25,8 @@ const AddBooks = () => {
   const [stockList, setStockList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [success, setSuccess] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [languagesList, setLanguagesList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -33,8 +35,16 @@ const AddBooks = () => {
     getPublishingHouses();
     getStocks();
     getCategories();
+    getLanguages();
   }, []);
-
+  const getLanguages = () => {
+    axios
+      .get("https://localhost:7061/api/Language")
+      .then((response) => setLanguagesList(response.data))
+      .catch((error) =>
+        toast.error("Failed to fetch languages: " + error.message)
+      );
+  };
   const getAuthors = () => {
     axios
       .get("https://localhost:7061/api/Author")
@@ -68,7 +78,6 @@ const AddBooks = () => {
         toast.error("Failed to get categories: " + error.message)
       );
   };
-
   const handleSave = async (e) => {
     e.preventDefault();
 
@@ -82,6 +91,8 @@ const AddBooks = () => {
     formData.append("dateOfadition", dateOfadition);
     formData.append("publishingHouseId", selectedPublishingHouse);
     formData.append("stockId", selectedStock);
+    formData.append("type", type);
+    formData.append("languageId", selectedLanguage);
 
     selectedAuthors.forEach((authorId) => {
       formData.append("authorIds", authorId);
@@ -95,6 +106,11 @@ const AddBooks = () => {
       formData.append("image", image);
     }
 
+    // Log formData values to check what is being sent
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     try {
       const response = await axios.post(
         "https://localhost:7061/api/Book",
@@ -105,15 +121,18 @@ const AddBooks = () => {
           },
         }
       );
-
-      console.log("Response:", response);
-
       toast.success("Book has been added successfully");
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(
-        "Failed to add Book: " + (error.response?.data || error.message)
-      );
+      if (error.response) {
+        console.error("Validation errors:", error.response.data.errors); // Log validation errors
+        toast.error(
+          "Failed to add Book: " + error.response.data.title ||
+            "Unknown server error"
+        );
+      } else {
+        console.error("Error:", error.message); // Log any other errors
+        toast.error("Failed to add Book: " + error.message);
+      }
     }
   };
 
@@ -270,6 +289,23 @@ const AddBooks = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group controlId="formLanguage">
+            <Form.Label>Language</Form.Label>
+            <Form.Control
+              as="select"
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              <option value="">Select Language</option>
+              {languagesList.map((language) => (
+                <option key={language.languageId} value={language.languageId}>
+                  {language.languageName}
+                </option>
+              ))}
+            </Form.Control>
           </Form.Group>
         </Col>
       </Row>

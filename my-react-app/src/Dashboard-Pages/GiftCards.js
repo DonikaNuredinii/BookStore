@@ -8,7 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
-const GiftCards = () => {
+const GiftCards = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
   const [editGiftCardId, setEditGiftCardId] = useState("");
@@ -25,6 +25,24 @@ const GiftCards = () => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
+
+    const filteredData = data.filter((gift) =>
+      gift.code.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
 
   const getData = async () => {
     try {

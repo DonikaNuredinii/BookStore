@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const User = () => {
+const User = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,19 +27,37 @@ const User = () => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
+
+    const filteredData = data.filter((user) =>
+      user.username.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
 
   const getData = () => {
-    const token = localStorage.getItem('token'); 
-  
+    const token = localStorage.getItem("token");
+
     if (!token) {
       toast.error("You are not authenticated. Please log in.");
       return;
     }
-  
+
     axios
       .get("https://localhost:7061/api/User", {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((result) => {
@@ -53,16 +71,16 @@ const User = () => {
           toast.error("Failed to fetch users: " + error.message);
         }
       });
-  
+
     axios
-    .get("https://localhost:7061/api/Roles/roles", {
+      .get("https://localhost:7061/api/Roles/roles", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((result) => {
         setRoles(result.data);
-        console.log("Roles Data:", result.data); 
+        console.log("Roles Data:", result.data);
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
@@ -72,10 +90,9 @@ const User = () => {
         }
       });
   };
-  
 
   const handleEdit = (userId) => {
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem("token");
     if (!userId) {
       toast.error("UserID is not valid");
       return;
@@ -83,11 +100,11 @@ const User = () => {
 
     handleShow();
     setEditUserId(userId);
-  
+
     axios
       .get(`https://localhost:7061/api/User/${userId}`, {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((result) => {
@@ -104,22 +121,21 @@ const User = () => {
         toast.error("Failed to get User: " + error.message);
       });
   };
-  
 
   const handleDelete = (userId) => {
-    const token = localStorage.getItem('token'); 
-  
+    const token = localStorage.getItem("token");
+
     if (window.confirm("Are you sure you want to delete this User?")) {
       axios
         .delete(`https://localhost:7061/api/User/${userId}`, {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((result) => {
           if (result.status === 200 || result.status === 204) {
             toast.success("User has been deleted");
-            getData(); 
+            getData();
           }
         })
         .catch((error) => {
@@ -127,12 +143,11 @@ const User = () => {
         });
     }
   };
-  
 
   const handleUpdate = async () => {
-    const token = localStorage.getItem('token'); 
-    const url = `https://localhost:7061/api/User/${editUserId}`; 
-  
+    const token = localStorage.getItem("token");
+    const url = `https://localhost:7061/api/User/${editUserId}`;
+
     const userData = {
       UserID: editUserId,
       FirstName: editFirstName,
@@ -143,16 +158,16 @@ const User = () => {
       Password: editPassword,
       RolesID: parseInt(editRoles),
     };
-  
+
     axios
       .put(url, userData, {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((result) => {
-        handleClose(); 
-        getData(); 
+        handleClose();
+        getData();
         toast.success("User has been updated");
       })
       .catch((error) => {
@@ -163,7 +178,7 @@ const User = () => {
         }
       });
   };
-  
+
   const clear = () => {
     setEditFirstName("");
     setEditLastName("");
@@ -207,7 +222,7 @@ const User = () => {
                 } else if (item.rolesID === 3) {
                   roleName = "Admin";
                 }
-                console.log("Role ID:", item.rolesID, "Role Name:", roleName); 
+                console.log("Role ID:", item.rolesID, "Role Name:", roleName);
                 return (
                   <tr key={item.userID}>
                     <td>{index + 1}</td>

@@ -5,7 +5,6 @@ import "../App.css";
 import Sidebar from "../Components/Sidebar";
 import Books from "../Dashboard-Pages/Books";
 import { Routes, Route } from "react-router-dom";
-
 import Navbar from "../Components/Navbar";
 import AddBooks from "../Components/AddBooks";
 import AddCategories from "../Components/AddCategories";
@@ -28,15 +27,22 @@ import Events from "../Dashboard-Pages/Event";
 import AddEvent from "../Components/AddEvent";
 import Ebooks from "../Dashboard-Pages/Ebooks";
 import AddEbooks from "../Components/AddEbooks";
+import SearchBar from "../Components/SearchBar";
+
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const Toggle = () => {
     setToggle(!toggle);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <div className="container-fluid custom-bg min-vh-100">
+    <div className="container-fluid custom-bg min-vh-100 position-relative">
       <div className="row">
         {toggle && (
           <div className="col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed">
@@ -46,32 +52,59 @@ function Dashboard() {
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
           <Navbar Toggle={Toggle} />
+          <SearchBar onSearch={handleSearch} />
           <Routes>
             <Route path="add-categories" element={<AddCategories />} />
-
-            <Route path="Categories" element={<Categories />} />
-            {/* <Route path="/" element={<Home Toggle={Toggle} />} /> */}
+            <Route
+              path="Categories"
+              element={<Categories searchQuery={searchQuery} />}
+            />
             <Route path="add-user" element={<AddUser />} />
-            <Route path="User" element={<User />} />
+            <Route path="User" element={<User searchQuery={searchQuery} />} />
             <Route path="add-books" element={<AddBooks />} />
             <Route path="/add-Accessories" element={<AddAccessories />} />
             <Route path="/add-Authors" element={<AddAuthors />} />
-
-            <Route path="/Books" element={<Books />} />
-            <Route path="/Author" element={<Author />} />
-            <Route path="/Accessories" element={<Accessories />} />
+            <Route
+              path="/Books"
+              element={<Books searchQuery={searchQuery} />}
+            />
+            <Route
+              path="/Author"
+              element={<Author searchQuery={searchQuery} />}
+            />
+            <Route
+              path="/Accessories"
+              element={<Accessories searchQuery={searchQuery} />}
+            />
             <Route path="/add-Orders" element={<AddOrders />} />
-            <Route path="Orders" element={<Orders />} />
+            <Route
+              path="Orders"
+              element={<Orders searchQuery={searchQuery} />}
+            />
             <Route path="/add-contact" element={<AddContact />} />
-            <Route path="ContactUs" element={<ContactUs />} />
-            <Route path="/GiftCards" element={<GiftCards />} />
+            <Route
+              path="ContactUs"
+              element={<ContactUs searchQuery={searchQuery} />}
+            />
+            <Route
+              path="/GiftCards"
+              element={<GiftCards searchQuery={searchQuery} />}
+            />
             <Route path="/add-GiftCard" element={<AddGiftCard />} />
-            <Route path="/Quotes" element={<Quotes />} />
-            <Route path="/Event" element={<Events />} />
+            <Route
+              path="/Quotes"
+              element={<Quotes searchQuery={searchQuery} />}
+            />
+            <Route
+              path="/Event"
+              element={<Events searchQuery={searchQuery} />}
+            />
             <Route path="/add-Event" element={<AddEvent />} />
             <Route path="/add-Quotes" element={<AddQuotes />} />
-            <Route path="/Quotes" element={<Quotes />} />
-            <Route path="/Ebooks" element={<Ebooks />} />
+            <Route
+              path="/Ebooks"
+              element={<Ebooks searchQuery={searchQuery} />}
+            />
             <Route path="/add-Ebooks" element={<AddEbooks />} />
           </Routes>
         </div>

@@ -40,7 +40,6 @@ function Pages() {
 
   const addToCart = (item) => {
     setCart((prevCart) => {
-      // Check if the item already exists in the cart
       const existingItemIndex = prevCart.findIndex(
         (cartItem) => cartItem.bookId === item.bookId
       );

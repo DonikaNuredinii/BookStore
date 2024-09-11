@@ -86,6 +86,34 @@ namespace BookStore.Controllers
             return Ok(languageBook);
         }
 
+        // GET: api/LanguageBook/Book/5
+        [HttpGet("Book/{bookID}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetLanguageBooksByBookID(int bookID)
+        {
+            var languageBooks = await _context.LanguageBooks
+                .Where(lb => lb.BookID == bookID)
+                .Include(lb => lb.Language)
+                .Select(lb => new
+                {
+                    lb.LanguageBookID,
+                    lb.BookID,
+                    lb.LanguageID,
+                    Language = new
+                    {
+                        lb.Language.LanguageId,
+                        lb.Language.LanguageName
+                    }
+                })
+                .ToListAsync();
+
+            if (languageBooks == null || !languageBooks.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(languageBooks);
+        }
+
         // POST: api/LanguageBook
         [HttpPost]
         public async Task<ActionResult<LanguageBook>> PostLanguageBook(LanguageBook languageBook)

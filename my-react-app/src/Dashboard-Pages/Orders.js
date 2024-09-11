@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Orders = () => {
+const Orders = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -25,6 +25,24 @@ const Orders = () => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
+
+    const filteredData = data.filter((order) =>
+      order.city.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
 
   const getData = () => {
     axios

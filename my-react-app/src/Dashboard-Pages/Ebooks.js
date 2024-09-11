@@ -358,9 +358,14 @@ const Ebooks = () => {
           </Button>
         </Link>
       </div>
-      <Table striped bordered hover className="tables table-sm">
+      <Table
+        striped
+        bordered
+        hover
+        size="sm"
+        className="compact-table table-sm"
+      >
         {" "}
-        {/* Compact Table */}
         <thead className="table-dark">
           <tr>
             <th>#</th>

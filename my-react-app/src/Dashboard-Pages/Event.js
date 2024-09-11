@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Event = () => {
+const Event = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [editEventID, setEditEventID] = useState("");
   const [editEventName, setEditEventName] = useState("");
@@ -20,6 +20,24 @@ const Event = () => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
+
+    const filteredData = data.filter((event) =>
+      event.eventNamename.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
 
   const getData = () => {
     axios
@@ -168,7 +186,12 @@ const Event = () => {
           <Modal.Title>Edit Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(e) => { e.preventDefault(); handleUpdate(); }}>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleUpdate();
+            }}
+          >
             <Row>
               <Col>
                 <Form.Group controlId="formEventID">

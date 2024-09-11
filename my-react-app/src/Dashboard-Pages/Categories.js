@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Categories = () => {
+const Categories = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -48,6 +48,19 @@ const Categories = () => {
       .catch((error) => {
         toast.error("Failed to get Category: " + error.message);
       });
+  };
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    const filteredData = data.filter((categories) =>
+      categories.genre.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
   };
 
   //delete

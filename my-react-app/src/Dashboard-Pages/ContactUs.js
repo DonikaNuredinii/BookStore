@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const ContactUs = () => {
+const ContactUs = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -73,6 +73,24 @@ const ContactUs = () => {
         });
     }
   };
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
+
+    const filteredData = data.filter((contact) =>
+      contact.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
 
   const handleUpdate = async () => {
     const url = `https://localhost:7061/api/ContactUs/${editContactID}`;
@@ -120,6 +138,7 @@ const ContactUs = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Message</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

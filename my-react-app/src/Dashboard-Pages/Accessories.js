@@ -14,7 +14,7 @@ const image = require.context(
   false,
   /\.(png|jpe?g|svg)$/
 );
-const Accessories = () => {
+const Accessories = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
 
@@ -37,7 +37,24 @@ const Accessories = () => {
     getData();
     getStocks();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      getData();
+      return;
+    }
 
+    const filteredData = data.filter((accessories) =>
+      accessories.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
   const getData = async () => {
     try {
       const response = await axios.get(
@@ -116,7 +133,7 @@ const Accessories = () => {
     const stockId = parseInt(selectedStock) || null;
 
     const data = {
-      accessoriesID: editAccessoriesID ,
+      accessoriesID: editAccessoriesID,
       image: editImage || "string",
       name: editName || "string",
       description: editDescription || "string",
@@ -215,13 +232,19 @@ const Accessories = () => {
                 <tr key={item.accessoriesID}>
                   <td>{index + 1}</td>
                   <td>
-                    <img src={imagePath || "/Images/placeholder.jpg"} alt="Accessory Item" 
-                    style={{ width: "100px", height: "100px", marginLeft:"110px" }} 
+                    <img
+                      src={imagePath || "/Images/placeholder.jpg"}
+                      alt="Accessory Item"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        marginLeft: "110px",
+                      }}
                     />
                   </td>
                   <td>{item.name}</td>
                   <td>{item.seller}</td>
-                  <td  style={{width:"900px"}}>{item.description}</td>
+                  <td style={{ width: "900px" }}>{item.description}</td>
                   <td>{item.dimensions}</td>
                   <td>{item.price}</td>
                   <td>{item.dateOfAddition}</td>
@@ -380,9 +403,9 @@ const Accessories = () => {
                 </Form.Group>
               </Col>
             </Row>
-            
+
             <Row>
-                <Col>
+              <Col>
                 <Form.Group controlId="formStock">
                   <Form.Label>Stock</Form.Label>
                   <Form.Control

@@ -23,8 +23,11 @@ namespace BookStore.Controllers
             return await _context.Books
                 .Include(b => b.BookAuthors)
                 .Include(b => b.CategoryBooks)
+                 .Include(b => b.LanguageBooks)
                 .ToListAsync();
         }
+
+
 
         // GET: api/Books/{id}
         [HttpGet("{id}")]
@@ -34,7 +37,9 @@ namespace BookStore.Controllers
                 .Include(b => b.BookAuthors)
                     .ThenInclude(ba => ba.Author)
                 .Include(b => b.CategoryBooks)
-                    .ThenInclude(cb => cb.Category)  
+                    .ThenInclude(cb => cb.Category)
+                .Include(b => b.LanguageBooks)
+                    .ThenInclude(lb => lb.Language)
                 .FirstOrDefaultAsync(b => b.BookID == id);
 
             if (book == null)
@@ -42,7 +47,6 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-   
             var response = new
             {
                 book.BookID,
@@ -58,12 +62,12 @@ namespace BookStore.Controllers
                 book.StockId,
                 book.Image,
                 Authors = book.BookAuthors.Select(ba => new { ba.AuthorID, ba.Author.Name }),
-                Categories = book.CategoryBooks.Select(cb => new { cb.CategoryID, cb.Category.Genre })
+                Categories = book.CategoryBooks.Select(cb => new { cb.CategoryID, cb.Category.Genre }),
+                Languages = book.LanguageBooks.Select(lb => new { lb.LanguageID, lb.Language.LanguageName })
             };
 
             return Ok(response);
         }
-
 
         // POST: api/Books
         [HttpPost]
@@ -76,47 +80,61 @@ namespace BookStore.Controllers
 
             try
             {
-              
-                var imageFilePath = SaveFile(request.Image, "src/Images");
+                // Save the image (if any)
+                var imageFilePath = request.Image != null ? SaveFile(request.Image, "src/Images") : null;
 
+                // Create a new Book instance
                 var newBook = new Book
                 {
                     ISBN = request.ISBN,
                     Title = request.Title,
                     Description = request.Description,
-                    Image = imageFilePath, 
+                    Image = imageFilePath,
                     PublicationDate = request.PublicationDate,
                     PageNumber = request.PageNumber,
                     Price = request.Price,
                     DateOfadition = request.DateOfadition,
                     PublishingHouseId = request.PublishingHouseId,
                     StockId = request.StockId,
-                    Type = request.Type
+                    Type = request.Type,
                 };
 
+                // Add the book to the Books table
                 _context.Books.Add(newBook);
                 await _context.SaveChangesAsync();
+
+                // Handle the many-to-many relationship with LanguageBook
+                var languageBook = new LanguageBook
+                {
+                    BookID = newBook.BookID,
+                    LanguageID = request.LanguageId
+                };
+                _context.LanguageBooks.Add(languageBook);
 
                 // Handle authors and categories
                 foreach (var authorId in request.AuthorIds)
                 {
-                    _context.BookAuthors.Add(new BookAuthors
+                    var bookAuthor = new BookAuthors
                     {
                         BookID = newBook.BookID,
                         AuthorID = authorId
-                    });
+                    };
+                    _context.BookAuthors.Add(bookAuthor);
                 }
 
                 foreach (var categoryId in request.CategoryIds)
                 {
-                    _context.CategoryBooks.Add(new CategoryBook
+                    var categoryBook = new CategoryBook
                     {
                         BookID = newBook.BookID,
                         CategoryID = categoryId
-                    });
+                    };
+                    _context.CategoryBooks.Add(categoryBook);
                 }
 
+                // Save all the changes
                 await _context.SaveChangesAsync();
+
                 return Ok(newBook);
             }
             catch (Exception ex)
@@ -124,6 +142,7 @@ namespace BookStore.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
 
         // PUT: api/Books/{id}
         [HttpPut("{id}")]
@@ -135,8 +154,7 @@ namespace BookStore.Controllers
             }
 
             var existingBook = await _context.Books
-                .Include(b => b.BookAuthors)
-                .Include(b => b.CategoryBooks)
+                .Include(b => b.LanguageBooks)
                 .FirstOrDefaultAsync(b => b.BookID == id);
 
             if (existingBook == null)
@@ -164,26 +182,11 @@ namespace BookStore.Controllers
                     existingBook.Image = SaveFile(request.Image, "src/Images");
                 }
 
-                // Update authors
-                _context.BookAuthors.RemoveRange(existingBook.BookAuthors);
-                foreach (var authorId in request.AuthorIds)
+                // Update language
+                var existingLanguage = existingBook.LanguageBooks.FirstOrDefault();
+                if (existingLanguage != null)
                 {
-                    _context.BookAuthors.Add(new BookAuthors
-                    {
-                        BookID = existingBook.BookID,
-                        AuthorID = authorId
-                    });
-                }
-
-                // Update categories
-                _context.CategoryBooks.RemoveRange(existingBook.CategoryBooks);
-                foreach (var categoryId in request.CategoryIds)
-                {
-                    _context.CategoryBooks.Add(new CategoryBook
-                    {
-                        BookID = existingBook.BookID,
-                        CategoryID = categoryId
-                    });
+                    existingLanguage.LanguageID = request.LanguageId;
                 }
 
                 await _context.SaveChangesAsync();
@@ -195,7 +198,6 @@ namespace BookStore.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-
 
         // DELETE: api/Books/{id}
         [HttpDelete("{id}")]
@@ -212,7 +214,22 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
+        [HttpGet("GetBooksByLanguage/{languageId}")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByLanguage(int languageId)
+        {
+            var books = await _context.LanguageBooks
+                .Include(lb => lb.Book)
+                .Where(lb => lb.LanguageID == languageId)
+                .Select(lb => lb.Book)
+                .ToListAsync();
 
+            if (!books.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(books);
+        }
         private string SaveFile(IFormFile file, string folderName)
         {
             if (file == null)

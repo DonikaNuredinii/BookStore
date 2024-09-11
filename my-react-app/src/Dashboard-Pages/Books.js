@@ -12,13 +12,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
-const Books = () => {
+const Books = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [authorsList, setAuthorsList] = useState([]);
   const [editBookId, seteditBookId] = useState("");
   const [editISBN, setEditISBN] = useState("");
   const [editImage, setEditImage] = useState(null);
-  const [prevImage, setPrevImage] = useState(""); // For existing image
+  const [prevImage, setPrevImage] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editAuthors, setEditAuthors] = useState([]);
   const [editPublicationDate, setEditPublicationDate] = useState("");
@@ -28,7 +28,6 @@ const Books = () => {
   const [editStock, setEditStock] = useState("");
   const [editDateOfAddition, setEditDateOfAddition] = useState("");
   const [editType, setEditType] = useState("");
-  const [editPublishingHouse, setEditPublishingHouse] = useState("");
   const [data, setData] = useState([]);
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
@@ -37,6 +36,8 @@ const Books = () => {
   const [stockList, setStockList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [languagesList, setLanguagesList] = useState([]);
 
   const handleShow = () => setShow(true);
 
@@ -45,6 +46,7 @@ const Books = () => {
     getPublishingHouses();
     getCategories();
     getStocks();
+    getLanguages();
     getData();
   }, []);
 
@@ -91,6 +93,18 @@ const Books = () => {
         toast.error("Failed to get categories: " + error.message);
       });
   };
+  const getLanguages = async () => {
+    try {
+      const response = await axios.get("https://localhost:7061/api/Language");
+      if (Array.isArray(response.data)) {
+        setLanguagesList(response.data);
+      } else {
+        throw new Error("Unexpected response format");
+      }
+    } catch (error) {
+      toast.error("Failed to get languages: " + error.message);
+    }
+  };
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -98,22 +112,29 @@ const Books = () => {
     }
     return text;
   };
-
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Book");
-
       if (response.status === 200) {
-        const booksWithAuthorsAndCategoriesPromises = response.data
+        const booksWithAuthorsCategoriesAndLanguagePromises = response.data
           .filter((book) => book.type !== "Ebook")
           .map(async (book) => {
             try {
-              const bookAuthorsResponse = await axios.get(
-                `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
-              );
-              const bookCategoriesResponse = await axios.get(
-                `https://localhost:7061/api/CategoryBooks/Book/${book.bookID}`
-              );
+              const [
+                bookAuthorsResponse,
+                bookCategoriesResponse,
+                bookLanguageResponse,
+              ] = await Promise.all([
+                axios.get(
+                  `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
+                ),
+                axios.get(
+                  `https://localhost:7061/api/CategoryBooks/Book/${book.bookID}`
+                ),
+                axios.get(
+                  `https://localhost:7061/api/LanguageBook/Book/${book.bookID}`
+                ),
+              ]);
 
               const authors = Array.isArray(bookAuthorsResponse.data)
                 ? bookAuthorsResponse.data
@@ -122,29 +143,53 @@ const Books = () => {
                 ? bookCategoriesResponse.data
                 : [];
 
-              return { ...book, authors, categories };
+              // Correctly handle array for languages
+              const language =
+                Array.isArray(bookLanguageResponse.data) &&
+                bookLanguageResponse.data.length > 0
+                  ? bookLanguageResponse.data[0].language
+                  : { languageName: "-" };
+
+              return { ...book, authors, categories, language };
             } catch (error) {
               console.error(
-                `Failed to fetch authors/categories for book ${book.bookID}:`,
+                `Failed to fetch authors/categories/language for book ${book.bookID}:`,
                 error
               );
-              return { ...book, authors: [], categories: [] };
+              return {
+                ...book,
+                authors: [],
+                categories: [],
+                language: { languageName: "-" },
+              };
             }
           });
 
-        const booksWithAuthorsAndCategories = await Promise.all(
-          booksWithAuthorsAndCategoriesPromises
+        const booksWithAuthorsCategoriesAndLanguage = await Promise.all(
+          booksWithAuthorsCategoriesAndLanguagePromises
         );
-        setData(booksWithAuthorsAndCategories);
+        setData(booksWithAuthorsCategoriesAndLanguage);
       } else {
         throw new Error(`Unexpected response status: ${response.status}`);
       }
     } catch (error) {
-      console.error("Error fetching books:", error);
       toast.error("Failed to get books: " + error.message);
     }
   };
-
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData(); // Refetch data if searchQuery is cleared
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    // Filter data based on the search query
+    const filteredData = data.filter((book) =>
+      book.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
   const preprocessImagePath = (path) => {
     if (!path) return null;
     const imageName = path.split("/").pop();
@@ -155,7 +200,6 @@ const Books = () => {
       return `https://localhost:7061/${path}`; // Fallback to backend URL
     }
   };
-
   const handleEdit = (bookID) => {
     handleShow();
     axios
@@ -163,9 +207,12 @@ const Books = () => {
       .then((result) => {
         const bookData = result.data.book || result.data;
 
+        console.log("Book Data:", bookData);
+        console.log("Languages Array:", bookData.languages);
+
         seteditBookId(bookID);
         setEditISBN(bookData?.isbn || "");
-        setPrevImage(preprocessImagePath(bookData?.image) || ""); // Use preprocess for existing image
+        setPrevImage(preprocessImagePath(bookData?.image) || "");
         setEditTitle(bookData?.title || "");
         setEditPublicationDate(bookData?.publicationDate || "");
         setEditPageNumber(bookData?.pageNumber || "");
@@ -182,9 +229,15 @@ const Books = () => {
             category.categoryID.toString()
           ) || [];
 
-        setSelectedAuthors(authors); // Ensure authors are strings for selection
-        setSelectedCategories(categories); // Ensure categories are strings for selection
+        setSelectedAuthors(authors);
+        setSelectedCategories(categories);
         setSelectedStock(bookData?.stockId || "");
+
+        // Set selected language based on book's languageId
+        const selectedBookLanguage = bookData.languages?.[0]?.languageId || "";
+        console.log("Selected Book Language ID:", selectedBookLanguage);
+
+        setSelectedLanguage(selectedBookLanguage); // Set the language in state
       })
       .catch((error) => {
         console.error("Failed to fetch book details:", error);
@@ -212,7 +265,7 @@ const Books = () => {
 
     formData.append("bookID", editBookId || 0);
     formData.append("isbn", editISBN || "N/A");
-    formData.append("image", editImage || prevImage); // Keep the old image if not changed
+    formData.append("image", editImage || prevImage);
     formData.append("title", editTitle || "Untitled");
     formData.append(
       "publicationDate",
@@ -239,6 +292,9 @@ const Books = () => {
       formData.append("categoryIds", categoryId)
     );
 
+    // Send selected language ID with the update
+    formData.append("languageID", parseInt(selectedLanguage, 10)); // Ensure it is a number
+
     try {
       await axios.put(
         `https://localhost:7061/api/Book/${editBookId}`,
@@ -261,6 +317,7 @@ const Books = () => {
       toast.error("Failed to edit Book: " + error.message);
     }
   };
+
   const handleDelete = async (bookID) => {
     if (window.confirm("Are you sure you want to delete this Book?")) {
       try {
@@ -295,6 +352,7 @@ const Books = () => {
     setSelectedStock("");
     setSelectedAuthors([]);
     setSelectedCategories([]);
+    setSelectedLanguage("");
   };
 
   return (
@@ -307,7 +365,13 @@ const Books = () => {
           </Button>
         </Link>
       </div>
-      <Table striped bordered hover className="tables table-sm">
+      <Table
+        striped
+        bordered
+        hover
+        size="sm"
+        className="compact-table table-sm"
+      >
         <thead className="table-dark">
           <tr>
             <th>#</th>
@@ -324,6 +388,7 @@ const Books = () => {
             <th>Type</th>
             <th>Stock</th>
             <th>Categories</th>
+            <th>Language</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -334,7 +399,7 @@ const Books = () => {
               const authors = Array.isArray(item.authors) ? item.authors : [];
               const categories = Array.isArray(item.categories)
                 ? item.categories
-                : []; // Ensure categories are array
+                : [];
               const publishingHouse = item.publishingHouse || {};
 
               return (
@@ -381,6 +446,11 @@ const Books = () => {
                     {categories.length > 0
                       ? categories.map((category) => category.genre).join(", ")
                       : "No categories available"}
+                  </td>
+                  <td>
+                    <td>
+                      <td>{item.language?.languageName || "-"}</td>
+                    </td>
                   </td>
 
                   <td colSpan={2} className="btn">
@@ -672,6 +742,26 @@ const Books = () => {
                     value={editType}
                     onChange={(e) => setEditType(e.target.value)}
                   />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="formLanguage">
+                  <Form.Label>Language</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={selectedLanguage}
+                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                  >
+                    <option value="">Select Language</option>
+                    {languagesList.map((language) => (
+                      <option
+                        key={language.languageId}
+                        value={language.languageId}
+                      >
+                        {language.languageName}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
             </Row>

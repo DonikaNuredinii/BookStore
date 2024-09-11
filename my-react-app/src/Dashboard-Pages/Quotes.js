@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 
-const Quotes = () => {
+const Quotes = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [editQuoteId, setEditQuoteId] = useState("");
   const [editText, setEditText] = useState("");
@@ -22,7 +22,24 @@ const Quotes = () => {
     fetchData();
     getAuthors();
   }, []);
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      fetchData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    if (!query) {
+      fetchData();
+      return;
+    }
 
+    const filteredData = data.filter((quote) =>
+      quote.text.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
   const fetchData = async () => {
     try {
       const quotesResponse = await axios.get(
