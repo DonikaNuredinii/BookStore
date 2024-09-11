@@ -24,6 +24,8 @@ import GiftCards from "../Dashboard-Pages/GiftCards";
 import AddGiftCard from "../Components/AddGiftCard";
 import Quotes from "../Dashboard-Pages/Quotes";
 import AddQuotes from "../Components/AddQuotes";
+import Events from "../Dashboard-Pages/Event";
+import AddEvent from "../Components/AddEvent";
 import Ebooks from "../Dashboard-Pages/Ebooks";
 import AddEbooks from "../Components/AddEbooks";
 function Dashboard() {
@@ -65,6 +67,8 @@ function Dashboard() {
             <Route path="/GiftCards" element={<GiftCards />} />
             <Route path="/add-GiftCard" element={<AddGiftCard />} />
             <Route path="/Quotes" element={<Quotes />} />
+            <Route path="/Event" element={<Events />} />
+            <Route path="/add-Event" element={<AddEvent />} />
             <Route path="/add-Quotes" element={<AddQuotes />} />
             <Route path="/Quotes" element={<Quotes />} />
             <Route path="/Ebooks" element={<Ebooks />} />

@@ -20,6 +20,7 @@ import BookDetails from "./BookDetails";
 import WishlistPage from "./WishlistPage";
 import StripeContainer from "../Components/StripeContainer";
 import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
+import EventsPage from "./EventsPage";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
@@ -94,6 +95,7 @@ function Pages() {
           element={<BookDetails addToCart={addToCart} />}
         />
         <Route path="/account" element={<Account />} />
+        <Route path="/event" element={<EventsPage />} />
         <Route path="/account-settings" element={<AccountSettings />} />
         <Route path="/contact" element={<Contact />} />
         <Route

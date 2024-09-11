@@ -174,6 +174,7 @@ const NavbarHome = () => {
       navigate("/account");
     }
   };
+  
 
   return (
     <nav className="navbar">
@@ -199,7 +200,7 @@ const NavbarHome = () => {
         <Link to="/author-list" className="navbar-link" onClick={closeMenu}>
           Authors
         </Link>
-        <Link to="/events" className="navbar-link" onClick={closeMenu}>
+        <Link to="/event" className="navbar-link" onClick={closeMenu}>
           Events
         </Link>
         <Link to="/ebooks" className="navbar-link" onClick={closeMenu}>

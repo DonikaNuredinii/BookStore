@@ -732,3 +732,15 @@ C:\Users\rusin\OneDrive\BookStore\BookStore\obj\Debug\net8.0\refint\BookStore.dl
 C:\Users\rusin\OneDrive\BookStore\BookStore\obj\Debug\net8.0\BookStore.pdb
 C:\Users\rusin\OneDrive\BookStore\BookStore\obj\Debug\net8.0\BookStore.genruntimeconfig.cache
 C:\Users\rusin\OneDrive\BookStore\BookStore\obj\Debug\net8.0\ref\BookStore.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\BookStore.staticwebassets.runtime.json
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\MailKit.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\MimeKit.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\RestSharp.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\SendGrid.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEcdsa.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.dll
+C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.net.dll

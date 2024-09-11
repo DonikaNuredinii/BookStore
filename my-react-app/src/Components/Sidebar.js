@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { MdEvent } from 'react-icons/md';
 
 function Sidebar() {
   return (
@@ -56,6 +57,10 @@ function Sidebar() {
         <Link to="./GiftCards" className="list-group-item py-2 ">
           <i class="bi bi-postcard fs-5 me-3"></i>
           <span>GiftCard</span>
+        </Link>
+        <Link to="./Event" className="list-group-item py-2">
+          <MdEvent className="fs-5 me-3" />
+          <span>Events</span>
         </Link>
         <Link to="./Quotes" className="list-group-item py-2 ">
           <i class="bi bi-quote fs-5 me-3"></i>
