@@ -19,7 +19,7 @@ import EbookDetails from "./EbookDetails";
 import BookDetails from "./BookDetails";
 import WishlistPage from "./WishlistPage";
 import StripeContainer from "../Components/StripeContainer";
-import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
+import { useWishlist } from "../Components/Wishlist"; 
 import EventsPage from "./EventsPage";
 
 function Pages() {
@@ -27,7 +27,7 @@ function Pages() {
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
   const [cart, setCart] = useState([]);
-  const { wishlist } = useWishlist(); // Get the wishlist from the custom hook
+  const { wishlist } = useWishlist(); 
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");

@@ -42,6 +42,41 @@ namespace WebApplication1.Controllers
             return order;
         }
 
+        [HttpGet("total-earnings")]
+        public async Task<ActionResult<decimal>> GetTotalEarnings()
+        {
+            var totalEarnings = await _ordersContext.Payment
+                .SumAsync(p => p.Amount);
+
+            return Ok(totalEarnings);
+        }
+
+        [HttpGet("orders-summary")]
+        public async Task<ActionResult> GetOrdersSummary()
+        {
+            var bookOrdersCount = await _ordersContext.OrderDetails
+                .Include(od => od.CartItem)
+                .CountAsync(od => od.CartItem.BookId != null);
+          
+            var accessoriesOrdersCount = await _ordersContext.OrderDetails
+                .Include(od => od.CartItem)
+                .CountAsync(od => od.CartItem.AccessoriesID != null);
+
+            var ebookLoansCount = await _ordersContext.EbookLoans.CountAsync();
+
+            var summary = new
+            {
+                bookOrders = bookOrdersCount,
+                accessoriesOrders = accessoriesOrdersCount,
+                ebookLoans = ebookLoansCount
+            };
+
+            return Ok(summary);
+        }
+
+        
+
+
         // POST: api/Order
         [HttpPost]
         public async Task<ActionResult<Orders>> CreateOrder([FromBody] OrdersDto ordersDto)

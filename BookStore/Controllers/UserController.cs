@@ -48,6 +48,13 @@ namespace BookStore.Controllers
             return Ok(users);
         }
 
+        [HttpGet("total-users")]
+        public async Task<ActionResult<int>> GetTotalUsers()
+        {
+            var totalUsers = await _usersContext.Users.CountAsync();
+            return Ok(totalUsers);
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
         {

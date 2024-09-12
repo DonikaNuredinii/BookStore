@@ -12,10 +12,11 @@ function Sidebar() {
       </div>
       <hr className="text-dark" />
       <div className="list-group listgroup-flush">
-        <a className="list-group-item py-3">
+        <Link to="./Statistics" className="list-group-item py-3">
           <i id="dashboardname" className="bi bi-speedometer2 fs-5 me-3"></i>
           <span className="fs-5">Dashboard</span>
-        </a>
+        </Link>
+
         <Link to="/" className="list-group-item py-2 ">
           <i className="bi bi-house fs-5 me-3"></i>
           <span>Home</span>

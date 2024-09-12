@@ -46,6 +46,14 @@ namespace BookStore.Controllers
             return Ok(contact);
         }
 
+        [HttpGet("total-contacts")]
+        public async Task<ActionResult<int>> GetTotalContacts()
+        {
+            var totalContacts = await _context.Contacts.CountAsync();
+            return Ok(totalContacts);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<ContactUs>> PostContact(ContactUs contactUs)
         {

@@ -744,3 +744,7 @@ C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\SendGrid.dll
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\StarkbankEcdsa.dll
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.dll
 C:\Users\COMPUTER SHOP\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.net.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\BookStore.staticwebassets.runtime.json
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\RestSharp.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.dll
+C:\Users\ADMIN\OneDrive\Desktop\BookStore\BookStore\bin\Debug\net8.0\Stripe.net.dll

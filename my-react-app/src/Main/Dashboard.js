@@ -28,6 +28,7 @@ import AddEvent from "../Components/AddEvent";
 import Ebooks from "../Dashboard-Pages/Ebooks";
 import AddEbooks from "../Components/AddEbooks";
 import SearchBar from "../Components/SearchBar";
+import Statistics from "../Dashboard-Pages/Statistics";
 
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
@@ -106,6 +107,7 @@ function Dashboard() {
               element={<Ebooks searchQuery={searchQuery} />}
             />
             <Route path="/add-Ebooks" element={<AddEbooks />} />
+            <Route path="/Statistics" element={<Statistics />} />
           </Routes>
         </div>
       </div>
