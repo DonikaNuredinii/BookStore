@@ -2,6 +2,7 @@ using BookStore.DTOs;
 using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,10 +13,12 @@ namespace WebApplication1.Controllers
     public class OrderController : ControllerBase
     {
         private readonly MyContext _ordersContext;
+        private readonly ILogger<OrderController> _logger; // Added logger
 
-        public OrderController(MyContext ordersContext)
+        public OrderController(MyContext ordersContext, ILogger<OrderController> logger)
         {
             _ordersContext = ordersContext;
+            _logger = logger;
         }
 
         // GET: api/Order
@@ -57,7 +60,7 @@ namespace WebApplication1.Controllers
             var bookOrdersCount = await _ordersContext.OrderDetails
                 .Include(od => od.CartItem)
                 .CountAsync(od => od.CartItem.BookId != null);
-          
+
             var accessoriesOrdersCount = await _ordersContext.OrderDetails
                 .Include(od => od.CartItem)
                 .CountAsync(od => od.CartItem.AccessoriesID != null);
@@ -74,12 +77,9 @@ namespace WebApplication1.Controllers
             return Ok(summary);
         }
 
-        
-
-
         // POST: api/Order
         [HttpPost]
-        public async Task<ActionResult<Orders>> CreateOrder([FromBody] OrdersDto ordersDto)
+        public async Task<IActionResult> CreateOrder([FromBody] OrdersDto ordersDto)
         {
             if (!ModelState.IsValid)
             {
@@ -88,21 +88,61 @@ namespace WebApplication1.Controllers
 
             var order = new Orders
             {
-                OrderDate = DateTime.Now,
+                OrderDate = ordersDto.OrderDate,
+                OrderShipDate = ordersDto.OrderShipDate,
                 Address = ordersDto.Address,
                 City = ordersDto.City,
                 CountryID = ordersDto.CountryID,
                 ZipCode = ordersDto.ZipCode,
                 DiscountID = ordersDto.DiscountID,
                 GiftCardID = ordersDto.GiftCardID,
-                OrderShipDate = ordersDto.OrderShipDate,
                 OrderDetails = new List<OrderDetails>()
             };
 
-            _ordersContext.Orders.Add(order);
-            await _ordersContext.SaveChangesAsync();
+            // Ensure valid data in DTO
+            foreach (var detailDto in ordersDto.OrderDetails)
+            {
+                var orderDetail = new OrderDetails
+                {
+                    TotalPrice = detailDto.TotalPrice,
+                    InvoiceDate = detailDto.InvoiceDate,
+                    OrderShipDate = detailDto.OrderShipDate,
+                    InvoiceNumber = detailDto.InvoiceNumber,
+                    OrdersId = order.OrdersId // Set foreign key
+                };
 
-            return CreatedAtAction(nameof(GetOrder), new { ordersId = order.OrdersId }, order);
+                // Add CartItem if it is part of your model
+                if (detailDto.CartItem != null)
+                {
+                    orderDetail.CartItem = new CartItem
+                    {
+                        Quantity = detailDto.CartItem.Quantity,
+                        BookId = detailDto.CartItem.BookId,
+                        AccessoriesID = detailDto.CartItem.AccessoriesID,
+                        GiftCardId = detailDto.CartItem.GiftCardId
+                    };
+                }
+
+                order.OrderDetails.Add(orderDetail);
+            }
+
+            try
+            {
+                _ordersContext.Orders.Add(order);
+                await _ordersContext.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetOrder), new { id = order.OrdersId }, order);
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "An error occurred while saving the order.");
+                return StatusCode(500, "Internal server error");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred.");
+                return StatusCode(500, "Internal server error");
+            }
+
         }
 
         // PUT: api/Order/{ordersId}

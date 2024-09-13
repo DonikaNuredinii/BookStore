@@ -22,9 +22,13 @@ public class OrderDetails
     [Required]
     public string InvoiceNumber { get; set; }
 
-    [JsonIgnore]
-    public virtual ICollection<Orders> Orders { get; set; } = new HashSet<Orders>();
 
-    [ForeignKey("CartItemId")]
+    [ForeignKey("CartItem")]
+    public int CartItemId { get; set; }
     public virtual CartItem CartItem { get; set; }
+
+    [ForeignKey("Order")]
+    public int OrdersId { get; set; }
+    public virtual Orders Order { get; set; }
+
 }

@@ -16,12 +16,12 @@ namespace BookStore.Models
         public string PaymentMethod { get; set; }
 
         [StringLength(4)]
-        public string LastFourDigits { get; set; } 
+        public string? LastFourDigits { get; set; } 
 
         [ForeignKey("Orders")]
         public int OrdersId { get; set; }
         public virtual Orders Orders { get; set; }
 
-        public string TransactionID { get; set; } 
+        public string? TransactionID { get; set; } 
     }
 }

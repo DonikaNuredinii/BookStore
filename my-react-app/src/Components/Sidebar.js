@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import { MdEvent } from 'react-icons/md';
+import { MdEvent } from "react-icons/md";
 
 function Sidebar() {
   return (
@@ -12,7 +12,7 @@ function Sidebar() {
       </div>
       <hr className="text-dark" />
       <div className="list-group listgroup-flush">
-        <Link to="./Statistics" className="list-group-item py-3">
+        <Link to="" className="list-group-item py-3">
           <i id="dashboardname" className="bi bi-speedometer2 fs-5 me-3"></i>
           <span className="fs-5">Dashboard</span>
         </Link>

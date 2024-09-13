@@ -11,9 +11,10 @@ namespace BookStore.DTOs
         public string Address { get; set; }
         public string City { get; set; }
         public int CountryID { get; set; }
-
         public string ZipCode { get; set; }
         public int? DiscountID { get; set; }
         public int? GiftCardID { get; set; }
+
+        public List<OrderDetailsDto> OrderDetails { get; set; } = new List<OrderDetailsDto>();
     }
 }

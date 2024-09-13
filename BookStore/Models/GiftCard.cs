@@ -14,5 +14,6 @@ namespace BookStore.Models
         public bool IsActive { get; set; } = true;
         [ForeignKey("UserID")]
         public int UserID { get; set; }
+        public User User { get; set; }
     }
 }

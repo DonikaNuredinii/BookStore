@@ -433,6 +433,8 @@ namespace BookStore.Migrations
 
                     b.HasKey("GiftCardID");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("GiftCards");
                 });
 
@@ -552,7 +554,6 @@ namespace BookStore.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("LastFourDigits")
-                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
@@ -564,7 +565,6 @@ namespace BookStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TransactionID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentID");
@@ -735,6 +735,9 @@ namespace BookStore.Migrations
                     b.Property<DateTime?>("OrderShipDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -742,22 +745,9 @@ namespace BookStore.Migrations
 
                     b.HasIndex("CartItemId");
 
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("OrderDetailsOrders", b =>
-                {
-                    b.Property<int>("OrderDetailsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderDetailsID", "OrdersId");
-
                     b.HasIndex("OrdersId");
 
-                    b.ToTable("OrderDetailsOrders");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Ebook", b =>
@@ -890,6 +880,17 @@ namespace BookStore.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BookStore.Models.GiftCard", b =>
+                {
+                    b.HasOne("BookStore.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BookStore.Models.LanguageBook", b =>
                 {
                     b.HasOne("BookStore.Models.Book", "Book")
@@ -979,22 +980,15 @@ namespace BookStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CartItem");
-                });
-
-            modelBuilder.Entity("OrderDetailsOrders", b =>
-                {
-                    b.HasOne("OrderDetails", null)
-                        .WithMany()
-                        .HasForeignKey("OrderDetailsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Models.Orders", null)
-                        .WithMany()
+                    b.HasOne("BookStore.Models.Orders", "Order")
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CartItem");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Ebook", b =>
@@ -1039,6 +1033,11 @@ namespace BookStore.Migrations
                     b.Navigation("LanguageBooks");
 
                     b.Navigation("LanguageCategories");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Orders", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("BookStore.Models.Quote", b =>

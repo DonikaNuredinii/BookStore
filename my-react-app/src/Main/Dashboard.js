@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../App.css";
 import Sidebar from "../Components/Sidebar";
 import Books from "../Dashboard-Pages/Books";
-import { Routes, Route } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import AddBooks from "../Components/AddBooks";
 import AddCategories from "../Components/AddCategories";
@@ -33,6 +33,7 @@ import Statistics from "../Dashboard-Pages/Statistics";
 function Dashboard() {
   const [toggle, setToggle] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
 
   const Toggle = () => {
     setToggle(!toggle);
@@ -40,6 +41,11 @@ function Dashboard() {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
+  };
+
+  // Function to check if the current route contains 'add'
+  const isAddComponent = () => {
+    return location.pathname.includes("/add");
   };
 
   return (
@@ -53,7 +59,8 @@ function Dashboard() {
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
           <Navbar Toggle={Toggle} />
-          <SearchBar onSearch={handleSearch} />
+          {/* Conditionally render the search bar */}
+          {!isAddComponent() && <SearchBar onSearch={handleSearch} />}
           <Routes>
             <Route path="add-categories" element={<AddCategories />} />
             <Route
@@ -107,7 +114,7 @@ function Dashboard() {
               element={<Ebooks searchQuery={searchQuery} />}
             />
             <Route path="/add-Ebooks" element={<AddEbooks />} />
-            <Route path="/Statistics" element={<Statistics />} />
+            <Route path="/" element={<Statistics />} />
           </Routes>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 import { IoIosCheckmark } from "react-icons/io";
@@ -11,6 +11,17 @@ const GiftCard = ({ addToCart }) => {
   const [message, setMessage] = useState("");
   const [senderName, setSenderName] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [userId, setUserId] = useState(null); // Add state for storing user ID
+  const [formErrors, setFormErrors] = useState({});
+  const [showLoginMessage, setShowLoginMessage] = useState(false); // State to toggle login message
+
+  useEffect(() => {
+    // Retrieve userID from localStorage when the component mounts
+    const userIdFromStorage = localStorage.getItem("userID");
+    if (userIdFromStorage) {
+      setUserId(userIdFromStorage);
+    }
+  }, []);
 
   const handleAmountChange = (event) => {
     setAmount(parseInt(event.target.value, 10));
@@ -40,8 +51,38 @@ const GiftCard = ({ addToCart }) => {
     setSelectedDesign(design);
   };
 
+  const validateForm = () => {
+    const errors = {};
+    if (!amount || amount <= 0) {
+      errors.amount = "Please enter a valid amount.";
+    }
+    if (!recipientName) {
+      errors.recipientName = "Recipient name is required.";
+    }
+    if (!recipientEmail || !/\S+@\S+\.\S+/.test(recipientEmail)) {
+      errors.recipientEmail = "A valid email is required.";
+    }
+    if (!senderName) {
+      errors.senderName = "Sender name is required.";
+    }
+    return errors;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Check if user is logged in
+    if (!userId) {
+      setShowLoginMessage(true);
+      return;
+    }
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
     setShowModal(true);
 
     const generatedCode =
@@ -55,7 +96,7 @@ const GiftCard = ({ addToCart }) => {
       recipientEmail,
       message,
       senderName,
-      userID: 2,
+      userID: userId, // Use the user ID retrieved from localStorage
     };
 
     const giftCardProduct = {
@@ -146,6 +187,9 @@ const GiftCard = ({ addToCart }) => {
           value={amount}
           onChange={handleAmountChange}
         />
+        {formErrors.amount && (
+          <div className="error-message">{formErrors.amount}</div>
+        )}
         <h2>Recipient info</h2>
         <label htmlFor="recipient-name">Name:</label>
         <input
@@ -154,6 +198,9 @@ const GiftCard = ({ addToCart }) => {
           value={recipientName}
           onChange={handleRecipientNameChange}
         />
+        {formErrors.recipientName && (
+          <div className="error-message">{formErrors.recipientName}</div>
+        )}
         <label htmlFor="recipient-email">Email:</label>
         <input
           type="email"
@@ -161,6 +208,9 @@ const GiftCard = ({ addToCart }) => {
           value={recipientEmail}
           onChange={handleRecipientEmailChange}
         />
+        {formErrors.recipientEmail && (
+          <div className="error-message">{formErrors.recipientEmail}</div>
+        )}
         <h2>Your info</h2>
         <label htmlFor="your-name">Name:</label>
         <input
@@ -169,11 +219,17 @@ const GiftCard = ({ addToCart }) => {
           value={senderName}
           onChange={handleSenderNameChange}
         />
+        {formErrors.senderName && (
+          <div className="error-message">{formErrors.senderName}</div>
+        )}
         <label htmlFor="message">Message:</label>
         <textarea id="message" value={message} onChange={handleMessageChange} />
         <button type="submit" onClick={handleSubmit}>
           Add to cart
         </button>
+        {showLoginMessage && (
+          <div className="error-message">Please log in to continue.</div>
+        )}
       </div>
       {/* Modal */}
       {showModal && (

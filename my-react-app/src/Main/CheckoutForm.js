@@ -88,12 +88,19 @@ const CheckoutForm = () => {
       if (response.ok) {
         const giftCard = await response.json();
         if (giftCard && giftCard.isActive) {
+          const updatedDiscountedPrice = totalPrice - giftCard.amount;
+
           setFormData((prevData) => ({
             ...prevData,
             giftCardAmount: giftCard.amount,
             giftCardID: giftCard.giftCardID, // Store GiftCardID for backend
           }));
-          setCurrentDiscountedPrice(totalPrice - giftCard.amount);
+
+          setCurrentDiscountedPrice(
+            updatedDiscountedPrice > 0 ? updatedDiscountedPrice : 0
+          );
+
+          // Deactivate gift card after application
           await fetch(`https://localhost:7061/api/GiftCard/${giftCardCode}`, {
             method: "PUT",
             headers: {
@@ -116,6 +123,7 @@ const CheckoutForm = () => {
       setLoading(false);
     }
   };
+
   const preprocessImagePath = (path) => {
     const imageName = path.split("/").pop();
     try {
@@ -125,18 +133,14 @@ const CheckoutForm = () => {
       return "/images/placeholder.jpg";
     }
   };
-
   const handleCheckout = async () => {
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     setLoading(true);
     setError("");
 
-    // Create order first
     try {
-      const orderResponse = await fetch("https://localhost:7061/api/Orders", {
+      const orderResponse = await fetch("https://localhost:7061/api/Order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,9 +162,7 @@ const CheckoutForm = () => {
 
       const createdOrder = await orderResponse.json();
 
-      // Proceed with payment only if the order is successfully created
       if (formData.paymentMethod === "creditCard") {
-        // Stripe payment logic
         const paymentResponse = await fetch(
           "https://localhost:7061/api/Payments",
           {
@@ -172,8 +174,6 @@ const CheckoutForm = () => {
               OrdersId: createdOrder.OrdersId,
               Amount: currentDiscountedPrice,
               PaymentMethod: "creditCard",
-              LastFourDigits: "", // Set later based on actual payment
-              PaymentMethodId: "", // Set with actual Stripe PaymentMethod ID
             }),
           }
         );
@@ -182,8 +182,8 @@ const CheckoutForm = () => {
           throw new Error("Failed to process payment");
         }
 
-        const cardElement = elements.getElement(CardElement);
         const paymentIntentData = await paymentResponse.json();
+        const cardElement = elements.getElement(CardElement);
         const paymentResult = await stripe.confirmCardPayment(
           paymentIntentData.clientSecret,
           {
@@ -207,40 +207,9 @@ const CheckoutForm = () => {
           setError(`Payment failed: ${paymentResult.error.message}`);
         } else if (paymentResult.paymentIntent.status === "succeeded") {
           setSuccessMessage("Payment successful! Your order has been placed.");
-          // Optional: Save the transaction details to the backend
         }
-      } else if (formData.paymentMethod === "paypal") {
-        // Simulate PayPal payment handling
-        window.paypal
-          .Buttons({
-            createOrder: (data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: {
-                      value: currentDiscountedPrice.toString(), // Use current discounted price
-                    },
-                  },
-                ],
-              });
-            },
-            onApprove: (data, actions) => {
-              return actions.order.capture().then((details) => {
-                setSuccessMessage(
-                  "Payment successful! Your order has been placed."
-                );
-                // You can handle saving the transaction details to your backend here
-              });
-            },
-            onError: (err) => {
-              setError("PayPal payment failed.");
-            },
-          })
-          .render("#paypal-button");
       } else if (formData.paymentMethod === "cashOnDelivery") {
-        // Handle Cash on Delivery
         setOrderDetails(createdOrder);
-        setLoading(false);
         setSuccessMessage(
           "Order placed! Payment will be collected on delivery."
         );

@@ -111,11 +111,29 @@ const Account = () => {
         toast.error("Error registering user: " + error.message);
       });
   };
+  const token = localStorage.getItem("token");
+
+  axios
+    .get("https://localhost:7061/api/protected-endpoint", {
+      headers: {
+        Authorization: `Bearer ${token}`, // Pass the token in the header
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
+    // Trim the username and password to remove any leading or trailing spaces
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedUsername || !trimmedPassword) {
       toast.error("Please fill out both fields.");
       return;
     }
@@ -127,13 +145,12 @@ const Account = () => {
       })
       .then((response) => {
         const token = response.data.token;
-        const userID = response.data.userID;
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userID", response.data.userId);
+        const userID = response.data.userId;
+        localStorage.setItem("token", token);
+        localStorage.setItem("userID", userID);
         toast.success("Login successful!");
         navigate("/account-settings");
       })
-
       .catch((error) => {
         toast.error("Invalid username or password.");
       });

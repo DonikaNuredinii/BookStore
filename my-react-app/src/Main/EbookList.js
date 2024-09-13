@@ -206,12 +206,16 @@ const EbookList = ({ addToCart }) => {
                   <p className="card-author">
                     Author: {getAuthorsForBook(ebook.bookID) || "Unknown"}
                   </p>
-                  <button
-                    className="buy-now-btn"
-                    onClick={(e) => handleAddToCartClick(e, ebook)}
-                  >
-                    Add to Cart
-                  </button>
+                  {ebook.isLoaned ? (
+                    <p className="loan-status">Currently Loaned</p>
+                  ) : (
+                    <button
+                      className="buy-now-btn"
+                      onClick={(e) => handleAddToCartClick(e, ebook)}
+                    >
+                      Add to Cart
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="card-content">

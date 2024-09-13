@@ -2,33 +2,33 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { jwtDecode } from 'jwt-decode'; 
+import { jwtDecode } from "jwt-decode";
 import SidebarAccount from "../Components/SidebarAccount";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const AccountSettings = () => {
   const navigate = useNavigate();
-  
+
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: "",
     email: "",
     username: "",
-    password: "", 
+    password: "",
   });
   const [formErrors, setFormErrors] = useState({});
 
   const checkTokenValidity = () => {
     const token = localStorage.getItem("token");
-  
+
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
         console.log("Decoded Token:", decodedToken);
-  
+
         const currentTime = Date.now() / 1000;
-  
+
         if (decodedToken.exp < currentTime) {
           console.log("Token expired");
           localStorage.removeItem("token");
@@ -50,11 +50,12 @@ const AccountSettings = () => {
 
   useEffect(() => {
     const isTokenValid = checkTokenValidity();
-  
+
     if (isTokenValid) {
       const userId = localStorage.getItem("userID");
+      console.log("Retrieved UserID from localStorage: ", userId);
       const token = localStorage.getItem("token");
-  
+
       if (userId) {
         axios
           .get(`https://localhost:7061/api/User/${userId}`, {
@@ -69,7 +70,7 @@ const AccountSettings = () => {
               phoneNumber: response.data.phoneNumber,
               email: response.data.email,
               username: response.data.username,
-              password: "", 
+              password: "", // Clear password
             });
           })
           .catch((error) => {
@@ -86,7 +87,8 @@ const AccountSettings = () => {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const validatePhoneNumber = (phoneNumber) => /^\+?\d{1,4}-?\d{1,4}-?\d{1,9}$/.test(phoneNumber);
+  const validatePhoneNumber = (phoneNumber) =>
+    /^\+?\d{1,4}-?\d{1,4}-?\d{1,9}$/.test(phoneNumber);
 
   const validateName = (name) => /^[A-Z][a-zA-Z]*$/.test(name);
 
@@ -127,21 +129,26 @@ const AccountSettings = () => {
     const userId = localStorage.getItem("userID");
 
     const { password, ...updateData } = userData;
-    const updatePayload = password ? { ...updateData, Password: password } : updateData;
+    const updatePayload = password
+      ? { ...updateData, Password: password }
+      : updateData;
 
     if (userId) {
       axios
         .put(`https://localhost:7061/api/User/${userId}`, updatePayload, {
           headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         })
         .then(() => {
           toast.success("Account updated successfully!");
         })
         .catch((error) => {
-          console.error("Update Error:", error.response ? error.response.data : error.message);
+          console.error(
+            "Update Error:",
+            error.response ? error.response.data : error.message
+          );
           toast.error("Error updating account: " + error.message);
         });
     } else {
@@ -152,7 +159,7 @@ const AccountSettings = () => {
   return (
     <div className="container-accountsettings">
       <SidebarAccount />
-      
+
       <div className="form-containerA">
         <h1>My Profile</h1>
         <form onSubmit={handleUpdate} className="accountsettings">

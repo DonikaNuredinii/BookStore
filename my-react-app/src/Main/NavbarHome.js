@@ -14,6 +14,7 @@ const NavbarHome = () => {
   const [combinedData, setCombinedData] = useState([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +52,34 @@ const NavbarHome = () => {
     };
 
     fetchData();
+    checkIfAdmin();
   }, []);
+
+  const checkIfAdmin = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+        const currentTime = Date.now() / 1000;
+
+        if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
+          console.log("User is admin");
+          setIsAdmin(true);
+        } else {
+          console.log("User is not admin, RolesID:", decodedToken.RolesID);
+          setIsAdmin(false);
+        }
+      } catch (error) {
+        console.error("Error decoding token", error);
+        localStorage.removeItem("token");
+        setIsAdmin(false);
+      }
+    } else {
+      setIsAdmin(false);
+    }
+  };
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -158,9 +186,12 @@ const NavbarHome = () => {
       try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
+
         if (decodedToken.exp > currentTime) {
+          // Token is valid, navigate to account settings
           navigate("/account-settings");
         } else {
+          // Token has expired, remove it and navigate to login page
           localStorage.removeItem("token");
           navigate("/account");
         }
@@ -170,11 +201,9 @@ const NavbarHome = () => {
         navigate("/account");
       }
     } else {
-     
       navigate("/account");
     }
   };
-  
 
   return (
     <nav className="navbar">
@@ -212,17 +241,24 @@ const NavbarHome = () => {
         <Link to="/contact" className="navbar-link" onClick={closeMenu}>
           Contact Us
         </Link>
-        
-        <Link to="/dashboard" className="navbar-link" onClick={closeMenu}>
-          Dashboard
-        </Link>
-        <button className="navbar-link1" id="button-link" onClick={handleAccountClick}>
-        <IoPerson />
+
+        {/* Only show Dashboard link if the user is an admin */}
+        {isAdmin && (
+          <Link to="/dashboard" className="navbar-link" onClick={closeMenu}>
+            Dashboard
+          </Link>
+        )}
+
+        <button
+          className="navbar-link1"
+          id="button-link"
+          onClick={handleAccountClick}
+        >
+          <IoPerson />
         </button>
       </div>
-   
+
       <div className={`search-container ${isSearchOpen ? "expanded" : ""}`}>
-      
         <input
           type="text"
           id="search-input"
