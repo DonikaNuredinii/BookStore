@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 export const useEvents = () => {
   const [events, setEvents] = useState(() => {
-    const savedEvent = localStorage.getItem('events');
-    return savedEvent ? JSON.parse(savedEvents) : [];
+    const savedEvents = localStorage.getItem('events');
+    return savedEvents ? JSON.parse(savedEvents) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('event', JSON.stringify(events));
+    localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
 
   const addToEvents = (event) => {
@@ -26,7 +26,7 @@ export const useEvents = () => {
         console.error('Events is not an array');
         return [];
       }
-      return prevEvents.filter((event) => event.eventID !== eventID);
+      return prevEvents.filter((event) => event.EventID !== eventID); // Ensure EventID matches the property name
     });
   };
 
@@ -40,7 +40,7 @@ export const useEvents = () => {
       console.error('Events is not an array');
       return false;
     }
-    return events.some((event) => event.eventID === eventID);
+    return events.some((event) => event.EventID === eventID); // Ensure EventID matches the property name
   };
 
   return {

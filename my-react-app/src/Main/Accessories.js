@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import AccessoriesBanner from "../Components/AccessoriesBanner";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { GrPrevious, GrNext } from "react-icons/gr";
-import { IoMdClose } from "react-icons/io";
+import { useSpring, animated } from "react-spring";
+import React, { useState, useEffect } from "react";
 import { BsArrowUpShort } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
-import { Link } from "react-router-dom";
-import { useSpring, animated } from "react-spring";
 
 const ImazhetEAksesoriev = require.context(
-  "../Images/ImazhetAksesorie",
+  "../Images",
   false,
   /\.(png|jpe?g|svg)$/
 );
@@ -24,9 +24,31 @@ const Accessories = ({ addToCart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedAccessory, setSelectedAccessory] = useState(null);
+  const [accessoriesPerPage, setAccessoriesPerPage] = useState(24);
 
-  const AccessoriesPerPage = 18;
-  const maxPageNumbers = 4;
+  // Function to update items per page based on screen width
+  const updateAccessoriesPerPage = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 1200) {
+      setAccessoriesPerPage(24); // Large screens 
+    } else if (screenWidth >= 768) {
+      setAccessoriesPerPage(16); // Medium screens 
+    } else {
+      setAccessoriesPerPage(8);  // Small screens 
+    }
+  };
+
+  useEffect(() => {
+    updateAccessoriesPerPage();
+    window.addEventListener("resize", updateAccessoriesPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updateAccessoriesPerPage);
+    };
+  }, []);
+
+  const maxPageNumbers = 3;
 
   useEffect(() => {
     fetchAccessories();
@@ -41,11 +63,15 @@ const Accessories = ({ addToCart }) => {
     setIsFavorite(!isFavorite);
   };
 
-  const totalPages = Math.ceil(accessories.length / AccessoriesPerPage);
+  const sortedAccessories = [...accessories].sort((a, b) => 
+    new Date(b.dateofAddition) - new Date(a.dateofAddition)
+  );
 
-  const currentAccessories = accessories.slice(
-    (currentPage - 1) * AccessoriesPerPage,
-    currentPage * AccessoriesPerPage
+  const totalPages = Math.ceil(sortedAccessories.length / accessoriesPerPage);
+
+  const currentAccessories = sortedAccessories.slice(
+    (currentPage - 1) * accessoriesPerPage,
+    currentPage * accessoriesPerPage
   );
 
   const handlePageChange = (pageNumber) => {
@@ -138,6 +164,7 @@ const Accessories = ({ addToCart }) => {
             <button onClick={() => setClose(false)} className="Acc-close">
               <IoMdClose />
             </button>
+            
             {detail.map((x, index) => (
               <div key={`${x.id}-${index}`} className="Acc-detail-info">
                 <div className="Acc-img-box">
@@ -226,16 +253,19 @@ const Accessories = ({ addToCart }) => {
         <button onClick={handlePrevPage} disabled={currentPage === 1}>
           <GrPrevious />
         </button>
-        {getPageNumbers().map((pageNumber) => (
+        {getPageNumbers().map((number) => (
           <button
-            key={pageNumber}
-            onClick={() => handlePageChange(pageNumber)}
-            className={currentPage === pageNumber ? "active" : ""}
+            key={number}
+            onClick={() => handlePageChange(number)}
+            className={currentPage === number ? "active" : ""}
           >
-            {pageNumber}
+            {number}
           </button>
         ))}
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
           <GrNext />
         </button>
       </div>

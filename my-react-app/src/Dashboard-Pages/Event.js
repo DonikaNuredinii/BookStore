@@ -4,12 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../App.css";
 
-const Event = ({ searchQuery }) => {
+const Event = () => {
   const [show, setShow] = useState(false);
-  const [editEventID, setEditEventID] = useState("");
+  const [editEventsID, setEditEventsID] = useState("");
   const [editEventName, setEditEventName] = useState("");
   const [editLocation, setEditLocation] = useState("");
   const [editDate, setEditDate] = useState("");
@@ -20,47 +22,35 @@ const Event = ({ searchQuery }) => {
   useEffect(() => {
     getData();
   }, []);
-  useEffect(() => {
-    if (searchQuery) {
-      filterData(searchQuery);
-    } else {
-      getData();
-    }
-  }, [searchQuery]);
-  const filterData = (query) => {
-    if (!query) {
-      getData();
-      return;
-    }
 
-    const filteredData = data.filter((event) =>
-      event.eventNamename.toLowerCase().includes(query.toLowerCase())
-    );
-    setData(filteredData);
+  const getData = async () => {
+    try {
+      const response = await axios.get("https://localhost:7061/api/Event");
+      console.log("API Response:", response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      toast.error(
+        "Failed to get events: " + (error.response?.data?.message || error.message)
+      );
+    }
   };
 
-  const getData = () => {
-    axios
-      .get(`https://localhost:7061/api/Event`) // Update the endpoint to match your API
-      .then((result) => {
-        setData(result.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleClose = () => {
+    setShow(false);
+    clear(); // Clear form values when modal is closed
   };
 
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleEdit = (eventID) => {
+  const handleEdit = (EventsID) => {
     handleShow();
-    setEditEventID(eventID);
+    setEditEventsID(EventsID); // Set the ID for editing
     axios
-      .get(`https://localhost:7061/api/Event/${eventID}`) // Update the endpoint to match your API
+      .get(`https://localhost:7061/api/Event/${EventsID}`)
       .then((result) => {
         const eventData = result.data;
-        setEditEventName(eventData.eventName);
+        setEditEventName(eventData.eventName); // Ensure correct capitalization
         setEditLocation(eventData.location);
         setEditDate(eventData.date);
         setEditTime(eventData.time);
@@ -71,47 +61,68 @@ const Event = ({ searchQuery }) => {
       });
   };
 
-  const handleDelete = (eventID) => {
-    if (window.confirm("Are you sure you want to delete this Event")) {
-      axios
-        .delete(`https://localhost:7061/api/Event/${eventID}`) // Update the endpoint to match your API
-        .then((result) => {
-          if (result.status === 200) {
-            toast.success("Event has been deleted");
-            getData();
-          }
-        })
-        .catch((error) => {
-          toast.error("Failed to delete this Event: " + error.message);
-        });
+  const handleDelete = async (EventsID) => {
+    if (window.confirm("Are you sure you want to delete this Event?")) {
+      try {
+        await axios.delete(`https://localhost:7061/api/Event/${EventsID}`);
+        toast.success("Event has been deleted");
+        getData(); // Refresh the table data after deletion
+      } catch (error) {
+        toast.error("Failed to delete this Event: " + (error.response?.data?.message || error.message));
+      }
     }
   };
 
-  const handleUpdate = () => {
-    const url = `https://localhost:7061/api/Event/${editEventID}`; // Update the endpoint to match your API
-    const eventData = {
-      EventID: editEventID,
-      EventName: editEventName,
-      Location: editLocation,
-      Date: editDate,
-      Time: editTime,
-      Description: editDescription,
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    console.log("Edit id:", editEventsID);
+
+    const data = {
+      eventsID: editEventsID, // Corrected key name
+      eventName: editEventName || "string",
+      location: editLocation || "string",
+      date: editDate,
+      time: editTime,
+      description: editDescription || "string",
     };
-    axios
-      .put(url, eventData)
-      .then((result) => {
-        handleClose();
-        getData();
-        clear();
-        toast.success("Event has been updated successfully!");
-      })
-      .catch((error) => {
-        toast.error("Failed to edit event: " + error.message);
-      });
+
+    console.log("Data being sent:", data);
+
+    try {
+      await axios.put(`https://localhost:7061/api/Event/${editEventsID}`, data);
+      handleClose();
+      getData();
+      toast.success("Event has been updated successfully!");
+    } catch (error) {
+      let errorMessage = "Unknown error";
+
+      if (error.response && error.response.data) {
+        if (typeof error.response.data === "object") {
+          const errorData = error.response.data;
+
+          if (errorData.errors) {
+            // Extract validation errors
+            const validationErrors = Object.entries(errorData.errors)
+              .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
+              .join(" | ");
+
+            errorMessage = `Validation error(s): ${validationErrors}`;
+          } else {
+            errorMessage = errorData.title || JSON.stringify(errorData);
+          }
+        } else {
+          errorMessage = error.response.data;
+        }
+      } else {
+        errorMessage = error.message;
+      }
+
+      toast.error(`Failed to edit event: ${errorMessage}`);
+    }
   };
 
   const clear = () => {
-    setEditEventID("");
+    setEditEventsID("");
     setEditEventName("");
     setEditLocation("");
     setEditDate("");
@@ -123,7 +134,7 @@ const Event = ({ searchQuery }) => {
     <Fragment>
       <ToastContainer />
       <div className="add-button">
-        <Link to="../add-events">
+        <Link to="../add-Event">
           <Button variant="dark" className="btn-add">
             Add Event
           </Button>
@@ -155,14 +166,14 @@ const Event = ({ searchQuery }) => {
                   <Button
                     variant="outline-dark"
                     className="btn-edit"
-                    onClick={() => handleEdit(item.eventID)}
+                    onClick={() => handleEdit(item.eventsID)}
                   >
                     <i className="bi bi-pencil-square"></i>
                   </Button>
                   <Button
                     variant="outline-dark"
                     className="btn-delete"
-                    onClick={() => handleDelete(item.eventID)}
+                    onClick={() => handleDelete(item.eventsID)}
                   >
                     <i className="bi bi-trash"></i>
                   </Button>
@@ -171,35 +182,25 @@ const Event = ({ searchQuery }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="7">Loading...</td>
+              <td colSpan="7">No Events Available.</td>
             </tr>
           )}
         </tbody>
       </Table>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleUpdate();
-            }}
-          >
+          <Form onSubmit={handleUpdate}>
             <Row>
               <Col>
-                <Form.Group controlId="formEventID">
+                <Form.Group controlId="formEventsID">
                   <Form.Label>Event ID</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Event ID"
-                    value={editEventID}
+                    value={editEventsID}
                     readOnly
                   />
                 </Form.Group>
@@ -249,15 +250,14 @@ const Event = ({ searchQuery }) => {
                 </Form.Group>
               </Col>
             </Row>
+            <Button variant="dark" type="submit">
+              Update Event
+            </Button>
           </Form>
         </Modal.Body>
-
         <Modal.Footer>
-          <Button variant="outline-dark" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="outline-dark" onClick={handleUpdate}>
-            Update
           </Button>
         </Modal.Footer>
       </Modal>
