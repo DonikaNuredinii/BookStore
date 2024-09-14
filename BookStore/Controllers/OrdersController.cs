@@ -86,64 +86,64 @@ namespace WebApplication1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = new Orders
-            {
-                OrderDate = ordersDto.OrderDate,
-                OrderShipDate = ordersDto.OrderShipDate,
-                Address = ordersDto.Address,
-                City = ordersDto.City,
-                CountryID = ordersDto.CountryID,
-                ZipCode = ordersDto.ZipCode,
-                DiscountID = ordersDto.DiscountID,
-                GiftCardID = ordersDto.GiftCardID,
-                OrderDetails = new List<OrderDetails>()
-            };
-
-            // Ensure valid data in DTO
-            foreach (var detailDto in ordersDto.OrderDetails)
-            {
-                var orderDetail = new OrderDetails
-                {
-                    TotalPrice = detailDto.TotalPrice,
-                    InvoiceDate = detailDto.InvoiceDate,
-                    OrderShipDate = detailDto.OrderShipDate,
-                    InvoiceNumber = detailDto.InvoiceNumber,
-                    OrdersId = order.OrdersId // Set foreign key
-                };
-
-                // Add CartItem if it is part of your model
-                if (detailDto.CartItem != null)
-                {
-                    orderDetail.CartItem = new CartItem
-                    {
-                        Quantity = detailDto.CartItem.Quantity,
-                        BookId = detailDto.CartItem.BookId,
-                        AccessoriesID = detailDto.CartItem.AccessoriesID,
-                        GiftCardId = detailDto.CartItem.GiftCardId
-                    };
-                }
-
-                order.OrderDetails.Add(orderDetail);
-            }
-
             try
             {
+                var order = new Orders
+                {
+                    OrderDate = ordersDto.OrderDate,
+                    Address = ordersDto.Address,
+                    City = ordersDto.City,
+                    CountryID = ordersDto.CountryID,
+                    ZipCode = ordersDto.ZipCode,
+                    DiscountID = ordersDto.DiscountID,
+                    GiftCardID = ordersDto.GiftCardID != null ? ordersDto.GiftCardID : (int?)null, // Handle null gift card
+                    OrderDetails = new List<OrderDetails>()
+                };
+
+                foreach (var detailDto in ordersDto.OrderDetails)
+                {
+                    var orderDetail = new OrderDetails
+                    {
+                        TotalPrice = detailDto.TotalPrice,
+                        InvoiceDate = detailDto.InvoiceDate,
+                        OrderShipDate = detailDto.OrderShipDate,
+                        InvoiceNumber = detailDto.InvoiceNumber,
+                        OrdersId = order.OrdersId // Set foreign key
+                    };
+
+                    if (detailDto.CartItem != null)
+                    {
+                        orderDetail.CartItem = new CartItem
+                        {
+                            Quantity = detailDto.CartItem.Quantity,
+                            BookId = detailDto.CartItem.BookId,
+                            AccessoriesID = detailDto.CartItem.AccessoriesID,
+                            GiftCardId = detailDto.CartItem.GiftCardId
+                        };
+                    }
+
+                    order.OrderDetails.Add(orderDetail);
+                }
+
                 _ordersContext.Orders.Add(order);
                 await _ordersContext.SaveChangesAsync();
+
                 return CreatedAtAction(nameof(GetOrder), new { id = order.OrdersId }, order);
-            }
-            catch (DbUpdateException ex)
-            {
-                _logger.LogError(ex, "An error occurred while saving the order.");
-                return StatusCode(500, "Internal server error");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An unexpected error occurred.");
-                return StatusCode(500, "Internal server error");
+                _logger.LogError(ex, "Order creation failed with error: " + ex.Message);
+
+                // Return detailed error including inner exception
+                return StatusCode(500, new
+                {
+                    message = "Internal server error",
+                    detail = ex.InnerException?.Message ?? ex.Message
+                });
             }
 
         }
+
 
         // PUT: api/Order/{ordersId}
         [HttpPut("{ordersId}")]

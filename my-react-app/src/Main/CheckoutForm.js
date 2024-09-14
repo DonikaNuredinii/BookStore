@@ -100,17 +100,20 @@ const CheckoutForm = () => {
             updatedDiscountedPrice > 0 ? updatedDiscountedPrice : 0
           );
 
-          // Deactivate gift card after application
-          await fetch(`https://localhost:7061/api/GiftCard/${giftCardCode}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              ...giftCard,
-              isActive: false,
-            }),
-          });
+          // Update the gift card's active status to false (deactivating it)
+          await fetch(
+            `https://localhost:7061/api/GiftCard/${giftCard.giftCardID}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                ...giftCard,
+                isActive: false,
+              }),
+            }
+          );
         } else {
           setError("Invalid or inactive gift card");
         }
@@ -151,8 +154,8 @@ const CheckoutForm = () => {
           City: formData.city,
           CountryID: formData.countryID,
           ZipCode: formData.postalCode,
-          DiscountID: formData.discountID,
-          GiftCardID: formData.giftCardID,
+          DiscountID: formData.discountID || null,
+          GiftCardID: formData.giftCardID || null,
         }),
       });
 

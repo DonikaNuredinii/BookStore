@@ -66,14 +66,13 @@ namespace BookStore.Controllers
                 return Unauthorized(new { message = "Invalid username" });
             }
 
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
-
-            if (!isPasswordValid)
+            // Validate the password
+            if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
             {
                 return Unauthorized(new { message = "Invalid password" });
             }
 
-
+            // Generate the JWT token
             var token = GenerateJwtToken(user);
             return Ok(new { token, userId = user.UserID, message = "Login successful" });
         }
@@ -85,11 +84,11 @@ namespace BookStore.Controllers
 
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
-        new Claim("RolesID", user.RolesID.ToString()) 
-    };
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
+                new Claim("RolesID", user.RolesID.ToString()) // Add role claim
+            };
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JwtSettings:Issuer"],
@@ -100,23 +99,6 @@ namespace BookStore.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        [HttpGet("test-password")]
-        public ActionResult TestPasswordHashing()
-        {
-            string plainPassword = "Veneta123."; // The password you're testing
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(plainPassword); // Hash the password
-
-            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(plainPassword, hashedPassword); // Verify it
-
-            return Ok(new
-            {
-                plainPassword = plainPassword,
-                hashedPassword = hashedPassword,
-                passwordMatch = isPasswordCorrect
-            });
-        }
-
-
 
         [HttpGet("{UserID}")]
         public async Task<ActionResult<User>> GetUser(int UserID)
@@ -128,6 +110,7 @@ namespace BookStore.Controllers
             }
             return user;
         }
+
         [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{UserID}")]
         public async Task<IActionResult> DeleteUser(int UserID)
@@ -159,23 +142,28 @@ namespace BookStore.Controllers
                 return NotFound(new { message = "User not found" });
             }
 
-            if (!string.IsNullOrEmpty(user.Password))
-            {
-                // Ensure the password meets your validation requirements
-                if (!IsValidPassword(user.Password))
-                {
-                    return BadRequest(new { message = "Password does not meet validation requirements" });
-                }
-
-                existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            }
-
+            // Update user details
             existingUser.FirstName = user.FirstName;
             existingUser.LastName = user.LastName;
             existingUser.PhoneNumber = user.PhoneNumber;
             existingUser.Email = user.Email;
             existingUser.Username = user.Username;
             existingUser.RolesID = user.RolesID;
+
+            // Only update the password if it's provided and it's different
+            if (!string.IsNullOrEmpty(user.Password))
+            {
+                if (user.Password.Length < 6)
+                {
+                    return BadRequest(new { message = "Password must be at least 6 characters." });
+                }
+
+                // Check if the password has been changed
+                if (!BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password))
+                {
+                    existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                }
+            }
 
             _usersContext.Entry(existingUser).State = EntityState.Modified;
 
@@ -186,7 +174,7 @@ namespace BookStore.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!_usersContext.Users.Any(e => e.UserID == UserID))
-                { 
+                {
                     return NotFound(new { message = "User not found during update" });
                 }
                 else
@@ -196,12 +184,6 @@ namespace BookStore.Controllers
             }
 
             return NoContent();
-        }
-
-        private bool IsValidPassword(string password)
-        {
-            // Add your password validation logic here (e.g., length, complexity)
-            return password.Length >= 6; // Example validation
         }
     }
 }

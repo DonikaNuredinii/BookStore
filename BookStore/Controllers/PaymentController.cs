@@ -1,10 +1,10 @@
-﻿using BookStore.Models;
+﻿using BookStore.DTOs;
+using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using System.Collections.Generic;
 using System.Linq;
-using BookStore.DTOs;
 using System.Threading.Tasks;
 
 namespace BookStore.Controllers
@@ -62,7 +62,7 @@ namespace BookStore.Controllers
                         OrderDetails = new List<OrderDetails>()
                     };
 
-                    decimal totalOrderPrice = 0m; // To accumulate the total price for the entire order
+                    decimal totalOrderPrice = 0m;
 
                     foreach (var cartItemDto in request.CartItems)
                     {
@@ -75,7 +75,7 @@ namespace BookStore.Controllers
                             {
                                 return NotFound($"Book with ID {cartItemDto.BookId.Value} not found.");
                             }
-                            itemPrice = book.Price; // Assuming Book has a Price field
+                            itemPrice = book.Price;
                         }
                         else if (cartItemDto.AccessoriesID.HasValue)
                         {
@@ -84,7 +84,7 @@ namespace BookStore.Controllers
                             {
                                 return NotFound($"Accessory with ID {cartItemDto.AccessoriesID.Value} not found.");
                             }
-                            itemPrice = accessory.Price; // Assuming Accessories have a Price field
+                            itemPrice = accessory.Price;
                         }
                         else if (cartItemDto.GiftCardId.HasValue)
                         {
@@ -93,11 +93,11 @@ namespace BookStore.Controllers
                             {
                                 return NotFound($"GiftCard with ID {cartItemDto.GiftCardId.Value} not found.");
                             }
-                            itemPrice = giftCard.Amount; // Assuming GiftCard has an Amount field representing its value
+                            itemPrice = giftCard.Amount;
                         }
 
-                        decimal itemTotalPrice = itemPrice * cartItemDto.Quantity; // Calculate total price for this cart item
-                        totalOrderPrice += itemTotalPrice; // Add to the total order price
+                        decimal itemTotalPrice = itemPrice * cartItemDto.Quantity;
+                        totalOrderPrice += itemTotalPrice;
 
                         var orderDetail = new OrderDetails
                         {
@@ -135,18 +135,18 @@ namespace BookStore.Controllers
                     {
                         var options = new PaymentIntentCreateOptions
                         {
-                            Amount = (long)(totalOrderPrice * 100), // Convert to cents
+                            Amount = (long)(totalOrderPrice * 100),
                             Currency = "eur",
                             PaymentMethod = request.PaymentMethodId,
                             Confirm = true,
                             Metadata = new Dictionary<string, string>
-                    {
-                        { "OrderId", order.OrdersId.ToString() }
-                    }
+                            {
+                                { "OrderId", order.OrdersId.ToString() }
+                            }
                         };
 
                         var service = new PaymentIntentService();
-                        PaymentIntent paymentIntent = service.Create(options);
+                        var paymentIntent = service.Create(options);
 
                         var payment = new Payment
                         {
@@ -177,7 +177,6 @@ namespace BookStore.Controllers
                 }
             }
         }
-
 
         [HttpPut("{PaymentID}")]
         public async Task<IActionResult> PutPayment(int PaymentID, Payment payment)
@@ -228,6 +227,4 @@ namespace BookStore.Controllers
             return _context.Payment.Any(e => e.PaymentID == PaymentID);
         }
     }
-
-
 }

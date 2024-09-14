@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const User = ({ searchQuery }) => {
@@ -23,6 +23,7 @@ const User = ({ searchQuery }) => {
 
   const [roles, setRoles] = useState([]);
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -34,6 +35,7 @@ const User = ({ searchQuery }) => {
       getData();
     }
   }, [searchQuery]);
+
   const filterData = (query) => {
     if (!query) {
       getData();
@@ -60,15 +62,15 @@ const User = ({ searchQuery }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((result) => {
-        setData(result.data);
-        console.log("User Data:", result.data);
+      .then((response) => {
+        console.log(response.data);
       })
       .catch((error) => {
+        console.error("Error fetching data: ", error);
         if (error.response && error.response.status === 401) {
-          toast.error("Unauthorized. Please log in again.");
-        } else {
-          toast.error("Failed to fetch users: " + error.message);
+          toast.error("Session expired. Please log in again.");
+          localStorage.removeItem("token");
+          navigate("/account");
         }
       });
 
@@ -155,28 +157,45 @@ const User = ({ searchQuery }) => {
       PhoneNumber: editPhoneNumber,
       Email: editEmail,
       Username: editUsername,
-      Password: editPassword,
       RolesID: parseInt(editRoles),
     };
 
-    axios
-      .put(url, userData, {
+    if (editPassword && editPassword.length >= 6) {
+      userData.Password = editPassword;
+    }
+
+    try {
+      // Update the user information
+      await axios.put(url, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then((result) => {
-        handleClose();
-        getData();
-        toast.success("User has been updated");
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 401) {
-          toast.error("Unauthorized. Please log in again.");
-        } else {
-          toast.error("Failed to update User: " + error.message);
-        }
       });
+
+      // Re-login the user to get a new token
+      const loginResponse = await axios.post(
+        "https://localhost:7061/api/User/login",
+        {
+          Username: editUsername,
+          Password: editPassword || "existingPassword", // Use the updated password, if changed
+        }
+      );
+
+      // Store the new token
+      localStorage.setItem("token", loginResponse.data.token);
+      toast.success("User updated successfully. New token generated.");
+
+      handleClose();
+      getData();
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        toast.error("Unauthorized. Please log in again.");
+        localStorage.removeItem("token");
+        navigate("/account");
+      } else {
+        toast.error("Failed to update User: " + error.message);
+      }
+    }
   };
 
   const clear = () => {
