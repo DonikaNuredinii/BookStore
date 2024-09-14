@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using BookStore.Models;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Authorization;
+using BookStore.DTOs;
 
 namespace BookStore.Controllers
 {
@@ -54,27 +55,30 @@ namespace BookStore.Controllers
             var totalUsers = await _usersContext.Users.CountAsync();
             return Ok(totalUsers);
         }
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
         {
-            var user = await _usersContext.Users
-                .FirstOrDefaultAsync(u => u.Username == model.Username);
+            var user = await _usersContext.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
 
             if (user == null)
             {
                 return Unauthorized(new { message = "Invalid username" });
             }
 
-            // Validate the password
             if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
             {
                 return Unauthorized(new { message = "Invalid password" });
             }
 
-            // Generate the JWT token
             var token = GenerateJwtToken(user);
-            return Ok(new { token, userId = user.UserID, message = "Login successful" });
+
+            return Ok(new
+            {
+                token,
+                userId = user.UserID,
+                rolesID = user.RolesID, 
+                message = "Login successful"
+            });
         }
 
         private string GenerateJwtToken(User user)
@@ -126,12 +130,11 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
-
         [Authorize]
-        [HttpPut("{UserID}")]
-        public async Task<ActionResult> PutUser(int UserID, User user)
+        [HttpPut("{UserID}/profile")]
+        public async Task<ActionResult> UpdateProfile(int UserID, [FromBody] UserUpdateDTO userDto)
         {
-            if (UserID != user.UserID)
+            if (UserID != userDto.UserID)
             {
                 return BadRequest(new { message = "User ID mismatch" });
             }
@@ -142,48 +145,61 @@ namespace BookStore.Controllers
                 return NotFound(new { message = "User not found" });
             }
 
-            // Update user details
-            existingUser.FirstName = user.FirstName;
-            existingUser.LastName = user.LastName;
-            existingUser.PhoneNumber = user.PhoneNumber;
-            existingUser.Email = user.Email;
-            existingUser.Username = user.Username;
-            existingUser.RolesID = user.RolesID;
+           
+            existingUser.FirstName = userDto.FirstName;
+            existingUser.LastName = userDto.LastName;
+            existingUser.PhoneNumber = userDto.PhoneNumber;
+            existingUser.Email = userDto.Email;
+            existingUser.RolesID = userDto.RolesID;
 
-            // Only update the password if it's provided and it's different
-            if (!string.IsNullOrEmpty(user.Password))
-            {
-                if (user.Password.Length < 6)
-                {
-                    return BadRequest(new { message = "Password must be at least 6 characters." });
-                }
-
-                // Check if the password has been changed
-                if (!BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password))
-                {
-                    existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                }
-            }
-
+            
             _usersContext.Entry(existingUser).State = EntityState.Modified;
 
             try
             {
                 await _usersContext.SaveChangesAsync();
+                return NoContent(); 
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!_usersContext.Users.Any(e => e.UserID == UserID))
-                {
-                    return NotFound(new { message = "User not found during update" });
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500, new { message = "An error occurred while saving the entity changes.", detail = ex.Message });
             }
+        }
+
+
+
+
+        [Authorize]
+        [HttpPut("{UserID}/update-password")]
+        public async Task<IActionResult> UpdatePassword(int UserID, [FromBody] PasswordUpdateModel model)
+        {
+            var user = await _usersContext.Users.FindAsync(UserID);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.Password))
+            {
+                return BadRequest(new { message = "Current password is incorrect." });
+            }
+
+            if (model.NewPassword.Length < 6)
+            {
+                return BadRequest(new { message = "New password must be at least 6 characters." });
+            }
+
+            if (model.NewPassword != model.ConfirmPassword)
+            {
+                return BadRequest(new { message = "Passwords do not match." });
+            }
+            user.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+
+            await _usersContext.SaveChangesAsync();
 
             return NoContent();
         }
     }
 }
+

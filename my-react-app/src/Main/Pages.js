@@ -19,15 +19,16 @@ import EbookDetails from "./EbookDetails";
 import BookDetails from "./BookDetails";
 import WishlistPage from "./WishlistPage";
 import StripeContainer from "../Components/StripeContainer";
-import { useWishlist } from "../Components/Wishlist"; 
+import { useWishlist } from "../Components/Wishlist";
 import EventsPage from "./EventsPage";
+import UpdatePassword from "./UpdatePassword";
 
 function Pages() {
   const [isSticky, setSticky] = useState(false);
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
   const [cart, setCart] = useState([]);
-  const { wishlist } = useWishlist(); 
+  const { wishlist } = useWishlist();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -123,6 +124,7 @@ function Pages() {
         />
         <Route path="/ebooks" element={<EbookList addToCart={addToCart} />} />
         <Route path="/EbookDetails/:id" element={<EbookDetails />} />
+        <Route path="/update-password" element={<UpdatePassword />} />
       </Routes>
       <Footer Toggle={Toggle} />
     </div>

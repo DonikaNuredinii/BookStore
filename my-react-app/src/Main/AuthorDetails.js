@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "../App.css";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { useWishlist } from "../Components/Wishlist"; // Import the useWishlist hook
 
 const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
@@ -12,11 +13,17 @@ const AuthorDetails = ({ addToCart }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [favoriteBooks, setFavoriteBooks] = useState(new Set());
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [message, setMessage] = useState("");
+  const [messageTimeout, setMessageTimeout] = useState(null);
+  const [showWishlistModal, setShowWishlistModal] = useState(false);
+  const [selectedBooks, setSelectedBooks] = useState([]);
 
   const navigate = useNavigate();
+
+  // Use the wishlist hook
+  const { isBookInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -57,29 +64,30 @@ const AuthorDetails = ({ addToCart }) => {
     try {
       return images(`./${imageName}`);
     } catch (err) {
-      console.error(`Image not found: ${imageName}`);
       return "/images/placeholder.jpg";
     }
   };
 
-  const handleFavoriteClick = (e, bookID) => {
+  const handleFavoriteClick = (e, book) => {
     e.stopPropagation();
-    setFavoriteBooks((prevFavorites) => {
-      const updatedFavorites = new Set(prevFavorites);
-      if (updatedFavorites.has(bookID)) {
-        updatedFavorites.delete(bookID);
-      } else {
-        updatedFavorites.add(bookID);
-      }
-      return updatedFavorites;
-    });
-  };
+    if (isBookInWishlist(book.bookID)) {
+      removeFromWishlist(book.bookID);
+      setMessage("Book removed from wishlist");
+      setShowWishlistModal(false);
+      setSelectedBooks((prevSelectedBooks) =>
+        prevSelectedBooks.filter((b) => b.bookID !== book.bookID)
+      );
+    } else {
+      addToWishlist(book);
+      setSelectedBooks((prevSelectedBooks) => [...prevSelectedBooks, book]);
+      setShowWishlistModal(true);
+      setMessage("Book added to wishlist");
+    }
 
-  const handleAddToCartClick = (e, book) => {
-    e.stopPropagation();
-    addToCart(book);
-    setSelectedBook(book);
-    setShowModal(true);
+    if (messageTimeout) {
+      clearTimeout(messageTimeout);
+    }
+    setMessageTimeout(setTimeout(() => setMessage(""), 2000));
   };
 
   const handleBookClick = (bookID) => {
@@ -88,12 +96,16 @@ const AuthorDetails = ({ addToCart }) => {
 
   const closeModal = () => {
     setShowModal(false);
-    setSelectedBook(null);
+    setShowWishlistModal(false);
   };
 
-  if (!authorID) {
-    return <div>No author ID specified.</div>;
-  }
+  const handleAddAllToCart = () => {
+    selectedBooks.forEach((book) => {
+      addToCart(book);
+      removeFromWishlist(book.bookID);
+    });
+    setShowWishlistModal(false);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -139,15 +151,15 @@ const AuthorDetails = ({ addToCart }) => {
                         className="book-image"
                       />
                       <div className="icon-container">
-                        {favoriteBooks.has(book.bookID) ? (
+                        {isBookInWishlist(book.bookID) ? (
                           <MdFavorite
                             className="favorite-icon"
-                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                            onClick={(e) => handleFavoriteClick(e, book)}
                           />
                         ) : (
                           <MdFavoriteBorder
                             className="favorite-icon"
-                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                            onClick={(e) => handleFavoriteClick(e, book)}
                           />
                         )}
                       </div>
@@ -157,12 +169,6 @@ const AuthorDetails = ({ addToCart }) => {
                         <p className="card-price">Price: €{book.price}</p>
                         <h3 className="card-title">{book.title}</h3>
                         <p className="card-author">Author: {author.name}</p>
-                        <button
-                          className="buy-now-btn"
-                          onClick={(e) => handleAddToCartClick(e, book)}
-                        >
-                          Add to Cart
-                        </button>
                       </div>
                     </div>
                     <div className="card-content">
@@ -180,34 +186,54 @@ const AuthorDetails = ({ addToCart }) => {
         </div>
       </div>
 
-      {showModal && selectedBook && (
-        <div className="modal-cart">
+      {/* Wishlist Modal */}
+      {showWishlistModal && (
+        <div className="wishlist-modal">
           <div className="modal-content">
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <p>Item added to cart</p>
-            <img
-              src={
-                preprocessImagePath(selectedBook.image) || "default-image.jpg"
-              }
-              alt={selectedBook.title || "Book Image"}
-              className="design-preview"
-            />
-            <p>Amount: €{selectedBook.price}</p>
-            <div className="view-cart-container">
-              <Link to="/cart" className="view-cart-button">
-                View Cart
-              </Link>
-            </div>
-            <div className="view-cart-container">
-              <Link to="/" className="continue-shopping">
-                Continue Shopping
-              </Link>
+            <h3> Wishlist</h3>
+            {selectedBooks.length > 0 && (
+              <div className="wishlist-items">
+                {selectedBooks.map((book) => (
+                  <div key={book.bookID} className="wishlist-item">
+                    <img
+                      src={preprocessImagePath(book.image)}
+                      alt={book.title}
+                      className="wishlist-image"
+                    />
+                    <div className="wishlist-details">
+                      <h4>{book.title}</h4>
+                      <p>Author: {author.name}</p>
+                      <p>Price: €{book.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="wishlist-buttons">
+              <button
+                className="view-wishlist-button"
+                onClick={() => {
+                  setShowWishlistModal(false);
+                  navigate("/WishlistPage");
+                }}
+              >
+                View Wishlist
+              </button>
+              <button
+                className="add-all-to-cart-button"
+                onClick={handleAddAllToCart}
+              >
+                Add All to Cart
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      {message && <div className="feedback-message">{message}</div>}
     </>
   );
 };

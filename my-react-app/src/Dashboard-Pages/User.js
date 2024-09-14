@@ -28,6 +28,7 @@ const User = ({ searchQuery }) => {
   useEffect(() => {
     getData();
   }, []);
+
   useEffect(() => {
     if (searchQuery) {
       filterData(searchQuery);
@@ -63,6 +64,7 @@ const User = ({ searchQuery }) => {
         },
       })
       .then((response) => {
+        setData(response.data);
         console.log(response.data);
       })
       .catch((error) => {
@@ -116,8 +118,10 @@ const User = ({ searchQuery }) => {
         setEditPhoneNumber(userData.phoneNumber);
         setEditEmail(userData.email);
         setEditUsername(userData.username);
-        setEditPassword(userData.password);
         setEditRoles(userData.rolesID.toString());
+
+        // Set password to an empty string so it remains blank
+        setEditPassword("");
       })
       .catch((error) => {
         toast.error("Failed to get User: " + error.message);
@@ -145,10 +149,9 @@ const User = ({ searchQuery }) => {
         });
     }
   };
-
   const handleUpdate = async () => {
     const token = localStorage.getItem("token");
-    const url = `https://localhost:7061/api/User/${editUserId}`;
+    const url = `https://localhost:7061/api/User/${editUserId}/profile`;
 
     const userData = {
       UserID: editUserId,
@@ -156,56 +159,31 @@ const User = ({ searchQuery }) => {
       LastName: editLastName,
       PhoneNumber: editPhoneNumber,
       Email: editEmail,
-      Username: editUsername,
       RolesID: parseInt(editRoles),
     };
 
-    if (editPassword && editPassword.length >= 6) {
-      userData.Password = editPassword;
-    }
-
     try {
-      // Update the user information
       await axios.put(url, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       });
 
-      // Re-login the user to get a new token
-      const loginResponse = await axios.post(
-        "https://localhost:7061/api/User/login",
-        {
-          Username: editUsername,
-          Password: editPassword || "existingPassword", // Use the updated password, if changed
-        }
-      );
-
-      // Store the new token
-      localStorage.setItem("token", loginResponse.data.token);
-      toast.success("User updated successfully. New token generated.");
-
-      handleClose();
-      getData();
+      toast.success("User updated successfully.");
+      handleClose(); // Close the modal on success
+      getData(); // Fetch the updated data
     } catch (error) {
-      if (error.response && error.response.status === 401) {
+      if (error.response && error.response.status === 400) {
+        toast.error("Bad request. Please check your input.");
+      } else if (error.response && error.response.status === 401) {
         toast.error("Unauthorized. Please log in again.");
         localStorage.removeItem("token");
         navigate("/account");
       } else {
-        toast.error("Failed to update User: " + error.message);
+        toast.error("Failed to update user: " + error.message);
       }
     }
-  };
-
-  const clear = () => {
-    setEditFirstName("");
-    setEditLastName("");
-    setEditPhoneNumber("");
-    setEditEmail("");
-    setEditUsername("");
-    setEditPassword("");
-    setEditRoles("");
   };
 
   return (
@@ -241,7 +219,6 @@ const User = ({ searchQuery }) => {
                 } else if (item.rolesID === 3) {
                   roleName = "Admin";
                 }
-                console.log("Role ID:", item.rolesID, "Role Name:", roleName);
                 return (
                   <tr key={item.userID}>
                     <td>{index + 1}</td>
@@ -360,7 +337,7 @@ const User = ({ searchQuery }) => {
                     placeholder="Enter your username"
                     name="username"
                     value={editUsername}
-                    onChange={(e) => setEditUsername(e.target.value)}
+                    readOnly
                   />
                 </Form.Group>
               </Col>
@@ -369,10 +346,10 @@ const User = ({ searchQuery }) => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder="********"
                     name="password"
                     value={editPassword}
-                    onChange={(e) => setEditPassword(e.target.value)}
+                    readOnly
                   />
                 </Form.Group>
               </Col>

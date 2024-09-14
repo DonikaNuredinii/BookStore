@@ -116,7 +116,7 @@ const Account = () => {
   axios
     .get("https://localhost:7061/api/protected-endpoint", {
       headers: {
-        Authorization: `Bearer ${token}`, // Pass the token in the header
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => {
@@ -125,11 +125,9 @@ const Account = () => {
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Trim the username and password to remove any leading or trailing spaces
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
@@ -140,16 +138,18 @@ const Account = () => {
 
     axios
       .post("https://localhost:7061/api/User/login", {
-        Username: username,
-        Password: password,
+        Username: trimmedUsername,
+        Password: trimmedPassword,
       })
       .then((response) => {
         const token = response.data.token;
         const userID = response.data.userId;
+        const rolesID = response.data.rolesID;
         localStorage.setItem("token", token);
         localStorage.setItem("userID", userID);
+        localStorage.setItem("rolesID", rolesID);
         toast.success("Login successful!");
-        navigate("/account-settings");
+        navigate("/");
       })
       .catch((error) => {
         toast.error("Invalid username or password.");
