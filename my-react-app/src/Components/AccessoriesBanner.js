@@ -1,7 +1,7 @@
 import React from "react";
-import BookLight from "../Images/ImazhetAksesorie/book-light.jpeg";
-import LeatherPageHolder from "../Images/ImazhetAksesorie/Leather-page-holder.jpeg";
-import FlyingBoyBookend from "../Images/ImazhetAksesorie/The_Flying_Boy_Bookends.jpeg";
+import BookLight from "../Images/book-light.jpeg";
+import LeatherPageHolder from "../Images/Leather-page-holder.jpeg";
+import FlyingBoyBookend from "../Images/The_Flying_Boy_Bookends.jpeg";
 // import { Link } from "react-router-dom";
 import "../App.css";
 const AccessoriesBanner = () => {
