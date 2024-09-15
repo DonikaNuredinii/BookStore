@@ -29,18 +29,49 @@ namespace BookStore.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(User user)
         {
-            try
+            var errors = new Dictionary<string, string>();
+
+
+            if (!char.IsUpper(user.FirstName[0]))
             {
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                _usersContext.Users.Add(user);
-                await _usersContext.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetUser), new { UserID = user.UserID }, user);
+                errors.Add("firstName", "First name should start with a capital letter.");
             }
-            catch (Exception ex)
+            if (!char.IsUpper(user.LastName[0]))
             {
-                return StatusCode(500, new { message = "An error occurred during registration.", detail = ex.InnerException?.Message });
+                errors.Add("lastName", "Last name should start with a capital letter.");
             }
+
+    
+            var existingUserWithEmail = await _usersContext.Users
+                .FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (existingUserWithEmail != null)
+            {
+                errors.Add("email", "Email is already in use.");
+            }
+
+            var existingUserWithUsername = await _usersContext.Users
+                .FirstOrDefaultAsync(u => u.Username == user.Username);
+            if (existingUserWithUsername != null)
+            {
+                errors.Add("username", "Username is already taken.");
+            }
+
+
+            if (errors.Count > 0)
+            {
+                return BadRequest(errors);
+            }
+
+          
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            _usersContext.Users.Add(user);
+            await _usersContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetUser), new { UserID = user.UserID }, user);
         }
+
+
+
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()

@@ -59,37 +59,34 @@ const Account = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const errors = {};
-
+    e.preventDefault(); // Prevent default form submission
+  
+    let frontendErrors = {}; // Initialize frontend errors
+  
+    // Frontend validations
     if (!validateName(firstName)) {
-      errors.firstName = "First name should start with a capital letter.";
+      frontendErrors.firstName = "First name should start with a capital letter.";
     }
     if (!validateName(lastName)) {
-      errors.lastName = "Last name should start with a capital letter.";
+      frontendErrors.lastName = "Last name should start with a capital letter.";
     }
     if (!validatePhoneNumber(phoneNumber)) {
-      errors.phoneNumber = "Invalid phone number.";
+      frontendErrors.phoneNumber = "Invalid phone number.";
     }
     if (!validateEmail(email)) {
-      errors.email = "Invalid email address.";
+      frontendErrors.email = "Invalid email address.";
     }
     if (!validatePassword(password)) {
-      errors.password =
+      frontendErrors.password =
         "Password should be at least 8 characters long and contain at least one uppercase letter and one symbol.";
     }
     if (password !== formData.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match.";
+      frontendErrors.confirmPassword = "Passwords do not match.";
     }
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    } else {
-      setFormErrors({});
-    }
-
+  
+    // Set frontend errors first
+    setFormErrors(frontendErrors);
+  
     const userData = {
       FirstName: firstName,
       LastName: lastName,
@@ -99,7 +96,8 @@ const Account = () => {
       Password: password,
       RolesID: 2,
     };
-
+  
+    // Continue with backend call even if there are frontend errors
     axios
       .post("https://localhost:7061/api/User/register", userData)
       .then((response) => {
@@ -108,23 +106,28 @@ const Account = () => {
         logInLink();
       })
       .catch((error) => {
-        toast.error("Error registering user: " + error.message);
+        // Handle backend validation errors
+        if (error.response && error.response.data) {
+          const backendErrors = error.response.data;
+          const updatedErrors = { ...frontendErrors };  // Start with frontend errors
+  
+          // Merge backend errors with frontend errors
+          if (backendErrors.email) {
+            updatedErrors.email = backendErrors.email;
+          }
+          if (backendErrors.username) {
+            updatedErrors.username = backendErrors.username;
+          }
+  
+          // Set both frontend and backend errors
+          setFormErrors(updatedErrors);
+        } else {
+          toast.error("Error registering user: " + error.message);
+        }
       });
   };
-  const token = localStorage.getItem("token");
-
-  axios
-    .get("https://localhost:7061/api/protected-endpoint", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+  
+  
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -267,6 +270,7 @@ const Account = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
+            <div className="error-message">{formErrors.username}</div>
             <div className="inputs-logIn">
               <input
                 type="password"
