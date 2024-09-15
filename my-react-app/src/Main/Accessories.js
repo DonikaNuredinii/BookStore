@@ -31,11 +31,11 @@ const Accessories = ({ addToCart }) => {
     const screenWidth = window.innerWidth;
 
     if (screenWidth >= 1200) {
-      setAccessoriesPerPage(24); // Large screens 
+      setAccessoriesPerPage(24); // Large screens
     } else if (screenWidth >= 768) {
-      setAccessoriesPerPage(16); // Medium screens 
+      setAccessoriesPerPage(16); // Medium screens
     } else {
-      setAccessoriesPerPage(8);  // Small screens 
+      setAccessoriesPerPage(8); // Small screens
     }
   };
 
@@ -63,8 +63,8 @@ const Accessories = ({ addToCart }) => {
     setIsFavorite(!isFavorite);
   };
 
-  const sortedAccessories = [...accessories].sort((a, b) => 
-    new Date(b.dateofAddition) - new Date(a.dateofAddition)
+  const sortedAccessories = [...accessories].sort(
+    (a, b) => new Date(b.dateofAddition) - new Date(a.dateofAddition)
   );
 
   const totalPages = Math.ceil(sortedAccessories.length / accessoriesPerPage);
@@ -164,7 +164,7 @@ const Accessories = ({ addToCart }) => {
             <button onClick={() => setClose(false)} className="Acc-close">
               <IoMdClose />
             </button>
-            
+
             {detail.map((x, index) => (
               <div key={`${x.id}-${index}`} className="Acc-detail-info">
                 <div className="Acc-img-box">
@@ -181,7 +181,7 @@ const Accessories = ({ addToCart }) => {
                   <p>Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"} </p>
                   <div className="book-buttons">
                     <button
-                      className="buy-now-btn"
+                      className="favorite-btn"
                       onClick={() => handleSubmit(x)}
                     >
                       <CiShoppingCart /> Add to Cart
@@ -200,7 +200,7 @@ const Accessories = ({ addToCart }) => {
           </div>
         </div>
       )}
-      <div className="Acc-cards">
+      <div className="cards-Home">
         {currentAccessories.map((accessory, index) => {
           const imagePath = preprocessImagePath(accessory.image);
           return (
@@ -262,10 +262,7 @@ const Accessories = ({ addToCart }) => {
             {number}
           </button>
         ))}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           <GrNext />
         </button>
       </div>

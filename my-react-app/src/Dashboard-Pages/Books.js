@@ -180,11 +180,10 @@ const Books = ({ searchQuery }) => {
     if (searchQuery) {
       filterData(searchQuery);
     } else {
-      getData(); // Refetch data if searchQuery is cleared
+      getData();
     }
   }, [searchQuery]);
   const filterData = (query) => {
-    // Filter data based on the search query
     const filteredData = data.filter((book) =>
       book.title.toLowerCase().includes(query.toLowerCase())
     );

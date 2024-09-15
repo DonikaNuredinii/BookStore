@@ -2244,3 +2244,106 @@ INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (2, 345);
 INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (2, 346);
 
 INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 346);
+
+ --Accessories data
+INSERT INTO Accessories( Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId) 
+VALUES ( 'ColorfulPageHolder.jpg','Crystal Page Holder','Kartterfly','Thumb Page Holder with a crystal energy shape, each grain is different due to a special process. Made of high quality resin material, not easy to break or deform, comfortable and smooth to the touch, ergonomic.', '8.5 cm wide, 4 cm high, 1.7 cm thick',27, '2024-05-27', 2);
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId) 
+VALUES
+( 'WhiteOak-Bookend.jpeg', 'White Oak Book End', 'MAKR', 'Introducing the DUO, a flat-pack pair of bookends made for taking with you. The DUO is made of ultra-fine 9 layer custom plywood with a powder coated laser-cut steel base.', 'When assembled: 5" D x 5.25H x 3.85"W', 101.59, '2024-05-27', 3),
+('DarkOak-Bookend.jpeg', 'Dark Oak Book End', 'MAKR', 'Introducing the DUO, a flat-pack pair of bookends made for taking with you. The DUO is made of ultra-fine 9 layer custom plywood with a powder coated laser-cut steel base.', 'When assembled: 5" D x 5.25H x 3.85"W', 101.59, '2024-05-27', 10),
+('EasterGumOak-Bookend.jpeg', 'Easter Gum Oak Book End', 'MAKR', 'Introducing the DUO, a flat-pack pair of bookends made for taking with you. The DUO is made of ultra-fine 9 layer custom plywood with a powder coated laser-cut steel base.', 'When assembled: 5" D x 5.25H x 3.85"W', 101.59, '2024-05-27', 17),
+('24Calendar.jpeg', '2024 Dotted Calendar', 'Abby Clawson Low', 'The 4th annual calendar. A striking graphic design treat thats become one of our most highly anticipated items. Available in strictly limited quantities. The 2024 edition features a different colorful dot pattern for each month.', '8.5" x 11" / spiral bound', 32, '2024-05-27', 90),
+('Cista-Handbag.jpeg', 'The Cista Handbag', 'Ken Nishijo', 'The Cista features a large interior pocket, a zip-top closure for travel, shoulder strap with brass hardware, open back straps (for newspapers, umbrellas, a light jacket, etc.), and a big front pocket that can snap closed to make two smaller pockets (gusseted with ingenious folds to make them into smaller, book-friendly rectangles).', '12" H x 16" W x 6.5" D with an adjustable leather shoulder strap.', 503, '2024-05-27', 16),
+('READING-mug.jpeg', 'Go Away Im Reading Mug', 'The Literary Gift Company', 'Now you can give the Priceless gift of a bit of peace and quiet to the reader in your life. Not particularly polite, but sometimes people need to be told! Perfect for anyone who just needs to finish the next chapter. And the one after that...', 'Height 8cm', 6.99, '2024-05-27', 20),
+('GoAwayWoodcutTotebag.jpeg', 'Go Away Im Reading Totebag', 'The Literary Gift Company', 'You know how it is: youve found a distant bench for your lunch-break read, and... Adapted from a woodcut illustration for a 1526 edition of Le Rommant de la Rose. Now available in a canvas tote bag!', 'Bag measures 36 x 39 cm (excluding handles).', 10.99, '2024-05-27', 2),
+('book-light.jpeg', 'Mini Book Light', 'Gingko', 'This mini booklight is a rechargeable lamp made to look like a book with a sleek laser cut wooden cover. When its closed, the booklight can be neatly tucked away. Powered by two led strips, perfect for reading or creating a cosy atmosphere. The mini booklight is rechargeable with a standard micro usb cable, so you can leave it plugged in for extended use, or charge it up for a camping trip or an evening in the garden. It takes about 2 hours to charge and then will stay shining for around 10 hours from a full charge.', 'Measures 170 x 215 x 25 mm', 15.49, '2024-05-27', 19),
+('personal-library-kit-.jpeg', 'Personal Library Kit', 'The Literary Gift Company', 'Love lending books, but hate never getting them back? Its wonderful to share books with your friends, but there is no crueller pain than losing your treasured favourites. Keep track of them with your own personal library kit.', 'Contains 20 self-adhesive pockets, 20 checkout cards, 1 date stamp, 1 stamp pad and 1 pencil.', 20, '2024-05-27', 21),
+('Notebook-Tidy.jpeg', 'Bookaroo Tidy Notebook', 'The Literary Gift Company', 'No more searching through your bag for your phone, or your pen, or your headphones - this notebook tidy will keep it all in one handy place. Perfect for students or writers. Fits most notebooks and book sizes.', 'Measures 17.5 x 10.5 cm.', 18, '2024-05-27', 21),
+('The_Flying_Boy_Bookends.jpeg', 'The Flying Boy Book End', 'The Literary Gift Company', 'Peter Pan flies over the Jolly Roger - to Captain Hooks annoyance, no doubt. A brilliant way to keep your books safe and neat.', 'Made from steel. Measures: 17 x 11 x 10 cm. Single bookend. Colour green.', 27, '2024-05-27', 21),
+('cat-mouse-page-marker.jpg', 'Cat & Mouse Page Marker', 'IF', 'Every Bookminder tells a different story! Position them on the top or sides of your pages and bold as brass they will turn a dull closed book into a miniature story scene. With a hint of traditional bookiness and a huge twist of contemporary cool, each themed set will mark your four favourite places.', 'pack size: 7 x 0.5 x 18 cm', 13.5, '2024-05-27', 23),
+('moon-stars-page-marker.jpg', 'Moon & Stars Page Marker', 'IF', 'Every Bookminder tells a different story! Position them on the top or sides of your pages and bold as brass they will turn a dull closed book into a miniature story scene. With a hint of traditional bookiness and a huge twist of contemporary cool, each themed set will mark your four favourite places.', 'pack size: 7 x 0.5 x 18 cm', 13.5, '2024-05-27', 14),
+('Alice-Page-Marker.jpg', 'Alice Page Marker', 'IF', 'Every Bookminder tells a different story! Position them on the top or sides of your pages and bold as brass they will turn a dull closed book into a miniature story scene. With a hint of traditional bookiness and a huge twist of contemporary cool, each themed set will mark your four favourite places.', 'pack size: 7 x 0.5 x 18 cm', 13.5, '2024-05-27', 25),
+('thereisnosuchthingTotebag_.jpg', 'Cute Stylish Totebag', 'Nayeli', 'The tote is made from high-quality materials that can withstand the weight of even the heaviest hardcover books. It features a spacious main compartment with plenty of room for books, notebooks, e-readers, and other essentials. The long shoulder straps make it easy to carry over your shoulder, and the reinforced stitching ensures that the tote will last for years to come.', 'Bag measures 36 x 40 cm', 16.59, '2024-05-27', 20);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('GiftWrapPins.jpg', 'Pins Gift Wrap', 'If Cardboard Creations Ltd', 
+        'Always judge a book by its wrapping Literally literal wrapping to adorn your chosen book gift for friends and family. A great idea for a book lover. Covers the most popular paperback and hardback book sizes. One sheet per pack.', 
+        'Sheet size 490x400mm', 2.5, '2024-08-13', 12);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('PopUpBookEnd.jpg', 'The Black Pop Up Book End', 'If Cardboard Creations Ltd', 
+        'Perfect for keeping your books tidy. Compact enough to take away. A solution to tidying up your book shelves. Sold flat to save on precious storage space - ''pops'' up to hold your hardback and paperback books securely.', 
+        '14D x 24W x 0.1H Centimeters', 6, '2024-08-13', 7);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('PopUpBookEndWhite.jpg', 'The White Pop Up Book End', 'If Cardboard Creations Ltd', 
+        'Perfect for keeping your books tidy. Compact enough to take away. A solution to tidying up your book shelves. Sold flat to save on precious storage space - ''pops'' up to hold your hardback and paperback books securely.', 
+        '14D x 24W x 0.1H Centimeters', 6, '2024-08-13', 11);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('PopUpBookEndRed.jpg', 'The Red Pop Up Book End', 'If Cardboard Creations Ltd', 
+        'Perfect for keeping your books tidy. Compact enough to take away. A solution to tidying up your book shelves. Sold flat to save on precious storage space - ''pops'' up to hold your hardback and paperback books securely.', 
+        '14D x 24W x 0.1H Centimeters', 6, '2024-08-13', 8);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPSlytherinNotebook.jpg', 'Slytherin H. Potter Notebook', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 16.7, '2024-08-13', 16);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPGryffindorNotebook.jpg', 'Gryffindor H. Potter Notebook', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 16.7, '2024-08-13', 88);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPHufflepuffNotebook.jpg', 'Hufflepuff H. Potter Notebook', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 16.7, '2024-08-13', 45);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPRavenclawNotebook.jpg', 'Ravenclaw H. Potter Notebook', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 16.7, '2024-08-13', 50);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPTheDeathlyHallowsNb.jpg', 'Deathly Hallows H. Potter', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 17.2, '2024-08-13', 26);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('HPHogwartsNotebook.jpg', 'Hogwarts H. Potter Notebook', 'Insight Editions', 
+        'This new addition to Insight Editions’ best-selling Harry Potter stationery line adapts the design of our deluxe hardcover ruled journal in a new softcover format. Featuring a flexible leatherette cover and 128 lined, acid-free pages of high-quality, heavy stock paper.', 
+        '13.34 x 1.27 x 20.96 cm', 17.2, '2024-08-13', 16);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('BookaroNotebookClassic.jpg', 'Bookaroo Notebook Teal', 'If Cardboard Creations Ltd', 
+        'A Bookaroo notebook is packed from PU cover to cover with 192 pages of smooth, ink-friendly, good quality ivory paper, included contents pages and a place to number your pages.', 
+        '13.46 x 1.52 x 21.59 cm', 8.5, '2024-08-13', 21);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('BookarooNotebookBlack.jpg', 'Bookaroo Notebook Black', 'If Cardboard Creations Ltd', 
+        'A Bookaroo notebook is packed from PU cover to cover with 192 pages of smooth, ink-friendly, good quality ivory paper, included contents pages and a place to number your pages.', 
+        '13.46 x 1.52 x 21.59 cm', 8.5, '2024-08-13', 20);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('BookarooNotebookBrown.jpg', 'Bookaroo Notebook Brown', 'If Cardboard Creations Ltd', 
+        'A Bookaroo notebook is packed from PU cover to cover with 192 pages of smooth, ink-friendly, good quality ivory paper, included contents pages and a place to number your pages.', 
+        '13.46 x 1.52 x 21.59 cm', 8.5, '2024-08-13', 77);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('RedEarplugs.jpg', 'I''m Offline Red Earplugs', 'If Cardboard Creations Ltd', 
+        'Fully compliant quality foam for a comfortable fit\nEasy to use Just pop them gently into your ears and sit back and enjoy the peace and quiet.', 
+        'One Size', 4.3, '2024-07-19', 50);
+
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId)
+VALUES ('BlueEarplugs.jpg', 'I''m Reading Blue Earplugs', 'If Cardboard Creations Ltd', 
+        'Fully compliant quality foam for a comfortable fit\nEasy to use Just pop them gently into your ears and sit back and enjoy the peace and quiet.', 
+        'One Size', 4.3, '2024-07-19', 33);
+INSERT INTO Accessories (Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId) 
+VALUES
+('Leather-page-holder.jpeg', 'Leather Heart Page Holder', 'SZRMOCYD', 'Great-Quality Handmade Material: Our Heart Bookmark is made of PU leather, which is soft, lightweight and does not hurt the book. The page clips are waterproof, reliable and durable, not easy to loosen or wear. Can protect the corners of the book and will be reusable and serve for a long time. Easy to insert into any books without taking too much space. The designs are handmade with vintage leather that looks elegant, they can serve as book markers and beautiful book accessories.', '2.9"L x 2.1". Item Weight: 15 Grams', 12.99, '2024-05-27', 2),
+
+('ResinArt-BookPageHolder.jpeg', 'Floral Resin Page Holder', 'Outus', 'Hand-made flower book page holder is practical and stylish, exquisite and cute; Besides, there is a about 2 cm hole in the middle, which is convenient for your fingers to fix it. It is made by hand with dried flowers and resin.', '8.5 cm wide, 4 cm high, 1.7 cm thick, and thumb hole diameter includes 4 options: 1.8 cm, 0.2 cm, 2.2 cm, 2.4 cm', 10.00, '2024-05-27', 2);
+
+

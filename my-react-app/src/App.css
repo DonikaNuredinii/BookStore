@@ -2687,9 +2687,9 @@ label {
   position: static;
   z-index: 1;
   align-items: center;
-  width: 70%;
+  width: 50%;
   background: #fff;
-  margin: 120px auto;
+  margin: 190px auto;
   height: auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border: 1px solid #427bb90c;
@@ -2770,6 +2770,58 @@ label {
   border-radius: 7px;
   margin-left: 10px;
 }
+@media (max-width: 1200px) {
+  .Acc-container {
+    justify-content: center;
+  }
+
+  .Acc-container .AccData-box {
+    width: 150px;
+    height: 280px;
+  }
+
+  .Acc-detail-container {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Acc-container {
+    justify-content: center;
+  }
+
+  .Acc-container .AccData-box {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .Acc-detail-container {
+    width: 100%;
+    margin: 50px auto;
+    padding: 10px;
+  }
+
+  .Acc-detail-container .Acc-detail-content .Acc-close {
+    margin-left: 95%;
+  }
+
+  .Acc-detail-container .Acc-detail-content .Acc-detail-info {
+    flex-direction: column;
+  }
+
+  .Acc-detail-container
+    .Acc-detail-content
+    .Acc-detail-info
+    .Accessory_Details {
+    margin-left: 0;
+  }
+
+  .Acc-detail-container .Acc-detail-content .Acc-detail-info .Acc-img-box img {
+    width: 150px;
+    height: 150px;
+  }
+}
 
 .accessories {
   scroll-behavior: smooth;
@@ -2794,12 +2846,11 @@ label {
 }
 
 .Acc-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-right: 20px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .acc-card-image {
@@ -2886,7 +2937,7 @@ label {
   background-color: #030e26;
   height: 220px;
   flex: 1;
-  margin-bottom: 30px;
+  margin: 90px 0;
 }
 
 .accessories-banner-content {
@@ -3997,14 +4048,14 @@ label {
 @media (max-width: 768px) {
   .wishlist-item {
     flex-direction: column;
-    align-items: flex-start;
     padding: 20px 15px;
   }
 
   .wishlist-image {
     margin-bottom: 15px;
-    width: 100%;
+    width: 50%;
     height: auto;
+    align-items: center;
   }
 
   .wishlist-details {
@@ -4414,7 +4465,8 @@ button.linkaccbutton {
 .event-actions {
   display: flex;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 130px;
+  list-style: none;
 }
 
 .remove-event {
@@ -4633,7 +4685,6 @@ button.linkaccbutton {
   margin-left: -30px;
 }
 
-
 /* statistics */
 
 .dashboard-container {
@@ -4688,32 +4739,27 @@ button.linkaccbutton {
   color: #6c757d;
 }
 
-
-
 /* Chart container styling */
 .chart-container {
   background-color: #1e212d;
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 150px;
-  margin-top: 100px; 
+  margin-top: 100px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
   max-width: 100%;
   margin: 0 auto;
 }
 
-
-
 .chart-container:hover {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
 }
 
 .chart-container canvas {
   width: 100% !important;
   height: 350px !important;
 }
-
 
 .container {
   padding: 20px;
@@ -4739,7 +4785,4 @@ button.linkaccbutton {
   .dashboard-header input[type="text"] {
     width: 100%;
   }
-  
 }
-
-

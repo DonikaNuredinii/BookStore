@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
 
-const Event = () => {
+const Event = ({ searchQuery }) => {
   const [show, setShow] = useState(false);
   const [editEventsID, setEditEventsID] = useState("");
   const [editEventName, setEditEventName] = useState("");
@@ -22,7 +22,19 @@ const Event = () => {
   useEffect(() => {
     getData();
   }, []);
-
+  useEffect(() => {
+    if (searchQuery) {
+      filterData(searchQuery);
+    } else {
+      getData();
+    }
+  }, [searchQuery]);
+  const filterData = (query) => {
+    const filteredData = data.filter((event) =>
+      event.eventName.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+  };
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Event");
@@ -31,7 +43,8 @@ const Event = () => {
     } catch (error) {
       console.error("Error fetching events:", error);
       toast.error(
-        "Failed to get events: " + (error.response?.data?.message || error.message)
+        "Failed to get events: " +
+          (error.response?.data?.message || error.message)
       );
     }
   };
@@ -68,7 +81,10 @@ const Event = () => {
         toast.success("Event has been deleted");
         getData(); // Refresh the table data after deletion
       } catch (error) {
-        toast.error("Failed to delete this Event: " + (error.response?.data?.message || error.message));
+        toast.error(
+          "Failed to delete this Event: " +
+            (error.response?.data?.message || error.message)
+        );
       }
     }
   };
@@ -187,7 +203,12 @@ const Event = () => {
           )}
         </tbody>
       </Table>
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Edit Event</Modal.Title>
         </Modal.Header>

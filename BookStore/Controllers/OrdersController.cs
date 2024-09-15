@@ -3,7 +3,9 @@ using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
@@ -12,72 +14,63 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly MyContext _ordersContext;
-        private readonly ILogger<OrderController> _logger; // Added logger
+        private readonly MyContext _context;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(MyContext ordersContext, ILogger<OrderController> logger)
+        public OrderController(MyContext context, ILogger<OrderController> logger)
         {
-            _ordersContext = ordersContext;
+            _context = context;
             _logger = logger;
         }
 
-        // GET: api/Order
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
-            var orders = await _ordersContext.Orders.ToListAsync();
-            if (orders == null || orders.Count == 0)
+            try
             {
-                return NotFound();
+                var orders = await _context.Orders
+                    .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.CartItem)
+                    .ToListAsync();
+
+                if (orders == null || orders.Count == 0)
+                {
+                    return NotFound();
+                }
+
+                return Ok(orders);
             }
-            return orders;
-        }
-
-        // GET: api/Order/{ordersId}
-        [HttpGet("{ordersId}")]
-        public async Task<ActionResult<Orders>> GetOrder(int ordersId)
-        {
-            var order = await _ordersContext.Orders.FindAsync(ordersId);
-            if (order == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                _logger.LogError(ex, "Error retrieving orders.");
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
-            return order;
         }
 
-        [HttpGet("total-earnings")]
-        public async Task<ActionResult<decimal>> GetTotalEarnings()
+        [HttpGet("{orderId}")]
+        public async Task<ActionResult<Orders>> GetOrder(int orderId)
         {
-            var totalEarnings = await _ordersContext.Payment
-                .SumAsync(p => p.Amount);
-
-            return Ok(totalEarnings);
-        }
-
-        [HttpGet("orders-summary")]
-        public async Task<ActionResult> GetOrdersSummary()
-        {
-            var bookOrdersCount = await _ordersContext.OrderDetails
-                .Include(od => od.CartItem)
-                .CountAsync(od => od.CartItem.BookId != null);
-
-            var accessoriesOrdersCount = await _ordersContext.OrderDetails
-                .Include(od => od.CartItem)
-                .CountAsync(od => od.CartItem.AccessoriesID != null);
-
-            var ebookLoansCount = await _ordersContext.EbookLoans.CountAsync();
-
-            var summary = new
+            try
             {
-                bookOrders = bookOrdersCount,
-                accessoriesOrders = accessoriesOrdersCount,
-                ebookLoans = ebookLoansCount
-            };
+                var order = await _context.Orders
+                    .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.CartItem)
+                    .FirstOrDefaultAsync(o => o.OrdersId == orderId);
 
-            return Ok(summary);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving order with ID {OrderId}.", orderId);
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
+            }
         }
 
-        // POST: api/Order
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrdersDto ordersDto)
         {
@@ -86,6 +79,7 @@ namespace WebApplication1.Controllers
                 return BadRequest(ModelState);
             }
 
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 var order = new Orders
@@ -96,9 +90,12 @@ namespace WebApplication1.Controllers
                     CountryID = ordersDto.CountryID,
                     ZipCode = ordersDto.ZipCode,
                     DiscountID = ordersDto.DiscountID,
-                    GiftCardID = ordersDto.GiftCardID != null ? ordersDto.GiftCardID : (int?)null, // Handle null gift card
+                    GiftCardID = ordersDto.GiftCardID,
                     OrderDetails = new List<OrderDetails>()
                 };
+
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync(); // Save order to get OrdersId
 
                 foreach (var detailDto in ordersDto.OrderDetails)
                 {
@@ -107,81 +104,99 @@ namespace WebApplication1.Controllers
                         TotalPrice = detailDto.TotalPrice,
                         InvoiceDate = detailDto.InvoiceDate,
                         OrderShipDate = detailDto.OrderShipDate,
-                        InvoiceNumber = detailDto.InvoiceNumber,
-                        OrdersId = order.OrdersId // Set foreign key
+                        InvoiceNumber = GenerateUniqueInvoiceNumber(),
+                        OrdersId = order.OrdersId
                     };
 
                     if (detailDto.CartItem != null)
                     {
-                        orderDetail.CartItem = new CartItem
+                        var cartItem = new CartItem
                         {
                             Quantity = detailDto.CartItem.Quantity,
                             BookId = detailDto.CartItem.BookId,
                             AccessoriesID = detailDto.CartItem.AccessoriesID,
                             GiftCardId = detailDto.CartItem.GiftCardId
                         };
+
+                        _context.CartItems.Add(cartItem);
+                        await _context.SaveChangesAsync(); // Save cart item to get CartItemId
+
+                        orderDetail.CartItemId = cartItem.CartItemId;
                     }
 
                     order.OrderDetails.Add(orderDetail);
                 }
 
-                _ordersContext.Orders.Add(order);
-                await _ordersContext.SaveChangesAsync();
+                _context.OrderDetails.AddRange(order.OrderDetails);
+                await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetOrder), new { id = order.OrdersId }, order);
+                await transaction.CommitAsync();
+
+                return CreatedAtAction(nameof(GetOrder), new { orderId = order.OrdersId }, order);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Order creation failed with error: " + ex.Message);
-
-                // Return detailed error including inner exception
-                return StatusCode(500, new
-                {
-                    message = "Internal server error",
-                    detail = ex.InnerException?.Message ?? ex.Message
-                });
+                await transaction.RollbackAsync();
+                _logger.LogError(ex, "Order creation failed. Exception: {Message}", ex.InnerException?.Message);
+                return StatusCode(500, new { message = "Internal server error", detail = ex.InnerException?.Message });
             }
-
         }
 
 
-        // PUT: api/Order/{ordersId}
-        [HttpPut("{ordersId}")]
-        public async Task<ActionResult> PutOrder(int ordersId, Orders order)
+        private string GenerateUniqueInvoiceNumber()
         {
-            if (ordersId != order.OrdersId)
+            return $"INV-{DateTime.UtcNow:yyyyMMddHHmmss}-{new Random().Next(1000, 9999)}";
+        }
+
+        [HttpPut("{orderId}")]
+        public async Task<ActionResult> PutOrder(int orderId, Orders order)
+        {
+            if (orderId != order.OrdersId)
             {
                 return BadRequest();
             }
 
-            _ordersContext.Entry(order).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
-                await _ordersContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Concurrency error occurred.");
+                _logger.LogError(ex, "Concurrency error occurred while updating order with ID {OrderId}.", orderId);
+                return StatusCode(500, "Concurrency error occurred.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while updating order with ID {OrderId}.", orderId);
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
 
             return Ok();
         }
 
-        // DELETE: api/Order/{ordersId}
-        [HttpDelete("{ordersId}")]
-        public async Task<ActionResult> DeleteOrder(int ordersId)
+        [HttpDelete("{orderId}")]
+        public async Task<ActionResult> DeleteOrder(int orderId)
         {
-            var order = await _ordersContext.Orders.FindAsync(ordersId);
-            if (order == null)
+            try
             {
-                return NotFound();
+                var order = await _context.Orders.FindAsync(orderId);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Orders.Remove(order);
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
-
-            _ordersContext.Orders.Remove(order);
-            await _ordersContext.SaveChangesAsync();
-
-            return Ok();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while deleting order with ID {OrderId}.", orderId);
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
+            }
         }
     }
 }

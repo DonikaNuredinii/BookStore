@@ -5,7 +5,13 @@ import "../App.css";
 import { useEvents } from "../Components/Events"; // Adjust the import path
 
 const EventsPage = ({ addToCalendar }) => {
-  const { events, addToEvents, removeFromEvents, clearEvents, isEventInEvents } = useEvents();
+  const {
+    events,
+    addToEvents,
+    removeFromEvents,
+    clearEvents,
+    isEventInEvents,
+  } = useEvents();
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
@@ -14,7 +20,7 @@ const EventsPage = ({ addToCalendar }) => {
       const response = await axios.get("https://localhost:7061/api/Event");
       console.log("API Response:", response.data); // Log API response to verify
       if (Array.isArray(response.data) && response.data.length > 0) {
-        response.data.forEach(event => {
+        response.data.forEach((event) => {
           if (!isEventInEvents(event.EventID)) {
             addToEvents(event);
           }
@@ -56,17 +62,19 @@ const EventsPage = ({ addToCalendar }) => {
               <p>Location: {event.location || "Unknown"}</p>
               <p>Date: {event.date || "TBD"}</p>
               <p>Time: {event.time || "TBD"}</p>
-              <p>Description: {event.description || "No description available"}</p>
-              <div className="event-actions">
-                  <a
-                    href="https://www.facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="view-event-button"
-                  >
-                    View Event
-                  </a>
-              </div>
+              <p>
+                Description: {event.description || "No description available"}
+              </p>
+            </div>
+            <div className="event-actions">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="view-event-button"
+              >
+                View Event
+              </a>
             </div>
           </div>
         ))
@@ -75,7 +83,6 @@ const EventsPage = ({ addToCalendar }) => {
       )}
     </div>
   );
-  
 };
 
 export default EventsPage;

@@ -137,37 +137,49 @@ const CheckoutForm = () => {
     }
   };
   const handleCheckout = async () => {
+    // Ensure that Stripe and Elements are available
     if (!stripe || !elements) return;
 
     setLoading(true);
     setError("");
 
+    // Prepare the data for the order creation
+    const orderData = {
+      OrderDate: new Date().toISOString(),
+      Address: formData.address,
+      City: formData.city,
+      CountryID: formData.countryID,
+      ZipCode: formData.postalCode,
+      DiscountID: formData.discountID || null,
+      GiftCardID: formData.giftCardID || null, // Optional
+      CartItems: cartData.map((item) => ({
+        BookId: item.bookId || null, // Ensure correct ID types
+        AccessoriesID: item.accessoriesID || null,
+        GiftCardId: item.giftCardId || null,
+        Quantity: item.quantity,
+      })),
+    };
+
     try {
+      // Step 1: Create the order
       const orderResponse = await fetch("https://localhost:7061/api/Order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          OrderDate: new Date().toISOString(),
-          Address: formData.address,
-          City: formData.city,
-          CountryID: formData.countryID,
-          ZipCode: formData.postalCode,
-          DiscountID: formData.discountID || null,
-          GiftCardID: formData.giftCardID || null,
-        }),
+        body: JSON.stringify(orderData), // Send order details to backend
       });
 
       if (!orderResponse.ok) {
         throw new Error("Failed to create order");
       }
 
-      const createdOrder = await orderResponse.json();
+      const createdOrder = await orderResponse.json(); // Get created order response
 
+      // Step 2: If payment is by credit card, initiate Stripe payment
       if (formData.paymentMethod === "creditCard") {
         const paymentResponse = await fetch(
-          "https://localhost:7061/api/Payments",
+          "https://localhost:7061/api/Payments", // Backend payment endpoint
           {
             method: "POST",
             headers: {
@@ -175,7 +187,7 @@ const CheckoutForm = () => {
             },
             body: JSON.stringify({
               OrdersId: createdOrder.OrdersId,
-              Amount: currentDiscountedPrice,
+              Amount: currentDiscountedPrice, // Pass the discounted total price
               PaymentMethod: "creditCard",
             }),
           }
@@ -185,8 +197,10 @@ const CheckoutForm = () => {
           throw new Error("Failed to process payment");
         }
 
-        const paymentIntentData = await paymentResponse.json();
-        const cardElement = elements.getElement(CardElement);
+        const paymentIntentData = await paymentResponse.json(); // Get payment intent data
+        const cardElement = elements.getElement(CardElement); // Get CardElement instance
+
+        // Confirm the payment using Stripe
         const paymentResult = await stripe.confirmCardPayment(
           paymentIntentData.clientSecret,
           {
@@ -212,15 +226,16 @@ const CheckoutForm = () => {
           setSuccessMessage("Payment successful! Your order has been placed.");
         }
       } else if (formData.paymentMethod === "cashOnDelivery") {
-        setOrderDetails(createdOrder);
+        // Step 3: Handle Cash on Delivery
+        setOrderDetails(createdOrder); // Store order details if Cash on Delivery
         setSuccessMessage(
           "Order placed! Payment will be collected on delivery."
         );
       }
     } catch (error) {
-      setError(error.message);
+      setError(error.message); // Catch and display any errors
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false after completion
     }
   };
 

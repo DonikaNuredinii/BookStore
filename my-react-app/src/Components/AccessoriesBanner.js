@@ -10,9 +10,9 @@ const AccessoriesBanner = () => {
       <div className="accessories-banner-content">
         <h1>Popular Accessories</h1>
         <p>
-        Discover our Popular Picks! 
-        Often selected by our team and clients! These items promise quality, style, and functionality. 
-        Dive into our curated collection and find your next favorite accessory today!
+          Discover our Popular Picks! Often selected by our team and clients!
+          These items promise quality, style, and functionality. Dive into our
+          curated collection and find your next favorite accessory today!
         </p>
       </div>
       <div className="accessories-items">

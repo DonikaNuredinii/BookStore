@@ -68,6 +68,10 @@ function Pages() {
       return [...prevCart, newItem];
     });
   };
+  const addToCalendar = (event) => {
+    console.log("Adding event to calendar:", event);
+    // Implement your logic here...
+  };
 
   const Toggle = () => {
     setToggle(!toggle);
