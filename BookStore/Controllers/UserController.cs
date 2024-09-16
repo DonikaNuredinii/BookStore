@@ -80,12 +80,15 @@ namespace BookStore.Controllers
             return Ok(users);
         }
 
-        [HttpGet("total-users")]
+        [HttpGet("count")]
         public async Task<ActionResult<int>> GetTotalUsers()
         {
             var totalUsers = await _usersContext.Users.CountAsync();
             return Ok(totalUsers);
         }
+       
+
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
         {
@@ -111,6 +114,7 @@ namespace BookStore.Controllers
                 message = "Login successful"
             });
         }
+
 
         private string GenerateJwtToken(User user)
         {

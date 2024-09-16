@@ -71,6 +71,55 @@ namespace WebApplication1.Controllers
             }
         }
 
+        // GET: api/order/total-earnings
+        [HttpGet("total-earnings")]
+        public async Task<ActionResult<decimal>> GetTotalEarnings()
+        {
+            var totalEarnings = await _context.Payment
+                .SumAsync(p => p.Amount);
+
+            return Ok(totalEarnings);
+        }
+
+        // GET: api/order/orders-summary
+        [HttpGet("orders-summary")]
+        public async Task<ActionResult> GetOrdersSummary()
+        {
+            var bookOrdersCount = await _context.OrderDetails
+                .Include(od => od.CartItem)
+                .CountAsync(od => od.CartItem.BookId != null);
+
+            var accessoriesOrdersCount = await _context.OrderDetails
+                .Include(od => od.CartItem)
+                .CountAsync(od => od.CartItem.AccessoriesID != null);
+
+            var ebookLoansCount = await _context.EbookLoans.CountAsync();
+
+            var summary = new
+            {
+                bookOrders = bookOrdersCount,
+                accessoriesOrders = accessoriesOrdersCount,
+                ebookLoans = ebookLoansCount
+            };
+
+            return Ok(summary);
+        }
+
+        // GET: api/orders/timeline
+        [HttpGet("timeline")]
+        public IActionResult GetOrdersTimeline()
+        {
+            var ordersOverTime = _context.Orders
+                .GroupBy(o => new { Month = o.OrderDate.Month, Year = o.OrderDate.Year })
+                .Select(g => new { Date = $"{g.Key.Month}/{g.Key.Year}", Count = g.Count() })
+                .ToList();
+
+            return Ok(ordersOverTime);
+        }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrdersDto ordersDto)
         {

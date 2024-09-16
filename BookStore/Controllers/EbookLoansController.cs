@@ -110,6 +110,14 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
+        [HttpGet("active")]
+        public IActionResult GetActiveLoans()
+        {
+            var activeLoans = _context.EbookLoans.Count(el => !el.IsReturned);
+            return Ok(activeLoans);
+        }
+
+
 
         // DELETE: api/EbookLoans/5
         [HttpDelete("{id}")]

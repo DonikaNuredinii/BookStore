@@ -44,6 +44,22 @@ public class EventController : ControllerBase
 
         return Ok(eventItem);
     }
+    // GET: api/Events/upcoming
+    [HttpGet("upcoming")]
+    public IActionResult GetUpcomingEvents()
+    {
+        var upcomingEvents = _context.Events
+            .Where(e => e.Date >= DateTime.Now)  
+            .OrderBy(e => e.Date)                
+            .ToList();
+
+        if (upcomingEvents == null || !upcomingEvents.Any())
+        {
+            return NotFound("No upcoming events found.");
+        }
+
+        return Ok(upcomingEvents);
+    }
 
     // POST: api/Events
     [HttpPost]

@@ -40,6 +40,22 @@ namespace BookStore.Controllers
             return cartItem;
         }
 
+        [HttpGet("total-value")]
+        public IActionResult GetCartTotalValue()
+        {
+            var totalCartValue = _context.CartItems
+                .Include(ci => ci.Book)
+                .Include(ci => ci.Accessories)
+                .Include(ci => ci.GiftCard)
+                .Sum(ci => ci.Quantity *
+                           ((ci.Book != null ? ci.Book.Price : 0) +
+                            (ci.Accessories != null ? ci.Accessories.Price : 0) +
+                            (ci.GiftCard != null ? ci.GiftCard.Amount : 0)));
+
+            return Ok(totalCartValue);
+        }
+
+
         // POST: api/CartItems
         [HttpPost]
         public async Task<IActionResult> CreateCartItems([FromBody] List<CartItemDto> cartItemDtos)

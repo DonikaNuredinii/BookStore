@@ -90,6 +90,28 @@ namespace BookStore.Controllers
 
             return Ok(categoryBook);
         }
+        //  to get earnings by category
+        [HttpGet("earnings-by-category")]
+        public async Task<ActionResult> GetEarningsByCategory()
+        {
+            var earningsByCategory = await _context.CategoryBooks
+                .Include(cb => cb.Book) 
+                .GroupBy(cb => cb.Category.Genre)
+                .Select(g => new
+                {
+                    Category = g.Key, 
+                    Earnings = g.Sum(cb => cb.Book.Price) 
+                })
+                .ToListAsync();
+
+            if (earningsByCategory == null || earningsByCategory.Count == 0)
+            {
+                return NotFound("No earnings data available.");
+            }
+
+            return Ok(earningsByCategory);
+        }
+
 
 
         // POST: api/CategoryBooks
