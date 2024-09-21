@@ -83,10 +83,13 @@ const BookDetails = ({ addToCart }) => {
     } else {
       const bookWithAuthors = {
         ...book,
-        authors: authors.map((author) => author.name),
+        authors: authors.map((author) => author.name || "Unknown"),
       };
       addToWishlist(bookWithAuthors);
-      setSelectedBooks((prevSelectedBooks) => [...prevSelectedBooks, book]);
+      setSelectedBooks((prevSelectedBooks) => [
+        ...prevSelectedBooks,
+        bookWithAuthors,
+      ]);
       setShowWishlistModal(true);
     }
   };
@@ -296,8 +299,10 @@ const BookDetails = ({ addToCart }) => {
                       <div className="wishlist-details">
                         <h4>{book.title}</h4>
                         <p>
-                          Author:{" "}
-                          {book.authors ? book.authors.join(", ") : "Unknown"}
+                          <p>
+                            Author:{" "}
+                            {book.authors ? book.authors.join(", ") : "Unknown"}
+                          </p>
                         </p>
                         <p>Price: €{book.price}</p>
                       </div>

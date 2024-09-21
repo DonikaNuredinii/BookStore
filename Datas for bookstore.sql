@@ -501,7 +501,266 @@ INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description,
 INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123466, './Images/146.jpg', ' Enciklopedia E Perseve', '2024-05-30T16:24:00.024Z', 165, ' A e dini pse? Një enciklopedi e rrallë, e ndërtuar në mënyrën më të përshtatshme për fëmijët: duke iu përgjigjur pyetjeve të tyre të shumta. Nëpërmjet fotove të përshkruara hollësisht, si dhe kurioziteteve nga fusha të ndryshme të dijes, ajo ngre pyetje dhe jep përgjigje, duke e bërë mënyrën e të mësuarit më të thjeshtë dhe ndërvepruese. Të gjitha pyetjet që fëmijët ngrenë mbi shkencën, gjeografinë, historinë, njerëzit dhe natyrën, do të marrin përgjigje në këtë libër të këndshëm dhe angazhues. Fotografitë trepërmasore do t’i ndihmojnë ata t’i kuptojnë plotësisht përgjigjet që u jepen pyetjeve të tyre. Ata mund të shohin nga brenda një vullkan, një lule apo edhe trupin e gjarprit, gjë që e bën vërtet të prekshëm informacionin interesant që marrin. A e dini pse kjo enciklopedi është ajo që duhet? Sepse di të japë përgjigje!', 11.95, '2024-05-30T16:24:00.024Z', 'Paper', 28, 13);
 
 
-INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (1,7 );
+-------------------------------------------Librat anglisht shtoni---------------------------------------------------------
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345678, './Images/401.jpg', 'The Art Of Rhetoric ', '2024-05-30T16:24:00.024Z', 210, 'The Art of Rhetoric is a comprehensive exploration of the principles and techniques of persuasive communication. This seminal work delves into the study of rhetoric, the ancient art of using language effectively and persuasively.', 9.95, '2024-05-30T16:24:00.024Z', 'Paper', 12, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345679, './Images/402.jpg', 'Atomic Habits ', '2024-05-30T16:24:00.024Z', 320, 'Atomic Habits by James Clear is a groundbreaking guide to transforming your life through the power of small, consistent changes. Atomic Habits is not only a guide to personal development but also a resource for achieving long-term success and satisfaction. It offers readers a toolkit for optimizing their daily routines, increasing productivity, and achieving their goals by focusing on the power of small, consistent actions.', 7.50, '2024-05-30T16:24:00.024Z', 'Paper', 23, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345680, './Images/403.jpg', 'A Little Life', '2024-05-30T16:24:00.024Z', 450, 'A Little Life is both a celebration of enduring friendship and a poignant exploration of human suffering and recovery. Yanagihara’s narrative is richly textured and emotionally charged, offering an unflinching examination of trauma while highlighting the profound connections that help us navigate our darkest moments.', 8.75, '2024-05-30T16:24:00.024Z', 'Paper', 34, 60);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345681, './Images/404.jpg', 'The Magic Of Wisdom ', '2024-05-30T16:24:00.024Z', 275, 'The Magic of Wisdom is a captivating exploration of the profound and transformative power of wisdom in our lives. This insightful book delves into the timeless principles and practices that have guided thinkers, leaders, and seekers throughout history. It presents wisdom not just as a theoretical concept but as a practical tool for navigating life’s challenges and enriching our personal and professional journeys.', 14.50, '2024-05-30T16:24:00.024Z', 'Paper', 45, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345682, './Images/405.jpg', 'Thinking Fast And Slow ', '2024-05-30T16:24:00.024Z', 390, 'Thinking, Fast and Slow by Daniel Kahneman is a groundbreaking exploration of the dual systems that drive our thinking processes. Nobel Prize-winning psychologist Kahneman presents a comprehensive examination of how we think and make decisions, revealing the interplay between two distinct modes of thought: the fast, intuitive, and automatic System 1, and the slow, deliberate, and analytical System 2.', 19.50, '2024-05-30T16:24:00.024Z', 'Paper', 56, 70);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345683, './Images/406.jpg', 'Shatter Me', '2024-05-30T16:24:00.024Z', 330, 'Shatter Me is a compelling tale of self-discovery, love, and rebellion. Mafi’s lyrical prose and intense storytelling draw readers into a world where power and emotion collide. The novel explores themes of isolation, power, and the struggle to reclaim one’s humanity in a world that seeks to exploit it. Ideal for fans of dystopian fiction and powerful character-driven stories, Shatter Me offers a thrilling and thought-provoking reading experience that will leave readers eagerly anticipating the next installment.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 52, 40);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345684, './Images/407.png', 'Animal Farm ', '2024-05-30T16:24:00.024Z', 200, 'Orwell’s incisive narrative and sharp satire provide a powerful commentary on the dynamics of political power and the ease with which ideals can be compromised. Animal Farm remains a significant work for its exploration of the nature of power, propaganda, and the betrayal of revolutionary principles.', 4.25, '2024-05-30T16:24:00.024Z', 'Paper', 14, 30);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345685, './Images/408.jpg', 'Before The Coffee Gets Cold ', '2024-05-30T16:24:00.024Z', 275, 'The story revolves around several customers who visit this café, each with their own reasons for wanting to revisit the past. Through their experiences, the novel explores themes of love, regret, and the passage of time. The characters grapple with their past decisions and relationships, revealing the profound impact of their choices on their lives and those around them.', 11.00, '2024-05-30T16:24:00.024Z', 'Paper', 29, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345686, './Images/409.jpg', '1984 Nineteen Eighty-four ', '2024-05-30T16:24:00.024Z', 310, 'Set in a society where Big Brother, the omnipresent leader, watches every move and thought of its citizens, 1984 examines the consequences of extreme government control and the manipulation of truth. The Party enforces conformity through brutal repression and psychological control, rewriting history to fit its narrative and eradicating any form of dissent. Winston, who works at the Ministry of Truth, becomes increasingly disillusioned with the oppressive regime and seeks ways to rebel. His struggle to maintain his individuality and his quest for truth lead him into dangerous territory, revealing the devastating effects of living in a world where freedom and privacy are obliterated.', 4.10, '2024-05-30T16:24:00.024Z', 'Paper', 51, 90);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97812345687, './Images/410.jpg', 'The Hound Of The Baskervilles ', '2024-05-30T16:24:00.024Z', 275, 'The story is set in the eerie and fog-shrouded moors of Devonshire, where the legendary curse of the Baskerville family comes to life. According to local lore, the Baskervilles are doomed by a spectral hound that haunts their lineage. When Sir Charles Baskerville is found dead under mysterious circumstances, with footprints of a giant hound near his body, Holmes and Watson are called upon to investigate the case. As Holmes and Watson delve into the mystery, they encounter a range of suspects, each with their own motives and secrets. The novel is celebrated for its atmospheric setting, rich character development, and the clever unraveling of a complex plot.', 3.75, '2024-05-30T16:24:00.024Z', 'Paper', 62, 80);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000001, './Images/411.jpg', 'Kosova From The Air', '2024-05-30T16:24:00.024Z', 350, 'Kosova from the Air is a stunning visual exploration of the landscape and cultural heritage of Kosovo, presented from a unique aerial perspective. This captivating book offers readers a breathtaking view of the region s diverse terrain, from its rugged mountains and lush valleys to its historical sites and vibrant cities. Featuring a collection of high-quality aerial photographs, the book provides a fresh and insightful look at Kosovo s natural beauty and architectural marvels. Each image captures the intricate patterns of the land and the interplay between human activity and nature, revealing the region s rich historical and cultural tapestry.', 42.50, '2024-05-30T16:24:00.024Z', 'Paper', 34, 45);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000002, './Images/412.jpg', 'The Art Of War', '2024-05-30T16:24:00.024Z', 280, 'The Art of War is known for its practical wisdom and strategic foresight, which have been applied not only in military contexts but also in business, leadership, and personal development. Sun Tzu s teachings on efficiency, flexibility, and strategic thinking offer valuable lessons for navigating complex situations and achieving success.', 9.99, '2024-05-30T16:24:00.024Z', 'Paper', 12, 88);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000003, './Images/413.jpg', '12 Rules For Life', '2024-05-30T16:24:00.024Z', 340, '12 Rules for Life is not only a self-help book but also an exploration of existential themes and human behavior. It offers readers practical advice for navigating the complexities of modern life while encouraging deeper self-reflection and personal development. Ideal for those seeking guidance on how to approach life’s challenges with resilience and purpose, 12 Rules for Life provides a compelling blend of wisdom and practical advice that resonates across diverse audiences.', 22.75, '2024-05-30T16:24:00.024Z', 'Paper', 22, 63);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000004, './Images/414.jpg', 'Body Keeps The Score', '2024-05-30T16:24:00.024Z', 410, 'The Body Keeps the Score explores innovative therapeutic approaches and techniques that can help individuals recover from trauma. From traditional methods like talk therapy to newer approaches such as EMDR (Eye Movement Desensitization and Reprocessing), neurofeedback, and mindfulness, Dr. van der Kolk provides a comprehensive overview of treatments that address both the mind and body.', 17.95, '2024-05-30T16:24:00.024Z', 'Paper', 50, 74);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000005, './Images/415.jpg', 'The Concise 48 Laws Of Power', '2024-05-30T16:24:00.024Z', 230, 'The Concise 48 Laws of Power provides readers with practical insights into navigating social and professional interactions, understanding power structures, and achieving success. Whether you are interested in personal development, leadership, or understanding the nature of influence, this concise edition offers a valuable and efficient resource for mastering the art of power.', 8.49, '2024-05-30T16:24:00.024Z', 'Paper', 41, 89);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000006, './Images/416.jpeg', 'Harry Potter And The Philosopher S Stone Vol 1', '2024-05-30T16:24:00.024Z', 420, 'The story begins with Harry s ordinary life with his unpleasant relatives, the Dursleys, until he receives a letter revealing that he is a wizard and has been accepted into Hogwarts School of Witchcraft and Wizardry. At Hogwarts, Harry discovers his magical heritage, makes new friends, including Hermione Granger and Ron Weasley, and learns about the mysterious and dangerous past of his family. As Harry navigates the enchanting yet perilous world of magic, he uncovers secrets about his own identity and the dark wizard who killed his parents, Lord Voldemort. The novel is a captivating blend of fantasy, adventure, and the universal themes of friendship, bravery, and self-discovery.', 14.99, '2024-05-30T16:24:00.024Z', 'Paper', 57, 33);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000007, './Images/417.jpg', 'November 9', '2024-05-30T16:24:00.024Z', 290, 'The novel unfolds over the course of several years, with Fallon and Ben meeting each year on November 9th. Each meeting reveals more about their personal struggles and the evolution of their relationship. As their lives intertwine, they confront their pasts, their dreams, and the choices that have shaped their futures. November 9 delves into themes of healing, forgiveness, and the impact of love on our lives. Hoover’s evocative storytelling and deep character development create a compelling narrative that resonates with readers. The book offers a blend of romance and drama, capturing the complexities of relationships and the journey towards self-discovery.', 13.50, '2024-05-30T16:24:00.024Z', 'Paper', 28, 53);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000008, './Images/418.jpg', 'Little Women', '2024-05-30T16:24:00.024Z', 420, 'The story chronicles the sisters journey from childhood to adulthood, highlighting their individual dreams, struggles, and personal growth. Through their experiences, Alcott weaves a rich tapestry of themes such as family bonds, love, ambition, and resilience. Each sister has her own distinct personality and aspirations, which adds depth and variety to the narrative. Little Women offers a heartfelt exploration of the values and dynamics of family life, as well as the societal expectations faced by women of that time. The novel is enduring appeal lies in its relatable characters, timeless themes, and the universal experiences of love, loss, and the pursuit of one s dreams.', 11.75, '2024-05-30T16:24:00.024Z', 'Paper', 43, 22);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (97800000009, './Images/419.jpg', 'Harry Potter And The Order Of The Phoenix Vol 5', '2024-05-30T16:24:00.024Z', 480, 'Harry Potter and the Order of the Phoenix introduces readers to new characters, including the formidable Professor Dolores Umbridge, who becomes the new Defense Against the Dark Arts teacher and imposes harsh rules on Hogwarts. The novel explores themes of resistance, leadership, and the struggles of growing up, as Harry and his friends confront both external dangers and their personal challenges.', 15.25, '2024-05-30T16:24:00.024Z', 'Paper', 19, 96);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678901, './Images/420.jpg', 'Mansfield Park', '2024-05-30T16:24:00.024Z', 401, 'The story centers on Fanny Price, a modest and reserved young woman who is sent to live with her wealthy relatives, the Bertrams, at Mansfield Park. As Fanny grows up among her affluent cousins, she faces the challenges of navigating the complexities of social expectations and personal values. The novel delves into her inner struggles and her moral dilemmas as she observes the behaviors and relationships of those around her, including the charming but morally ambiguous Henry Crawford.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 56, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678902, './Images/421.jpg', 'The Prince', '2024-05-30T16:24:00.024Z', 401, 'The book is presented as a guide for political leaders and aspiring rulers, outlining strategies for acquiring and maintaining political power. Machiavelli draws on historical examples and his own experiences to discuss topics such as political maneuvering, the use of force, the importance of adaptability, and the relationship between morality and political effectiveness.', 4.70, '2024-05-30T16:24:00.024Z', 'Paper', 56, 30);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678903, './Images/422.jpg', '12 Rules For Life', '2024-05-30T16:24:00.024Z', 401, '12 Rules for Life is ideal for readers seeking practical advice on self-improvement and personal fulfillment. With its blend of psychology, philosophy, and real-world application, the book provides a roadmap for navigating life’s uncertainties and cultivating a life of meaning and purpose.', 23.00, '2024-05-30T16:24:00.024Z', 'Paper', 56, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678904, './Images/423.jpg', 'Pride And Prejudice', '2024-05-30T16:24:00.024Z', 401, 'The story revolves around Elizabeth Bennet, one of five sisters in the Bennet family, and her evolving relationship with the wealthy and aloof Mr. Darcy. As Elizabeth navigates the complexities of courtship, social expectations, and family dynamics, she encounters misunderstandings, prejudices, and personal growth.', 8.90, '2024-05-30T16:24:00.024Z', 'Paper', 56, 40);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678905, './Images/424.jpg', 'Meditations', '2024-05-30T16:24:00.024Z', 401, 'Written in the form of personal reflections and philosophical musings, this collection of thoughts was never intended for publication but serves as a testament to Aurelius’s Stoic philosophy and his quest for personal virtue. The book is divided into twelve books, each containing a series of reflections on topics such as self-discipline, leadership, and the nature of the universe. Aurelius emphasizes the importance of resilience, rationality, and inner peace, drawing on Stoic principles to navigate the challenges and responsibilities of his role as emperor.', 3.80, '2024-05-30T16:24:00.024Z', 'Paper', 56, 45);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678906, './Images/425.jpg', 'The Alchemist', '2024-05-30T16:24:00.024Z', 401, 'The Alchemist by Paulo Coelho is an inspirational and philosophical novel that has captivated readers worldwide since its publication in 1988. The story follows Santiago, a young Andalusian shepherd who dreams of discovering a hidden treasure located near the Egyptian pyramids. Motivated by his recurring dream and the belief that he is destined for something greater, Santiago embarks on a journey that leads him through the deserts of North Africa and deep into his own soul.', 2.70, '2024-05-30T16:24:00.024Z', 'Paper', 56, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678907, './Images/426.jpg', 'Fingerprint Activities', '2024-05-30T16:24:00.024Z', 401, 'Fingerprint Activities refer to a variety of engaging exercises and educational projects that use fingerprinting as a central theme. These activities are often used for educational purposes, including teaching about biology, art, or forensic science.', 12.70, '2024-05-30T16:24:00.024Z', 'Paper', 56, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678908, './Images/427.jpg', 'Emma', '2024-05-30T16:24:00.024Z', 401, 'Emma explores themes of social class, relationships, and personal growth. Austen’s sharp wit and keen observation provide a satirical look at the social dynamics of Regency England, while the novel’s engaging plot and well-drawn characters offer a delightful blend of romance and humor. With its memorable heroine and its exploration of the complexities of human nature, Emma remains one of Austen’s most celebrated works.', 7.00, '2024-05-30T16:24:00.024Z', 'Paper', 56, 60);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678909, './Images/428.jpg', 'Peppa Pig Practise With Peppa', '2024-05-30T16:24:00.024Z', 401, '"Peppa Pig: Practise with Peppa" is an engaging and educational book designed for young children, featuring the beloved characters from the popular television series "Peppa Pig." This activity book is tailored to help children develop important early learning skills in a fun and interactive way.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 56, 65);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143127741, './Images/429.jpg', 'Mindsight ', '2024-05-30T16:24:00.024Z', 256, 'In Mindsight, Dr. Siegel presents a compelling argument for how understanding and reshaping our mental processes can lead to profound personal transformation and emotional well-being. The book delves into the science behind how our brain functions and how our mental states impact our behavior, relationships, and overall quality of life. Through a combination of scientific research, practical exercises, and real-life examples, Dr. Siegel illustrates how mindsight can be cultivated to enhance self-awareness, improve interpersonal relationships, and promote psychological healing. The book provides tools and techniques for developing greater emotional intelligence, managing stress, and fostering resilience.', 18.79, '2024-05-30T16:24:00.024Z', 'Paper', 34, 15);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143136352, './Images/430.jpg', 'Macbeth ', '2024-05-30T16:24:00.024Z', 300, 'The story begins with Macbeth’s encounter with the witches, who prophesy that he will become king. Driven by ambition and spurred on by Lady Macbeth, he murders King Duncan and seizes the throne. However, his ascent to power is marred by guilt and paranoia, leading to a series of increasingly violent and tragic actions. Macbeth’s reign becomes a descent into tyranny and madness, resulting in further bloodshed and his eventual downfall.', 8.45, '2024-05-30T16:24:00.024Z', 'Paper', 22, 22);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039082, './Images/431.jpg', 'North And South', '2024-05-30T16:24:00.024Z', 440, 'North and South by Elizabeth Gaskell is a classic novel first published in 1854. The story is set in the industrial town of Milton in northern England and contrasts the lives and values of the industrial North with the genteel South. The novel follows Margaret Hale, a strong-willed and compassionate young woman who moves from the rural South of England to the industrial North after her father leaves the Anglican Church. In Milton, Margaret encounters the harsh realities of industrial life and the stark differences between the working-class struggles and the genteel society she once knew.', 7.65, '2024-05-30T16:24:00.024Z', 'Paper', 47, 33);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039222, './Images/432.jpg', 'Letters To Milena ', '2024-05-30T16:24:00.024Z', 150, 'Letters to Milena is notable for its rich portrayal of Kafka’s inner world, his profound philosophical reflections, and his struggles with illness and self-doubt. The collection provides valuable context for understanding Kafka’s literary output and his psychological state during a turbulent period in his life. The letters are not only significant for their literary content but also for their insight into Kafka’s personal relationships and his enduring quest for meaning and connection.', 4.65, '2024-05-30T16:24:00.024Z', 'Paper', 15, 44);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039413, './Images/433.jpg', 'Wuthering Heights', '2024-05-30T16:24:00.024Z', 340, 'Wuthering Heights is celebrated for its innovative narrative techniques, its exploration of the darker sides of human nature, and its portrayal of intense emotional and psychological states. Brontë’s only novel, it remains a powerful and enduring work, captivating readers with its raw and evocative portrayal of love, obsession, and the supernatural.', 14.99, '2024-05-30T16:24:00.024Z', 'Paper', 9, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039536, './Images/434.jpg', 'To Kill A Mockingbird ', '2024-05-30T16:24:00.024Z', 281, 'The story is narrated by Scout Finch, who reflects on her childhood experiences and her father s role as a moral beacon in their community. Her father, Atticus Finch, is a respected lawyer who is appointed to defend Tom Robinson, a Black man falsely accused of raping a white woman, Mayella Ewell. The trial and its aftermath expose deep-seated racism and prejudice in the community, challenging Atticus and his family in profound ways. Through Scout s perspective, To Kill a Mockingbird addresses complex issues such as social inequality, empathy, and the loss of innocence. The novel is renowned for its poignant portrayal of these themes and its memorable characters, including the honorable Atticus Finch, the resilient Scout, and the reclusive Boo Radley.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 51, 67);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039648, './Images/435.jpg', 'Sapiens A Brief History Of Humankind', '2024-05-30T16:24:00.024Z', 466, 'A Brief History of Humankind by Yuval Noah Harari is a thought-provoking and expansive exploration of the history of the human species. Published in 2011, this best-selling book offers a sweeping overview of how Homo sapiens came to dominate the world, transforming from primitive hunter-gatherers into the complex, technologically advanced societies of today. Harari traces the journey of human evolution, examining major milestones such as the Cognitive Revolution, which allowed early humans to develop complex language and communication; the Agricultural Revolution, which led to the rise of civilizations and social hierarchies; and the Scientific Revolution, which fueled technological advancements and altered the course of history.', 4.50, '2024-05-30T16:24:00.024Z', 'Paper', 25, 78);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039759, './Images/436.jpg', 'Fingerprint Activities Under The Sea ', '2024-05-30T16:24:00.024Z', 32, 'Fingerprint Activities Under The Sea are creative and engaging exercises designed for children to explore ocean-themed art and learn about marine life through fingerprinting. These activities combine the fun of fingerprinting with educational elements about underwater creatures and ecosystems.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 40, 87);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039865, './Images/437.jpg', 'How To Win Friends And Influence People', '2024-05-30T16:24:00.024Z', 288, 'How to Win Friends and Influence People is a seminal self-help book first published in 1936. The book is renowned for its practical advice on interpersonal skills and its enduring impact on personal and professional relationships. In this classic work, Carnegie provides timeless principles for building positive relationships, effective communication, and influencing others in a constructive manner.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 14, 91);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143039974, './Images/438.jpg', 'The Art Of Rhetoric', '2024-05-30T16:24:00.024Z', 221, 'The Art of Rhetoric remains a key reference for students, scholars, and practitioners of rhetoric and communication. Its principles are applicable not only in public speaking but also in written communication and various forms of persuasion. Aristotle’s insights into human psychology, argumentation, and effective communication continue to be relevant in contemporary discussions of rhetoric and discourse.', 8.40, '2024-05-30T16:24:00.024Z', 'Paper', 37, 96);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9780143040089, './Images/439.jpg', 'The Godfather', '2024-05-30T16:24:00.024Z', 411, 'The Godfather is a classic crime novel that explores themes of power, loyalty, and corruption within the context of a powerful Mafia family. The story follows the Corleone family, led by patriarch Vito Corleone, as they navigate the complexities of organized crime, family dynamics, and the struggle for control and influence. Through its intricate plot and memorable characters, The Godfather delves into the moral and ethical ambiguities of power and justice.', 11.75, '2024-05-30T16:24:00.024Z', 'Paper', 21, 105);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678901, './Images/440.jpg', 'Fingerprint Activities Garden', '2024-05-30T16:24:00.024Z', 300, 'Fingerprint Activities Garden are creative and educational art projects designed for children to explore garden themes using fingerprinting techniques. These activities combine the fun of fingerprinting with learning about plants, flowers, and garden creatures.', 12.50, '2024-05-30T16:24:00.024Z', 'Paper', 30, 15);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678902, './Images/441.jpg', 'Diary Of A Wimpy Kid Rodrick Rules 2', '2024-05-30T16:24:00.024Z', 320, 'In this sequel, Greg s older brother, Rodrick Heffley, takes center stage. Rodrick is a self-absorbed and often irritating presence in Greg s life, and their relationship becomes a significant source of conflict and comedy.', 15.00, '2024-05-30T16:24:00.024Z', 'Paper', 35, 20);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678903, './Images/442.jpg', 'The Catcher In The Rye', '2024-05-30T16:24:00.024Z', 250, 'Throughout the book, Holden interacts with various people, including former teachers, old friends, and strangers, but struggles to connect with them on a meaningful level.', 18.00, '2024-05-30T16:24:00.024Z', 'Paper', 40, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678904, './Images/443.jpg', 'Ignite Me', '2024-05-30T16:24:00.024Z', 350, 'In Ignite Me, Juliette Ferrars is coming into her own power as she grapples with her role in a crumbling society and her complex relationships.', 20.00, '2024-05-30T16:24:00.024Z', 'Paper', 45, 30);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678905, './Images/444.jpg', 'Giraffes Cant Dance', '2024-05-30T16:24:00.024Z', 150, 'The book tells the story of Gerald the Giraffe, who, unlike the other animals in the jungle, struggles to dance.', 22.50, '2024-05-30T16:24:00.024Z', 'Paper', 50, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (52345678906, './Images/445.jpg', 'Great Expectations', '2024-05-30T16:24:00.024Z', 350, 'The story begins with young Pip living with his sister and her husband, Joe Gargery, a blacksmith. His life changes dramatically when he encounters an escaped convict named Magwitch and later meets the wealthy but eccentric Miss Havisham and her beautiful but cold-hearted ward, Estella. Despite his humble beginnings, Pip’s fortunes change when he learns he has come into a great fortune from an unknown benefactor and is given the opportunity to become a gentleman in London.', 12.00, '2024-05-30T16:24:00.024Z', 'Paper', 40, 20);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (52345678907, './Images/446.jpg', 'Well Always Have Summer', '2024-05-30T16:24:00.024Z', 370, 'In We will Always Have Summer, Belly is preparing for her senior year of high school and is faced with the complexities of growing up and making crucial decisions about her future. As she reflects on her past summers and the love triangle between herself, Conrad Fisher, and Jeremiah Fisher, she must confront the realities of her relationships and her own evolving desires.', 14.00, '2024-05-30T16:24:00.024Z', 'Paper', 45, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (22345678908, './Images/447.jpg', 'The Silent Patient', '2024-05-30T16:24:00.024Z', 400, 'The story centers around Alicia Berenson, a successful painter who is accused of murdering her husband, Gabriel, and then subsequently stops speaking. Alicia’s silence turns her into a media sensation and leads her to be admitted to a secure psychiatric facility called The Grove. Her only form of communication is through her art, specifically a haunting self-portrait titled "Alcestis," which she completes before her silence.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 50, 30);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678909, './Images/448.jpg', 'Lord Of The Flies', '2024-05-30T16:24:00.024Z', 312, 'Island after a plane crash. Initially, the boys attempt to establish their own form of order and create a society with rules and leadership. Ralph, one of the older boys, is elected as the leader, and he strives to maintain order and focus on rescue. However, as time passes, the boys initial sense of civilization begins to crumble, and their behavior becomes increasingly savage.', 18.00, '2024-05-30T16:24:00.024Z', 'Paper', 55, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678910, './Images/449.jpg', 'The Power Of Now A Guide To Spiritual Enlightenment', '2024-05-30T16:24:00.024Z', 220, 'In this book, Tolle presents a compelling argument for the importance of living fully in the present moment. He explores how the mind’s tendency to dwell on the past or worry about the future creates unnecessary suffering and prevents individuals from experiencing true peace and fulfillment. By focusing on the present, Tolle argues that people can transcend the ego and discover a deeper sense of self that is not bound by time or external circumstances.', 20.00, '2024-05-30T16:24:00.024Z', 'Paper', 30, 40);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678911, './Images/450.jpg', 'Black Beauty', '2024-05-30T16:24:00.024Z', 400, 'The story is narrated by Black Beauty, a horse who recounts his life experiences from his early days as a colt through his various owners and experiences. Told from the perspective of the horse, the novel offers a poignant look at the treatment of animals in the 19th century, highlighting both the kindness and cruelty that animals can encounter.', 22.00, '2024-05-30T16:24:00.024Z', 'Paper', 35, 45);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678912, './Images/451.jpg', 'Beach Read', '2024-05-30T16:24:00.024Z', 350, 'The story follows two authors, January Anderson and Gus Everett, who are both facing creative blocks. January is a romance novelist reeling from her father’s death and a recent breakup, while Gus writes literary fiction and is struggling with his own personal and professional setbacks. When their paths cross, they find themselves in neighboring beach houses for the summer. To overcome their writer’s block, they strike a deal: they will swap genres and write each other’s books.', 24.00, '2024-05-30T16:24:00.024Z', 'Paper', 25, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (32345678913, './Images/452.jpg', 'Peppa Pig Wipe Clean Numbers Book', '2024-05-30T16:24:00.024Z', 100, 'Peppa Pig Wipe Clean Numbers Book is an engaging educational book designed for young children to practice their number-writing skills. Featuring the beloved characters from the popular Peppa Pig series, this book combines fun with learning in a way that captivates young readers. The book provides a series of wipe-clean pages that allow children to practice writing numbers multiple times using a dry-erase marker.', 12.00, '2024-05-30T16:24:00.024Z', 'Paper', 20, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678914, './Images/453.jpg', '1984', '2024-05-30T16:24:00.024Z', 328, '1984 by George Orwell, first published in 1949, is a dystopian novel that remains a powerful and influential work in the realm of political and social commentary. Set in a totalitarian future where the state exercises absolute control over every aspect of life, the novel explores themes of surveillance, repression, and the manipulation of truth.', 25.00, '2024-05-30T16:24:00.024Z', 'Paper', 15, 60);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678901, './Images/454.jpg', 'Letters From A Stoic', '2024-05-30T16:24:00.024Z', 350, 'Letters from a Stoic by Seneca is a collection of philosophical letters written by the Roman Stoic philosopher Seneca to his friend Lucilius Junior. The letters, composed between 63 and 65 AD, offer timeless wisdom and practical advice on how to live a virtuous and fulfilling life.In this influential work, Seneca explores various aspects of Stoic philosophy, including the nature of happiness, the importance of self-control, and the value of wisdom. The letters cover a wide range of topics, from the fleeting nature of fame and wealth to the cultivation of inner peace and resilience in the face of adversity.', 12.50, '2024-05-30T16:24:00.024Z', 'Paper', 15, 5);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678902, './Images/455.jpg', 'Moby Dick', '2024-05-30T16:24:00.024Z', 635, 'Moby-Dick is renowned for its intricate narrative structure, rich symbolism, and detailed depiction of 19th-century whaling. Melville combines adventure, philosophical reflection, and social commentary to create a complex and multi-layered story. The novel explores themes such as humanity s struggle against nature, the limits of knowledge, and the consequences of revenge.The book is celebrated for its deep psychological insight, its innovative narrative techniques, and its exploration of existential questions.', 15.00, '2024-05-30T16:24:00.024Z', 'Paper', 23, 12);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678903, './Images/456.jpg', 'Brave New World', '2024-05-30T16:24:00.024Z', 311, 'Set in a world where humanity is engineered for uniformity and control, the novel introduces readers to a society where happiness and stability are achieved through the use of technology, conditioning, and the suppression of individuality. In this world, people are artificially created and conditioned from birth to fulfill predetermined roles, with emotions and desires controlled through the use of a drug called soma.The story follows Bernard Marx, an outcast in this seemingly perfect society, and John, a "savage" from a remote community who is brought into the World State. As Bernard and John confront the superficiality and moral emptiness of their world, the novel explores themes of freedom, conformity, and the cost of technological progress.', 14.00, '2024-05-30T16:24:00.024Z', 'Paper', 30, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678904, './Images/457.jpg', 'The Invisible Man', '2024-05-30T16:24:00.024Z', 245, 'The story follows Griffin, a scientist who has discovered a formula for invisibility. As he tests the formula on himself, he becomes completely invisible but finds that he cannot reverse the process. The novel chronicles his descent into madness and criminality as he struggles with the isolation and societal rejection that come with his newfound invisibility.Griffin s attempts to remain hidden and his growing desperation lead him to commit increasingly violent acts. The novel explores the psychological and moral consequences of having absolute power without accountability. As Griffin becomes more unhinged, his actions set off a chain of events that ultimately culminates in tragedy.', 11.50, '2024-05-30T16:24:00.024Z', 'Paper', 40, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678905, './Images/458.jpg', 'The Diary Of A Young Girl', '2024-05-30T16:24:00.024Z', 285, 'The Diary of a Young Girl, commonly known as "The Diary of Anne Frank", is a poignant and powerful account of a young Jewish girl s life during the Holocaust. Written by Anne Frank, the diary chronicles her experiences while hiding with her family and another Jewish family in Amsterdam from 1942 to 1944.In the diary, Anne Frank provides an intimate and moving portrayal of her daily life, thoughts, and emotions as she navigates the challenges of adolescence in hiding. Her writing reflects her hopes, fears, and dreams, as well as her growing awareness of the dangers and complexities of the world around her.', 13.00, '2024-05-30T16:24:00.024Z', 'Paper', 55, 45);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (42345678906, './Images/459.jpg', 'Ikigai', '2024-05-30T16:24:00.024Z', 190, 'Drawing on insights from the people of Okinawa, a region known for its high number of centenarians, the authors investigate how the Japanese approach to life and work contributes to longevity and well-being. The book combines personal stories, cultural insights, and practical advice on how to discover and embrace one s own ikigai.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 57, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567001, './Images/460.jpg', 'Surrounded By Idiots', '2024-05-30T16:24:00.024Z', 200, 'The book is based on the DISC model of personality, which categorizes human behavior into four main types: Dominant (Red), Inspiring (Yellow), Supportive (Green), and Cautious (Blue). Erikson uses these categories to explain how different people think, communicate, and respond to various situations.', 12.00, '2024-05-30T16:24:00.024Z', 'Paper', 34, 23);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567002, './Images/461.jpg', 'Sons And Lovers', '2024-05-30T16:24:00.024Z', 250, 'The story centers on the Morel family, particularly the intense and often strained relationship between Paul and his mother, Gertrude. Gertrude s domineering nature and Paul s dependence on her significantly impact his romantic relationships and his struggle to assert his own identity.', 13.00, '2024-05-30T16:24:00.024Z', 'Paper', 40, 45);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567003, './Images/462.jpg', 'Mindset: Changing The Way You Think To Fulfil Your Potential', '2024-05-30T16:24:00.024Z', 300, 'In this influential work, psychologist Carol S. Dweck introduces the idea of fixed and growth mindsets. A fixed mindset is the belief that abilities and intelligence are static and unchangeable, leading individuals to avoid challenges and give up easily. In contrast, a growth mindset is the belief that abilities can be developed through effort, learning, and perseverance.', 15.00, '2024-05-30T16:24:00.024Z', 'Paper', 22, 31);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567004, './Images/463.png', 'Albanian Folktales And Legends', '2024-05-30T16:24:00.024Z', 350, 'The book includes a diverse array of folktales, myths, and legends, each with its unique characters, themes, and moral lessons. These stories often feature heroic figures, mythical creatures, and supernatural events, revealing the values, beliefs, and imagination of the Albanian people.', 17.00, '2024-05-30T16:24:00.024Z', 'Paper', 55, 62);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567005, './Images/464.jpg', 'Plague', '2024-05-30T16:24:00.024Z', 400, 'As the plague spreads, the townspeople are forced into isolation and struggle to cope with the relentless and indiscriminate nature of the disease. The novel follows several characters, including Dr. Bernard Rieux, who becomes one of the central figures in the battle against the epidemic.', 14.00, '2024-05-30T16:24:00.024Z', 'Paper', 52, 76);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567006, './Images/465.jpg', 'Educated', '2024-05-30T16:24:00.024Z', 275, 'In Educated, Westover details her unconventional upbringing, where formal education was eschewed in favor of working on her family’s farm and adhering to extreme religious beliefs. Despite the lack of formal schooling, Westover taught herself enough to gain admission to Brigham Young University.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 19, 87);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567007, './Images/466.jpg', 'Dracula', '2024-05-30T16:24:00.024Z', 340, 'The story unfolds through a series of journal entries, letters, and newspaper clippings, presenting a multifaceted narrative from various perspectives. The plot follows Jonathan Harker, a young lawyer who travels to Dracula s castle to assist with a real estate transaction, only to find himself trapped by the Count.', 18.00, '2024-05-30T16:24:00.024Z', 'Paper', 46, 12);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567008, './Images/467.jpg', 'Man’s Search For Meaning', '2024-05-30T16:24:00.024Z', 230, 'The first part of the book recounts Frankl’s harrowing experiences in Nazi concentration camps, where he endured unimaginable suffering and loss. Through his observations and reflections, Frankl explores how individuals can find meaning and purpose even in the most extreme conditions.', 20.00, '2024-05-30T16:24:00.024Z', 'Paper', 29, 39);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567009, './Images/468.jpg', 'Selected Fairy Tales', '2024-05-30T16:24:00.024Z', 180, 'Selected Fairy Tales offers readers a journey into the heart of storytelling, where magic and wonder abound. The tales are often accompanied by illustrations that enhance the enchanting experience, making this collection a delightful read for both children and adults.', 11.00, '2024-05-30T16:24:00.024Z', 'Paper', 37, 54);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567010, './Images/469.jpg', 'The Iliad', '2024-05-30T16:24:00.024Z', 420, 'The poem is set during the Trojan War and focuses on the hero Achilles, exploring themes of glory, honor, and the human condition. The Iliad opens with the conflict between Achilles and Agamemnon, the Greek leader, which reflects the broader themes of pride and wrath that drive much of the narrative.', 21.00, '2024-05-30T16:24:00.024Z', 'Paper', 24, 68);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567011, './Images/470.jpg', 'Persuasion', '2024-05-30T16:24:00.024Z', 275, 'Anne was once engaged to Frederick Wentworth, a dashing naval officer, but their engagement was broken off due to his lack of wealth and social status. Eight years later, Anne encounters Wentworth again, now a successful and wealthy man. As they navigate their renewed acquaintance, Anne grapples with her lingering feelings for Wentworth and the social pressures surrounding them.', 14.00, '2024-05-30T16:24:00.024Z', 'Paper', 41, 26);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567012, './Images/471.jpg', 'A Tale Of Two Cities', '2024-05-30T16:24:00.024Z', 420, 'The novel centers on the lives of Charles Darnay, a French aristocrat who renounces his title and moves to England, and Sydney Carton, a dissolute English lawyer. The story is set against the backdrop of the French Revolution, highlighting themes of sacrifice, resurrection, and the impact of historical events on individuals.', 22.00, '2024-05-30T16:24:00.024Z', 'Paper', 48, 77);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567013, './Images/472.jpg', 'The Picture Of Dorian Gray', '2024-05-30T16:24:00.024Z', 300, 'The novel follows the story of Dorian Gray, a young man whose portrait ages and deteriorates while he remains youthful and beautiful. As Dorian pursues a hedonistic lifestyle and makes increasingly immoral choices, the portrait becomes a reflection of his corrupted soul.', 19.00, '2024-05-30T16:24:00.024Z', 'Paper', 33, 16);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567014, './Images/473.jpg', 'Great Expectations', '2024-05-30T16:24:00.024Z', 375, 'The novel follows Pip, an orphaned boy who is unexpectedly provided with a large fortune and the opportunity to become a gentleman. Throughout his journey, Pip grapples with issues of social class, ambition, and personal development, while uncovering the true nature of his benefactor and his own identity.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 51, 67);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567015, './Images/474.jpg', 'Crime And Punishment', '2024-05-30T16:24:00.024Z', 300, 'The novel follows Raskolnikov, a former student who becomes convinced that he is morally justified in committing murder to further his personal goals. The story delves into Raskolnikov s psychological turmoil, guilt, and eventual quest for redemption.', 18.00, '2024-05-30T16:24:00.024Z', 'Paper', 34, 80);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567004, './Images/475.jpg', 'Sense And Sensibility', '2024-05-30T16:24:00.024Z', 401, 'After the death of their father, the Dashwood sisters face financial and social challenges that impact their prospects for marriage. Elinor, the elder sister, navigates her romantic entanglements with a sense of duty and propriety, while Marianne’s pursuit of passionate love leads her into turbulent relationships. As both sisters confront their personal trials and societal expectations, they learn valuable lessons about love, family, and personal growth.', 13.90, '2024-05-30T16:24:00.024Z', 'Paper', 43, 4);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567005, './Images/476.jpg', 'The Myth Of Sisyphus', '2024-05-30T16:24:00.024Z', 159, 'In The Myth of Sisyphus, Camus explores themes of existentialism, the nature of human perseverance, and the philosophical responses to the absurd. The essay is renowned for its exploration of how individuals can confront and embrace the absurdity of existence with defiance and dignity.', 15.80, '2024-05-30T16:24:00.024Z', 'Paper', 33, 5);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567006, './Images/477.jpg', 'Arabian Nights', '2024-05-30T16:24:00.024Z', 200, 'Notable stories within the collection include "Aladdin and the Magic Lamp," "Ali Baba and the Forty Thieves," and "Sinbad the Sailor." Arabian Nights is celebrated for its imaginative storytelling, its influence on Western literature and culture, and its exploration of themes such as justice, fate, and human nature.', 18.60, '2024-05-30T16:24:00.024Z', 'Paper', 22, 6);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567007, './Images/478.jpg', 'It Ends With Us', '2024-05-30T16:24:00.024Z', 410, 'Lily meets and falls in love with Ryle Kincaid, a neurosurgeon with a troubled past of his own. As their relationship develops, Lily finds herself facing challenges she had hoped to avoid. The novel delves into the intricacies of their relationship, exploring themes of trust, forgiveness, and the impact of past experiences on present choices.', 16.40, '2024-05-30T16:24:00.024Z', 'Paper', 51, 7);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567008, './Images/479.jpg', 'The Origin Of Species', '2024-05-30T16:24:00.024Z', 501, 'In On the Origin of Species, Darwin presents evidence and arguments supporting the idea that species evolve over time through a process of natural selection. He explains how traits that enhance survival and reproduction become more common in successive generations, leading to the gradual adaptation of species to their environments.', 20.00, '2024-05-30T16:24:00.024Z', 'Paper', 42, 8);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567009, './Images/480.jpg', 'Selected Stories', '2024-05-30T16:24:00.024Z', 320, 'Selected Stories provides a comprehensive overview of the author’s most celebrated and impactful works, making it an excellent introduction for new readers and a valuable addition to the collections of long-time fans. Whether exploring themes of human nature, love, adventure, or the complexities of life, the stories in this volume reflect the depth and creativity of the author’s storytelling.', 22.50, '2024-05-30T16:24:00.024Z', 'Paper', 57, 9);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567890, './Images/481.png', 'Tender Is The Night', '2024-05-30T16:24:00.024Z', 250, 'The story centers on Dick Diver, a charming and talented psychiatrist, and his wife, Nicole, who suffers from mental illness. Their seemingly idyllic life is centered around their luxurious lifestyle and social circles, but beneath the surface, their relationship faces mounting strains. The novel delves into the complexities of their marriage, as well as the relationships they form with other characters in their social milieu.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 10, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567891, './Images/482.jpg', 'Diary Of A Wimpy Kid Wrecking Ball', '2024-05-30T16:24:00.024Z', 250, 'In Wrecking Ball, Greg and his family are excited to renovate their home, but their plans quickly spiral into chaos. As they begin to make improvements, a series of mishaps and unexpected challenges arise, leading to a series of comedic situations and misadventures. From dealing with construction disasters to family conflicts, Greg’s attempts to manage the chaos provide plenty of laughs and insight into the trials of growing up.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 25, 60);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567892, './Images/483.jpg', 'The Inferno', '2024-05-30T16:24:00.024Z', 250, 'In The Inferno, Dante embarks on a journey through Hell, guided by the Roman poet Virgil. The poem is structured as an allegory of the soul’s journey towards God, with Hell depicted as a series of concentric circles, each reserved for different types of sinners. The narrative explores themes of justice, morality, and redemption as Dante encounters various historical and mythical figures who suffer in accordance with their earthly sins.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 30, 70);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567893, './Images/484.jpg', 'A Promised Land', '2024-05-30T16:24:00.024Z', 250, 'In A Promised Land, Obama reflects on his journey from his grassroots beginnings in Chicago to the White House. He discusses his campaign for the presidency, the challenges of his administration, and the significant legislative and policy achievements during his first term, including the Affordable Care Act. The memoir delves into the complexities of leadership, the intricacies of political decision-making, and the personal sacrifices involved in public service.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 40, 80);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567894, './Images/485.jpg', 'Bosnia A Short History', '2024-05-30T16:24:00.024Z', 250, 'Bosnia: A Short History is praised for its accessible yet scholarly approach, making it a valuable resource for readers seeking to understand the historical context behind the modern political and social issues in Bosnia. Malcolm’s analysis provides a clear and nuanced perspective on the region’s complex history, offering important context for contemporary events.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 50, 90);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567895, './Images/486.jpg', 'The Picture Of Dorian Gray', '2024-05-30T16:24:00.024Z', 250, 'As Dorian pursues a life of indulgence and moral corruption, the portrait becomes a repository of his sins and the visible mark of his internal degradation. The novel explores themes of vanity, moral decay, and the consequences of living a life devoid of ethical responsibility. Through Dorian’s descent into debauchery and the eventual confrontation with his own monstrous image, Wilde critiques the superficial values of society and the pursuit of aesthetic pleasure at the expense of integrity.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 55, 100);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567896, './Images/487.jpg', 'Investigations Of A Dog', '2024-05-30T16:24:00.024Z', 250, 'Investigations of a Dog is noted for its exploration of philosophical questions through the lens of a seemingly simple story. Kafka’s unique narrative style and his ability to infuse mundane observations with deep existential significance make this work a notable example of his literary genius.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 35, 95);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567897, './Images/488.jpg', 'Surrounded By Psychopaths', '2024-05-30T16:24:00.024Z', 250, 'The book categorizes different types of psychopaths and their behaviors, offering practical advice on how to identify and protect oneself from being manipulated or exploited. Erikson draws on real-life examples and psychological research to explain how psychopathy manifests in various relationships, including personal, professional, and social contexts.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 45, 85);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567898, './Images/489.jpg', 'Treasure Island', '2024-05-30T16:24:00.024Z', 250, 'Treasure Island is renowned for its compelling narrative and its influence on the portrayal of pirates in literature and popular culture. With its iconic imagery of treasure maps, pirate ships, and swashbuckling adventure, the novel continues to captivate readers of all ages.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 50, 90);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567899, './Images/490.jpg', 'The 33 Strategies Of War', '2024-05-30T16:24:00.024Z', 250, 'The 33 Strategies of War is renowned for its detailed exploration of strategic thinking and its application to overcoming challenges, achieving goals, and navigating complex situations. The book appeals to readers interested in history, leadership, and personal development, offering timeless lessons on the art of strategy and conflict management.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 20, 75);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567900, './Images/491.jpg', 'The Age Of Innocence', '2024-05-30T16:24:00.024Z', 250, 'The Age of Innocence is acclaimed for its sharp social commentary, rich character development, and detailed portrayal of New York’s high society. The novel won the Pulitzer Prize for Fiction in 1921 and remains a significant work in American literature for its critique of social conventions and its exploration of the human condition.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 30, 80);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567901, './Images/492.jpg', 'Death On The Nile', '2024-05-30T16:24:00.024Z', 250, 'In Death on the Nile, Poirot is vacationing in Egypt and is drawn into a murder investigation involving a wealthy heiress and her new husband. The story unfolds with multiple suspects and motives, leading to a dramatic and unexpected resolution. Christie’s skillful plotting and use of misdirection keep readers engaged until the final reveal.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 20, 70);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (9781234567902, './Images/493.jpg', 'Redwall', '2024-05-30T16:24:00.024Z', 250, 'Redwall tells the story of the inhabitants of Redwall Abbey, a peaceful community of animals who face the threat of an evil rat warlord and his army. The novel combines elements of adventure, fantasy, and heroism, with richly detailed characters and settings that create an immersive world for readers. Brian Jacques’s storytelling emphasizes themes of bravery, friendship, and the battle between good and evil.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 15, 65);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567890, './Images/494.jpg', 'The Phantom Of The Opera', '2024-05-30T16:24:00.024Z', 250, 'The Phantom of the Opera is celebrated for its atmospheric setting, dramatic tension, and exploration of themes like love, isolation, and madness. The novel has inspired numerous adaptations, including films, stage productions, and Andrew Lloyd Webber’s famous musical, solidifying its place as a timeless tale of beauty, terror, and unrequited love.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 15, 27);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567891, './Images/495.jpg', 'Piers Of The Homeless Night', '2024-05-30T16:24:00.024Z', 250, 'The book is set in 1955 and follows Kerouac as he navigates the streets of San Francisco, homeless and aimless, seeking meaning and understanding in his surroundings. It captures his interactions with other drifters, his thoughts on life, and his sense of spiritual yearning. Written in Kerouac’s signature poetic prose, Piers of the Homeless Night reveals his vulnerability and internal struggles as he reflects on themes of solitude, displacement, and the search for enlightenment.', 10.00, '2024-05-30T16:24:00.024Z', 'Paper', 32, 42);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567892, './Images/496.jpg', 'Pinocchio', '2024-05-30T16:24:00.024Z', 250, 'Pinocchio embarks on a series of adventures and misadventures, learning important life lessons along the way. His character flaws, such as lying (which famously causes his nose to grow) and impulsiveness, often get him into trouble. However, with the help of the Blue Fairy and his conscience, Jiminy Cricket, Pinocchio gradually learns the value of honesty, hard work, and compassion.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 24, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567893, './Images/497.jpg', 'Dare To Lead', '2024-05-30T16:24:00.024Z', 250, '"Dare to Lead" is celebrated for its blend of personal stories, research-based insights, and real-world applications. It encourages readers to embrace their imperfections, engage in difficult conversations, and lead with their hearts—transforming not just their workplaces but their entire approach to leadership.', 8.99, '2024-05-30T16:24:00.024Z', 'Paper', 21, 37);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567894, './Images/498.jpg', 'Where The Crawdads Sing', '2024-05-30T16:24:00.024Z', 250, 'The novel alternates between two timelines—Kya’s youth in the 1950s and a murder investigation in the 1960s, when the body of a local man, Chase Andrews, is found in the swamp. As suspicion falls on Kya, the narrative explores themes of loneliness, survival, love, and prejudice. The intricate relationship between Kya and the natural environment serves as a powerful backdrop to her journey of self-discovery.', 7.49, '2024-05-30T16:24:00.024Z', 'Paper', 45, 29);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567895, './Images/499.jpg', 'Lady Chatterley S Lover', '2024-05-30T16:24:00.024Z', 250, 'The novel delves deeply into Connie’s internal struggles as she grapples with her desires, societal expectations, and the growing distance between her and Sir Clifford. At its core, "Lady Chatterley s Lover" is a tale about physical and emotional fulfillment, challenging the rigid class structures and moral constraints of its time.', 9.29, '2024-05-30T16:24:00.024Z', 'Paper', 19, 64);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567896, './Images/501.jpg', 'Kafka On The Shore', '2024-05-30T16:24:00.024Z', 250, 'The first protagonist is Kafka Tamura, a 15-year-old runaway who escapes his home to avoid a dark prophecy foretold by his father. The second protagonist is Nakata, an elderly man with a mysterious ability to communicate with cats but who suffers from a mental handicap due to a childhood accident.', 12.50, '2024-05-30T16:24:00.024Z', 'Paper', 52, 48);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567897, './Images/500.jpg', 'Madame Bovary', '2024-05-30T16:24:00.024Z', 250, '"Madame Bovary" is considered one of the greatest works of literary realism, praised for its psychological depth, masterful narrative structure, and its unflinching portrayal of human folly and disillusionment. The novel’s exploration of themes like materialism, the dangers of romanticism, and the conflict between personal desires and societal constraints continues to resonate with readers today.', 11.95, '2024-05-30T16:24:00.024Z', 'Paper', 43, 56);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567898, './Images/502.jpg', 'Stillness Is The Key', '2024-05-30T16:24:00.024Z', 250, '"Stillness Is the Key", published in 2019, is a thoughtful and practical guide by Ryan Holiday that explores the power of achieving inner peace and focus in the modern world. Drawing from ancient philosophies like Stoicism, Buddhism, and Taoism, as well as insights from great thinkers, artists, and athletes, Holiday argues that stillness—mental clarity and calm—is essential to a fulfilling and successful life.', 13.99, '2024-05-30T16:24:00.024Z', 'Paper', 37, 65);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567899, './Images/503.jpg', 'Adventures Of Sherlock Holmes', '2024-05-30T16:24:00.024Z', 250, '"The Adventures of Sherlock Holmes" is celebrated for its captivating plots, vivid characters, and the enduring figure of Sherlock Holmes, who remains one of the most beloved detectives in literary history. The stories continue to inspire readers and have been adapted into numerous films, television shows, and other media.', 5.99, '2024-05-30T16:24:00.024Z', 'Paper', 12, 21);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567900, './Images/504.jpg', 'Everything I Know About Love', '2024-05-30T16:24:00.024Z', 250, 'The book offers a candid and witty account of Alderton’s journey through love, heartbreak, and the pursuit of happiness. From the joys and challenges of dating to the importance of female friendships and the search for personal fulfillment, "Everything I Know About Love" resonates with readers through its relatable anecdotes and heartfelt insights.', 7.89, '2024-05-30T16:24:00.024Z', 'Paper', 28, 93);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES(9781234567901, './Images/505.jpg', 'Concise Laws Of Human Nature', '2024-05-30T16:24:00.024Z', 250, 'The book outlines key principles governing human nature, including the impact of social influence, the complexities of emotional intelligence, and the ways in which people interact with and affect one another. "The Concise Laws of Human Nature" offers practical wisdom for navigating personal and professional relationships, enhancing communication, and fostering better understanding of oneself and others.', 9.49, '2024-05-30T16:24:00.024Z', 'Paper', 56, 77);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789012, './Images/506.jpg', 'Concise Art Of Seduction', '2024-05-30T16:24:00.024Z', 301, '"The Concise Art of Seduction" offers readers a strategic approach to navigating social interactions and romantic pursuits. Greene’s clear and engaging writing provides valuable lessons on human behavior and the dynamics of attraction, making it a practical guide for those interested in improving their interpersonal skills.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 12, 25);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789013, './Images/507.jpg', 'The Beautiful And Damned', '2024-05-30T16:24:00.024Z', 315, '"The Beautiful and Damned" is noted for its sharp critique of the American upper class and its vivid portrayal of the era’s hedonism and moral ambiguity. Fitzgerald’s keen observations and lyrical prose provide a poignant commentary on the cost of materialism and the emptiness that can accompany wealth and privilege.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 15, 30);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789014, './Images/508.jpg', 'Seven Husbands Of Evelyn Hugo', '2024-05-30T16:24:00.024Z', 330, '"The Seven Husbands of Evelyn Hugo" explores themes of identity, power, and the pursuit of happiness, while also addressing broader social issues such as gender and LGBTQ+ representation. Reid’s richly detailed narrative and well-developed characters create a poignant and immersive reading experience that examines the cost of living a life in the spotlight.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 23, 35);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789015, './Images/509.jpg', 'My Mermicorn Colouring Book', '2024-05-30T16:24:00.024Z', 340, '"My Mermicorn Colouring Book" is a delightful and imaginative colouring book designed for children and those who are young at heart. This enchanting book features a collection of whimsical illustrations blending the magical world of mermaids and unicorns—creating a captivating "mermicorn" theme.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 34, 40);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789016, './Images/510.jpg', 'All We Need Is Love', '2024-05-30T16:24:00.024Z', 355, 'The book is a celebration of love in all its forms—romantic, platonic, and self-love—drawing from Lennon’s own experiences and his deep belief in the importance of compassion and understanding. "All We Need Is Love" offers readers an inspiring and thought-provoking perspective on how love can shape our lives and communities.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 45, 50);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789017, './Images/511.jpg', 'Anyone Can Be My Friend', '2024-05-30T16:24:00.024Z', 370, 'Through relatable anecdotes and engaging illustrations, "Anyone Can Be My Friend" emphasizes the power of reaching out to others, accepting differences, and fostering a sense of community. It provides valuable insights into the art of making friends, being a good friend, and navigating the complexities of social interactions with compassion and understanding.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 56, 55);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789018, './Images/512.jpg', 'They Both Die At The End', '2024-05-30T16:24:00.024Z', 385, '"They Both Die at the End" is a beautifully written exploration of how individuals can find meaning and significance in the face of inevitable loss. Silvera’s narrative delves into the characters’ emotional struggles and celebrates the power of human connection and the impact of living fully, even in the shadow of death.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 23, 60);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (123456789019, './Images/513.jpg', 'Surrounded Bad Bosses', '2024-05-30T16:24:00.024Z', 400, '"Surrounded by Bad Bosses and Lazy Employees" is designed for anyone facing workplace challenges, from employees and managers to HR professionals. It equips readers with the skills to handle difficult situations with confidence, enhance their work relationships, and ultimately contribute to a healthier and more effective work environment.', 6.79, '2024-05-30T16:24:00.024Z', 'Paper', 12, 65);
+
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (12355463, './Images/514.jpg', 'Everything Is F*cked', '2024-05-30T16:24:00.024Z', 300, 'Through a combination of humor, personal anecdotes, and philosophical reflections, "Everything Is F*cked" challenges readers to rethink their perceptions of happiness, fulfillment, and success. Manson’s candid and irreverent style encourages readers to confront their own beliefs and assumptions, ultimately guiding them toward a more resilient and hopeful outlook on life.', 12.00, '2024-05-30T16:24:00.024Z', 'Paper', 10, 1);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (612355464, './Images/515.jpg', 'The Forty Rules Of Love', '2024-05-30T16:24:00.024Z', 320, 'The historical narrative brings to life the profound relationship between Rumi and Shams, showcasing their journey of spiritual enlightenment and the deep, transformative power of love. The forty rules referred to in the book are derived from Shams’ teachings, providing philosophical insights and wisdom that resonate throughout both narratives.', 13.00, '2024-05-30T16:24:00.024Z', 'Paper', 11, 2);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (712355465, './Images/516.jpg', 'Demon Slayer', '2024-05-30T16:24:00.024Z', 340, '"Demon Slayer" combines intense action sequences with emotional depth, exploring themes of family, courage, and the struggle between good and evil. The series is renowned for its dynamic fight scenes, intricate world-building, and the development of its richly drawn characters. Its blend of traditional Japanese folklore with original fantasy elements has made it a beloved addition to the manga and anime genres.', 14.00, '2024-05-30T16:24:00.024Z', 'Paper', 12, 3);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (812355466, './Images/517.jpg', 'Heartless', '2024-05-30T16:24:00.024Z', 360, 'The story follows Catherine Pinkerton, a young woman who dreams of becoming a renowned baker rather than taking on the responsibilities of royalty. Despite her passion for baking and her desire to open her own bakery, Catherine’s life takes a drastic turn when she meets the mysterious and charismatic Joker. Their relationship becomes the catalyst for her transformation into the tyrannical Queen of Hearts.', 15.00, '2024-05-30T16:24:00.024Z', 'Paper', 13, 4);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (912355467, './Images/518.jpg', 'Wonder', '2024-05-30T16:24:00.024Z', 380, 'The story is told from multiple perspectives, including Auggie’s family, friends, and classmates, providing a rich and nuanced view of how Auggie’s condition affects those around him. Through these diverse viewpoints, "Wonder" explores themes of kindness, empathy, and the impact of bullying, while also celebrating the strength of the human spirit.', 16.00, '2024-05-30T16:24:00.024Z', 'Paper', 14, 5);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (312355468, './Images/519.jpg', 'Find Me', '2024-05-30T16:24:00.024Z', 400, '"Find Me" delves into themes of love, longing, and the passage of time, capturing the complexities of human relationships and the ways in which memories and emotions shape our lives. Aciman’s lyrical prose and deep emotional insight create a rich and immersive reading experience, offering readers a chance to revisit beloved characters and witness the unfolding of their lives with both nostalgia and hope.', 17.00, '2024-05-30T16:24:00.024Z', 'Paper', 15, 6);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (212355469, './Images/520.jpg', 'The Odyssey', '2024-05-30T16:24:00.024Z', 420, '"The Odyssey" explores themes of heroism, loyalty, cunning, and the longing for home. Odysseus’s journey is not just a physical voyage but also a quest for personal growth and redemption. The poem’s rich storytelling, intricate characters, and timeless themes have made it a cornerstone of Western literature and a profound reflection on the human condition.', 18.00, '2024-05-30T16:24:00.024Z', 'Paper', 16, 7);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (412355470, './Images/521.jpg', 'The Meek One', '2024-05-30T16:24:00.024Z', 440, '"The Meek One" by Fyodor Dostoevsky is a short story that explores themes of power, vulnerability, and the complexities of human relationships. The narrative centers on a troubled and introspective man who recounts his tumultuous relationship with his wife, a young woman he refers to as the meek one. The story is told through the perspective of the husband, who is a deeply flawed character grappling with his own insecurities and failures. He reveals his emotional struggles and the impact of his actions on his wife, who endures his harshness and manipulation with quiet dignity. As the story unfolds, it becomes clear that the meek one’s silence and passivity mask profound inner strength and suffering.', 19.00, '2024-05-30T16:24:00.024Z', 'Paper', 17, 8);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (332355471, './Images/522.jpg', 'Look Inside Your Body', '2024-05-30T16:24:00.024Z', 460, 'The book provides an accessible and visually appealing overview of various bodily systems, including the skeletal, muscular, digestive, and respiratory systems. Each section is carefully designed to explain complex concepts in a way that is easy for children to understand, using simple language and engaging visuals. Interactive flaps and pop-ups encourage readers to explore the content more deeply, making learning about anatomy both fun and educational.', 20.00, '2024-05-30T16:24:00.024Z', 'Paper', 18, 9);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (412355472, './Images/523.jpg', 'Mastery', '2024-05-30T16:24:00.024Z', 480, '"Mastery" by Robert Greene is a compelling exploration of the principles and practices that lead to achieving excellence in any field. Drawing on historical and contemporary examples, Greene outlines a roadmap for mastering a craft or profession through dedication, skill development, and strategic thinking.', 21.00, '2024-05-30T16:24:00.024Z', 'Paper', 19, 10);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (512355473, './Images/524.jpg', 'One Hundred Years Of Solitude', '2024-05-30T16:24:00.024Z', 500, '"One Hundred Years of Solitude" is celebrated for its inventive narrative techniques and its profound exploration of themes such as love, power, and isolation. Márquez’s masterful storytelling and rich characterizations create an epic that is both a universal tale and a reflection of the Latin American experience.', 22.00, '2024-05-30T16:24:00.024Z', 'Paper', 20, 11);
+
+INSERT INTO Books (ISBN, image, Title, PublicationDate, PageNumber, Description, Price, DateOfadition, Type, PublishingHouseId, StockId) VALUES (172355474, './Images/525.jpg', 'Northanger Abbey', '2024-05-30T16:24:00.024Z', 520, '"Northanger Abbey" by Jane Austen is a witty and satirical novel that explores themes of romance, social class, and the power of imagination. The story follows Catherine Morland, a young woman with a passion for Gothic novels, who finds herself entangled in a series of adventures that blur the line between fiction and reality. Through its clever narrative and engaging characters, the novel offers a commentary on the expectations and limitations placed on women in the early 19th century.', 23.00, '2024-05-30T16:24:00.024Z', 'Paper', 21, 12);
+
+
+
+
+
+
+
+
+	 
 INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (2,1);
 INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (3,7);
 INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (4,1 );
@@ -858,6 +1117,133 @@ INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (343, 7);
 INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (344, 3);
 INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (345, 2);
 
+---------------------------------shtoni per librat anglisht ----------------------------------------------------
+
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (348, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (349, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (350, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (351, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (352, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (354, 32);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (355, 33);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (356, 34);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (357, 35);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (358, 36);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (359, 37);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (360, 38);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (361, 39);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (362, 40);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (363, 41);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (364, 42);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (365, 43);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (366, 44);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (367, 45);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (368, 46);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (369, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (370, 48);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (371, 49);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (372, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (373, 45);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (374, 33);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (375, 48);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (376, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (377, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (378, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (379, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (380, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (381, 34);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (382, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (383, 40);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (384, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (385, 44);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (387, 32);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (388, 31);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (389, 46);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (390, 35);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (391, 41);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (392, 37);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (393, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (394, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (395, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (396, 32);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (397, 45);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (398, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (399, 38);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (400, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (401, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (402, 31);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (403, 49);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (404, 36);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (405, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (406, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (407, 41);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (408, 43);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (409, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (410, 48);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (411, 37);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (412, 34);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (413, 39);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (414, 44);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (415, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (416, 33);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (417, 46);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (418, 35);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (419, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (420, 49);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (421, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (422, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (423, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (424, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (425, 39);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (426, 34);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (427, 31);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (428, 32);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (429, 38);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (430, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (431, 40);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (432, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (433, 48);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (434, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (435, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (436, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (437, 43);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (438, 35);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (439, 41);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (440, 36);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (441, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (442, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (443, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (444, 32);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (445, 44);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (446, 39);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (447, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (448, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (449, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (450, 46);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (451, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (452, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (453, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (454, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (455, 33);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (456, 28);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (457, 39);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (458, 42);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (459, 27);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (460, 45);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (461, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (462, 30);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (463, 34);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (464, 29);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (465, 47);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (466, 31);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (467, 38);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (468, 50);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (469, 40);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (470, 26);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (471, 45);
+INSERT INTO CategoryBooks(BookID, CategoryID) VALUES (472, 35);
+
+
 --authors
 
 INSERT INTO Author (Name, DateOfBirth, Biography, Awards, Genre) 
@@ -992,7 +1378,7 @@ VALUES
 ('Laura Nowlin', 'Unknown', 'Laura Nowlin is an author known for her young adult novels that delve into complex emotional themes.', 'N/A', 'Young Adult');
 
 
-
+select * from Author
 --bookAuthors
 
 
@@ -1822,10 +2208,143 @@ INSERT INTO BookAuthors(BookID, AuthorID) VALUES (349, 80);
 INSERT INTO BookAuthors(BookID, AuthorID) VALUES (350, 82);
 
 
+select * from books
 
 
 
 
+--------------------shtoni per librat anglisht  ----
+ 
+
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (348, 23);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (349, 45);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (350, 7);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (351, 60);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (352, 11);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (354, 68);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (355, 15);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (356, 29);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (357, 54);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (358, 39);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (359, 73);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (360, 21);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (361, 51);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (362, 8);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (363, 76);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (364, 43);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (365, 5);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (366, 82);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (367, 27);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (368, 37);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (369, 59);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (370, 66);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (371, 33);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (372, 70);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (373, 18);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (374, 72);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (375, 14);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (376, 25);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (377, 62);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (378, 56);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (379, 41);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (380, 79);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (381, 48);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (382, 12);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (383, 83);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (384, 53);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (385, 67);
+
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (387, 64);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (388, 40);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (389, 78);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (390, 34);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (391, 77);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (392, 28);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (393, 52);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (394, 81);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (395, 49);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (396, 6);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (397, 19);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (398, 61);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (399, 20);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (400, 69);
+
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (401, 35);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (402, 54);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (403, 7);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (404, 78);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (405, 22);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (406, 62);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (407, 44);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (408, 56);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (409, 17);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (410, 66);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (411, 39);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (412, 79);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (413, 5);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (414, 71);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (415, 31);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (416, 50);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (417, 82);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (418, 45);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (419, 18);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (420, 70);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (421, 23);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (422, 65);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (423, 56);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (424, 61);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (425, 27);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (426, 30);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (427, 52);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (428, 81);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (429, 46);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (430, 22);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (431, 34);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (432, 75);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (433, 57);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (434, 21);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (435, 40);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (436, 63);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (437, 43);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (438, 74);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (439, 37);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (440, 69);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (441, 53);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (442, 6);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (443, 77);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (444, 32);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (445, 41);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (446, 19);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (447, 76);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (448, 68);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (449, 80);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (450, 38);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (451, 29);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (452, 72);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (453, 60);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (454, 11);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (455, 67);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (456, 20);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (457, 57);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (458, 42);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (459, 65);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (460, 28);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (461, 50);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (462, 72);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (463, 77);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (464, 24);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (465, 58);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (466, 33);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (467, 79);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (468, 13);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (469, 81);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (470, 23);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (471, 69);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (472, 75);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (373, 23);
+INSERT INTO BookAuthors(BookID, AuthorID) VALUES (383, 29);
+
+select * from books
 
 -----------------------------------------------lidhja me gjuh-------------------------
 
@@ -1890,7 +2409,9 @@ INSERT INTO LanguageCategories(LanguageId, CategoryId) VALUES (2, 24);
 INSERT INTO LanguageCategories(LanguageId, CategoryId) VALUES (2, 25);
 
 
-
+------------------bane qeta niher tani i bani exceute krejt edhe shqip edhe anglisht---------------------------
+--DELETE FROM LanguageBooks;
+--DBCC CHECKIDENT ('LanguageBooks', RESEED, 0);
 
 
 
@@ -2243,7 +2764,139 @@ INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (2, 344);
 INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (2, 345);
 INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (2, 346);
 
-INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 346);
+
+
+
+
+-----------------shtoni per librat anglisht----------------
+
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 348);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 349);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 350);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 351);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 352);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 354);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 355);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 356);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 357);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 358);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 359);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 360);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 361);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 362);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 363);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 364);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 365);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 366);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 367);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 368);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 369);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 370);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 371);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 372);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 373);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 374);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 375);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 376);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 377);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 378);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 379);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 380);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 381);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 382);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 383);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 384);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 385);
+
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 387);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 388);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 389);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 390);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 391);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 392);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 393);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 394);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 395);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 396);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 397);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 398);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 399);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 400);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 401);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 402);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 403);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 404);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 405);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 406);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 407);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 408);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 409);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 410);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 411);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 412);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 413);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 414);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 415);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 416);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 417);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 418);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 419);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 420);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 421);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 422);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 423);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 424);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 425);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 426);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 427);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 428);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 429);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 430);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 431);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 432);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 433);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 434);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 435);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 436);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 437);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 438);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 439);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 440);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 441);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 442);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 443);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 444);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 445);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 446);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 447);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 448);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 449);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 450);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 451);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 452);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 453);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 454);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 455);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 456);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 457);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 458);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 459);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 460);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 461);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 462);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 463);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 464);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 465);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 466);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 467);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 468);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 469);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 470);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 471);
+INSERT INTO LanguageBooks(LanguageId, BookID) VALUES (1, 472);
+
+
+
 
  --Accessories data
 INSERT INTO Accessories( Image, Name, Seller, Description, Dimensions, Price, DateofAddition, StockId) 
@@ -2345,6 +2998,12 @@ VALUES
 ('Leather-page-holder.jpeg', 'Leather Heart Page Holder', 'SZRMOCYD', 'Great-Quality Handmade Material: Our Heart Bookmark is made of PU leather, which is soft, lightweight and does not hurt the book. The page clips are waterproof, reliable and durable, not easy to loosen or wear. Can protect the corners of the book and will be reusable and serve for a long time. Easy to insert into any books without taking too much space. The designs are handmade with vintage leather that looks elegant, they can serve as book markers and beautiful book accessories.', '2.9"L x 2.1". Item Weight: 15 Grams', 12.99, '2024-05-27', 2),
 
 ('ResinArt-BookPageHolder.jpeg', 'Floral Resin Page Holder', 'Outus', 'Hand-made flower book page holder is practical and stylish, exquisite and cute; Besides, there is a about 2 cm hole in the middle, which is convenient for your fingers to fix it. It is made by hand with dried flowers and resin.', '8.5 cm wide, 4 cm high, 1.7 cm thick, and thumb hole diameter includes 4 options: 1.8 cm, 0.2 cm, 2.2 cm, 2.4 cm', 10.00, '2024-05-27', 2);
+
+
+
+
+
+
 
 
 --------Countries
