@@ -31,7 +31,6 @@ namespace BookStore.Controllers
         {
             var errors = new Dictionary<string, string>();
 
-
             if (!char.IsUpper(user.FirstName[0]))
             {
                 errors.Add("firstName", "First name should start with a capital letter.");
@@ -41,7 +40,6 @@ namespace BookStore.Controllers
                 errors.Add("lastName", "Last name should start with a capital letter.");
             }
 
-    
             var existingUserWithEmail = await _usersContext.Users
                 .FirstOrDefaultAsync(u => u.Email == user.Email);
             if (existingUserWithEmail != null)
@@ -56,21 +54,41 @@ namespace BookStore.Controllers
                 errors.Add("username", "Username is already taken.");
             }
 
-
             if (errors.Count > 0)
             {
                 return BadRequest(errors);
             }
 
-          
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.RegistrationDate = DateTime.UtcNow; 
+
             _usersContext.Users.Add(user);
             await _usersContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetUser), new { UserID = user.UserID }, user);
         }
 
+        [HttpGet("monthly-count")]
+        public async Task<ActionResult<IEnumerable<MonthlyUserCount>>> GetMonthlyUserCount()
+        {
+            var monthlyUserCounts = await _usersContext.Users
+                .GroupBy(u => new
+                {
+                    Year = u.RegistrationDate.Year,
+                    Month = u.RegistrationDate.Month
+                })
+                .Select(g => new MonthlyUserCount
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    UserCount = g.Count()
+                })
+                .OrderBy(m => m.Year)
+                .ThenBy(m => m.Month)
+                .ToListAsync();
 
+            return Ok(monthlyUserCounts);
+        }
 
 
         [HttpGet]

@@ -7,7 +7,10 @@ namespace BookStore.Models
         public int UserOrderId { get; set; }
         [ForeignKey("UserID")]
         public int UserId { get; set; }
-        [ForeignKey("OrdersId")]
+        public virtual User User { get; set; } 
+
+        [ForeignKey("Orders")]
         public int OrdersId { get; set; }
+        public virtual Orders Orders { get; set; }
     }
 }

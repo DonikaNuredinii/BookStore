@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStore.Models;
 using Microsoft.Extensions.Logging;
+using BookStore.DTOs;
 
 namespace WebApplication1.Controllers
 {
@@ -14,13 +15,11 @@ namespace WebApplication1.Controllers
     {
         private readonly MyContext _context;
         private readonly ILogger<GiftCardController> _logger;
-        private readonly GiftCardService _giftCardService;
 
-        public GiftCardController(MyContext context, ILogger<GiftCardController> logger, GiftCardService giftCardService)
+        public GiftCardController(MyContext context, ILogger<GiftCardController> logger)
         {
             _context = context;
             _logger = logger;
-            _giftCardService = giftCardService;
         }
 
         // GET: api/GiftCard
@@ -63,6 +62,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<GiftCard>> PostGiftCard(GiftCard giftCard)
         {
+
+            if (giftCard.UserID <= 0) 
+            {
+                _logger.LogWarning("UserID is required and must be greater than zero.");
+                return BadRequest(new { error = "UserID is required and must be greater than zero." });
+            }
+
             if (!ModelState.IsValid)
             {
                 _logger.LogWarning("Invalid model state for gift card: {ModelState}", ModelState);
@@ -71,11 +77,10 @@ namespace WebApplication1.Controllers
 
             try
             {
-                // Generate a new gift card code and ensure it's unique
                 string generatedCode;
                 do
                 {
-                    generatedCode = _giftCardService.GenerateGiftCardCode();
+                    generatedCode = GenerateGiftCardCode();
                 } while (await _context.GiftCards.AnyAsync(g => g.Code == generatedCode));
 
                 giftCard.Code = generatedCode;
@@ -92,78 +97,96 @@ namespace WebApplication1.Controllers
             }
         }
 
+
+
+        // POST: api/GiftCard/apply
+        [HttpPost("apply")]
+        public async Task<ActionResult<decimal>> ApplyGiftCard([FromBody] GiftCardApplicationDto application)
+        {
+            if (string.IsNullOrWhiteSpace(application.GiftCardCode) || application.UsedAmount <= 0)
+            {
+                return BadRequest("Gift card code is required and a valid amount must be specified.");
+            }
+
+            try
+            {
+                var giftCard = await _context.GiftCards
+                    .FirstOrDefaultAsync(g => g.Code == application.GiftCardCode && g.IsActive);
+
+                if (giftCard == null)
+                {
+                    _logger.LogWarning("Gift card not found: {GiftCardCode}", application.GiftCardCode);
+                    return NotFound("Gift card not found or inactive.");
+                }
+
+                if (application.UsedAmount > giftCard.Amount)
+                {
+                    return BadRequest("Used amount exceeds the available gift card balance.");
+                }
+
+                giftCard.Amount -= application.UsedAmount;
+
+   
+                if (giftCard.Amount == 0)
+                {
+                    giftCard.IsActive = false; 
+                }
+
+
+                _context.GiftCards.Update(giftCard);
+                await _context.SaveChangesAsync();
+
+                return Ok(giftCard.Amount); 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error applying gift card with code {GiftCardCode}", application.GiftCardCode);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+
+        // Helper method to generate a unique gift card code
+        private string GenerateGiftCardCode()
+        {
+            // Your logic for generating a unique gift card code
+            return Guid.NewGuid().ToString().Substring(0, 8).ToUpper(); // Example
+        }
+
         // PUT: api/GiftCard/5
         [HttpPut("{GiftCardID}")]
         public async Task<IActionResult> PutGiftCard(int GiftCardID, [FromBody] GiftCard giftCard)
         {
             if (GiftCardID != giftCard.GiftCardID)
             {
-                _logger.LogWarning("GiftCardID mismatch: {GiftCardID}", GiftCardID);
-                return BadRequest("GiftCardID mismatch");
+                _logger.LogWarning("GiftCardID mismatch: {GiftCardID} vs {ProvidedID}", GiftCardID, giftCard.GiftCardID);
+                return BadRequest();
             }
+
+            _context.Entry(giftCard).State = EntityState.Modified;
 
             try
             {
-                var existingGiftCard = await _context.GiftCards.FindAsync(GiftCardID);
-                if (existingGiftCard == null)
-                {
-                    return NotFound();
-                }
-
-                existingGiftCard.Code = giftCard.Code;
-                existingGiftCard.Amount = giftCard.Amount;
-                existingGiftCard.RecipientName = giftCard.RecipientName;
-                existingGiftCard.IsActive = giftCard.IsActive;
-
-                _context.Entry(existingGiftCard).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-
-                return NoContent();
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 if (!GiftCardExists(GiftCardID))
                 {
-                    _logger.LogWarning("Gift card with ID {GiftCardID} not found", GiftCardID);
                     return NotFound();
                 }
-                _logger.LogError(ex, "Error updating gift card with ID {GiftCardID}", GiftCardID);
-                return StatusCode(500, "Internal server error");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error updating gift card with ID {GiftCardID}", GiftCardID);
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        // DELETE: api/GiftCard/5
-        [HttpDelete("{GiftCardID}")]
-        public async Task<IActionResult> DeleteGiftCard(int GiftCardID)
-        {
-            try
-            {
-                var giftCard = await _context.GiftCards.FindAsync(GiftCardID);
-                if (giftCard == null)
+                else
                 {
-                    return NotFound();
+                    throw;
                 }
-
-                _context.GiftCards.Remove(giftCard);
-                await _context.SaveChangesAsync();
-
-                return NoContent();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error deleting gift card with ID {GiftCardID}", GiftCardID);
-                return StatusCode(500, "Internal server error");
-            }
+
+            return NoContent();
         }
 
-        private bool GiftCardExists(int GiftCardID)
+        private bool GiftCardExists(int id)
         {
-            return _context.GiftCards.Any(e => e.GiftCardID == GiftCardID);
+            return _context.GiftCards.Any(e => e.GiftCardID == id);
         }
     }
 }

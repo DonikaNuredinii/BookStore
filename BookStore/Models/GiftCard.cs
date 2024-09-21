@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BookStore.Models
 {
@@ -6,7 +7,7 @@ namespace BookStore.Models
     {
         public int GiftCardID { get; set; }
         public string Code { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public string SelectedDesign { get; set; }
         public string RecipientName { get; set; }
         public string RecipientEmail { get; set; }
@@ -14,6 +15,5 @@ namespace BookStore.Models
         public bool IsActive { get; set; } = true;
         [ForeignKey("UserID")]
         public int UserID { get; set; }
-        public User User { get; set; }
     }
 }

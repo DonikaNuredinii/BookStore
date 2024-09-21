@@ -27,8 +27,4 @@ public class OrderDetails
     public int CartItemId { get; set; }
     public virtual CartItem CartItem { get; set; }
 
-    [ForeignKey("Order")]
-    public int OrdersId { get; set; }
-    public virtual Orders Order { get; set; }
-
 }

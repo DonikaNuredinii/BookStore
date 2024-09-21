@@ -12,6 +12,8 @@ const Account = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [previousUserCount, setPreviousUserCount] = useState(0);
+  const [setGrowthPercentage] = useState(0);
   const [formData, setFormData] = useState({
     confirmPassword: "",
     agreeTerms: false,
@@ -57,15 +59,14 @@ const Account = () => {
       [name]: newValue,
     }));
   };
-
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-  
-    let frontendErrors = {}; // Initialize frontend errors
-  
-    // Frontend validations
+    e.preventDefault();
+
+    let frontendErrors = {};
+
     if (!validateName(firstName)) {
-      frontendErrors.firstName = "First name should start with a capital letter.";
+      frontendErrors.firstName =
+        "First name should start with a capital letter.";
     }
     if (!validateName(lastName)) {
       frontendErrors.lastName = "Last name should start with a capital letter.";
@@ -83,10 +84,9 @@ const Account = () => {
     if (password !== formData.confirmPassword) {
       frontendErrors.confirmPassword = "Passwords do not match.";
     }
-  
-    // Set frontend errors first
+
     setFormErrors(frontendErrors);
-  
+
     const userData = {
       FirstName: firstName,
       LastName: lastName,
@@ -96,38 +96,54 @@ const Account = () => {
       Password: password,
       RolesID: 2,
     };
-  
-    // Continue with backend call even if there are frontend errors
+
     axios
       .post("https://localhost:7061/api/User/register", userData)
       .then((response) => {
         toast.success("User registered successfully!");
         clearForm();
         logInLink();
+        fetchUpdatedUserCount(); // Call to fetch updated user count
       })
       .catch((error) => {
-        // Handle backend validation errors
         if (error.response && error.response.data) {
           const backendErrors = error.response.data;
-          const updatedErrors = { ...frontendErrors };  // Start with frontend errors
-  
-          // Merge backend errors with frontend errors
+          const updatedErrors = { ...frontendErrors };
+
           if (backendErrors.email) {
             updatedErrors.email = backendErrors.email;
           }
           if (backendErrors.username) {
             updatedErrors.username = backendErrors.username;
           }
-  
-          // Set both frontend and backend errors
+
           setFormErrors(updatedErrors);
         } else {
           toast.error("Error registering user: " + error.message);
         }
       });
   };
-  
-  
+
+  const fetchUpdatedUserCount = async () => {
+    try {
+      const response = await axios.get("https://localhost:7061/api/User/count");
+      const newUserCount = response.data;
+
+      if (previousUserCount > 0) {
+        const growth =
+          ((newUserCount - previousUserCount) / previousUserCount) * 100;
+        const adjustedGrowth = Math.max(growth, 0);
+        setGrowthPercentage(adjustedGrowth.toFixed(2));
+      } else {
+        setGrowthPercentage(100);
+      }
+
+      setPreviousUserCount(newUserCount);
+    } catch (error) {
+      console.error("Error fetching updated user count:", error);
+    }
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
 

@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -33,7 +34,7 @@ namespace WebApplication1.Controllers
                     .ThenInclude(od => od.CartItem)
                     .ToListAsync();
 
-                if (orders == null || orders.Count == 0)
+                if (orders == null || !orders.Any())
                 {
                     return NotFound();
                 }
@@ -71,6 +72,100 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostOrder(OrdersDto orderDto)
+        {
+            if (orderDto == null)
+            {
+                return BadRequest("Invalid order data.");
+            }
+
+            try
+            {
+                var orderDetails = new OrderDetails
+                {
+                    TotalPrice = orderDto.OrderDetails[0].TotalPrice,
+                    InvoiceDate = orderDto.OrderDetails[0].InvoiceDate,
+                    OrderShipDate = orderDto.OrderDetails[0].OrderShipDate,
+                    InvoiceNumber = orderDto.OrderDetails[0].InvoiceNumber,
+                    CartItemId = orderDto.OrderDetails[0].CartItemId
+                };
+
+                _context.OrderDetails.Add(orderDetails);
+                await _context.SaveChangesAsync();
+
+                var order = new Orders
+                {
+                    OrderDate = orderDto.OrderDate,
+                    Address = orderDto.Address,
+                    City = orderDto.City,
+                    CountryID = orderDto.CountryID,
+                    ZipCode = orderDto.ZipCode,
+                    DiscountID = orderDto.DiscountID,
+                    GiftCardID = orderDto.GiftCardID,
+                    Payment = new Payment
+                    {
+                        Amount = orderDto.Payment.Amount,
+                        PaymentMethod = orderDto.Payment.PaymentMethod,
+                        LastFourDigits = orderDto.Payment.LastFourDigits,
+                        TransactionID = orderDto.Payment.TransactionID
+                    },
+                    OrderDetailsID = orderDetails.OrderDetailsID
+                };
+
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while saving the entity changes.",
+                    detail = ex.InnerException?.Message ?? ex.Message
+                });
+            }
+        }
+
+
+
+        [HttpPut("{orderId}")]
+        public async Task<IActionResult> PutOrder(int orderId, OrdersDto ordersDto)
+        {
+            if (orderId != ordersDto.OrdersId)
+            {
+                return BadRequest();
+            }
+
+            var order = await _context.Orders.Include(o => o.OrderDetails).FirstOrDefaultAsync(o => o.OrdersId == orderId);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                order.OrderDate = ordersDto.OrderDate;
+                order.Address = ordersDto.Address;
+                order.City = ordersDto.City;
+                order.CountryID = ordersDto.CountryID;
+                order.ZipCode = ordersDto.ZipCode;
+                order.DiscountID = ordersDto.DiscountID;
+                order.GiftCardID = ordersDto.GiftCardID;
+
+                _context.Entry(order).State = EntityState.Modified;
+
+                // Update OrderDetails here if necessary
+
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+        }
         // GET: api/order/total-earnings
         [HttpGet("total-earnings")]
         public async Task<ActionResult<decimal>> GetTotalEarnings()
@@ -116,136 +211,125 @@ namespace WebApplication1.Controllers
 
             return Ok(ordersOverTime);
         }
-
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> CreateOrder([FromBody] OrdersDto ordersDto)
+        [HttpGet("order-counts")]
+        public async Task<ActionResult<IEnumerable<CountryOrderCountDto>>> GetOrderCountByCountry()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var order = new Orders
-                {
-                    OrderDate = ordersDto.OrderDate,
-                    Address = ordersDto.Address,
-                    City = ordersDto.City,
-                    CountryID = ordersDto.CountryID,
-                    ZipCode = ordersDto.ZipCode,
-                    DiscountID = ordersDto.DiscountID,
-                    GiftCardID = ordersDto.GiftCardID,
-                    OrderDetails = new List<OrderDetails>()
-                };
-
-                _context.Orders.Add(order);
-                await _context.SaveChangesAsync(); // Save order to get OrdersId
-
-                foreach (var detailDto in ordersDto.OrderDetails)
-                {
-                    var orderDetail = new OrderDetails
+                var orderCounts = await _context.Orders
+                    .GroupBy(o => o.CountryID) 
+                    .Select(g => new CountryOrderCountDto
                     {
-                        TotalPrice = detailDto.TotalPrice,
-                        InvoiceDate = detailDto.InvoiceDate,
-                        OrderShipDate = detailDto.OrderShipDate,
-                        InvoiceNumber = GenerateUniqueInvoiceNumber(),
-                        OrdersId = order.OrdersId
-                    };
+                        CountryName = _context.Countries.FirstOrDefault(c => c.CountryID == g.Key).CountryName,
+                        TotalOrders = g.Count()
+                    })
+                    .ToListAsync();
 
-                    if (detailDto.CartItem != null)
-                    {
-                        var cartItem = new CartItem
-                        {
-                            Quantity = detailDto.CartItem.Quantity,
-                            BookId = detailDto.CartItem.BookId,
-                            AccessoriesID = detailDto.CartItem.AccessoriesID,
-                            GiftCardId = detailDto.CartItem.GiftCardId
-                        };
-
-                        _context.CartItems.Add(cartItem);
-                        await _context.SaveChangesAsync(); // Save cart item to get CartItemId
-
-                        orderDetail.CartItemId = cartItem.CartItemId;
-                    }
-
-                    order.OrderDetails.Add(orderDetail);
-                }
-
-                _context.OrderDetails.AddRange(order.OrderDetails);
-                await _context.SaveChangesAsync();
-
-                await transaction.CommitAsync();
-
-                return CreatedAtAction(nameof(GetOrder), new { orderId = order.OrdersId }, order);
+                return Ok(orderCounts);
             }
             catch (Exception ex)
             {
-                await transaction.RollbackAsync();
-                _logger.LogError(ex, "Order creation failed. Exception: {Message}", ex.InnerException?.Message);
-                return StatusCode(500, new { message = "Internal server error", detail = ex.InnerException?.Message });
-            }
-        }
-
-
-        private string GenerateUniqueInvoiceNumber()
-        {
-            return $"INV-{DateTime.UtcNow:yyyyMMddHHmmss}-{new Random().Next(1000, 9999)}";
-        }
-
-        [HttpPut("{orderId}")]
-        public async Task<ActionResult> PutOrder(int orderId, Orders order)
-        {
-            if (orderId != order.OrdersId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(order).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                _logger.LogError(ex, "Concurrency error occurred while updating order with ID {OrderId}.", orderId);
-                return StatusCode(500, "Concurrency error occurred.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred while updating order with ID {OrderId}.", orderId);
+                _logger.LogError(ex, "Error retrieving order counts by country.");
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
-
-            return Ok();
         }
+        public class CountryOrderCountDto
+        {
+            public string CountryName { get; set; } 
+            public int TotalOrders { get; set; }
+        }
+
+        [HttpGet("top-customers")]
+        public async Task<ActionResult<IEnumerable<TopCustomerDto>>> GetTopCustomers()
+        {
+            try
+            {
+                var topCustomers = await _context.UserOrder
+                    .Include(uo => uo.User)
+                    .Include(uo => uo.Orders)
+                        .ThenInclude(o => o.OrderDetails)
+                    .GroupBy(uo => new
+                    {
+                        UserId = uo.UserId,
+                        UserName = uo.User.FirstName + " " + uo.User.LastName
+                    })
+                    .Select(g => new TopCustomerDto
+                    {
+                        Id = g.Key.UserId,
+                        Name = g.Key.UserName,
+                        TotalSpent = g.Sum(uo => uo.Orders.OrderDetails.TotalPrice),
+                        OrderCount = g.Count()
+                    })
+                    .OrderByDescending(tc => tc.TotalSpent)
+                    .Take(5)
+                    .ToListAsync();
+
+                return Ok(topCustomers);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving top customers.");
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
+            }
+        }
+
+        [HttpGet("weekly-sales")]
+        public async Task<ActionResult<IEnumerable<WeeklySalesDto>>> GetWeeklySales()
+        {
+            try
+            {
+                var calendar = System.Globalization.CultureInfo.CurrentCulture.Calendar;
+
+                
+                var orders = await _context.Orders
+                    .Include(o => o.OrderDetails)
+                    .Where(o => o.OrderDetails.InvoiceDate >= DateTime.UtcNow.AddDays(-30)) 
+                    .ToListAsync();
+                var weeklySales = orders
+                    .GroupBy(o => new
+                    {
+                        Year = o.OrderDetails.InvoiceDate.Year,
+                        Week = calendar.GetWeekOfYear(o.OrderDetails.InvoiceDate, System.Globalization.CalendarWeekRule.FirstDay, DayOfWeek.Monday)
+                    })
+                    .Select(g => new WeeklySalesDto
+                    {
+                        Week = $"{g.Key.Year}-W{g.Key.Week}",
+                        TotalSales = g.Sum(o => o.OrderDetails.TotalPrice),
+                    })
+                    .OrderBy(ws => ws.Week)
+                    .ToList();
+
+                return Ok(weeklySales);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving weekly sales.");
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
+            }
+        }
+
+
+
+        public class WeeklySalesDto
+        {
+            public string Week { get; set; }
+            public decimal TotalSales { get; set; }
+        }
+
+
 
         [HttpDelete("{orderId}")]
-        public async Task<ActionResult> DeleteOrder(int orderId)
+        public async Task<IActionResult> DeleteOrder(int orderId)
         {
-            try
+            var order = await _context.Orders.Include(o => o.OrderDetails).FirstOrDefaultAsync(o => o.OrdersId == orderId);
+            if (order == null)
             {
-                var order = await _context.Orders.FindAsync(orderId);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-
-                _context.Orders.Remove(order);
-                await _context.SaveChangesAsync();
-
-                return Ok();
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred while deleting order with ID {OrderId}.", orderId);
-                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
-            }
+
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

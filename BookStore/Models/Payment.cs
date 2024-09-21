@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BookStore.Models
 {
@@ -20,6 +21,7 @@ namespace BookStore.Models
 
         [ForeignKey("Orders")]
         public int OrdersId { get; set; }
+        [JsonIgnore]
         public virtual Orders Orders { get; set; }
 
         public string? TransactionID { get; set; } 

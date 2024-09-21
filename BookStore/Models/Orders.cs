@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BookStore.Models
 {
@@ -38,7 +39,10 @@ namespace BookStore.Models
         [ForeignKey("GiftCard")]
         public int? GiftCardID { get; set; }
         public virtual GiftCard GiftCard { get; set; }
-
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; } = new HashSet<OrderDetails>();
+        [JsonIgnore]
+        public virtual Payment Payment { get; set; }
+        [ForeignKey("OrderDetails")]
+        public int OrderDetailsID { get; set; }
+        public virtual OrderDetails OrderDetails { get; set; }
     }
 }

@@ -43,9 +43,10 @@ function Dashboard() {
     setSearchQuery(query);
   };
 
-  // Function to check if the current route contains 'add'
   const isAddComponent = () => {
-    return location.pathname.includes("/add");
+    return (
+      location.pathname.includes("/add") || location.pathname === "/dashboard"
+    );
   };
 
   return (
@@ -59,7 +60,6 @@ function Dashboard() {
         {toggle && <div className="col-4 col-md-2"></div>}
         <div className="col">
           <Navbar Toggle={Toggle} />
-          {/* Conditionally render the search bar */}
           {!isAddComponent() && <SearchBar onSearch={handleSearch} />}
           <Routes>
             <Route path="add-categories" element={<AddCategories />} />

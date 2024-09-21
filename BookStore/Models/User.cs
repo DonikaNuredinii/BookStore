@@ -17,6 +17,7 @@ namespace BookStore.Models
         public string Password { get; set; }
         [ForeignKey("Roles")]
         public int RolesID { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
 
         public User()

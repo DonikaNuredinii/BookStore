@@ -74,9 +74,8 @@ namespace BookStore.Controllers
 
         private async Task SendEmailToAdminAsync(ContactUs contactUs)
         {
-            // Retrieve admin emails
             var adminEmails = await _context.Users
-                .Where(user => user.RolesID == 3) // Assuming RolesID = 3 corresponds to Admin
+                .Where(user => user.RolesID == 3) 
                 .Select(user => user.Email)
                 .ToListAsync();
 
@@ -89,14 +88,13 @@ namespace BookStore.Controllers
             var body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(contactUs.Name, contactUs.Email)); // Use user's email as the "From" address
+            message.From.Add(new MailboxAddress(contactUs.Name, contactUs.Email)); 
             message.Sender = new MailboxAddress(_smtpSettings.From, _smtpSettings.From);
     
 
-            // Add the user's email as the Reply-To address
+ 
             message.ReplyTo.Add(new MailboxAddress(contactUs.Name, contactUs.Email));
 
-            // Add each admin email to the 'To' field
             foreach (var adminEmail in adminEmails)
             {
                 if (!string.IsNullOrWhiteSpace(adminEmail))
@@ -141,6 +139,24 @@ namespace BookStore.Controllers
             }
 
             return NoContent();
+        }
+        [HttpGet("doughnut-data")]
+        public async Task<ActionResult<IEnumerable<DoughnutData>>> GetDoughnutData()
+        {
+            var doughnutData = await _context.
+                .Select(g => new DoughnutData
+                {
+                    Label = g.Key ?? "Unknown", 
+                    Value = g.Count()
+                })
+                .ToListAsync();
+
+            return Ok(doughnutData);
+        }
+        public class DoughnutData
+        {
+            public string Label { get; set; }
+            public int Value { get; set; }
         }
 
         [HttpDelete("{ContactID}")]

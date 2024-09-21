@@ -12,35 +12,50 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const location = useLocation();
-
   const {
     cartData = [],
-    totalPrice = 0,
     discountedPrice = 0,
     discount = 0,
   } = location.state || {};
 
+  // Calculate totalPrice dynamically
+  // Calculate totalPrice dynamically
+  const totalPrice = cartData.reduce((total, item) => {
+    return total + (item.price || 0) * (item.quantity || 0); // Default to 0 if item.price or item.quantity is undefined
+  }, 0);
+
   const [countries, setCountries] = useState([]);
+  const [giftCardCode, setGiftCardCode] = useState("");
+  const [appliedGiftCardAmount, setAppliedGiftCardAmount] = useState(0);
+
   const [formData, setFormData] = useState({
     email: "",
     getOrderUpdatesOnWhatsApp: false,
-    countryID: "", // Updated to use countryID instead of country name
+    countryID: "",
     firstName: "",
     lastName: "",
     address: "",
     postalCode: "",
     city: "",
     phoneNumber: "",
-    saveInfo: false,
-    shippingMethod: "shipping",
-    paymentMethod: "creditCard", // default to credit card
-    billingSameAsShipping: true,
-    giftCardCode: "",
-    giftCardAmount: 0,
+    paymentMethod: "creditCard",
+    payment: {
+      amount: totalPrice, // Use totalPrice here
+      lastFourDigits: "",
+      transactionID: "",
+    },
+    orderDetails: cartData.map((item) => ({
+      totalPrice: item.price * item.quantity, // Calculate total price per item
+      invoiceDate: new Date().toISOString(),
+      orderShipDate: new Date(
+        Date.now() + 7 * 24 * 60 * 60 * 1000
+      ).toISOString(),
+      invoiceNumber: `INV${Math.floor(Math.random() * 1000)}`,
+      cartItemId: item.id,
+    })),
     discountID: null,
     giftCardID: null,
   });
-
   const [currentDiscountedPrice, setCurrentDiscountedPrice] =
     useState(discountedPrice);
   const [orderDetails, setOrderDetails] = useState(null);
@@ -71,60 +86,83 @@ const CheckoutForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    if (name.startsWith("paymentDetails.")) {
+      const paymentField = name.split(".")[1];
+      setFormData({
+        ...formData,
+        paymentDetails: {
+          ...formData.paymentDetails,
+          [paymentField]: type === "checkbox" ? checked : value,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === "checkbox" ? checked : value,
+      });
+    }
   };
 
   const applyGiftCard = async () => {
     setLoading(true);
     setError("");
+
     const { giftCardCode } = formData;
+
+    if (!giftCardCode) {
+      setError("Please enter a gift card code.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch(
-        `https://localhost:7061/api/GiftCard/${giftCardCode}`
-      );
-      if (response.ok) {
-        const giftCard = await response.json();
-        if (giftCard && giftCard.isActive) {
-          const updatedDiscountedPrice = totalPrice - giftCard.amount;
-
-          setFormData((prevData) => ({
-            ...prevData,
-            giftCardAmount: giftCard.amount,
-            giftCardID: giftCard.giftCardID, // Store GiftCardID for backend
-          }));
-
-          setCurrentDiscountedPrice(
-            updatedDiscountedPrice > 0 ? updatedDiscountedPrice : 0
-          );
-
-          // Update the gift card's active status to false (deactivating it)
-          await fetch(
-            `https://localhost:7061/api/GiftCard/${giftCard.giftCardID}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                ...giftCard,
-                isActive: false,
-              }),
-            }
-          );
-        } else {
-          setError("Invalid or inactive gift card");
+        "https://localhost:7061/api/GiftCard/apply",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(giftCardCode),
         }
-      } else {
-        setError("Failed to apply gift card");
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        setError(errorText);
+        setLoading(false);
+        return;
       }
+
+      const amount = await response.json(); // Assuming the amount is returned directly
+      const giftCardIDResponse = await fetch(
+        `https://localhost:7061/api/GiftCard?code=${giftCardCode}`
+      );
+
+      const giftCardData = await giftCardIDResponse.json();
+
+      if (!giftCardData || !giftCardData.GiftCardID) {
+        setError("Gift card not found.");
+        setLoading(false);
+        return;
+      }
+
+      setAppliedGiftCardAmount(amount);
+      const newTotalPrice = totalPrice - amount;
+      setFormData((prev) => ({
+        ...prev,
+        payment: { ...prev.payment, amount: newTotalPrice },
+        giftCardID: giftCardData.GiftCardID,
+      }));
+
+      setSuccessMessage("Gift card applied successfully!");
+      setLoading(false);
     } catch (error) {
-      setError("Error applying gift card");
-    } finally {
+      setError("Error applying gift card.");
+      console.error("Error applying gift card:", error);
       setLoading(false);
     }
+  };
+  const displayPrice = (price) => {
+    return price ? price.toFixed(2) : "0.00"; // Safe check
   };
 
   const preprocessImagePath = (path) => {
@@ -239,9 +277,50 @@ const CheckoutForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleCheckout();
+    setLoading(true);
+
+    const orderPayload = {
+      ordersId: 0, // Ensure ordersId is initialized or auto-generated in backend
+      orderDate: new Date().toISOString(),
+      address: formData.address,
+      city: formData.city,
+      countryID: formData.countryID,
+      zipCode: formData.postalCode,
+      discountID: formData.discountID || null, // Use null if not set
+      giftCardID: formData.giftCardID || null, // Use null if not set
+      payment: {
+        amount:
+          totalPrice - (formData.giftCardID ? formData.giftCardAmount : 0), // Final amount after discount
+        paymentMethod: formData.paymentMethod,
+        lastFourDigits: "", // Set this after payment processing
+        transactionID: "", // Set this after payment processing
+      },
+      orderDetails: formData.orderDetails,
+    };
+
+    try {
+      const response = await fetch("https://localhost:7061/api/Orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderPayload),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setOrderDetails(data); // Handle successful order creation
+        setSuccessMessage("Order placed successfully!");
+      } else {
+        throw new Error("Failed to create order");
+      }
+    } catch (err) {
+      setError("An error occurred while placing the order. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const cardElementOptions = {
@@ -459,6 +538,7 @@ const CheckoutForm = () => {
                 </div>
               </div>
             </div>
+
             <div className="gift-card">
               <h2>Gift Card</h2>
               <input
@@ -521,10 +601,14 @@ const CheckoutForm = () => {
               </ul>
             </div>
             <div className="summary-details">
-              <p>Subtotal: €{totalPrice.toFixed(2)}</p>
-              <p>Discount: €{discount.toFixed(2)}</p>
-              <p>Gift Card Applied: €{formData.giftCardAmount.toFixed(2)}</p>
-              <p>Total: €{currentDiscountedPrice.toFixed(2)}</p>
+              <p>Subtotal: €{(totalPrice || 0).toFixed(2)}</p>
+              <p>Total Price: €{(totalPrice || 0).toFixed(2)}</p>
+              <p>
+                Discounted Price: €{(currentDiscountedPrice || 0).toFixed(2)}
+              </p>
+              <p>
+                Gift Card Applied: €{(formData.giftCardAmount || 0).toFixed(2)}
+              </p>
             </div>
           </div>
         </form>

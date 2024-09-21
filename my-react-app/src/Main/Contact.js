@@ -8,6 +8,16 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [inquiryType, setInquiryType] = useState("General");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const options = ["General Inquiry", "Support", "Feedback", "Other"];
+
+  const handleSelect = (option) => {
+    setInquiryType(option);
+    setIsOpen(false);
+  };
+
   const [formErrors, setFormErrors] = useState({});
 
   const validateEmail = (email) => {
@@ -47,6 +57,7 @@ const Contact = () => {
       Name: name,
       Email: email,
       Message: message,
+      inquiryType,
     };
 
     axios
@@ -143,6 +154,28 @@ const Contact = () => {
                 <p className="errorCu">{formErrors.message}</p>
               )}
             </div>
+            <div className="inputs-contact">
+              <div
+                className="custom-dropdown"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <div className="selected-option">{inquiryType}</div>
+                {isOpen && (
+                  <ul className="options-list">
+                    {options.map((option) => (
+                      <li
+                        key={option}
+                        className="option-item"
+                        onClick={() => handleSelect(option)}
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
             <button type="submit" className="button-CU">
               Send
             </button>

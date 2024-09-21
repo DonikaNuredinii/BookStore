@@ -1,7 +1,7 @@
 ﻿using BookStore.Models;
+using BookStore.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +18,7 @@ namespace BookStore.Controllers
             _context = context;
         }
 
+        // GET: api/orderdetails
         [HttpGet]
         public async Task<IActionResult> GetOrderDetails()
         {
@@ -25,25 +26,52 @@ namespace BookStore.Controllers
             return Ok(orderDetails);
         }
 
+        // GET: api/orderdetails/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDetails>> GetOrderDetails(int id)
         {
-            var orderDetails = await _context.OrderDetails.Include(od => od.CartItem).FirstOrDefaultAsync(od => od.OrderDetailsID == id);
+            var orderDetails = await _context.OrderDetails
+                .Include(od => od.CartItem)
+                .FirstOrDefaultAsync(od => od.OrderDetailsID == id);
+
             if (orderDetails == null)
             {
                 return NotFound();
             }
-            return orderDetails;
+
+            return Ok(orderDetails);
         }
 
+        // POST: api/orderdetails
         [HttpPost]
-        public async Task<IActionResult> PostOrderDetails(OrderDetails orderDetails)
+        public async Task<IActionResult> PostOrderDetails([FromBody] OrderDetailsDto orderDetailsDto)
         {
+            if (orderDetailsDto == null)
+            {
+                return BadRequest("Invalid order details.");
+            }
+            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemId);
+            if (cartItem == null)
+            {
+                return BadRequest("Invalid CartItem ID.");
+            }
+
+            var orderDetails = new OrderDetails
+            {
+                TotalPrice = orderDetailsDto.TotalPrice,
+                InvoiceDate = orderDetailsDto.InvoiceDate,
+                OrderShipDate = orderDetailsDto.OrderShipDate,
+                InvoiceNumber = orderDetailsDto.InvoiceNumber,
+                CartItemId = orderDetailsDto.CartItemId
+            };
+
             _context.OrderDetails.Add(orderDetails);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetOrderDetails), new { id = orderDetails.OrderDetailsID }, orderDetails);
         }
 
+        // DELETE: api/orderdetails/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderDetails(int id)
         {
@@ -59,18 +87,54 @@ namespace BookStore.Controllers
             return NoContent();
         }
 
+        // PUT: api/orderdetails/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderDetails(int id, OrderDetails orderDetails)
+        public async Task<IActionResult> PutOrderDetails(int id, [FromBody] OrderDetailsDto orderDetailsDto)
         {
-            if (id != orderDetails.OrderDetailsID)
+            if (orderDetailsDto == null || id == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid order details or ID.");
             }
 
-            _context.Entry(orderDetails).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+      
+            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemId);
+            if (cartItem == null)
+            {
+                return BadRequest("Invalid CartItem ID.");
+            }
+
+            var existingOrderDetails = await _context.OrderDetails.FindAsync(id);
+            if (existingOrderDetails == null)
+            {
+                return NotFound("Order details not found.");
+            }
+
+            existingOrderDetails.TotalPrice = orderDetailsDto.TotalPrice;
+            existingOrderDetails.InvoiceDate = orderDetailsDto.InvoiceDate;
+            existingOrderDetails.OrderShipDate = orderDetailsDto.OrderShipDate;
+            existingOrderDetails.InvoiceNumber = orderDetailsDto.InvoiceNumber;
+            existingOrderDetails.CartItemId = orderDetailsDto.CartItemId;
+
+            _context.Entry(existingOrderDetails).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!OrderDetailsExists(id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
 
             return NoContent();
+        }
+        private bool OrderDetailsExists(int id)
+        {
+            return _context.OrderDetails.Any(e => e.OrderDetailsID == id);
         }
     }
 }

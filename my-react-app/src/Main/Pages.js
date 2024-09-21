@@ -24,7 +24,7 @@ import EventsPage from "./EventsPage";
 import UpdatePassword from "./UpdatePassword";
 
 function Pages() {
-  const [isSticky, setSticky] = useState(false);
+  const [isSticky] = useState(false);
   const [toggle, setToggle] = useState(true);
   const location = useLocation();
   const [cart, setCart] = useState([]);
@@ -63,14 +63,10 @@ function Pages() {
         title: item.title || "No Title",
       };
 
-      console.log("New item added to cart:", newItem); // Debug log
+      console.log("New item added to cart:", newItem);
 
       return [...prevCart, newItem];
     });
-  };
-  const addToCalendar = (event) => {
-    console.log("Adding event to calendar:", event);
-    // Implement your logic here...
   };
 
   const Toggle = () => {
@@ -84,7 +80,7 @@ function Pages() {
         <Buttons
           isSticky={isSticky}
           cartCount={cart.length}
-          wishlistCount={wishlist.length} // Pass the wishlist count to the Buttons component
+          wishlistCount={wishlist.length}
         />
       )}
       <Routes>
