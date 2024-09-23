@@ -1407,11 +1407,12 @@ form .signUp-link {
   /* Sidebar Open State */
   .sidebarc.open {
     transform: translateX(0);
+    height: 500px;
   }
 
   .sidebar-toggle-btn {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 170px;
     left: 20px;
     z-index: 1100;
@@ -4931,4 +4932,27 @@ button.linkaccbutton {
   height: 500px;
   overflow-y: auto;
   background-color: #ffffff;
+}
+.compact-table td,
+.compact-table th {
+  padding: 0.25rem; /* Reduce padding */
+}
+
+.compact-table img {
+  max-width: 40px; /* Adjust image size for a smaller look */
+}
+
+.compact-table {
+  font-size: 0.85rem; /* Slightly reduce font size */
+}
+
+@media (max-width: 768px) {
+  .compact-table {
+    font-size: 0.75rem; /* Reduce font size further on smaller screens */
+  }
+
+  .compact-table td,
+  .compact-table th {
+    padding: 0.15rem; /* Reduce padding on smaller screens */
+  }
 }

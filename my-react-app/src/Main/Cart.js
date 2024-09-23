@@ -8,18 +8,26 @@ const Cart = ({ cart = [], setCart }) => {
   const [quantities, setQuantities] = useState(cart.map(() => 1));
   const [discount, setDiscount] = useState(0);
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storedCart);
     setQuantities(storedCart.map(() => 1));
   }, [setCart]);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   // Fetch discount from backend
   useEffect(() => {
@@ -99,40 +107,44 @@ const Cart = ({ cart = [], setCart }) => {
 
   // Handle checkout
   const handleCheckout = async () => {
-    const cartData = cart.map((item, index) => ({
-      cartItemId: item.cartItemId || 0,
-      quantity: quantities[index],
-      bookId: item.bookId ?? null,
-      accessoriesID: item.accessoriesID ?? null,
-      giftCardId: item.giftCardId ?? null,
-      image: item.image || "",
-      price: item.price || 0,
-      title: item.title || "No Title",
-    }));
+    if (isLoggedIn) {
+      const cartData = cart.map((item, index) => ({
+        cartItemId: item.cartItemId || 0,
+        quantity: quantities[index],
+        bookId: item.bookId ?? null,
+        accessoriesID: item.accessoriesID ?? null,
+        giftCardId: item.giftCardId ?? null,
+        image: item.image || "",
+        price: item.price || 0,
+        title: item.title || "No Title",
+      }));
 
-    console.log("Cart data prepared for checkout:", cartData);
+      console.log("Cart data prepared for checkout:", cartData);
 
-    const totalPrice = cartData.reduce(
-      (acc, item, index) => acc + item.price * quantities[index],
-      0
-    );
+      const totalPrice = cartData.reduce(
+        (acc, item, index) => acc + item.price * quantities[index],
+        0
+      );
 
-    const discountedPrice = totalPrice * (1 - discount);
+      const discountedPrice = totalPrice * (1 - discount);
 
-    const savedSuccessfully = await saveCartItemsToBackend(cartData);
-    if (!savedSuccessfully) {
-      alert("Failed to save cart items. Please try again.");
-      return;
+      const savedSuccessfully = await saveCartItemsToBackend(cartData);
+      if (!savedSuccessfully) {
+        alert("Failed to save cart items. Please try again.");
+        return;
+      }
+
+      navigate("/checkout", {
+        state: {
+          cartData: cartData,
+          totalPrice: totalPrice,
+          discountedPrice: discountedPrice,
+          discount: discount,
+        },
+      });
+    } else {
+      navigate("/account");
     }
-
-    navigate("/checkout", {
-      state: {
-        cartData: cartData,
-        totalPrice: totalPrice,
-        discountedPrice: discountedPrice,
-        discount: discount,
-      },
-    });
   };
 
   // Remove item from cart
@@ -220,10 +232,12 @@ const Cart = ({ cart = [], setCart }) => {
         </p>
         <button
           onClick={handleCheckout}
-          disabled={cart.length === 0}
+          disabled={cart.length === 0 || !isLoggedIn}
           className="checkout-button"
         >
-          Checkout
+          <span style={{ color: isLoggedIn ? "white" : "red" }}>
+            {isLoggedIn ? "Checkout" : "Please log in to checkout"}
+          </span>
         </button>
       </div>
     </div>

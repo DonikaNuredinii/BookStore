@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import { useWishlist } from "../Components/Wishlist";
+import { TbBooks } from "react-icons/tb";
 
 const CategoriesF = ({ addToCart }) => {
   const [categories, setCategories] = useState([]);
@@ -22,6 +23,7 @@ const CategoriesF = ({ addToCart }) => {
   const [message, setMessage] = useState("");
   const [messageTimeout, setMessageTimeout] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(2);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const {
     wishlist,
@@ -35,6 +37,9 @@ const CategoriesF = ({ addToCart }) => {
   const closeModal = () => {
     setShowCartModal(false);
     setShowWishlistModal(false);
+  };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   const handleCategoryClick = (category) => {
@@ -69,7 +74,9 @@ const CategoriesF = ({ addToCart }) => {
 
     setShowWishlistModal(false);
   };
-
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
   const fetchCategories = async (languageId) => {
     try {
       const response = await axios.get(
@@ -234,25 +241,27 @@ const CategoriesF = ({ addToCart }) => {
   return (
     <>
       <div className="Books-category">
-        <div className="language">
-          <Link
-            to="#"
-            className="language-link"
-            onClick={() => handleLanguageClick(1)}
-          >
-            English
-          </Link>
-          <Link
-            to="#"
-            className="language-link"
-            onClick={() => handleLanguageClick(2)}
-          >
-            Albanian
-          </Link>
-        </div>
-
-        <div className="main-content">
-          <div className="sidebarc">
+        <div className={`main-content ${isSidebarOpen ? "blurred" : ""}`}>
+          <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
+            <TbBooks />
+          </button>
+          <div className="language">
+            <Link
+              to="#"
+              className="language-link"
+              onClick={() => handleLanguageClick(1)}
+            >
+              English
+            </Link>
+            <Link
+              to="#"
+              className="language-link"
+              onClick={() => handleLanguageClick(2)}
+            >
+              Albanian
+            </Link>
+          </div>
+          <div className={`sidebarc ${isSidebarOpen ? "open" : "closed"}`}>
             <nav className="nav">
               <ul>
                 {categories.map((category) => (
@@ -269,89 +278,92 @@ const CategoriesF = ({ addToCart }) => {
               </ul>
             </nav>
           </div>
-        </div>
+          {isSidebarOpen && (
+            <div className="overlay visible" onClick={toggleSidebar} />
+          )}
 
-        <div className="cards-Home">
-          {currentBooks.length > 0 ? (
-            currentBooks.map((book) => {
-              const imagePath = preprocessImagePath(book.image);
-              return (
-                <div
-                  key={book.bookID}
-                  className="card-item"
-                  onClick={() => handleBookClick(book.bookID)}
-                >
-                  <div className="card-image">
-                    <img
-                      src={imagePath || "/images/placeholder.jpg"}
-                      alt={book.title}
-                      className="book-image"
-                    />
-                    <div className="icon-container">
-                      {isBookInWishlist(book.bookID) ? (
-                        <MdFavorite
-                          className="favorite-icon"
-                          onClick={(e) => handleFavoriteClick(e, book.bookID)}
-                        />
-                      ) : (
-                        <MdFavoriteBorder
-                          className="favorite-icon"
-                          onClick={(e) => handleFavoriteClick(e, book.bookID)}
-                        />
-                      )}
+          <div className="cards-Home">
+            {currentBooks.length > 0 ? (
+              currentBooks.map((book) => {
+                const imagePath = preprocessImagePath(book.image);
+                return (
+                  <div
+                    key={book.bookID}
+                    className="card-item"
+                    onClick={() => handleBookClick(book.bookID)}
+                  >
+                    <div className="card-image">
+                      <img
+                        src={imagePath || "/images/placeholder.jpg"}
+                        alt={book.title}
+                        className="book-image"
+                      />
+                      <div className="icon-container">
+                        {isBookInWishlist(book.bookID) ? (
+                          <MdFavorite
+                            className="favorite-icon"
+                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                          />
+                        ) : (
+                          <MdFavoriteBorder
+                            className="favorite-icon"
+                            onClick={(e) => handleFavoriteClick(e, book.bookID)}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="dropup">
-                    <div className="dropup-content">
-                      <p className="card-price">Price: €{book.price}</p>
+                    <div className="dropup">
+                      <div className="dropup-content">
+                        <p className="card-price">Price: €{book.price}</p>
+                        <h3 className="card-title">{book.title}</h3>
+                        <p className="card-author">
+                          Author:{" "}
+                          {book.authors ? book.authors.join(", ") : "Unknown"}
+                        </p>
+                        <button
+                          className="buy-now-btn"
+                          onClick={(e) => handleSubmit(e, book)}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-content">
                       <h3 className="card-title">{book.title}</h3>
                       <p className="card-author">
                         Author:{" "}
                         {book.authors ? book.authors.join(", ") : "Unknown"}
                       </p>
-                      <button
-                        className="buy-now-btn"
-                        onClick={(e) => handleSubmit(e, book)}
-                      >
-                        Add to Cart
-                      </button>
+                      <p className="card-price">Price: €{book.price}</p>
                     </div>
                   </div>
-                  <div className="card-content">
-                    <h3 className="card-title">{book.title}</h3>
-                    <p className="card-author">
-                      Author:{" "}
-                      {book.authors ? book.authors.join(", ") : "Unknown"}
-                    </p>
-                    <p className="card-price">Price: €{book.price}</p>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <p>No books found for this category.</p>
-          )}
-        </div>
+                );
+              })
+            ) : (
+              <p>No books found for this category.</p>
+            )}
+          </div>
 
-        <div className="pagination">
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
-            <GrPrevious />
-          </button>
-          {getPageNumbers().map((pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => handlePageChange(pageNumber)}
-              className={currentPage === pageNumber ? "active" : ""}
-            >
-              {pageNumber}
+          <div className="pagination">
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              <GrPrevious />
             </button>
-          ))}
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >
-            <GrNext />
-          </button>
+            {getPageNumbers().map((pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
+                className={currentPage === pageNumber ? "active" : ""}
+              >
+                {pageNumber}
+              </button>
+            ))}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <GrNext />
+            </button>
+          </div>
         </div>
       </div>
 

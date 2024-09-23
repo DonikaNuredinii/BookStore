@@ -52,13 +52,15 @@ function Dashboard() {
   return (
     <div className="container-fluid custom-bg min-vh-100 position-relative">
       <div className="row">
+        {/* Sidebar */}
         {toggle && (
           <div className="col-4 col-md-2 min-vh-100 sidebarColor-bg position-fixed">
             <Sidebar />
           </div>
         )}
         {toggle && <div className="col-4 col-md-2"></div>}
-        <div className="col">
+
+        <div className={toggle ? "col-8 col-md-10" : "col-12"}>
           <Navbar Toggle={Toggle} />
           {!isAddComponent() && <SearchBar onSearch={handleSearch} />}
           <Routes>

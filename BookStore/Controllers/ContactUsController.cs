@@ -143,10 +143,11 @@ namespace BookStore.Controllers
         [HttpGet("doughnut-data")]
         public async Task<ActionResult<IEnumerable<DoughnutData>>> GetDoughnutData()
         {
-            var doughnutData = await _context.
+            var doughnutData = await _context.Contacts
+                .GroupBy(c => c.InquiryType)
                 .Select(g => new DoughnutData
                 {
-                    Label = g.Key ?? "Unknown", 
+                    Label = g.Key ?? "Unknown",
                     Value = g.Count()
                 })
                 .ToListAsync();

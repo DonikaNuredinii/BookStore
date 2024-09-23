@@ -168,6 +168,7 @@ const Account = () => {
         localStorage.setItem("userID", userID);
         localStorage.setItem("rolesID", rolesID);
         toast.success("Login successful!");
+        window.dispatchEvent(new Event("storage"));
         navigate("/");
       })
       .catch((error) => {

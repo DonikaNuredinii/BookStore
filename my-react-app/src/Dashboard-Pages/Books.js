@@ -356,130 +356,134 @@ const Books = ({ searchQuery }) => {
 
   return (
     <Fragment>
-      <ToastContainer />
-      <div className="add-button">
-        <Link to="../add-books">
-          <Button variant="dark" className="btn-add">
-            Add
-          </Button>
-        </Link>
-      </div>
-      <Table
-        striped
-        bordered
-        hover
-        size="sm"
-        className="compact-table table-sm"
-      >
-        <thead className="table-dark">
-          <tr>
-            <th>#</th>
-            <th>ISBN</th>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Authors</th>
-            <th>Publishing house</th>
-            <th>Publication Date</th>
-            <th>Page Number</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Date of Addition</th>
-            <th>Type</th>
-            <th>Stock</th>
-            <th>Categories</th>
-            <th>Language</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data && data.length > 0 ? (
-            data.map((item, index) => {
-              const imagePath = preprocessImagePath(item.image);
-              const authors = Array.isArray(item.authors) ? item.authors : [];
-              const categories = Array.isArray(item.categories)
-                ? item.categories
-                : [];
-              const publishingHouse = item.publishingHouse || {};
-
-              return (
-                <tr key={item.bookID}>
-                  <td>{index + 1}</td>
-                  <td>{item.isbn}</td>
-                  <td>
-                    <img
-                      src={imagePath || "/images/placeholder.jpg"}
-                      alt="Book Cover"
-                      style={{ width: "50px", height: "auto" }}
-                    />
-                  </td>
-                  <td>{item.title}</td>
-                  <td>
-                    {authors.map((author) => author.author.name).join(", ")}
-                  </td>
-                  <td>
-                    {publishingHouseList.find(
-                      (house) =>
-                        house.publishingHouseId === item.publishingHouseId
-                    )?.houseName || "-"}
-                  </td>
-                  <td>{item.publicationDate}</td>
-                  <td>{item.pageNumber}</td>
-                  <td>{item.price}</td>
-                  <td>
-                    <span
-                      className="truncated-description"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title={item.description}
-                    >
-                      {truncateText(item.description, 50)}
-                    </span>
-                  </td>
-                  <td>{item.dateOfadition}</td>
-                  <td>{item.type}</td>
-                  <td>
-                    {stockList.find((stock) => stock.stockId === item.stockId)
-                      ?.quantity || "-"}
-                  </td>
-                  <td>
-                    {categories.length > 0
-                      ? categories.map((category) => category.genre).join(", ")
-                      : "No categories available"}
-                  </td>
-                  <td>
-                    <td>
-                      <td>{item.language?.languageName || "-"}</td>
-                    </td>
-                  </td>
-
-                  <td colSpan={2} className="btn">
-                    <Button
-                      variant="outline-dark"
-                      className="btn-edit"
-                      onClick={() => handleEdit(item.bookID)}
-                    >
-                      <i className="bi bi-pencil-square"></i>
-                    </Button>
-                    <Button
-                      variant="outline-dark"
-                      className="btn-delete"
-                      onClick={() => handleDelete(item.bookID)}
-                    >
-                      <i className="bi bi-trash"></i>
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
+      <div className="table-responsive">
+        <ToastContainer />
+        <div className="add-button">
+          <Link to="../add-books">
+            <Button variant="dark" className="btn-add">
+              Add
+            </Button>
+          </Link>
+        </div>
+        <Table
+          striped
+          bordered
+          hover
+          size="sm"
+          className="compact-table table-sm"
+        >
+          <thead className="table-dark">
             <tr>
-              <td colSpan="14" className="text-center">
-                No Books Available
-              </td>
+              <th>#</th>
+              <th>ISBN</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>Publishing house</th>
+              <th>Publication Date</th>
+              <th>Page Number</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Date of Addition</th>
+              <th>Type</th>
+              <th>Stock</th>
+              <th>Categories</th>
+              <th>Language</th>
+              <th>Actions</th>
             </tr>
-          )}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {data && data.length > 0 ? (
+              data.map((item, index) => {
+                const imagePath = preprocessImagePath(item.image);
+                const authors = Array.isArray(item.authors) ? item.authors : [];
+                const categories = Array.isArray(item.categories)
+                  ? item.categories
+                  : [];
+                const publishingHouse = item.publishingHouse || {};
+
+                return (
+                  <tr key={item.bookID}>
+                    <td>{index + 1}</td>
+                    <td>{item.isbn}</td>
+                    <td>
+                      <img
+                        src={imagePath || "/images/placeholder.jpg"}
+                        alt="Book Cover"
+                        style={{ width: "50px", height: "auto" }}
+                      />
+                    </td>
+                    <td>{item.title}</td>
+                    <td>
+                      {authors.map((author) => author.author.name).join(", ")}
+                    </td>
+                    <td>
+                      {publishingHouseList.find(
+                        (house) =>
+                          house.publishingHouseId === item.publishingHouseId
+                      )?.houseName || "-"}
+                    </td>
+                    <td>{item.publicationDate}</td>
+                    <td>{item.pageNumber}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <span
+                        className="truncated-description"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={item.description}
+                      >
+                        {truncateText(item.description, 50)}
+                      </span>
+                    </td>
+                    <td>{item.dateOfadition}</td>
+                    <td>{item.type}</td>
+                    <td>
+                      {stockList.find((stock) => stock.stockId === item.stockId)
+                        ?.quantity || "-"}
+                    </td>
+                    <td>
+                      {categories.length > 0
+                        ? categories
+                            .map((category) => category.genre)
+                            .join(", ")
+                        : "No categories available"}
+                    </td>
+                    <td>
+                      <td>
+                        <td>{item.language?.languageName || "-"}</td>
+                      </td>
+                    </td>
+
+                    <td colSpan={2} className="btn">
+                      <Button
+                        variant="outline-dark"
+                        className="btn-edit"
+                        onClick={() => handleEdit(item.bookID)}
+                      >
+                        <i className="bi bi-pencil-square"></i>
+                      </Button>
+                      <Button
+                        variant="outline-dark"
+                        className="btn-delete"
+                        onClick={() => handleDelete(item.bookID)}
+                      >
+                        <i className="bi bi-trash"></i>
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="14" className="text-center">
+                  No Books Available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+      </div>
 
       <Modal
         show={show}

@@ -53,24 +53,22 @@ const NavbarHome = () => {
 
     fetchData();
     checkIfAdmin();
+    window.addEventListener("storage", checkIfAdmin);
+
+    return () => {
+      window.removeEventListener("storage", checkIfAdmin);
+    };
   }, []);
 
   const checkIfAdmin = () => {
     const token = localStorage.getItem("token");
-
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
         const currentTime = Date.now() / 1000;
-
-        if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
-          console.log("User is admin");
-          setIsAdmin(true);
-        } else {
-          console.log("User is not admin, RolesID:", decodedToken.RolesID);
-          setIsAdmin(false);
-        }
+        setIsAdmin(
+          decodedToken.exp > currentTime && decodedToken.RolesID === "3"
+        );
       } catch (error) {
         console.error("Error decoding token", error);
         localStorage.removeItem("token");
@@ -83,6 +81,8 @@ const NavbarHome = () => {
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+    setSearchQuery("");
+    setSearchResults([]);
   };
 
   const toggleMenu = () => {
