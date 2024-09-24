@@ -23,6 +23,8 @@ const BookDetails = ({ addToCart }) => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const [messageTimeout, setMessageTimeout] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState(1); 
   const navigate = useNavigate();
 
   const { wishlist, addToWishlist, removeFromWishlist, isBookInWishlist } =
@@ -54,8 +56,42 @@ const BookDetails = ({ addToCart }) => {
     };
 
     fetchBookDetails();
+
+    const userToken = localStorage.getItem("token");
+    if (userToken) {
+      setIsLoggedIn(true);
+    }
+
+
   }, [bookID]);
 
+
+  const handleRatingSubmit = async (ratingValue) => {
+    const token = localStorage.getItem("token");
+    const userID = localStorage.getItem("userID");
+
+    if (!token) {
+      alert("You must be logged in to rate!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `https://localhost:7061/api/Rating`,
+        { bookID: bookID, ratingValue: ratingValue, userID: userID },
+        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", } }
+      );
+      setRating(ratingValue); // Update state to reflect the new rating
+      alert("Rating submitted successfully!");
+    } catch (error) {
+      const errorMessage = error.response ? error.response.data.message : error.message;
+      alert("Failed to submit rating: " + errorMessage);
+    }
+  };
+
+
+
+  
   const preprocessImagePath = (path) => {
     if (!path) return "default-image.jpg";
     const imageName = path.split("/").pop();
@@ -219,7 +255,7 @@ const BookDetails = ({ addToCart }) => {
                         type="radio"
                         name="rating"
                         value={ratingValue}
-                        onClick={() => setRating(ratingValue)}
+                        onClick={() => handleRatingSubmit(ratingValue)}
                       />
                       <FaStar
                         className="star"
