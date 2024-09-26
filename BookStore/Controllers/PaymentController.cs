@@ -39,23 +39,20 @@ namespace BookStore.Controllers
 
                 if (request.PaymentMethod == "creditCard")
                 {
-                    // Create Stripe payment intent
                     var options = new PaymentIntentCreateOptions
                     {
-                        Amount = (long)(request.Amount * 100),
+                        Amount = (long)(request.Amount * 100), 
                         Currency = "eur",
                         PaymentMethod = request.PaymentMethodId,
                         Confirm = true,
                         Metadata = new Dictionary<string, string>
-                        {
-                            { "OrderId", order.OrdersId.ToString() }
-                        }
+                {
+                    { "OrderId", order.OrdersId.ToString() }
+                }
                     };
 
                     var service = new PaymentIntentService();
                     var paymentIntent = service.Create(options);
-
-                    // Save payment details in database
                     var payment = new Payment
                     {
                         Amount = request.Amount,
@@ -77,6 +74,7 @@ namespace BookStore.Controllers
                 return BadRequest(new { error = ex.StripeError.Message });
             }
         }
+
         [HttpGet("{PaymentID}")]
         public async Task<ActionResult<Payment>> GetPayment(int PaymentID)
         {

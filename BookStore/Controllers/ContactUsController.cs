@@ -75,7 +75,7 @@ namespace BookStore.Controllers
         private async Task SendEmailToAdminAsync(ContactUs contactUs)
         {
             var adminEmails = await _context.Users
-                .Where(user => user.RolesID == 3) 
+                .Where(user => user.RolesID == 3)
                 .Select(user => user.Email)
                 .ToListAsync();
 
@@ -88,11 +88,8 @@ namespace BookStore.Controllers
             var body = $"You have received a new message from {contactUs.Name} ({contactUs.Email}).\n\nMessage:\n{contactUs.Message}";
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(contactUs.Name, contactUs.Email)); 
-            message.Sender = new MailboxAddress(_smtpSettings.From, _smtpSettings.From);
-    
-
- 
+            message.From.Add(new MailboxAddress(contactUs.Name, contactUs.Email));
+            message.Sender = new MailboxAddress(_smtpSettings.Username, _smtpSettings.Username); 
             message.ReplyTo.Add(new MailboxAddress(contactUs.Name, contactUs.Email));
 
             foreach (var adminEmail in adminEmails)
@@ -107,11 +104,23 @@ namespace BookStore.Controllers
             message.Body = new TextPart("plain") { Text = body };
 
             using var client = new SmtpClient();
-            await client.ConnectAsync(_smtpSettings.Host, _smtpSettings.Port, SecureSocketOptions.StartTls);
-            await client.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
-            await client.SendAsync(message);
-            await client.DisconnectAsync(true);
+
+            try
+            {
+                await client.ConnectAsync(_smtpSettings.Host, _smtpSettings.Port, SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
+                await client.SendAsync(message);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"An error occurred while sending the email: {ex.Message}", ex);
+            }
+            finally
+            {
+                await client.DisconnectAsync(true);
+            }
         }
+
 
         [HttpPut("{ContactID}")]
         public async Task<IActionResult> PutContact(int ContactID, ContactUs contactUs)

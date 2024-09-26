@@ -78,7 +78,15 @@ namespace BookStore.Controllers
                 _context.CartItems.AddRange(cartItems);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetCartItems), new { }, cartItems);
+
+                return Ok(cartItems.Select(item => new
+                {
+                    item.CartItemId, 
+                    item.Quantity,
+                    item.BookId,
+                    item.AccessoriesID,
+                    item.GiftCardId
+                }).ToList());
             }
             catch (Exception ex)
             {

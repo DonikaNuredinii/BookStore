@@ -18,7 +18,8 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 var builder = WebApplication.CreateBuilder(args);
 
 // Securely configure Stripe API key
-StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 // Add services to the container
 builder.Services.AddDbContext<MyContext>(options =>

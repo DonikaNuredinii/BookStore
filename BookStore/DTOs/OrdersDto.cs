@@ -12,9 +12,11 @@ namespace BookStore.DTOs
         public string City { get; set; }
         public int CountryID { get; set; }
         public string ZipCode { get; set; }
+        public string Email { get; set; }
         public int? DiscountID { get; set; }
         public int? GiftCardID { get; set; }
         public PaymentDto Payment { get; set; }
-        public List<OrderDetailsDto> OrderDetails { get; set; }
+        public OrderDetailsDto OrderDetails { get; set; }
+        public int UserID { get; set; }
     }
 }

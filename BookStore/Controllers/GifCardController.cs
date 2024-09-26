@@ -101,7 +101,7 @@ namespace WebApplication1.Controllers
 
         // POST: api/GiftCard/apply
         [HttpPost("apply")]
-        public async Task<ActionResult<decimal>> ApplyGiftCard([FromBody] GiftCardApplicationDto application)
+        public async Task<ActionResult<GiftCardResponseDto>> ApplyGiftCard([FromBody] GiftCardApplicationDto application)
         {
             if (string.IsNullOrWhiteSpace(application.GiftCardCode) || application.UsedAmount <= 0)
             {
@@ -115,7 +115,6 @@ namespace WebApplication1.Controllers
 
                 if (giftCard == null)
                 {
-                    _logger.LogWarning("Gift card not found: {GiftCardCode}", application.GiftCardCode);
                     return NotFound("Gift card not found or inactive.");
                 }
 
@@ -126,17 +125,21 @@ namespace WebApplication1.Controllers
 
                 giftCard.Amount -= application.UsedAmount;
 
-   
-                if (giftCard.Amount == 0)
+                if (giftCard.Amount <= 0)
                 {
-                    giftCard.IsActive = false; 
+                    giftCard.IsActive = false;
                 }
-
 
                 _context.GiftCards.Update(giftCard);
                 await _context.SaveChangesAsync();
 
-                return Ok(giftCard.Amount); 
+                var response = new GiftCardResponseDto
+                {
+                    RemainingAmount = giftCard.Amount,
+                    GiftCardId = giftCard.GiftCardID
+                };
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -144,13 +147,44 @@ namespace WebApplication1.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        public class GiftCardResponseDto
+        {
+            public decimal RemainingAmount { get; set; }
+            public int GiftCardId { get; set; }
+        }
 
 
-        // Helper method to generate a unique gift card code
+        [HttpGet("balance/{code}")]
+        public async Task<ActionResult<GiftCardBalanceDto>> GetGiftCardBalance(string code)
+        {
+            var giftCard = await _context.GiftCards
+                .FirstOrDefaultAsync(g => g.Code == code && g.IsActive);
+
+            if (giftCard == null)
+            {
+                return NotFound("Gift card not found or inactive.");
+            }
+
+            var response = new GiftCardBalanceDto
+            {
+                Amount = giftCard.Amount,
+                GiftCardId = giftCard.GiftCardID
+            };
+
+            return Ok(response);
+        }
+        public class GiftCardBalanceDto
+        {
+            public decimal Amount { get; set; }
+            public int GiftCardId { get; set; }
+        }
+
+
+
         private string GenerateGiftCardCode()
         {
-            // Your logic for generating a unique gift card code
-            return Guid.NewGuid().ToString().Substring(0, 8).ToUpper(); // Example
+           
+            return Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
         }
 
         // PUT: api/GiftCard/5
@@ -183,6 +217,47 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
+        [HttpPost("revert")]
+        public async Task<IActionResult> RevertGiftCardAmount([FromBody] GiftCardRevertDto revertDto)
+        {
+            if (string.IsNullOrWhiteSpace(revertDto.GiftCardCode) || revertDto.RevertedAmount <= 0)
+            {
+                return BadRequest("Gift card code is required and a valid amount must be specified.");
+            }
+
+            try
+            {
+                var giftCard = await _context.GiftCards
+                    .FirstOrDefaultAsync(g => g.Code == revertDto.GiftCardCode && !g.IsActive);
+
+                if (giftCard == null)
+                {
+                    return NotFound("Gift card not found or already active.");
+                }
+
+               
+                giftCard.Amount += revertDto.RevertedAmount;
+                giftCard.IsActive = true;
+
+                _context.GiftCards.Update(giftCard);
+                await _context.SaveChangesAsync();
+
+                return Ok(giftCard.Amount);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error reverting gift card amount for code {GiftCardCode}", revertDto.GiftCardCode);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        public class GiftCardRevertDto
+        {
+            public string GiftCardCode { get; set; }
+            public decimal RevertedAmount { get; set; }
+        }
+
+
+
 
         private bool GiftCardExists(int id)
         {

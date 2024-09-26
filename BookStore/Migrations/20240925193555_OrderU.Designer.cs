@@ -4,6 +4,7 @@ using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20240925193555_OrderU")]
+    partial class OrderU
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,9 +217,6 @@ namespace BookStore.Migrations
                     b.Property<int?>("GiftCardId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderDetailsID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -227,8 +227,6 @@ namespace BookStore.Migrations
                     b.HasIndex("BookId");
 
                     b.HasIndex("GiftCardId");
-
-                    b.HasIndex("OrderDetailsID");
 
                     b.ToTable("CartItems");
                 });
@@ -524,10 +522,6 @@ namespace BookStore.Migrations
                     b.Property<int?>("DiscountID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("GiftCardID")
                         .HasColumnType("int");
 
@@ -781,9 +775,8 @@ namespace BookStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsID"));
 
-                    b.Property<string>("CartItemIds")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CartItemId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("InvoiceDate")
                         .HasColumnType("datetime2");
@@ -799,6 +792,8 @@ namespace BookStore.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderDetailsID");
+
+                    b.HasIndex("CartItemId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -887,10 +882,6 @@ namespace BookStore.Migrations
                     b.HasOne("BookStore.Models.GiftCard", "GiftCard")
                         .WithMany()
                         .HasForeignKey("GiftCardId");
-
-                    b.HasOne("OrderDetails", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("OrderDetailsID");
 
                     b.Navigation("Accessories");
 
@@ -1064,6 +1055,17 @@ namespace BookStore.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("OrderDetails", b =>
+                {
+                    b.HasOne("BookStore.Models.CartItem", "CartItem")
+                        .WithMany()
+                        .HasForeignKey("CartItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CartItem");
+                });
+
             modelBuilder.Entity("Ebook", b =>
                 {
                     b.HasOne("BookStore.Models.Book", null)
@@ -1119,11 +1121,6 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Quote", b =>
                 {
                     b.Navigation("AuthorQuotes");
-                });
-
-            modelBuilder.Entity("OrderDetails", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Ebook", b =>

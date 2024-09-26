@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "../App.css";
 import { CiCreditCard1 } from "react-icons/ci";
@@ -10,22 +10,43 @@ const images = require.context("../Images", false, /\.(png|jpe?g|svg)$/);
 
 const CheckoutForm = () => {
   const stripe = useStripe();
+  const [userId, setUserId] = useState(null);
   const elements = useElements();
+  const [setShowLoginMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const handleOrderSuccess = (message) => {
+    setSuccessMessage(message);
+    setShowSuccessPopup(true);
+  };
+
+  useEffect(() => {
+    const userIdFromStorage = localStorage.getItem("userID");
+    if (userIdFromStorage) {
+      setUserId(parseInt(userIdFromStorage, 10));
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        userID: parseInt(userIdFromStorage, 10),
+      }));
+    }
+  }, []);
+
   const location = useLocation();
   const {
     cartData = [],
     discountedPrice = 0,
     discount = 0,
+    appliedGiftCard,
+    cartItemIds = [],
   } = location.state || {};
-
-  // Calculate totalPrice dynamically
-  // Calculate totalPrice dynamically
   const totalPrice = cartData.reduce((total, item) => {
-    return total + (item.price || 0) * (item.quantity || 0); // Default to 0 if item.price or item.quantity is undefined
+    return total + (item.price || 0) * (item.quantity || 0);
   }, 0);
 
   const [countries, setCountries] = useState([]);
   const [giftCardCode, setGiftCardCode] = useState("");
+  const [giftCardBalance, setGiftCardBalance] = useState(0);
   const [appliedGiftCardAmount, setAppliedGiftCardAmount] = useState(0);
 
   const [formData, setFormData] = useState({
@@ -35,26 +56,27 @@ const CheckoutForm = () => {
     firstName: "",
     lastName: "",
     address: "",
-    postalCode: "",
+    zipCode: "",
     city: "",
     phoneNumber: "",
     paymentMethod: "creditCard",
+    discountID: null,
+    giftCardID: appliedGiftCard ? appliedGiftCard.id : null,
     payment: {
-      amount: totalPrice, // Use totalPrice here
+      amount: totalPrice,
       lastFourDigits: "",
       transactionID: "",
     },
-    orderDetails: cartData.map((item) => ({
-      totalPrice: item.price * item.quantity, // Calculate total price per item
+    orderDetails: {
+      totalPrice: totalPrice,
       invoiceDate: new Date().toISOString(),
       orderShipDate: new Date(
         Date.now() + 7 * 24 * 60 * 60 * 1000
       ).toISOString(),
       invoiceNumber: `INV${Math.floor(Math.random() * 1000)}`,
-      cartItemId: item.id,
-    })),
-    discountID: null,
-    giftCardID: null,
+      cartItemIds: cartItemIds,
+    },
+    userID: userId ? parseInt(userId, 10) : null,
   });
   const [currentDiscountedPrice, setCurrentDiscountedPrice] =
     useState(discountedPrice);
@@ -62,6 +84,10 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const handleClosePopup = () => {
+    setShowSuccessPopup(false);
+    navigate("/");
+  };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -84,6 +110,29 @@ const CheckoutForm = () => {
     fetchCountries();
   }, []);
 
+  const revertGiftCardAmount = async () => {
+    if (formData.giftCardID) {
+      const revertResponse = await fetch(
+        "https://localhost:7061/api/GiftCard/revert",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            giftCardCode: giftCardCode,
+            revertedAmount: appliedGiftCardAmount,
+          }),
+        }
+      );
+
+      if (!revertResponse.ok) {
+        const errorData = await revertResponse.json();
+        console.error("Failed to revert gift card amount:", errorData.message);
+      }
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (name.startsWith("paymentDetails.")) {
@@ -103,66 +152,75 @@ const CheckoutForm = () => {
     }
   };
 
-  const applyGiftCard = async () => {
-    setLoading(true);
-    setError("");
-
-    const { giftCardCode } = formData;
-
+  const handleGiftCardApply = async () => {
     if (!giftCardCode) {
-      setError("Please enter a gift card code.");
-      setLoading(false);
+      alert("Please enter a gift card code.");
       return;
     }
 
     try {
-      const response = await fetch(
+      const balanceResponse = await fetch(
+        `https://localhost:7061/api/GiftCard/balance/${giftCardCode}`
+      );
+
+      if (!balanceResponse.ok) {
+        const errorMessage = await balanceResponse.text();
+        throw new Error(`Failed to fetch gift card balance: ${errorMessage}`);
+      }
+
+      const { amount: fetchedBalance, giftCardId } =
+        await balanceResponse.json();
+      setGiftCardBalance(fetchedBalance);
+
+      const amountToApply = Math.min(
+        fetchedBalance,
+        totalPrice - appliedGiftCardAmount
+      );
+
+      if (amountToApply <= 0) {
+        alert("No amount can be applied from this gift card.");
+        return;
+      }
+
+      const applyResponse = await fetch(
         "https://localhost:7061/api/GiftCard/apply",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(giftCardCode),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            giftCardCode,
+            usedAmount: amountToApply,
+          }),
         }
       );
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        setError(errorText);
-        setLoading(false);
-        return;
+      if (!applyResponse.ok) {
+        const errorMessage = await applyResponse.text();
+        throw new Error(`Failed to apply gift card: ${errorMessage}`);
       }
 
-      const amount = await response.json(); // Assuming the amount is returned directly
-      const giftCardIDResponse = await fetch(
-        `https://localhost:7061/api/GiftCard?code=${giftCardCode}`
+      const { remainingAmount } = await applyResponse.json();
+      setAppliedGiftCardAmount((prev) => prev + amountToApply);
+
+      const newTotalPrice = totalPrice - amountToApply;
+      setCurrentDiscountedPrice(newTotalPrice);
+
+      setGiftCardBalance(remainingAmount);
+      formData.giftCardID = giftCardId;
+
+      alert(
+        `Successfully applied €${amountToApply.toFixed(2)} from the gift card.`
       );
-
-      const giftCardData = await giftCardIDResponse.json();
-
-      if (!giftCardData || !giftCardData.GiftCardID) {
-        setError("Gift card not found.");
-        setLoading(false);
-        return;
-      }
-
-      setAppliedGiftCardAmount(amount);
-      const newTotalPrice = totalPrice - amount;
-      setFormData((prev) => ({
-        ...prev,
-        payment: { ...prev.payment, amount: newTotalPrice },
-        giftCardID: giftCardData.GiftCardID,
-      }));
-
-      setSuccessMessage("Gift card applied successfully!");
-      setLoading(false);
     } catch (error) {
-      setError("Error applying gift card.");
       console.error("Error applying gift card:", error);
-      setLoading(false);
+      alert(`Error applying gift card: ${error.message}`);
     }
   };
+
   const displayPrice = (price) => {
-    return price ? price.toFixed(2) : "0.00"; // Safe check
+    return price ? price.toFixed(2) : "0.00";
   };
 
   const preprocessImagePath = (path) => {
@@ -174,134 +232,57 @@ const CheckoutForm = () => {
       return "/images/placeholder.jpg";
     }
   };
-  const handleCheckout = async () => {
-    // Ensure that Stripe and Elements are available
-    if (!stripe || !elements) return;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    setLoading(true);
-    setError("");
-
-    // Prepare the data for the order creation
-    const orderData = {
-      OrderDate: new Date().toISOString(),
-      Address: formData.address,
-      City: formData.city,
-      CountryID: formData.countryID,
-      ZipCode: formData.postalCode,
-      DiscountID: formData.discountID || null,
-      GiftCardID: formData.giftCardID || null, // Optional
-      CartItems: cartData.map((item) => ({
-        BookId: item.bookId || null, // Ensure correct ID types
-        AccessoriesID: item.accessoriesID || null,
-        GiftCardId: item.giftCardId || null,
-        Quantity: item.quantity,
-      })),
-    };
-
-    try {
-      // Step 1: Create the order
-      const orderResponse = await fetch("https://localhost:7061/api/Order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData), // Send order details to backend
-      });
-
-      if (!orderResponse.ok) {
-        throw new Error("Failed to create order");
-      }
-
-      const createdOrder = await orderResponse.json(); // Get created order response
-
-      // Step 2: If payment is by credit card, initiate Stripe payment
-      if (formData.paymentMethod === "creditCard") {
-        const paymentResponse = await fetch(
-          "https://localhost:7061/api/Payments", // Backend payment endpoint
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              OrdersId: createdOrder.OrdersId,
-              Amount: currentDiscountedPrice, // Pass the discounted total price
-              PaymentMethod: "creditCard",
-            }),
-          }
-        );
-
-        if (!paymentResponse.ok) {
-          throw new Error("Failed to process payment");
-        }
-
-        const paymentIntentData = await paymentResponse.json(); // Get payment intent data
-        const cardElement = elements.getElement(CardElement); // Get CardElement instance
-
-        // Confirm the payment using Stripe
-        const paymentResult = await stripe.confirmCardPayment(
-          paymentIntentData.clientSecret,
-          {
-            payment_method: {
-              card: cardElement,
-              billing_details: {
-                name: `${formData.firstName} ${formData.lastName}`,
-                email: formData.email,
-                address: {
-                  line1: formData.address,
-                  city: formData.city,
-                  postal_code: formData.postalCode,
-                  country: formData.countryID,
-                },
-              },
-            },
-          }
-        );
-
-        if (paymentResult.error) {
-          setError(`Payment failed: ${paymentResult.error.message}`);
-        } else if (paymentResult.paymentIntent.status === "succeeded") {
-          setSuccessMessage("Payment successful! Your order has been placed.");
-        }
-      } else if (formData.paymentMethod === "cashOnDelivery") {
-        // Step 3: Handle Cash on Delivery
-        setOrderDetails(createdOrder); // Store order details if Cash on Delivery
-        setSuccessMessage(
-          "Order placed! Payment will be collected on delivery."
-        );
-      }
-    } catch (error) {
-      setError(error.message); // Catch and display any errors
-    } finally {
-      setLoading(false); // Set loading to false after completion
+    if (!stripe || !elements) {
+      return;
     }
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    const cardElement = elements.getElement(CardElement);
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+    });
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      payment: {
+        ...prevFormData.payment,
+        lastFourDigits: paymentMethod.card.last4,
+        transactionID: paymentMethod.id,
+      },
+    }));
 
     const orderPayload = {
-      ordersId: 0, // Ensure ordersId is initialized or auto-generated in backend
+      ordersId: 0,
       orderDate: new Date().toISOString(),
       address: formData.address,
       city: formData.city,
       countryID: formData.countryID,
-      zipCode: formData.postalCode,
-      discountID: formData.discountID || null, // Use null if not set
-      giftCardID: formData.giftCardID || null, // Use null if not set
+      zipCode: formData.zipCode,
+      email: formData.email,
+      discountID: formData.discountID,
+      giftCardID: formData.giftCardID,
       payment: {
-        amount:
-          totalPrice - (formData.giftCardID ? formData.giftCardAmount : 0), // Final amount after discount
-        paymentMethod: formData.paymentMethod,
-        lastFourDigits: "", // Set this after payment processing
-        transactionID: "", // Set this after payment processing
+        amount: formData.payment.amount,
+        lastFourDigits: paymentMethod.card.last4,
+        paymentMethod: "creditCard",
+        transactionID: paymentMethod.id,
       },
-      orderDetails: formData.orderDetails,
+      orderDetails: {
+        totalPrice: formData.orderDetails.totalPrice,
+        invoiceDate: formData.orderDetails.invoiceDate,
+        orderShipDate: formData.orderDetails.orderShipDate,
+        invoiceNumber: formData.orderDetails.invoiceNumber,
+        cartItemIds: formData.orderDetails.cartItemIds,
+      },
+      userID: formData.userID,
     };
+    console.log("Order payload being sent:", orderPayload);
 
     try {
-      const response = await fetch("https://localhost:7061/api/Orders", {
+      const response = await fetch("https://localhost:7061/api/Order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -309,20 +290,49 @@ const CheckoutForm = () => {
         body: JSON.stringify(orderPayload),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setOrderDetails(data); // Handle successful order creation
-        setSuccessMessage("Order placed successfully!");
-      } else {
-        throw new Error("Failed to create order");
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error details:", errorData);
+        setErrorMessage("An error occurred while processing your order.");
+        return;
       }
-    } catch (err) {
-      setError("An error occurred while placing the order. Please try again.");
-    } finally {
-      setLoading(false);
+
+      const orderData = await response.json();
+      setShowSuccessPopup(true);
+      setSuccessMessage("Your order has been processed successfully!");
+
+      setErrorMessage("");
+
+      setFormData({
+        address: "",
+        city: "",
+        countryID: 0,
+        zipCode: "",
+        discountID: null,
+        giftCardID: null,
+        payment: {
+          amount: 0,
+          paymentMethod: "",
+          lastFourDigits: "",
+          transactionID: "",
+        },
+        orderDetails: {
+          totalPrice: 0,
+          invoiceDate: new Date().toISOString(),
+          orderShipDate: new Date(
+            new Date().setDate(new Date().getDate() + 7)
+          ).toISOString(),
+          invoiceNumber: "INV10",
+          cartItemIds: [],
+        },
+        userID: 0,
+      });
+    } catch (error) {
+      revertGiftCardAmount();
+      console.error("Error processing order:", error);
+      setErrorMessage("An unexpected error occurred. Please try again.");
     }
   };
-
   const cardElementOptions = {
     style: {
       base: {
@@ -343,6 +353,15 @@ const CheckoutForm = () => {
 
   return (
     <div className="checkout-container">
+      {showSuccessPopup && (
+        <div className="overlayP">
+          <div className="success-popup">
+            <p>{successMessage}</p>
+            <button onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
+
       {!orderDetails ? (
         <form
           className="checkout-form"
@@ -422,13 +441,13 @@ const CheckoutForm = () => {
               />
               <input
                 type="text"
-                name="postalCode"
-                placeholder="Postal code"
+                name="zipCode"
+                placeholder="Zip code"
                 className="form-input"
-                value={formData.postalCode}
+                value={formData.zipCode}
                 onChange={handleChange}
                 required
-                autoComplete="postal-code"
+                autoComplete="Zip-code"
               />
               <input
                 type="text"
@@ -538,7 +557,6 @@ const CheckoutForm = () => {
                 </div>
               </div>
             </div>
-
             <div className="gift-card">
               <h2>Gift Card</h2>
               <input
@@ -546,19 +564,19 @@ const CheckoutForm = () => {
                 name="giftCardCode"
                 placeholder="Gift card code"
                 className="gift-card-input"
-                value={formData.giftCardCode}
-                onChange={handleChange}
+                value={giftCardCode}
+                onChange={(e) => setGiftCardCode(e.target.value)}
               />
               <button
                 type="button"
-                onClick={applyGiftCard}
+                onClick={handleGiftCardApply}
                 className="apply-gift-card-button"
                 disabled={loading}
               >
                 Apply Gift Card
               </button>
             </div>
-            {error && <p className="error-message">{error}</p>}
+            {error && <p className="error-message">{error}</p>}{" "}
             {successMessage && (
               <p className="success-message">{successMessage}</p>
             )}
@@ -602,12 +620,13 @@ const CheckoutForm = () => {
             </div>
             <div className="summary-details">
               <p>Subtotal: €{(totalPrice || 0).toFixed(2)}</p>
-              <p>Total Price: €{(totalPrice || 0).toFixed(2)}</p>
               <p>
-                Discounted Price: €{(currentDiscountedPrice || 0).toFixed(2)}
+                Applied Gift Card Amount: €
+                {(appliedGiftCardAmount || 0).toFixed(2)}
               </p>
               <p>
-                Gift Card Applied: €{(formData.giftCardAmount || 0).toFixed(2)}
+                Total Price After Gift Card: €
+                {(currentDiscountedPrice || 0).toFixed(2)}
               </p>
             </div>
           </div>

@@ -31,6 +31,7 @@ namespace BookStore.Models
 
         [Required]
         public string ZipCode { get; set; }
+        public string Email { get; set; }
 
         [ForeignKey("Discount")]
         public int? DiscountID { get; set; }
@@ -44,5 +45,7 @@ namespace BookStore.Models
         [ForeignKey("OrderDetails")]
         public int OrderDetailsID { get; set; }
         public virtual OrderDetails OrderDetails { get; set; }
+        public int UserID { get; set; }
+        public ICollection<UserOrder> UserOrders { get; set; }
     }
 }

@@ -9,6 +9,8 @@ const Cart = ({ cart = [], setCart }) => {
   const [discount, setDiscount] = useState(0);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cartItemIds, setCartItemIds] = useState([]);
+  const [isDataSaved, setIsDataSaved] = useState(false);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -18,7 +20,14 @@ const Cart = ({ cart = [], setCart }) => {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    const ids = cart
+      .map((item) => item.cartItemId)
+      .filter((id) => id !== undefined && id !== 0);
+    setCartItemIds(ids);
+    console.log("Cart Item IDs:", ids);
   }, [cart]);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -29,7 +38,6 @@ const Cart = ({ cart = [], setCart }) => {
     }
   }, []);
 
-  // Fetch discount from backend
   useEffect(() => {
     const fetchDiscount = async () => {
       try {
@@ -48,7 +56,6 @@ const Cart = ({ cart = [], setCart }) => {
     fetchDiscount();
   }, []);
 
-  // Handle quantity change
   const handleQuantityChange = (index, delta) => {
     setQuantities((prevQuantities) =>
       prevQuantities.map((quantity, i) =>
@@ -57,7 +64,6 @@ const Cart = ({ cart = [], setCart }) => {
     );
   };
 
-  // Preprocess image paths
   const preprocessImagePath = (path) => {
     if (!path) {
       console.warn("Image path is not defined");
@@ -72,17 +78,13 @@ const Cart = ({ cart = [], setCart }) => {
       return null;
     }
   };
-
   const saveCartItemsToBackend = async (cartData) => {
-    // Now sending an array of cart items
     const formattedCartData = cartData.map((item) => ({
       Quantity: item.quantity,
       BookId: item.bookId || null,
       AccessoriesID: item.accessoriesID || null,
       GiftCardId: item.giftCardId || null,
     }));
-
-    console.log("Data being sent to backend:", formattedCartData);
 
     try {
       const response = await fetch("https://localhost:7061/api/CartItems", {
@@ -91,21 +93,20 @@ const Cart = ({ cart = [], setCart }) => {
         body: JSON.stringify(formattedCartData),
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`Failed to save cart items: ${errorText}`);
-        return false;
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Saved cart items response:", data);
+        return data.map((item) => item.cartItemId);
+      } else {
+        console.error("Failed to save cart items:", response.statusText);
+        return [];
       }
-
-      console.log("Cart items saved successfully!");
-      return true;
     } catch (error) {
       console.error("Error saving cart items:", error);
-      return false;
+      return [];
     }
   };
 
-  // Handle checkout
   const handleCheckout = async () => {
     if (isLoggedIn) {
       const cartData = cart.map((item, index) => ({
@@ -128,8 +129,11 @@ const Cart = ({ cart = [], setCart }) => {
 
       const discountedPrice = totalPrice * (1 - discount);
 
-      const savedSuccessfully = await saveCartItemsToBackend(cartData);
-      if (!savedSuccessfully) {
+      const savedCartItemIds = await saveCartItemsToBackend(cartData);
+
+      console.log("Saved cart item IDs:", savedCartItemIds);
+
+      if (!savedCartItemIds || savedCartItemIds.length === 0) {
         alert("Failed to save cart items. Please try again.");
         return;
       }
@@ -140,6 +144,7 @@ const Cart = ({ cart = [], setCart }) => {
           totalPrice: totalPrice,
           discountedPrice: discountedPrice,
           discount: discount,
+          cartItemIds: savedCartItemIds,
         },
       });
     } else {
@@ -147,7 +152,6 @@ const Cart = ({ cart = [], setCart }) => {
     }
   };
 
-  // Remove item from cart
   const removeFromCart = (index) => {
     const newCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
     const newQuantities = [
@@ -158,7 +162,6 @@ const Cart = ({ cart = [], setCart }) => {
     setQuantities(newQuantities);
   };
 
-  // Calculate total price
   const calculateTotalPrice = () => {
     return cart.reduce(
       (total, item, index) => total + item.price * quantities[index],
@@ -166,7 +169,6 @@ const Cart = ({ cart = [], setCart }) => {
     );
   };
 
-  // Calculate discounted price
   const calculateDiscountedPrice = () => {
     const totalPrice = calculateTotalPrice();
     return totalPrice * (1 - discount);

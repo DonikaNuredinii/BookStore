@@ -21,10 +21,7 @@ public class OrderDetails
 
     [Required]
     public string InvoiceNumber { get; set; }
-
-
-    [ForeignKey("CartItem")]
-    public int CartItemId { get; set; }
-    public virtual CartItem CartItem { get; set; }
+    public List<int> CartItemIds { get; set; }
+    public virtual ICollection<CartItem> CartItems { get; set; }
 
 }

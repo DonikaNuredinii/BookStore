@@ -22,25 +22,73 @@ namespace BookStore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrderDetails()
         {
-            var orderDetails = await _context.OrderDetails.Include(od => od.CartItem).ToListAsync();
-            return Ok(orderDetails);
+            try
+            {
+                var orderDetails = await _context.OrderDetails
+                    .Select(od => new
+                    {
+                        od.OrderDetailsID,
+                        od.TotalPrice,
+                        od.InvoiceDate,
+                        od.OrderShipDate,
+                        od.InvoiceNumber,
+                        CartItemIds = od.CartItemIds 
+                    })
+                    .ToListAsync();
+
+                if (orderDetails == null || !orderDetails.Any())
+                {
+                    return NotFound("No order details found.");
+                }
+
+                return Ok(orderDetails);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while retrieving order details.",
+                    detail = ex.InnerException?.Message ?? ex.Message
+                });
+            }
         }
 
         // GET: api/orderdetails/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDetails>> GetOrderDetails(int id)
         {
-            var orderDetails = await _context.OrderDetails
-                .Include(od => od.CartItem)
-                .FirstOrDefaultAsync(od => od.OrderDetailsID == id);
-
-            if (orderDetails == null)
+            try
             {
-                return NotFound();
-            }
+                var orderDetails = await _context.OrderDetails
+                    .Where(od => od.OrderDetailsID == id)
+                    .Select(od => new
+                    {
+                        od.OrderDetailsID,
+                        od.TotalPrice,
+                        od.InvoiceDate,
+                        od.OrderShipDate,
+                        od.InvoiceNumber,
+                        CartItemIds = od.CartItemIds 
+                    })
+                    .FirstOrDefaultAsync();
 
-            return Ok(orderDetails);
+                if (orderDetails == null)
+                {
+                    return NotFound("Order details not found.");
+                }
+
+                return Ok(orderDetails);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while retrieving the order details.",
+                    detail = ex.InnerException?.Message ?? ex.Message
+                });
+            }
         }
+
 
         // POST: api/orderdetails
         [HttpPost]
@@ -50,7 +98,7 @@ namespace BookStore.Controllers
             {
                 return BadRequest("Invalid order details.");
             }
-            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemId);
+            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemIds);
             if (cartItem == null)
             {
                 return BadRequest("Invalid CartItem ID.");
@@ -62,7 +110,7 @@ namespace BookStore.Controllers
                 InvoiceDate = orderDetailsDto.InvoiceDate,
                 OrderShipDate = orderDetailsDto.OrderShipDate,
                 InvoiceNumber = orderDetailsDto.InvoiceNumber,
-                CartItemId = orderDetailsDto.CartItemId
+                CartItemIds = orderDetailsDto.CartItemIds
             };
 
             _context.OrderDetails.Add(orderDetails);
@@ -97,7 +145,7 @@ namespace BookStore.Controllers
             }
 
       
-            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemId);
+            var cartItem = await _context.CartItems.FindAsync(orderDetailsDto.CartItemIds);
             if (cartItem == null)
             {
                 return BadRequest("Invalid CartItem ID.");
@@ -113,7 +161,7 @@ namespace BookStore.Controllers
             existingOrderDetails.InvoiceDate = orderDetailsDto.InvoiceDate;
             existingOrderDetails.OrderShipDate = orderDetailsDto.OrderShipDate;
             existingOrderDetails.InvoiceNumber = orderDetailsDto.InvoiceNumber;
-            existingOrderDetails.CartItemId = orderDetailsDto.CartItemId;
+            existingOrderDetails.CartItemIds = orderDetailsDto.CartItemIds;
 
             _context.Entry(existingOrderDetails).State = EntityState.Modified;
 

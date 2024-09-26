@@ -1,5 +1,6 @@
 using BookStore.DTOs;
 using BookStore.Models;
+using BookStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,12 +18,14 @@ namespace BookStore.Controllers
     {
         private readonly MyContext _context;
         private readonly ILogger<OrderController> _logger;
-
-        public OrderController(MyContext context, ILogger<OrderController> logger)
+        private readonly EmailService _emailService;
+        public OrderController(MyContext context, ILogger<OrderController> logger, EmailService emailService)
         {
             _context = context;
             _logger = logger;
+            _emailService = emailService;
         }
+
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
@@ -31,7 +34,7 @@ namespace BookStore.Controllers
             {
                 var orders = await _context.Orders
                     .Include(o => o.OrderDetails)
-                    .ThenInclude(od => od.CartItem)
+                    .ThenInclude(od => od.CartItems)
                     .ToListAsync();
 
                 if (orders == null || !orders.Any())
@@ -55,7 +58,7 @@ namespace BookStore.Controllers
             {
                 var order = await _context.Orders
                     .Include(o => o.OrderDetails)
-                    .ThenInclude(od => od.CartItem)
+                    .ThenInclude(od => od.CartItems)
                     .FirstOrDefaultAsync(o => o.OrdersId == orderId);
 
                 if (order == null)
@@ -82,17 +85,20 @@ namespace BookStore.Controllers
 
             try
             {
+                var user = await _context.Users.FindAsync(orderDto.UserID);
+                if (user == null)
+                {
+                    return BadRequest("User not found.");
+                }
+
                 var orderDetails = new OrderDetails
                 {
-                    TotalPrice = orderDto.OrderDetails[0].TotalPrice,
-                    InvoiceDate = orderDto.OrderDetails[0].InvoiceDate,
-                    OrderShipDate = orderDto.OrderDetails[0].OrderShipDate,
-                    InvoiceNumber = orderDto.OrderDetails[0].InvoiceNumber,
-                    CartItemId = orderDto.OrderDetails[0].CartItemId
+                    TotalPrice = orderDto.OrderDetails.TotalPrice,
+                    InvoiceDate = orderDto.OrderDetails.InvoiceDate,
+                    OrderShipDate = orderDto.OrderDetails.OrderShipDate,
+                    InvoiceNumber = orderDto.OrderDetails.InvoiceNumber,
+                    CartItemIds = orderDto.OrderDetails.CartItemIds 
                 };
-
-                _context.OrderDetails.Add(orderDetails);
-                await _context.SaveChangesAsync();
 
                 var order = new Orders
                 {
@@ -101,32 +107,44 @@ namespace BookStore.Controllers
                     City = orderDto.City,
                     CountryID = orderDto.CountryID,
                     ZipCode = orderDto.ZipCode,
+                    Email = orderDto.Email,
                     DiscountID = orderDto.DiscountID,
                     GiftCardID = orderDto.GiftCardID,
                     Payment = new Payment
                     {
                         Amount = orderDto.Payment.Amount,
-                        PaymentMethod = orderDto.Payment.PaymentMethod,
                         LastFourDigits = orderDto.Payment.LastFourDigits,
+                        PaymentMethod = orderDto.Payment.PaymentMethod,
                         TransactionID = orderDto.Payment.TransactionID
                     },
-                    OrderDetailsID = orderDetails.OrderDetailsID
+                    OrderDetails = orderDetails, 
+                    UserID = orderDto.UserID,
                 };
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
-                return Ok(order);
+               
+                var recipientEmails = new[] { orderDto.Email };
+                var invoiceNumber = orderDto.OrderDetails.InvoiceNumber;
+                var totalPrice = orderDto.OrderDetails.TotalPrice;
+                var invoiceDate = orderDto.OrderDetails.InvoiceDate;
+                var invoiceDetails = "Order details summary..."; 
+
+
+                await _emailService.SendInvoiceEmailAsync(recipientEmails, invoiceNumber, totalPrice, invoiceDate, invoiceDetails, orderDto.OrderDetails.CartItemIds);
+
+                return Ok(new { message = "Order placed successfully.", orderId = order.OrdersId });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new
-                {
-                    message = "An error occurred while saving the entity changes.",
-                    detail = ex.InnerException?.Message ?? ex.Message
-                });
+                _logger.LogError(ex, "Error processing order.");
+                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
+
+
+
 
 
 
@@ -156,7 +174,7 @@ namespace BookStore.Controllers
 
                 _context.Entry(order).State = EntityState.Modified;
 
-                // Update OrderDetails here if necessary
+   
 
                 await _context.SaveChangesAsync();
                 return NoContent();
@@ -166,7 +184,6 @@ namespace BookStore.Controllers
                 return NotFound();
             }
         }
-        // GET: api/order/total-earnings
         [HttpGet("total-earnings")]
         public async Task<ActionResult<decimal>> GetTotalEarnings()
         {
@@ -176,28 +193,42 @@ namespace BookStore.Controllers
             return Ok(totalEarnings);
         }
 
-        // GET: api/order/orders-summary
         [HttpGet("orders-summary")]
         public async Task<ActionResult> GetOrdersSummary()
         {
-            var bookOrdersCount = await _context.OrderDetails
-                .Include(od => od.CartItem)
-                .CountAsync(od => od.CartItem.BookId != null);
-
-            var accessoriesOrdersCount = await _context.OrderDetails
-                .Include(od => od.CartItem)
-                .CountAsync(od => od.CartItem.AccessoriesID != null);
-
-            var ebookLoansCount = await _context.EbookLoans.CountAsync();
-
-            var summary = new
+            try
             {
-                bookOrders = bookOrdersCount,
-                accessoriesOrders = accessoriesOrdersCount,
-                ebookLoans = ebookLoansCount
-            };
+                var bookOrdersCount = await _context.OrderDetails
+                    .Include(od => od.CartItems)
+                    .Where(od => od.CartItemIds != null && od.CartItemIds.Any())
+                    .SelectMany(od => od.CartItems)
+                    .CountAsync(ci => ci.BookId != null);
 
-            return Ok(summary);
+                var accessoriesOrdersCount = await _context.OrderDetails
+                    .Include(od => od.CartItems)
+                    .Where(od => od.CartItemIds != null && od.CartItemIds.Any())
+                    .SelectMany(od => od.CartItems)
+                    .CountAsync(ci => ci.AccessoriesID != null);
+
+                var ebookLoansCount = await _context.EbookLoans.CountAsync();
+
+                var summary = new
+                {
+                    bookOrders = bookOrdersCount,
+                    accessoriesOrders = accessoriesOrdersCount,
+                    ebookLoans = ebookLoansCount
+                };
+
+                return Ok(summary);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while retrieving the orders summary.",
+                    detail = ex.InnerException?.Message ?? ex.Message
+                });
+            }
         }
 
         // GET: api/orders/timeline

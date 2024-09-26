@@ -11,12 +11,11 @@ const GiftCard = ({ addToCart }) => {
   const [message, setMessage] = useState("");
   const [senderName, setSenderName] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [userId, setUserId] = useState(null); // Add state for storing user ID
+  const [userId, setUserId] = useState(null);
   const [formErrors, setFormErrors] = useState({});
-  const [showLoginMessage, setShowLoginMessage] = useState(false); // State to toggle login message
+  const [showLoginMessage, setShowLoginMessage] = useState(false);
 
   useEffect(() => {
-    // Retrieve userID from localStorage when the component mounts
     const userIdFromStorage = localStorage.getItem("userID");
     if (userIdFromStorage) {
       setUserId(userIdFromStorage);
@@ -71,7 +70,6 @@ const GiftCard = ({ addToCart }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Check if user is logged in
     if (!userId) {
       setShowLoginMessage(true);
       return;
@@ -96,7 +94,7 @@ const GiftCard = ({ addToCart }) => {
       recipientEmail,
       message,
       senderName,
-      userID: userId, // Use the user ID retrieved from localStorage
+      userID: userId,
     };
 
     const giftCardProduct = {

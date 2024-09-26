@@ -6,6 +6,6 @@
         public DateTime InvoiceDate { get; set; }
         public DateTime? OrderShipDate { get; set; }
         public string InvoiceNumber { get; set; }
-        public int CartItemId { get; set; }
+        public List<int> CartItemIds { get; set; }
     }
 }
