@@ -173,7 +173,7 @@ const Accessories = ({ addToCart }) => {
                 </div>
                 <div className="Accessory_Details">
                   <h4>{x.name}</h4>
-                  <h5>${x.price}</h5>
+                  <h5>{x.price}€</h5>
                   <p>Marka: {x.seller}</p>
                   <p>Pershkrimi: {x.description}</p>
                   <p>Permasat: {x.dimensions}</p>
@@ -228,7 +228,7 @@ const Accessories = ({ addToCart }) => {
                 </div>
                 <div className="dropup">
                   <div className="a-dropup-content">
-                    <p className="card-price">Price: €{accessory.price}</p>
+                    <p className="card-price">Price: {accessory.price}€</p>
                     <h3 className="card-title">{accessory.name}</h3>
                     <button
                       onClick={() => {
@@ -286,7 +286,7 @@ const Accessories = ({ addToCart }) => {
                   alt={selectedAccessory.name}
                   className="design-preview"
                 />
-                <p>Amount: €{selectedAccessory.price}</p>
+                <p>Amount: {selectedAccessory.price}€</p>
               </>
             )}
             <div className="view-cart-container">

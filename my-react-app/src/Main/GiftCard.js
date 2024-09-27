@@ -170,7 +170,7 @@ const GiftCard = ({ addToCart }) => {
             <div className="gift-card-details">
               <p>From: {senderName}</p>
               <p>To: {recipientName}</p>
-              <p>Amount: ${amount}.00</p>
+              <p>Amount: {amount}.00 €</p>
               <p>Message: {message}</p>
             </div>
           </div>

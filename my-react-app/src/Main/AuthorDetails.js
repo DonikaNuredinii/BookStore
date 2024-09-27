@@ -166,7 +166,7 @@ const AuthorDetails = ({ addToCart }) => {
                     </div>
                     <div className="dropup">
                       <div className="dropup-content">
-                        <p className="card-price">Price: €{book.price}</p>
+                        <p className="card-price">Price: {book.price}€</p>
                         <h3 className="card-title">{book.title}</h3>
                         <p className="card-author">Author: {author.name}</p>
                       </div>
@@ -174,7 +174,7 @@ const AuthorDetails = ({ addToCart }) => {
                     <div className="card-content">
                       <h3 className="card-title">{book.title}</h3>
                       <p className="card-author">Author: {author.name}</p>
-                      <p className="card-price">Price: €{book.price}</p>
+                      <p className="card-price">Price: {book.price}€</p>
                     </div>
                   </div>
                 );
@@ -206,7 +206,7 @@ const AuthorDetails = ({ addToCart }) => {
                     <div className="wishlist-details">
                       <h4>{book.title}</h4>
                       <p>Author: {author.name}</p>
-                      <p>Price: €{book.price}</p>
+                      <p>Price: {book.price}€</p>
                     </div>
                   </div>
                 ))}

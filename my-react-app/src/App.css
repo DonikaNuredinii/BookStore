@@ -3979,6 +3979,83 @@ label {
   color: #e04850;
 }
 
+
+
+
+@media only screen and (max-width: 768px) {
+  .wishlist-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  .wishlist-modal {
+    bottom: 60px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+  }
+
+  .wishlist-buttons button {
+    padding: 8px 12px; 
+    font-size: 0.9rem; 
+  }
+
+  .remove-wishlist {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .wishlist-button {
+    bottom: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .wishlist-modal {
+    bottom: 50px;
+    right: 15px;
+    width: 250px;
+    max-height: 350px;
+  }
+
+  .wishlist-buttons button {
+    padding: 6px 10px; 
+    font-size: 0.85rem; 
+  }
+
+  .remove-wishlist {
+    font-size: 0.85rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .wishlist-button {
+    bottom: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .wishlist-modal {
+    bottom: 40px;
+    right: 10px;
+    width: 200px;
+    max-height: 300px;
+  }
+
+  .wishlist-buttons button {
+    padding: 4px 8px;
+    font-size: 0.75rem; 
+  }
+
+  .remove-wishlist {
+    font-size: 0.75rem;
+  }
+}
 /* wishlist-page */
 
 .wishlist-page {
@@ -4437,6 +4514,114 @@ button.linkaccbutton {
   display: inline-block;
   cursor: pointer;
   font-size: 14px;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .partOneCu {
+    flex-direction: row;
+    justify-content: center; 
+  }
+
+  .leftPartCu, .rightPartCu {
+    width: 45%; 
+    margin: 20px 2%; 
+    padding: 30px; 
+  }
+
+  .leftPartCu h1 {
+    font-size: 50px;
+    margin-left: -100px; 
+  }
+
+  .rightPartCu {
+    margin-left: 0; 
+  }
+}
+
+
+@media (max-width: 992px) {
+  .introCU {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .intro1Cu {
+    width: 90%; 
+  }
+
+  .partOneCu {
+    flex-direction: column; 
+  }
+
+  .leftPartCu, .rightPartCu {
+    width: 90%;
+    margin: 20px 0;
+    padding: 25px;
+  }
+
+  .leftPartCu h1 {
+    font-size: 50px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .button-CU {
+    width: 100%;
+  }
+  
+  .mapcomponant {
+    width: 85%; 
+  }
+}
+
+
+@media (max-width: 768px) {
+  .intro1Cu {
+    width: 100%; 
+    text-align: center;
+  }
+
+  .leftPartCu, .rightPartCu {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .leftPartCu h1 {
+    font-size: 42px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .inputs-contact input, .inputs-contact-Message textarea {
+    padding: 20px 20px; 
+  }
+
+  .button-CU {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .mapcomponant {
+    width: 90%; 
+  }
+}
+
+@media (max-width: 576px) {
+  .intro1Cu h2 {
+    font-size: 24px;
+  }
+
+  .leftPartCu h1 {
+    font-size: 36px;
+  }
+
+  .inputs-contact input, .inputs-contact-Message textarea {
+    padding: 15px 15px;
+  }
+
+  .mapcomponant {
+    width: 100%; 
+  }
 }
 
 /* Events Page Styles */

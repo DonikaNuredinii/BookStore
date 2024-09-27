@@ -179,10 +179,10 @@ const BookDetails = ({ addToCart }) => {
             <div className="book-details">
               <h4>{book.title || "No title available"}</h4>
               <h5>
-                €
+                
                 {book.price !== undefined
                   ? book.price.toFixed(2)
-                  : "Price not available"}
+                  : "Price not available"} €
               </h5>
               <p>
                 <strong>ISBN:</strong> {book.isbn || "Not available"}
@@ -301,7 +301,7 @@ const BookDetails = ({ addToCart }) => {
                 alt={book.title}
                 className="design-preview"
               />
-              <p>Amount: €{book.price}</p>
+              <p>Amount: {book.price}€</p>
               <div className="view-cart-container">
                 <Link to="/cart" className="view-cart-button">
                   View Cart
@@ -340,7 +340,7 @@ const BookDetails = ({ addToCart }) => {
                             {book.authors ? book.authors.join(", ") : "Unknown"}
                           </p>
                         </p>
-                        <p>Price: €{book.price}</p>
+                        <p>Price: {book.price}€</p>
                       </div>
                     </div>
                   ))}

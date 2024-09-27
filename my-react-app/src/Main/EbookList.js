@@ -201,7 +201,7 @@ const EbookList = ({ addToCart }) => {
               </div>
               <div className="dropup">
                 <div className="dropup-content">
-                  <p className="card-price">Price: €{ebook.price}</p>
+                  <p className="card-price">Price: {ebook.price}€</p>
                   <h3 className="card-title">{ebook.title}</h3>
                   <p className="card-author">
                     Author: {getAuthorsForBook(ebook.bookID) || "Unknown"}
@@ -223,7 +223,7 @@ const EbookList = ({ addToCart }) => {
                 <p className="card-author">
                   Author: {getAuthorsForBook(ebook.bookID) || "Unknown"}
                 </p>
-                <p className="card-price">Price: €{ebook.price}</p>
+                <p className="card-price">Price: {ebook.price}€</p>
               </div>
             </div>
           ))}
@@ -241,7 +241,7 @@ const EbookList = ({ addToCart }) => {
               alt={selectedEbook.title}
               className="design-preview"
             />
-            <p>Amount: €{selectedEbook.price}</p>
+            <p>Amount: {selectedEbook.price}€</p>
             <div className="view-cart-container">
               <Link to="/cart" className="view-cart-button">
                 View Cart
@@ -276,7 +276,7 @@ const EbookList = ({ addToCart }) => {
                       <p>
                         Author: {getAuthorsForBook(book.bookID) || "Unknown"}
                       </p>
-                      <p>Price: €{book.price}</p>
+                      <p>Price: {book.price}€</p>
                     </div>
                   </div>
                 ))}
