@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FWfW/QsnSvV5ZdAAYFjV0m8mQWGQw8Am7GjcNJCcuAU=",
+  "Hash": "ASMDHQuZAKxKmP7roKjAu2ZV5VNQDrk6Sp385dPunl0=",
   "Source": "BookStore",
   "BasePath": "_content/BookStore",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BookStore\\wwwroot",
       "Source": "BookStore",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\1812d23e-df86-451a-b81e-6d7400f4de59.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\1812d23e-df86-451a-b81e-6d7400f4de59.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/1812d23e-df86-451a-b81e-6d7400f4de59.jpg",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\1812d23e-df86-451a-b81e-6d7400f4de59.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\2316e57c-aa4a-4eb5-8148-2c5bd57d3318.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\2316e57c-aa4a-4eb5-8148-2c5bd57d3318.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/2316e57c-aa4a-4eb5-8148-2c5bd57d3318.jpg",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\2316e57c-aa4a-4eb5-8148-2c5bd57d3318.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\2b8157b8-e97c-46a0-a8b2-18a66b2d335f.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\2b8157b8-e97c-46a0-a8b2-18a66b2d335f.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/2b8157b8-e97c-46a0-a8b2-18a66b2d335f.jpg",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\2b8157b8-e97c-46a0-a8b2-18a66b2d335f.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\6ae55ff5-65fb-48d3-bced-0d2fed5a1f59.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\6ae55ff5-65fb-48d3-bced-0d2fed5a1f59.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/6ae55ff5-65fb-48d3-bced-0d2fed5a1f59.jpg",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\6ae55ff5-65fb-48d3-bced-0d2fed5a1f59.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\a3e1fd2d-247c-468f-9975-a57cd06dd51b.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\a3e1fd2d-247c-468f-9975-a57cd06dd51b.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/a3e1fd2d-247c-468f-9975-a57cd06dd51b.jpg",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\a3e1fd2d-247c-468f-9975-a57cd06dd51b.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\c5e59d11-6a71-40da-8bfa-0be38ba0eb03.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\c5e59d11-6a71-40da-8bfa-0be38ba0eb03.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/c5e59d11-6a71-40da-8bfa-0be38ba0eb03.jpg",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\c5e59d11-6a71-40da-8bfa-0be38ba0eb03.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\e05fe5b2-2214-408a-8c60-ded4b1848182.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\e05fe5b2-2214-408a-8c60-ded4b1848182.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/e05fe5b2-2214-408a-8c60-ded4b1848182.jpg",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\e05fe5b2-2214-408a-8c60-ded4b1848182.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\ea06750d-0ac4-419c-922f-c68aad356ca4.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\ea06750d-0ac4-419c-922f-c68aad356ca4.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/ea06750d-0ac4-419c-922f-c68aad356ca4.jpg",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\src\\Images\\ea06750d-0ac4-419c-922f-c68aad356ca4.jpg"
     },
     {
-      "Identity": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\src\\Images\\f8c0122e-0cc8-4509-8f9f-c6bff90ae1f9.jpg",
+      "Identity": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\src\\Images\\f8c0122e-0cc8-4509-8f9f-c6bff90ae1f9.jpg",
       "SourceId": "BookStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\wwwroot\\",
       "BasePath": "_content/BookStore",
       "RelativePath": "src/Images/f8c0122e-0cc8-4509-8f9f-c6bff90ae1f9.jpg",
       "AssetKind": "All",

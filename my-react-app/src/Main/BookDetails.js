@@ -24,6 +24,8 @@ const BookDetails = ({ addToCart }) => {
   const [message, setMessage] = useState("");
   const [messageTimeout, setMessageTimeout] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [averageRating, setAverageRating] = useState(0); 
+  const [totalRatings, setTotalRatings] = useState(0);
   const [currentUserId, setCurrentUserId] = useState(1); 
   const navigate = useNavigate();
 
@@ -50,6 +52,12 @@ const BookDetails = ({ addToCart }) => {
           );
           setPublishingHouseName(publishingHouseResponse.data.houseName || "");
         }
+
+        // Fetch book ratings
+        const ratingsResponse = await axios.get(`https://localhost:7061/api/Rating/${bookID}/ratings`);
+        setAverageRating(ratingsResponse.data.averageRating);
+        setTotalRatings(ratingsResponse.data.totalRatings);
+
       } catch (error) {
         setError("Failed to fetch book details. Please try again later.");
       }
@@ -81,7 +89,7 @@ const BookDetails = ({ addToCart }) => {
         { bookID: bookID, ratingValue: ratingValue, userID: userID },
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", } }
       );
-      setRating(ratingValue); // Update state to reflect the new rating
+      setRating(ratingValue); 
       alert("Rating submitted successfully!");
     } catch (error) {
       const errorMessage = error.response ? error.response.data.message : error.message;
@@ -272,6 +280,22 @@ const BookDetails = ({ addToCart }) => {
                   );
                 })}
               </div>
+              <div className="book-rating">
+        <span><strong>Average Rating:</strong> {averageRating.toFixed(1)} ({totalRatings} ratings)</span>
+        <div className="star-rating">
+          {[...Array(5)].map((star, index) => {
+            const ratingValue = index + 1;
+            return (
+              <FaStar
+                key={index}
+                className="star"
+                color={ratingValue <= averageRating ? "#ffc107" : "#e4e5e9"}
+                size={20}
+              />
+            );
+          })}
+        </div>
+      </div>
               <div className="book-buttons">
                 <button className="favorite-btn" onClick={handleSubmit}>
                   <CiShoppingCart /> Add to Cart
@@ -363,6 +387,7 @@ const BookDetails = ({ addToCart }) => {
                   Add All to Cart
                 </button>
               </div>
+              
             </div>
           </div>
         )}
