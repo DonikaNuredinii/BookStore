@@ -183,7 +183,40 @@ const BookDetails = ({ addToCart }) => {
                 alt={book.title || "Book Image"}
                 className="book-detail-image"
               />
+              
+              <div className="book-rating">
+                
+                <span>
+                  <strong></strong>
+                </span>
+                {[...Array(5)].map((star, index) => {
+                  const ratingValue = index + 1;
+                  return (
+                    <label key={index}>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={ratingValue}
+                        onClick={() => handleRatingSubmit(ratingValue)}
+                      />
+                      <FaStar
+                        className="star"
+                        color={
+                          ratingValue <= (hover || rating)
+                            ? "#0f4365"
+                            : "#e4e5e9"
+                        }
+                        size={25}
+                        onMouseEnter={() => setHover(ratingValue)}
+                        onMouseLeave={() => setHover(null)}
+                      />
+                    </label>
+                  );
+                })}
+              </div>
+              
             </div>
+
             <div className="book-details">
               <h4>{book.title || "No title available"}</h4>
               <h5>
@@ -251,51 +284,23 @@ const BookDetails = ({ addToCart }) => {
                 <p>No authors available</p>
               )}
 
-              <div className="book-rating">
-                <span>
-                  <strong>Rating:</strong>
-                </span>
+              
+            <div className="book-rating">
+            <span><strong>Costumer Reviews</strong> {averageRating.toFixed(1)}</span>
+              <div className="star-rating">
                 {[...Array(5)].map((star, index) => {
                   const ratingValue = index + 1;
                   return (
-                    <label key={index}>
-                      <input
-                        type="radio"
-                        name="rating"
-                        value={ratingValue}
-                        onClick={() => handleRatingSubmit(ratingValue)}
-                      />
-                      <FaStar
-                        className="star"
-                        color={
-                          ratingValue <= (hover || rating)
-                            ? "#ffc107"
-                            : "#e4e5e9"
-                        }
-                        size={20}
-                        onMouseEnter={() => setHover(ratingValue)}
-                        onMouseLeave={() => setHover(null)}
-                      />
-                    </label>
+                    <FaStar
+                      key={index}
+                      className="star"
+                      color={ratingValue <= averageRating ? "#1d6a96" : "#e4e5e9"}
+                      size={20}
+                    />
                   );
                 })}
-              </div>
-              <div className="book-rating">
-        <span><strong>Average Rating:</strong> {averageRating.toFixed(1)} ({totalRatings} ratings)</span>
-        <div className="star-rating">
-          {[...Array(5)].map((star, index) => {
-            const ratingValue = index + 1;
-            return (
-              <FaStar
-                key={index}
-                className="star"
-                color={ratingValue <= averageRating ? "#ffc107" : "#e4e5e9"}
-                size={20}
-              />
-            );
-          })}
-        </div>
-      </div>
+            </div>
+            </div>
               <div className="book-buttons">
                 <button className="favorite-btn" onClick={handleSubmit}>
                   <CiShoppingCart /> Add to Cart
@@ -388,7 +393,9 @@ const BookDetails = ({ addToCart }) => {
                 </button>
               </div>
               
+              
             </div>
+            
           </div>
         )}
       </div>
