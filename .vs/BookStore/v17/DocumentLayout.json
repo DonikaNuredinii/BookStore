@@ -1,61 +1,160 @@
 {
   "Version": 1,
+<<<<<<< Updated upstream
   "WorkspaceRootPath": "C:\\Users\\rusin\\OneDrive\\BookStore\\",
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\ebookloan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\ebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\orderdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\orderdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\mycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\ordersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\ordersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\gifcardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\userordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\languagebookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\languagebookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\giftcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> Stashed changes
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240925193547_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240925193449_OrderU.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240925185757_orderComnpilte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240925184412_orderComplete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240921172809_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240921172643_GiftCardUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240921152530_order-controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240913111516_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240913111435_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240913104340_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240913103659_Payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240912154129_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240912152916_Payments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\8.0.300\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240825160951_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240825155618_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Migrations\\20240825155204_authorquotesId.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -68,6 +167,7 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\DTOs\\PasswordModelModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -381,6 +481,253 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\rusin\\onedrive\\bookstore\\bookstore\\models\\authorquotes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\accessories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\stmpsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\stmpsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240926193209_smtp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240926193209_smtp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\orderdetaliscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\monthlyusercount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\monthlyusercount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\giftcardapplicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\giftcardapplicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240926183446_orderemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240926183446_orderemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\bookstore.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\bookstore.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240925193555_orderu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240925193555_orderu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240925201642_cartitemslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240925201642_cartitemslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240924170520_rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240924170520_rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240921212709_inquirytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240921212709_inquirytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\contactus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\topcostumerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\topcostumerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240921195537_userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240921195537_userorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\userupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\userupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240921173443_giftcarduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240921173443_giftcarduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240921160307_jsonignore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240921160307_jsonignore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240921154841_order-controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240921154841_order-controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\createpaymentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\createpaymentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\languagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\languagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\ebookloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\ebookloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorybookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\stockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\stockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\languagecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\languagecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\swagger\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\swagger\\configureswaggeroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240913112252_payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240913112252_payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\categorybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookuploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\bookuploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\bookupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\bookauthorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\authorupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\authorupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\ebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\ebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\ebookuploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\ebookuploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\bookresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\addbookwithauthorsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\addbookwithauthorsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\languagebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\languagebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\dtos\\authorquoterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\dtos\\authorquoterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\quotescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\quotescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\authorquotescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\authorquotescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240824110046_languagecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240824110046_languagecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240824110031_language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240824110031_language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240728113006_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240728113006_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\migrations\\20240828164859_languagebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\migrations\\20240828164859_languagebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\controllers\\languagecategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\controllers\\languagecategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\bookauthors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|c:\\users\\hp\\onedrive\\desktop\\bookstore\\bookstore\\models\\authorquotes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> Stashed changes
       "RelativeMoniker": "D:0:0:{F2650B7F-6305-43ED-8667-268FEADD0436}|BookStore\\BookStore.csproj|solutionrelative:bookstore\\models\\authorquotes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -391,7 +738,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 7,
+=======
+          "SelectedChildIndex": 3,
+>>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
@@ -403,6 +754,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 21,
               "Title": "Accessories.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Accessories.cs",
@@ -410,11 +762,22 @@
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Accessories.cs",
               "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAqAAAA",
+=======
+              "DocumentIndex": 5,
+              "Title": "Event.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Event.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Event.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Event.cs",
+              "RelativeToolTip": "BookStore\\Models\\Event.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T20:06:36.475Z"
+              "WhenOpened": "2024-09-28T12:30:03.324Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 22,
               "Title": "StmpSettings.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\StmpSettings.cs",
@@ -460,14 +823,288 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-15T14:36:53.365Z"
+=======
+              "DocumentIndex": 6,
+              "Title": "UserOrder.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\UserOrder.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\UserOrder.cs",
+              "RelativeToolTip": "BookStore\\Models\\UserOrder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T12:08:43.302Z",
+              "EditorCaption": ""
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAAOAAAAAAAAAAAAAswAABAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T15:36:03.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GiftCard.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\GiftCard.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\GiftCard.cs",
+              "RelativeToolTip": "BookStore\\Models\\GiftCard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GifCardController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\GifCardController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
+              "ViewState": "AQIAAOgAAAAAAADymXYnwBUBAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LanguageBookController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageBookController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\LanguageBookController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageBookController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\LanguageBookController.cs",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAswLIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserOrderController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserOrderController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\UserOrderController.cs",
+              "ViewState": "AQIAAFoAAAAAAADldBAPwGAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T19:14:51.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\UserController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\UserController.cs",
+              "ViewState": "AQIAANwAAAAAAAA8vav4v/EAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T11:24:29.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Orders.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Orders.cs",
+              "RelativeToolTip": "BookStore\\Models\\Orders.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAAB8AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ebook.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Ebook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Ebook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Ebook.cs",
+              "RelativeToolTip": "BookStore\\Models\\Ebook.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderDetailsDto.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\OrderDetailsDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\OrderDetailsDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\OrderDetailsDto.cs",
+              "RelativeToolTip": "BookStore\\DTOs\\OrderDetailsDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\PaymentController.cs",
+              "ViewState": "AQIAAEcAAAAAAIBut5otwFcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EbookLoan.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\EbookLoan.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\EbookLoan.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\EbookLoan.cs",
+              "RelativeToolTip": "BookStore\\Models\\EbookLoan.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAowA8AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "BookStore\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Services\\EmailService.cs",
+              "RelativeToolTip": "BookStore\\Services\\EmailService.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAqwE4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T18:27:35.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CartItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\CartItemDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\CartItemDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\CartItemDto.cs",
+              "RelativeToolTip": "BookStore\\DTOs\\CartItemDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "CartItemController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CartItemController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CartItemController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\CartItemController.cs",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAAAFAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CartItem.cs",
+              "RelativeToolTip": "BookStore\\Models\\CartItem.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAowBAAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrdersDto.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\OrdersDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\OrdersDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\OrdersDto.cs",
+              "RelativeToolTip": "BookStore\\DTOs\\OrdersDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MyContext.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\MyContext.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\MyContext.cs",
+              "RelativeToolTip": "BookStore\\Models\\MyContext.cs",
+              "ViewState": "AQIAAAYAAAAAAEB58cg3wA0AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Book.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Book.cs",
+              "RelativeToolTip": "BookStore\\Models\\Book.cs",
+              "ViewState": "AQIAAAMAAAAAAADXNS4UwBoAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T14:36:53.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ContactUsController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\ContactUsController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
+              "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFsAAABhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T20:55:34.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\appsettings.json",
+              "RelativeDocumentMoniker": "BookStore\\appsettings.json",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\appsettings.json",
+              "RelativeToolTip": "BookStore\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-15T14:36:53.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "Program.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Program.cs",
               "RelativeDocumentMoniker": "BookStore\\Program.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Program.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+              "RelativeDocumentMoniker": "BookStore\\Program.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Program.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Program.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAswBsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -476,6 +1113,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 26,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\appsettings.json",
@@ -495,11 +1133,21 @@
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\PaymentController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\PaymentController.cs",
               "ViewState": "AQIAAEcAAAAAAIBut5otwFcAAAAJAAAA",
+=======
+              "DocumentIndex": 41,
+              "Title": "StmpSettings.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\StmpSettings.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\StmpSettings.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\StmpSettings.cs",
+              "RelativeToolTip": "BookStore\\Models\\StmpSettings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAtAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T14:36:53.314Z"
+              "WhenOpened": "2024-09-26T19:09:50.767Z"
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 28,
               "Title": "GifCardController.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
@@ -507,11 +1155,21 @@
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\GifCardController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\GifCardController.cs",
               "ViewState": "AQIAAD8AAAAAAADMPiIbwLQAAAAAAAAA",
+=======
+              "DocumentIndex": 40,
+              "Title": "Accessories.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Accessories.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Accessories.cs",
+              "RelativeToolTip": "BookStore\\Models\\Accessories.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAqAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T14:36:53.326Z"
+              "WhenOpened": "2024-09-26T20:06:36.475Z"
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 29,
               "Title": "ContactUsController.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
@@ -519,11 +1177,22 @@
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\ContactUsController.cs",
               "RelativeToolTip": "BookStore\\Controllers\\ContactUsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAFsAAABhAAAA",
+=======
+              "DocumentIndex": 17,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\User.cs",
+              "RelativeToolTip": "BookStore\\Models\\User.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAsAAAAfAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-21T20:55:34.959Z"
+              "WhenOpened": "2024-09-18T17:41:00.331Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 30,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Book.cs",
@@ -565,6 +1234,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240926193209_smtp.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240926193209_smtp.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240926193209_smtp.cs",
+=======
+              "DocumentIndex": 46,
+              "Title": "20240926193209_smtp.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240926193209_smtp.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240926193209_smtp.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240926193209_smtp.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240926193209_smtp.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -572,6 +1248,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 34,
               "Title": "CartItemDto.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\CartItemDto.cs",
@@ -589,6 +1266,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+=======
+              "DocumentIndex": 47,
+              "Title": "OrderDetalisController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\OrderDetalisController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\OrderDetalisController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\OrderDetalisController.cs",
               "ViewState": "AQIAAD8AAAAAACC7rvopwEYAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -596,11 +1280,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 48,
               "Title": "OrderDetails.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\OrderDetails.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\OrderDetails.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\OrderDetails.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\OrderDetails.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -608,6 +1298,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 37,
               "Title": "MyContext.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\MyContext.cs",
@@ -649,6 +1340,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\MonthlyUserCount.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\MonthlyUserCount.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\MonthlyUserCount.cs",
+=======
+              "DocumentIndex": 49,
+              "Title": "MonthlyUserCount.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\MonthlyUserCount.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\MonthlyUserCount.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\MonthlyUserCount.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\MonthlyUserCount.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -656,11 +1354,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 50,
               "Title": "GiftCardApplicationDto.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\GiftCardApplicationDto.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\GiftCardApplicationDto.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\GiftCardApplicationDto.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\GiftCardApplicationDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\GiftCardApplicationDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\GiftCardApplicationDto.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\GiftCardApplicationDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -668,6 +1372,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 42,
               "Title": "Orders.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Orders.cs",
@@ -685,6 +1390,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240926183446_OrderEmail.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240926183446_OrderEmail.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240926183446_OrderEmail.cs",
+=======
+              "DocumentIndex": 51,
+              "Title": "20240926183446_OrderEmail.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240926183446_OrderEmail.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240926183446_OrderEmail.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240926183446_OrderEmail.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240926183446_OrderEmail.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -692,11 +1404,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 52,
               "Title": "BookStore.http",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\BookStore.http",
               "RelativeDocumentMoniker": "BookStore\\BookStore.http",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\BookStore.http",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.http",
+              "RelativeDocumentMoniker": "BookStore\\BookStore.http",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\BookStore.http",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\BookStore.http",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
@@ -704,11 +1422,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 53,
               "Title": "Payment.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Payment.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Payment.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Payment.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\Payment.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAkwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -716,6 +1440,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 46,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\User.cs",
@@ -734,16 +1459,31 @@
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs",
+=======
+              "DocumentIndex": 20,
+              "Title": "20240925193547_OrderU.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925193547_OrderU.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193547_OrderU.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240925193547_OrderU.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T19:35:48.05Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 54,
               "Title": "20240925193555_OrderU.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240925193555_OrderU.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925193555_OrderU.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240925193555_OrderU.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193555_OrderU.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925193555_OrderU.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193555_OrderU.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240925193555_OrderU.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -751,11 +1491,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 55,
               "Title": "20240925201642_CartitemsList.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240925201642_CartitemsList.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925201642_CartitemsList.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240925201642_CartitemsList.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925201642_CartitemsList.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925201642_CartitemsList.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925201642_CartitemsList.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240925201642_CartitemsList.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -763,17 +1509,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 21,
               "Title": "20240925193449_OrderU.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925193449_OrderU.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925193449_OrderU.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240925193449_OrderU.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T19:34:49.713Z"
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 49,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\UserController.cs",
@@ -791,6 +1545,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\WeatherForecastController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\WeatherForecastController.cs",
+=======
+              "DocumentIndex": 56,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\WeatherForecastController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -798,22 +1559,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 22,
               "Title": "20240925185757_orderComnpilte.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240925185757_orderComnpilte.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T18:57:57.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 57,
               "Title": "20240924170520_Rating.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240924170520_Rating.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240924170520_Rating.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240924170520_Rating.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240924170520_Rating.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240924170520_Rating.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240924170520_Rating.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240924170520_Rating.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAIBJwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -821,22 +1595,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 23,
               "Title": "20240925184412_orderComplete.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240925184412_orderComplete.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240925184412_orderComplete.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240925184412_orderComplete.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T18:44:12.377Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 58,
               "Title": "20240921212709_InquiryType.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921212709_InquiryType.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921212709_InquiryType.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921212709_InquiryType.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921212709_InquiryType.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921212709_InquiryType.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921212709_InquiryType.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240921212709_InquiryType.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -844,11 +1631,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 59,
               "Title": "ContactUs.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\ContactUs.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\ContactUs.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\ContactUs.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\ContactUs.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\ContactUs.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -856,6 +1649,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 54,
               "Title": "UserOrderController.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\UserOrderController.cs",
@@ -873,6 +1667,13 @@
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\TopCostumerDto.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\TopCostumerDto.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\TopCostumerDto.cs",
+=======
+              "DocumentIndex": 60,
+              "Title": "TopCostumerDto.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\TopCostumerDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\TopCostumerDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\TopCostumerDto.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\TopCostumerDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -880,11 +1681,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 61,
               "Title": "20240921195537_userOrder.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921195537_userOrder.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921195537_userOrder.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921195537_userOrder.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921195537_userOrder.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921195537_userOrder.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921195537_userOrder.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240921195537_userOrder.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAYwBIAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -892,11 +1699,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 62,
               "Title": "UserUpdateDto.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\UserUpdateDto.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\UserUpdateDto.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\UserUpdateDto.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\UserUpdateDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\UserUpdateDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\UserUpdateDto.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\UserUpdateDto.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAA8wAkAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -904,11 +1717,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 63,
               "Title": "20240921173443_GiftCardUser.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240921173443_GiftCardUser.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -916,33 +1735,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 24,
               "Title": "20240921172809_GiftCardUser.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240921172809_GiftCardUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-21T17:28:09.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 25,
               "Title": "20240921172643_GiftCardUser.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240921172643_GiftCardUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-21T17:26:44.109Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 64,
               "Title": "20240921160307_JsonIgnore.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240921160307_JsonIgnore.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -950,11 +1789,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 65,
               "Title": "EventsController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\EventsController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EventsController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EventsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\EventsController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EventsController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\EventsController.cs",
               "ViewState": "AQIAACQAAAAAAAAAAAAQwC8AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -962,11 +1807,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 66,
               "Title": "20240921154841_order-controller.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921154841_order-controller.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921154841_order-controller.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240921154841_order-controller.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921154841_order-controller.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921154841_order-controller.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921154841_order-controller.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240921154841_order-controller.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAA1wAsAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -974,22 +1825,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 26,
               "Title": "20240921152530_order-controller.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240921152530_order-controller.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240921152530_order-controller.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240921152530_order-controller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAsAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-21T15:25:30.836Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 67,
               "Title": "PaymentDto.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\PaymentDto.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\PaymentDto.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\PaymentDto.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\PaymentDto.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\PaymentDto.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\PaymentDto.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\PaymentDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -997,11 +1861,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 68,
               "Title": "CreatePaymentRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\CreatePaymentRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\CreatePaymentRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\CreatePaymentRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\CreatePaymentRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\CreatePaymentRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\CreatePaymentRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\CreatePaymentRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1009,11 +1879,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 69,
               "Title": "LanguageController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\LanguageController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\LanguageController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\LanguageController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\LanguageController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\LanguageController.cs",
               "ViewState": "AQIAAEsAAAAAAAAAAAAAwGUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1021,11 +1897,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 70,
               "Title": "EbookLoansController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\EbookLoansController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\EbookLoansController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbookLoansController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\EbookLoansController.cs",
               "ViewState": "AQIAAGkAAAAAAAAAAAAYwHAAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1033,11 +1915,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 71,
               "Title": "categoryBookController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\categoryBookController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\categoryBookController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\categoryBookController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\categoryBookController.cs",
               "ViewState": "AQIAAFcAAAAAAAAAAAAQwHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1045,11 +1933,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 72,
               "Title": "StockController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\StockController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\StockController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\StockController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\StockController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\StockController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\StockController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\StockController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1057,7 +1951,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 39,
               "Title": "PasswordModelModel.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\PasswordModelModel.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\PasswordModelModel.cs",
@@ -1068,11 +1962,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 73,
               "Title": "BookController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\BookController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\BookController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\BookController.cs",
               "ViewState": "AQIAAOYAAAAAAAAAAEBdwP8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1080,11 +1980,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 74,
               "Title": "LanguageCategory.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\LanguageCategory.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\LanguageCategory.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\LanguageCategory.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\LanguageCategory.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\LanguageCategory.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\LanguageCategory.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\LanguageCategory.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAkwA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1092,11 +1998,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 75,
               "Title": "ConfigureSwaggerOptions.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
               "RelativeDocumentMoniker": "BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
+              "RelativeDocumentMoniker": "BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Swagger\\ConfigureSwaggerOptions.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAgwB0AAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1104,11 +2016,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 76,
               "Title": "20240913112252_Payment.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240913112252_Payment.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913112252_Payment.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240913112252_Payment.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913112252_Payment.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913112252_Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913112252_Payment.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240913112252_Payment.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1116,55 +2034,85 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 29,
               "Title": "20240913104340_Payment.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913104340_Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913104340_Payment.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240913104340_Payment.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-13T10:43:40.201Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 28,
               "Title": "20240913111435_Payment.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913111435_Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111435_Payment.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240913111435_Payment.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-13T11:14:35.654Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 30,
               "Title": "20240913103659_Payment.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913103659_Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913103659_Payment.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240913103659_Payment.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-13T10:36:59.833Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 27,
               "Title": "20240913111516_Payment.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240913111516_Payment.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240913111516_Payment.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240913111516_Payment.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-13T11:15:16.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 77,
               "Title": "CategoryBook.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\CategoryBook.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\CategoryBook.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\CategoryBook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\CategoryBook.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\CategoryBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1172,11 +2120,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 78,
               "Title": "Country.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Country.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Country.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Country.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Country.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Country.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\Country.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1184,11 +2138,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 79,
               "Title": "Discount.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Discount.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Discount.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Discount.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Discount.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\Discount.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1196,6 +2156,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 75,
               "Title": "LanguageBookController.cs",
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\LanguageBookController.cs",
@@ -1238,27 +2199,47 @@
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs",
+=======
+              "DocumentIndex": 32,
+              "Title": "20240912152916_Payments.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240912152916_Payments.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912152916_Payments.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240912152916_Payments.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-12T15:29:16.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 31,
               "Title": "20240912154129_Payments.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240912154129_Payments.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240912154129_Payments.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240912154129_Payments.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-12T15:41:30.124Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 80,
               "Title": "BookUploadRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookUploadRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\BookUploadRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookUploadRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookUploadRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\BookUploadRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookUploadRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\BookUploadRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1266,11 +2247,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 81,
               "Title": "BookUpdateRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookUpdateRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\BookUpdateRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookUpdateRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookUpdateRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\BookUpdateRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookUpdateRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\BookUpdateRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1278,11 +2265,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 82,
               "Title": "BookAuthorsController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\BookAuthorsController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\BookAuthorsController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\BookAuthorsController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\BookAuthorsController.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAuwHsAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1290,11 +2283,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 83,
               "Title": "AuthorUpdateRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AuthorUpdateRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\AuthorUpdateRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AuthorUpdateRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AuthorUpdateRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\AuthorUpdateRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AuthorUpdateRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\AuthorUpdateRequest.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAmwAMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1302,11 +2301,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 84,
               "Title": "Language.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Language.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Language.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Language.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Language.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Language.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Language.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\Language.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1314,11 +2319,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 85,
               "Title": "EbooksController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\EbooksController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\EbooksController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\EbooksController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\EbooksController.cs",
               "ViewState": "AQIAAGwAAAAAAAAAAAAYwHsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1326,11 +2337,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 86,
               "Title": "EbookUploadRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\EbookUploadRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\EbookUploadRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\EbookUploadRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\EbookUploadRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\EbookUploadRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\EbookUploadRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\EbookUploadRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1338,11 +2355,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 87,
               "Title": "BookResponse.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\BookResponse.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\BookResponse.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\BookResponse.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\BookResponse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1350,11 +2373,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 88,
               "Title": "AddBookWithAuthorsRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\AddBookWithAuthorsRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1362,11 +2391,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 89,
               "Title": "LanguageBook.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\LanguageBook.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\LanguageBook.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\LanguageBook.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\LanguageBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\LanguageBook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\LanguageBook.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\LanguageBook.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1374,11 +2409,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 90,
               "Title": "CategoryController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\CategoryController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\CategoryController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\CategoryController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1386,11 +2427,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 91,
               "Title": "AuthorQuoteRequest.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AuthorQuoteRequest.cs",
               "RelativeDocumentMoniker": "BookStore\\DTOs\\AuthorQuoteRequest.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\DTOs\\AuthorQuoteRequest.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AuthorQuoteRequest.cs",
+              "RelativeDocumentMoniker": "BookStore\\DTOs\\AuthorQuoteRequest.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\DTOs\\AuthorQuoteRequest.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\DTOs\\AuthorQuoteRequest.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAqwAMAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1398,11 +2445,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 92,
               "Title": "QuotesController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\QuotesController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\QuotesController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\QuotesController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\QuotesController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\QuotesController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\QuotesController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\QuotesController.cs",
               "ViewState": "AQIAAEQAAAAAAAAAAAAqwGEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1410,11 +2463,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 93,
               "Title": "AuthorQuotesController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\AuthorQuotesController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\AuthorQuotesController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\AuthorQuotesController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorQuotesController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\AuthorQuotesController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\AuthorQuotesController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\AuthorQuotesController.cs",
               "ViewState": "AQIAAEMAAAAAAACVd7QCwHMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1422,11 +2481,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 94,
               "Title": "20240824110046_LanguageCategory.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240824110046_LanguageCategory.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1434,11 +2499,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 95,
               "Title": "20240824110031_Language.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240824110031_Language.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240824110031_Language.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240824110031_Language.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824110031_Language.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240824110031_Language.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824110031_Language.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240824110031_Language.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1446,11 +2517,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 96,
               "Title": "20240728113006_User.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240728113006_User.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240728113006_User.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240728113006_User.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240728113006_User.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240728113006_User.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240728113006_User.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240728113006_User.cs",
               "ViewState": "AQIAAJ0BAAAAAAAAAAAIwKoBAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1458,11 +2535,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 97,
               "Title": "Category.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Category.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\Category.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\Category.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\Category.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1470,11 +2553,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 98,
               "Title": "20240828164859_LanguageBook.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240828164859_LanguageBook.cs",
               "RelativeDocumentMoniker": "BookStore\\Migrations\\20240828164859_LanguageBook.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Migrations\\20240828164859_LanguageBook.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240828164859_LanguageBook.cs",
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240828164859_LanguageBook.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240828164859_LanguageBook.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Migrations\\20240828164859_LanguageBook.cs",
               "ViewState": "AQIAADEAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1482,11 +2571,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 99,
               "Title": "LanguageCategoryController.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\LanguageCategoryController.cs",
               "RelativeDocumentMoniker": "BookStore\\Controllers\\LanguageCategoryController.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Controllers\\LanguageCategoryController.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageCategoryController.cs",
+              "RelativeDocumentMoniker": "BookStore\\Controllers\\LanguageCategoryController.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Controllers\\LanguageCategoryController.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Controllers\\LanguageCategoryController.cs",
               "ViewState": "AQIAAJMAAAAAAAAAAAAAwK0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1494,11 +2589,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 100,
               "Title": "BookAuthors.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\BookAuthors.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\BookAuthors.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\BookAuthors.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\BookAuthors.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1506,11 +2607,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 101,
               "Title": "AuthorQuotes.cs",
+<<<<<<< Updated upstream
               "DocumentMoniker": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\AuthorQuotes.cs",
               "RelativeDocumentMoniker": "BookStore\\Models\\AuthorQuotes.cs",
               "ToolTip": "C:\\Users\\rusin\\OneDrive\\BookStore\\BookStore\\Models\\AuthorQuotes.cs",
+=======
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\AuthorQuotes.cs",
+              "RelativeDocumentMoniker": "BookStore\\Models\\AuthorQuotes.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Models\\AuthorQuotes.cs",
+>>>>>>> Stashed changes
               "RelativeToolTip": "BookStore\\Models\\AuthorQuotes.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1518,7 +2625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 33,
               "Title": "Microsoft.PackageDependencyResolution.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.300\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
@@ -1530,56 +2637,86 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 34,
               "Title": "20240825160951_authorquotesId.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240825160951_authorquotesId.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825160951_authorquotesId.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240825160951_authorquotesId.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T16:09:51.87Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 35,
               "Title": "20240825155618_authorquotesId.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240825155618_authorquotesId.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155618_authorquotesId.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240825155618_authorquotesId.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T15:56:18.45Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 36,
               "Title": "20240825155204_authorquotesId.cs",
               "DocumentMoniker": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs",
               "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs",
               "RelativeToolTip": "..\\..\\..\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs",
+=======
+              "RelativeDocumentMoniker": "BookStore\\Migrations\\20240825155204_authorquotesId.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240825155204_authorquotesId.cs",
+              "RelativeToolTip": "BookStore\\Migrations\\20240825155204_authorquotesId.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T15:52:05.061Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 37,
               "Title": "20240824103409_LanguageCategory.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
               "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
               "RelativeToolTip": "..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
+=======
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103409_LanguageCategory.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-24T10:34:09.498Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 38,
               "Title": "20240824103350_Language.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
+<<<<<<< Updated upstream
               "RelativeDocumentMoniker": "..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
               "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
               "RelativeToolTip": "..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
+=======
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\ADMIN\\OneDrive\\Desktop\\BookStore\\BookStore\\Migrations\\20240824103350_Language.cs",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-24T10:33:50.877Z"
             }

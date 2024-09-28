@@ -16,31 +16,31 @@ function App() {
   };
 
   useEffect(() => {
-    checkIfAdmin();
-  }, []);
+    const checkIfAdmin = () => {
+      const token = localStorage.getItem("token");
 
-  const checkIfAdmin = () => {
-    const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const decodedToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000;
 
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        const currentTime = Date.now() / 1000;
-
-        if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
-          setIsAdmin(true);
-        } else {
+          if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error("Error decoding token", error);
+          localStorage.removeItem("token");
           setIsAdmin(false);
         }
-      } catch (error) {
-        console.error("Error decoding token", error);
-        localStorage.removeItem("token");
+      } else {
         setIsAdmin(false);
       }
-    } else {
-      setIsAdmin(false);
-    }
-  };
+    };
+
+    checkIfAdmin();
+  }, []);
 
   return (
     <div className="container-fluid custom-bg min-vh-100">

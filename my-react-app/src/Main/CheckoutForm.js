@@ -604,29 +604,29 @@ const CheckoutForm = () => {
                     <div className="item-details">
                       <p>{item.title}</p>
                       <p>
-                        {item.quantity} x €
-                        {item.price ? item.price.toFixed(2) : "0.00"}
+                        {item.quantity} x
+                        {item.price ? item.price.toFixed(2) : "0.00"}€
                       </p>
                     </div>
                     <div className="item-total">
-                      €
                       {item.price
                         ? (item.quantity * item.price).toFixed(2)
-                        : "0.00"}
+                        : "0.00"}{" "}
+                      €
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="summary-details">
-              <p>Subtotal: €{(totalPrice || 0).toFixed(2)}</p>
+              <p>Subtotal: {(totalPrice || 0).toFixed(2)} €</p>
               <p>
-                Applied Gift Card Amount: €
-                {(appliedGiftCardAmount || 0).toFixed(2)}
+                Applied Gift Card Amount:
+                {(appliedGiftCardAmount || 0).toFixed(2)} €
               </p>
               <p>
-                Total Price After Gift Card: €
-                {(currentDiscountedPrice || 0).toFixed(2)}
+                Total Price After Gift Card:
+                {(currentDiscountedPrice || 0).toFixed(2)} €
               </p>
             </div>
           </div>

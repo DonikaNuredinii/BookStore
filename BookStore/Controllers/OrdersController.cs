@@ -74,22 +74,15 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrdersDto orderDto)
         {
-            if (orderDto == null)
-            {
-                return BadRequest("Invalid order data.");
-            }
+            if (orderDto == null) return BadRequest("Invalid order data.");
 
             try
             {
                 var user = await _context.Users.FindAsync(orderDto.UserID);
-                if (user == null)
-                {
-                    return BadRequest("User not found.");
-                }
+                if (user == null) return BadRequest("User not found.");
 
                 var orderDetails = new OrderDetails
                 {
@@ -97,12 +90,12 @@ namespace BookStore.Controllers
                     InvoiceDate = orderDto.OrderDetails.InvoiceDate,
                     OrderShipDate = orderDto.OrderDetails.OrderShipDate,
                     InvoiceNumber = orderDto.OrderDetails.InvoiceNumber,
-                    CartItemIds = orderDto.OrderDetails.CartItemIds 
+                    CartItemIds = orderDto.OrderDetails.CartItemIds
                 };
 
                 var order = new Orders
                 {
-                    OrderDate = orderDto.OrderDate,
+                    OrderDate = DateTime.UtcNow,
                     Address = orderDto.Address,
                     City = orderDto.City,
                     CountryID = orderDto.CountryID,
@@ -117,34 +110,62 @@ namespace BookStore.Controllers
                         PaymentMethod = orderDto.Payment.PaymentMethod,
                         TransactionID = orderDto.Payment.TransactionID
                     },
-                    OrderDetails = orderDetails, 
+                    OrderDetails = orderDetails,
                     UserID = orderDto.UserID,
                 };
-
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
-               
-                var recipientEmails = new[] { orderDto.Email };
-                var invoiceNumber = orderDto.OrderDetails.InvoiceNumber;
-                var totalPrice = orderDto.OrderDetails.TotalPrice;
-                var invoiceDate = orderDto.OrderDetails.InvoiceDate;
-                var invoiceDetails = "Order details summary..."; 
+             
+                var userOrder = new UserOrder
+                {
+                    UserId = user.UserID, 
+                    OrdersId = order.OrdersId 
+                };
 
+                _context.UserOrders.Add(userOrder);
+                await _context.SaveChangesAsync();
 
-                await _emailService.SendInvoiceEmailAsync(recipientEmails, invoiceNumber, totalPrice, invoiceDate, invoiceDetails, orderDto.OrderDetails.CartItemIds);
+                await _emailService.SendInvoiceEmailAsync(
+                    new[] { orderDto.Email },
+                    orderDto.OrderDetails.InvoiceNumber,
+                    orderDto.OrderDetails.TotalPrice,
+                    orderDto.OrderDetails.InvoiceDate,
+                    "Order details summary...",
+                    orderDto.OrderDetails.CartItemIds
+                );
 
-                return Ok(new { message = "Order placed successfully.", orderId = order.OrdersId });
+                var giftCardIds = orderDto.OrderDetails.CartItemIds
+                    .Select(cartItemId => _context.CartItems
+                        .Where(ci => ci.CartItemId == cartItemId && ci.GiftCardId.HasValue)
+                        .Select(ci => ci.GiftCardId.Value)
+                        .FirstOrDefault())
+                    .Where(giftCardId => giftCardId > 0)
+                    .Distinct()
+                    .ToList();
+
+                if (giftCardIds.Any())
+                {
+                    Console.WriteLine($"Gift Card IDs: {string.Join(", ", giftCardIds)}");
+
+                    foreach (var giftCardId in giftCardIds)
+                    {
+                        var giftCard = await _context.GiftCards.FindAsync(giftCardId);
+                        if (giftCard != null)
+                        {
+                            string senderName = user.FirstName;
+                            await _emailService.SendGiftCardEmailAsync(orderDto.Email, giftCard, senderName);
+                        }
+                    }
+                }
+
+                return Ok(new { message = "Order processed successfully, invoice and gift card emails sent." });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error processing order.");
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
-
-
-
 
 
 
@@ -192,25 +213,25 @@ namespace BookStore.Controllers
 
             return Ok(totalEarnings);
         }
-
         [HttpGet("orders-summary")]
         public async Task<ActionResult> GetOrdersSummary()
         {
             try
             {
-                var bookOrdersCount = await _context.OrderDetails
-                    .Include(od => od.CartItems)
-                    .Where(od => od.CartItemIds != null && od.CartItemIds.Any())
-                    .SelectMany(od => od.CartItems)
-                    .CountAsync(ci => ci.BookId != null);
+                var orderDetails = await _context.OrderDetails
+                    .Select(od => new
+                    {
+                        od.CartItemIds,
+                        CartItems = _context.CartItems.Where(ci => od.CartItemIds.Contains(ci.CartItemId)).ToList()
+                    })
+                    .ToListAsync();
+                var cartItems = orderDetails.SelectMany(od => od.CartItems).ToList();
 
-                var accessoriesOrdersCount = await _context.OrderDetails
-                    .Include(od => od.CartItems)
-                    .Where(od => od.CartItemIds != null && od.CartItemIds.Any())
-                    .SelectMany(od => od.CartItems)
-                    .CountAsync(ci => ci.AccessoriesID != null);
+                var bookOrdersCount = cartItems.Count(ci => ci.BookId != null);
+                var accessoriesOrdersCount = cartItems.Count(ci => ci.AccessoriesID != null);
 
-                var ebookLoansCount = await _context.EbookLoans.CountAsync();
+                var ebookLoansCount = await _context.EbookLoans
+                    .CountAsync(el => !el.IsReturned && el.LoanDueDate >= DateTime.UtcNow);
 
                 var summary = new
                 {
@@ -230,6 +251,7 @@ namespace BookStore.Controllers
                 });
             }
         }
+
 
         // GET: api/orders/timeline
         [HttpGet("timeline")]
@@ -275,21 +297,21 @@ namespace BookStore.Controllers
         {
             try
             {
-                var topCustomers = await _context.UserOrder
-                    .Include(uo => uo.User)
-                    .Include(uo => uo.Orders)
-                        .ThenInclude(o => o.OrderDetails)
-                    .GroupBy(uo => new
+                var topCustomers = await _context.Orders
+                    .Include(o => o.OrderDetails) 
+                    .Include(o => o.UserOrders) 
+                        .ThenInclude(uo => uo.User) 
+                    .GroupBy(o => new
                     {
-                        UserId = uo.UserId,
-                        UserName = uo.User.FirstName + " " + uo.User.LastName
+                        UserId = o.UserID,
+                        UserName = o.UserOrders.FirstOrDefault().User.FirstName + " " + o.UserOrders.FirstOrDefault().User.LastName 
                     })
                     .Select(g => new TopCustomerDto
                     {
                         Id = g.Key.UserId,
                         Name = g.Key.UserName,
-                        TotalSpent = g.Sum(uo => uo.Orders.OrderDetails.TotalPrice),
-                        OrderCount = g.Count()
+                        TotalSpent = g.Sum(o => o.OrderDetails.TotalPrice), 
+                        OrderCount = g.Count() 
                     })
                     .OrderByDescending(tc => tc.TotalSpent)
                     .Take(5)
@@ -303,6 +325,8 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
+
+
 
         [HttpGet("weekly-sales")]
         public async Task<ActionResult<IEnumerable<WeeklySalesDto>>> GetWeeklySales()

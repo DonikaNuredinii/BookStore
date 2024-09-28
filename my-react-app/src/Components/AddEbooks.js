@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 
 const AddEbooks = () => {
   const [isbn, setISBN] = useState("");
-  const [image, setImage] = useState(null); // Change to file input
+  const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [publicationDate, setPublicationDate] = useState("");
   const [pageNumber, setPageNumber] = useState("");
@@ -17,13 +17,13 @@ const AddEbooks = () => {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [selectedPublishingHouse, setSelectedPublishingHouse] = useState("");
   const [selectedStock, setSelectedStock] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState([]); // Add selected categories
-  const [pdfFile, setPdfFile] = useState(null); // Change to file input
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [pdfFile, setPdfFile] = useState(null);
 
   const [authorsList, setAuthorsList] = useState([]);
   const [publishingHouseList, setPublishingHouseList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [categoriesList, setCategoriesList] = useState([]); // Categories list
+  const [categoriesList, setCategoriesList] = useState([]);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -120,8 +120,8 @@ const AddEbooks = () => {
 
   const clear = () => {
     setISBN("");
-    setImage(null); // Clear image file
-    setPdfFile(null); // Clear PDF file
+    setImage(null);
+    setPdfFile(null);
     setTitle("");
     setPublicationDate("");
     setPageNumber("");
@@ -353,9 +353,11 @@ const AddEbooks = () => {
       </Row>
       <Row>
         <Col>
-          <Button variant="dark" className="btn-add" type="submit">
-            Add Ebook
-          </Button>
+          <Link to="../Ebooks">
+            <Button variant="dark" className="btn-add" onClick={handleSave}>
+              Add Ebook
+            </Button>
+          </Link>
         </Col>
         <Col>
           <Button variant="dark" className="btn-add" onClick={clear}>

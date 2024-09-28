@@ -83,27 +83,20 @@ const GiftCard = ({ addToCart }) => {
 
     setShowModal(true);
 
+    const imagePath = getImageFileName(selectedDesign);
     const generatedCode =
       "GC" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
     const giftCardDetails = {
       code: generatedCode,
       amount,
-      selectedDesign,
+      selectedDesign: imagePath,
       recipientName,
       recipientEmail,
       message,
       senderName,
       userID: userId,
     };
-
-    const giftCardProduct = {
-      title: "Gift Card",
-      price: amount,
-      image: getDesignImageUrl(selectedDesign),
-    };
-
-    addToCart(giftCardProduct);
 
     fetch("https://localhost:7061/api/GiftCard", {
       method: "POST",
@@ -121,7 +114,18 @@ const GiftCard = ({ addToCart }) => {
         return response.json();
       })
       .then((data) => {
-        console.log("Gift card created:", data);
+        if (data.giftCardID) {
+          const giftCardProduct = {
+            giftCardId: data.giftCardID,
+            title: "Gift Card",
+            price: amount,
+            image: imagePath,
+          };
+          addToCart(giftCardProduct);
+          console.log("Gift card created:", data);
+        } else {
+          console.error("Gift card ID not returned from API");
+        }
       })
       .catch((error) => {
         console.error("Error creating gift card:", error.message);
@@ -245,7 +249,8 @@ const GiftCard = ({ addToCart }) => {
               alt={`Design ${selectedDesign} Preview`}
               className="design-preview-modal"
             />
-            <p>Amount: ${amount}</p>
+
+            <p>Amount: {amount} €</p>
             <div className="view-cart-container">
               <Link to="/cart" className="view-cart-button">
                 View Cart
@@ -271,6 +276,18 @@ const getDesignImageUrl = (design) => {
       return require("../Images/gift2.png");
     case "design3":
       return require("../Images/gift3.png");
+    default:
+      return null;
+  }
+};
+const getImageFileName = (design) => {
+  switch (design) {
+    case "design1":
+      return "gift1.png";
+    case "design2":
+      return "gift2.png";
+    case "design3":
+      return "gift3.png";
     default:
       return null;
   }

@@ -3979,9 +3979,6 @@ label {
   color: #e04850;
 }
 
-
-
-
 @media only screen and (max-width: 768px) {
   .wishlist-button {
     bottom: 20px;
@@ -3998,8 +3995,8 @@ label {
   }
 
   .wishlist-buttons button {
-    padding: 8px 12px; 
-    font-size: 0.9rem; 
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 
   .remove-wishlist {
@@ -4023,8 +4020,8 @@ label {
   }
 
   .wishlist-buttons button {
-    padding: 6px 10px; 
-    font-size: 0.85rem; 
+    padding: 6px 10px;
+    font-size: 0.85rem;
   }
 
   .remove-wishlist {
@@ -4049,7 +4046,7 @@ label {
 
   .wishlist-buttons button {
     padding: 4px 8px;
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
   }
 
   .remove-wishlist {
@@ -4519,25 +4516,25 @@ button.linkaccbutton {
 @media (min-width: 992px) and (max-width: 1200px) {
   .partOneCu {
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
   }
 
-  .leftPartCu, .rightPartCu {
-    width: 45%; 
-    margin: 20px 2%; 
-    padding: 30px; 
+  .leftPartCu,
+  .rightPartCu {
+    width: 45%;
+    margin: 20px 2%;
+    padding: 30px;
   }
 
   .leftPartCu h1 {
     font-size: 50px;
-    margin-left: -100px; 
+    margin-left: -100px;
   }
 
   .rightPartCu {
-    margin-left: 0; 
+    margin-left: 0;
   }
 }
-
 
 @media (max-width: 992px) {
   .introCU {
@@ -4546,14 +4543,15 @@ button.linkaccbutton {
   }
 
   .intro1Cu {
-    width: 90%; 
+    width: 90%;
   }
 
   .partOneCu {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
-  .leftPartCu, .rightPartCu {
+  .leftPartCu,
+  .rightPartCu {
     width: 90%;
     margin: 20px 0;
     padding: 25px;
@@ -4568,20 +4566,20 @@ button.linkaccbutton {
   .button-CU {
     width: 100%;
   }
-  
+
   .mapcomponant {
-    width: 85%; 
+    width: 85%;
   }
 }
 
-
 @media (max-width: 768px) {
   .intro1Cu {
-    width: 100%; 
+    width: 100%;
     text-align: center;
   }
 
-  .leftPartCu, .rightPartCu {
+  .leftPartCu,
+  .rightPartCu {
     width: 90%;
     padding: 20px;
   }
@@ -4592,8 +4590,9 @@ button.linkaccbutton {
     text-align: center;
   }
 
-  .inputs-contact input, .inputs-contact-Message textarea {
-    padding: 20px 20px; 
+  .inputs-contact input,
+  .inputs-contact-Message textarea {
+    padding: 20px 20px;
   }
 
   .button-CU {
@@ -4602,7 +4601,7 @@ button.linkaccbutton {
   }
 
   .mapcomponant {
-    width: 90%; 
+    width: 90%;
   }
 }
 
@@ -4615,12 +4614,13 @@ button.linkaccbutton {
     font-size: 36px;
   }
 
-  .inputs-contact input, .inputs-contact-Message textarea {
+  .inputs-contact input,
+  .inputs-contact-Message textarea {
     padding: 15px 15px;
   }
 
   .mapcomponant {
-    width: 100%; 
+    width: 100%;
   }
 }
 
@@ -5034,7 +5034,7 @@ button.linkaccbutton {
   flex: 1 1 calc(100% - 20px);
   position: relative;
   overflow-y: auto;
-  max-height: 370px;
+  max-height: 600px;
   margin-top: 40px;
 }
 .eventS {
@@ -5046,14 +5046,14 @@ button.linkaccbutton {
 .event-hr {
   border: 0.5px solid #0f4365;
   width: 50%;
-  margin: 30px 0;
+  margin-bottom: 100px;
 }
 
 .events-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .events-list {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Line, Pie, Doughnut } from "react-chartjs-2";
+import { Line, Pie, Doughnut, Bar } from "react-chartjs-2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../App.css";
@@ -8,7 +8,6 @@ import styled from "styled-components";
 import Calendar from "react-calendar";
 import MapChart from "../Components/MapChart";
 import "react-calendar/dist/Calendar.css";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,6 +15,7 @@ import {
   PointElement,
   LineElement,
   Title,
+  BarElement,
   Tooltip,
   Legend,
   ArcElement,
@@ -29,6 +29,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  BarElement,
   ArcElement
 );
 const StyledCalendar = styled(Calendar)`
@@ -88,6 +89,8 @@ const Statistics = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [bestCustomers, setBestCustomers] = useState([]);
+  const [activeCount, setActiveCount] = useState(0);
+  const [inactiveCount, setInactiveCount] = useState(0);
   const [weeklySalesData, setWeeklySalesData] = useState([]);
   const [ordersSummary, setOrdersSummary] = useState({
     bookOrders: 0,
@@ -105,10 +108,10 @@ const Statistics = () => {
   };
 
   const colors = [
-    "rgba(54, 162, 235, 0.6)", // General Inquiry
-    "rgba(255, 206, 86, 0.6)", // Support
-    "rgba(75, 192, 192, 0.6)", // Feedback
-    "rgba(153, 102, 255, 0.6)", // Other
+    "rgba(54, 162, 235, 0.6)",
+    "rgba(255, 206, 86, 0.6)",
+    "rgba(75, 192, 192, 0.6)",
+    "rgba(153, 102, 255, 0.6)",
   ];
 
   const [chartData, setChartData] = useState({
@@ -204,36 +207,34 @@ const Statistics = () => {
   const fetchTotalUsers = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/User/count");
-      const newUserCount = response.data;
-
-      console.log("New User Count:", newUserCount);
-
-      if (previousUserCount > 0) {
-        const growth =
-          ((newUserCount - previousUserCount) / previousUserCount) * 100;
-
-        if (!isNaN(growth)) {
-          setGrowthPercentage(growth.toFixed(2));
-          console.log("Growth Percentage:", growth);
-        }
-      } else {
-        setGrowthPercentage("N/A");
-      }
-      setPreviousUserCount(newUserCount);
-      setTotalUsers(newUserCount);
+      setTotalUsers(response.data);
     } catch (error) {
       console.error("Error fetching total users:", error);
     }
   };
 
-  const fetchCartValue = async () => {
+  const fetchUserGrowth = async () => {
     try {
       const response = await axios.get(
-        "https://localhost:7061/api/CartItems/total-value"
+        "https://localhost:7061/api/User/growth"
       );
-      setCartValue(response.data);
+      setGrowthPercentage(response.data);
     } catch (error) {
-      console.error("Error fetching cart value:", error);
+      console.error("Error fetching user growth percentage:", error);
+    }
+  };
+
+  const fetchGiftCardStats = async () => {
+    try {
+      const response = await axios.get(
+        "https://localhost:7061/api/GiftCard/counts"
+      );
+      console.log("API Response:", response.data);
+
+      setActiveCount(response.data.activeGiftCardCount || 0);
+      setInactiveCount(response.data.inactiveGiftCardCount || 0);
+    } catch (error) {
+      console.error("Error fetching gift card statistics:", error);
     }
   };
 
@@ -313,14 +314,16 @@ const Statistics = () => {
     fetchTotalContacts();
     fetchTotalSales();
     fetchTotalUsers();
-    fetchCartValue();
+    fetchGiftCardStats();
     fetchOrderData();
     fetchCategoryData();
     fetchOrdersSummary();
     fetchActiveLoans();
+    fetchUserGrowth();
     fetchEvents();
     fetchMonthlyUserCounts();
   }, []);
+  const isActiveGreater = activeCount > inactiveCount;
   useEffect(() => {
     const fetchWeeklySales = async () => {
       try {
@@ -378,6 +381,56 @@ const Statistics = () => {
 
     fetchTopCustomers();
   }, []);
+
+  const barData = {
+    labels: ["Active", "Inactive"],
+    datasets: [
+      {
+        label: "Gift Cards",
+        data: [activeCount, inactiveCount],
+        backgroundColor: ["rgba(54, 162, 235, 0.6)", "rgba(255, 99, 132, 0.6)"],
+        borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
+        borderWidth: 1,
+        barThickness: 50,
+      },
+    ],
+  };
+
+  const optionsB = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          boxWidth: 0,
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Gift Card Status",
+        },
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Count",
+        },
+        beginAtZero: true,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  const growthColor = growthPercentage >= 0 ? "#4db8b8" : "#dc3545";
 
   return (
     <div className="dashboard-container container-fluid">
@@ -501,28 +554,49 @@ const Statistics = () => {
             </div>
 
             <div className="col-md-6 mb-4">
-              <div className="stat-card  p-4 rounded shadow-sm  d-flex flex-column justify-content-center align-items-center">
+              <div className="stat-card p-4 rounded shadow-sm d-flex flex-column justify-content-center align-items-center">
                 <div className="d-flex align-items-center mb-3">
                   <i className="bi bi-people display-4 me-3"></i>
                   <h4 className="mb-0">Total Users</h4>
                 </div>
                 <h2 className="mb-0">{totalUsers}</h2>
-
-                <h4 className="mb-0 text-center">
-                  Growth Percentage:{" "}
-                  {typeof growthPercentage === "number"
-                    ? growthPercentage.toFixed(2)
-                    : "N/A"}
-                  %
-                </h4>
+                <div className="d-flex flex-column align-items-center mt-4">
+                  <p> </p>
+                  <p> </p>
+                  <p></p>
+                  <h4 className="mb-0 text-center">
+                    Growth Percentage:{" "}
+                    <span style={{ color: growthColor }}>
+                      {growthPercentage.toFixed(2)}%
+                    </span>
+                  </h4>
+                </div>
+                <div className="mt-4 w-100">
+                  <div className="progress" style={{ height: "20px" }}>
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={{
+                        width: `${growthPercentage}%`,
+                        backgroundColor:
+                          growthPercentage >= 0 ? "#77d9d9" : "#dc3545",
+                      }}
+                      aria-valuenow={growthPercentage}
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    />
+                  </div>
+                </div>
+                <p> </p>
               </div>
             </div>
 
             <div className="col-md-6 mb-4">
-              <div className="stat-card  p-4 rounded shadow-sm">
-                <i className="bi bi-cart"></i>
-                <h4>Cart Value</h4>
-                <h2>${cartValue ? cartValue.toFixed(2) : 0}</h2>
+              <div className="stat-card p-4 rounded shadow-sm">
+                <div style={{ height: "250px", width: "100%" }}>
+                  <h4>Gift Card Statistics</h4>
+                  <Bar data={barData} options={optionsB} />
+                </div>
               </div>
             </div>
           </div>
@@ -585,18 +659,20 @@ const Statistics = () => {
         </div>
 
         <div className="col-md-6">
-          <div className="best-customers-card p-4 rounded shadow-sm">
-            <h4>Top 5 Customers</h4>
-            <ul className="list-unstyled mt-3">
-              {bestCustomers.map((customer) => (
-                <li key={customer.id} className="mb-2 border-bottom pb-2">
-                  <strong>{customer.name}</strong>
-                  <div>Total Spent: ${customer.totalSpent}</div>
-                  <div>Order Count: {customer.orderCount}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {bestCustomers.length > 0 && (
+            <div className="best-customers-card p-4 rounded shadow-sm">
+              <h4 className="mb-3">Top 5 Customers</h4>
+              <ul className="list-unstyled">
+                {bestCustomers.map((customer) => (
+                  <li key={customer.id} className="mb-3 border-bottom pb-2">
+                    <strong className="d-block">{customer.name}</strong>
+                    <div>Total Spent: ${customer.totalSpent.toFixed(2)}</div>
+                    <div>Order Count: {customer.orderCount}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 

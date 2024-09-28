@@ -22,10 +22,12 @@ const Cart = ({ cart = [], setCart }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     const ids = cart
-      .map((item) => item.cartItemId)
-      .filter((id) => id !== undefined && id !== 0);
+      .map((item) => item.giftCardId)
+      .filter((id) => id !== undefined && id !== null && id !== 0);
+
+    console.log("Current cart items:", cart);
+    console.log("Gift Card IDs:", ids);
     setCartItemIds(ids);
-    console.log("Cart Item IDs:", ids);
   }, [cart]);
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const Cart = ({ cart = [], setCart }) => {
       Quantity: item.quantity,
       BookId: item.bookId || null,
       AccessoriesID: item.accessoriesID || null,
-      GiftCardId: item.giftCardId || null,
+      giftCardId: item.giftCardId ?? null,
     }));
 
     try {
@@ -137,6 +139,9 @@ const Cart = ({ cart = [], setCart }) => {
         alert("Failed to save cart items. Please try again.");
         return;
       }
+
+      setCart([]);
+      localStorage.removeItem("cart");
 
       navigate("/checkout", {
         state: {
@@ -195,7 +200,7 @@ const Cart = ({ cart = [], setCart }) => {
             <div className="items-cart-screen">
               <div className="item-details">
                 <p>{item.title || "No Title"}</p>
-                <p>€{price.toFixed(2)}</p>
+                <p>{price.toFixed(2)}€</p>
               </div>
               <div className="quantity-controls">
                 <button
@@ -215,7 +220,7 @@ const Cart = ({ cart = [], setCart }) => {
               onClick={() => removeFromCart(index)}
             />
             <p className="total-price">
-              €{(price * quantities[index]).toFixed(2)}
+              {(price * quantities[index]).toFixed(2)}€
             </p>
           </div>
         );
@@ -227,7 +232,7 @@ const Cart = ({ cart = [], setCart }) => {
               calculateTotalPrice() * discount
             ).toFixed(2)}`}
         </p>
-        <p>Estimated total: €{calculateDiscountedPrice().toFixed(2)} EUR</p>
+        <p>Estimated total: {calculateDiscountedPrice().toFixed(2)} €</p>
         <p>
           Tax included. <a href="#shipping">Shipping</a> and discounts
           calculated at checkout.

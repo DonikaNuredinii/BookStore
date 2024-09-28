@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BookStore.Models;
 using Microsoft.Extensions.Logging;
 using BookStore.DTOs;
+using BookStore.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -15,12 +16,16 @@ namespace WebApplication1.Controllers
     {
         private readonly MyContext _context;
         private readonly ILogger<GiftCardController> _logger;
+        private readonly EmailService _emailService;
 
-        public GiftCardController(MyContext context, ILogger<GiftCardController> logger)
+        public GiftCardController(MyContext context, ILogger<GiftCardController> logger, EmailService emailService)
         {
             _context = context;
             _logger = logger;
+            _emailService = emailService;
+
         }
+
 
         // GET: api/GiftCard
         [HttpGet]
@@ -96,9 +101,7 @@ namespace WebApplication1.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
-
-
+    
         // POST: api/GiftCard/apply
         [HttpPost("apply")]
         public async Task<ActionResult<GiftCardResponseDto>> ApplyGiftCard([FromBody] GiftCardApplicationDto application)
@@ -257,7 +260,26 @@ namespace WebApplication1.Controllers
         }
 
 
+        [HttpGet("counts")]
+        public async Task<ActionResult<object>> GetGiftCardCounts()
+        {
+            try
+            {
+                var activeCount = await _context.GiftCards.CountAsync(g => g.IsActive);
+                var inactiveCount = await _context.GiftCards.CountAsync(g => !g.IsActive);
 
+                return Ok(new
+                {
+                    ActiveGiftCardCount = activeCount,
+                    InactiveGiftCardCount = inactiveCount
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving gift card counts");
+                return StatusCode(500, "Internal server error");
+            }
+        }
 
         private bool GiftCardExists(int id)
         {

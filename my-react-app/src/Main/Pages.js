@@ -46,20 +46,18 @@ function Pages() {
       );
 
       if (existingItemIndex !== -1) {
-        // If it exists, update the quantity
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += item.quantity || 1;
         return updatedCart;
       }
 
-      // If it doesn't exist, add the new item
       const newItem = {
-        bookId: item.bookId ?? null, // Ensure this is correctly set
+        bookId: item.bookId ?? null,
         accessoriesID: item.accessoriesID ?? null,
         giftCardId: item.giftCardId ?? null,
         quantity: item.quantity || 1,
-        image: item.image || "",
-        price: item.price || 0,
+        image: item.image || item.selectedDesign || "",
+        price: item.price || item.amount || 0,
         title: item.title || "No Title",
       };
 

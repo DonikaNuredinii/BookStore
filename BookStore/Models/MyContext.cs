@@ -11,7 +11,7 @@ namespace BookStore.Models
         public DbSet<PublishingHouse> PublishingHouses { get; set; }
         public DbSet<CategoryBook> CategoryBooks { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-
+        public DbSet<UserOrder> UserOrders { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ContactUs> Contacts { get; set; }
         public DbSet<Roles> Roles { get; set; }

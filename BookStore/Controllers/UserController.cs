@@ -19,11 +19,13 @@ namespace BookStore.Controllers
     {
         private readonly MyContext _usersContext;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(MyContext usersContext, IConfiguration configuration)
+        public UserController(MyContext usersContext, IConfiguration configuration, ILogger<UserController> logger)
         {
             _usersContext = usersContext;
             _configuration = configuration;
+            _logger = logger;
         }
 
         [HttpPost("register")]
@@ -219,6 +221,29 @@ namespace BookStore.Controllers
             }
         }
 
+        [HttpGet("growth")]
+        public async Task<ActionResult<double>> GetUserGrowth()
+        {
+            try
+            {
+                var totalUsers = await _usersContext.Users.CountAsync();
+                var lastMonth = DateTime.UtcNow.AddMonths(-1);
+                var lastMonthCount = await _usersContext.Users.CountAsync(u => u.RegistrationDate >= lastMonth);
+                double growthPercentage = 0;
+
+                if (totalUsers > 0)
+                {
+                    growthPercentage = ((double)lastMonthCount / totalUsers) * 100;
+                }
+
+                return Ok(growthPercentage);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error calculating user growth");
+                return StatusCode(500, "Internal server error");
+            }
+        }
 
 
 

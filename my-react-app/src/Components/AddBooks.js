@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AddBooks = () => {
   const [isbn, setISBN] = useState("");
@@ -390,9 +391,11 @@ const AddBooks = () => {
       </Row>
       <Row>
         <Col>
-          <Button variant="dark" className="btn-add" type="submit">
-            Add Book
-          </Button>
+          <Link to="./Books">
+            <Button variant="dark" className="btn-add" onClick={handleSave}>
+              Add Book
+            </Button>
+          </Link>
         </Col>
         <Col>
           <Button variant="dark" className="btn-add" onClick={clear}>
