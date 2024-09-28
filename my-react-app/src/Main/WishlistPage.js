@@ -1,5 +1,5 @@
 import React from "react";
-import { useWishlist } from "../Components/Wishlist"; // Import the custom hook
+import { useWishlist } from "../Components/Wishlist"; 
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import "../App.css";
@@ -32,39 +32,49 @@ const WishlistPage = ({ addToCart }) => {
       </Link>
       <h2>Your Wishlist</h2>
       {wishlist.length > 0 ? (
-        wishlist.map((book) => (
-          <div key={book.bookID} className="wishlist-item">
-            <img
-              src={preprocessImagePath(book.image)} 
-              alt={book.title}
-              className="wishlist-image"
-            />
-            <div className="wishlist-details">
-              <h4>{book.title}</h4>
-              <p>
-                Author(s): {book.authors ? book.authors.join(", ") : "Unknown"}
-              </p>
-              <p>Price: €{book.price}</p>
-              <div className="wishlist-actions">
-                <button
-                  className="remove-wishlist"
-                  onClick={() => removeFromWishlist(book.bookID)}
-                >
-                  <MdDelete />
-                </button>
-                <button
-                  className="add-to-cart-button"
-                  onClick={() => {
-                    addToCart(book);
-                    removeFromWishlist(book.bookID);
-                  }}
-                >
-                  Add to Cart
-                </button>
+        wishlist.map((item) => {
+          const itemID = item.bookID || item.accessoriesID;
+          const isBookOrEbook = Boolean(item.bookID); 
+          const isAccessory = Boolean(item.accessoriesID); 
+
+          return (
+            <div key={itemID} className="wishlist-item">
+              <img
+                src={preprocessImagePath(item.image)}
+                alt={item.title || item.name}
+                className="wishlist-image"
+              />
+              <div className="wishlist-details">
+                <h4>{isBookOrEbook ? item.title : item.name}</h4>
+                {isBookOrEbook ? (
+                  <p>Author(s): {item.authors ? item.authors.join(", ") : "Unknown"}</p>
+                ) : isAccessory ? (
+                  <p>Seller: {item.seller ? item.seller : "Unknown"}</p>
+                ) : null}
+
+                <p>Price: {item.price}€</p>
+
+                <div className="wishlist-actions">
+                  <button
+                    className="remove-wishlist"
+                    onClick={() => removeFromWishlist(itemID)}
+                  >
+                    <MdDelete />
+                  </button>
+                  <button
+                    className="add-to-cart-button"
+                    onClick={() => {
+                      addToCart(item);
+                      removeFromWishlist(itemID);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       ) : (
         <p className="empty-wishlist">Your wishlist is empty.</p>
       )}

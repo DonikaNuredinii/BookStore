@@ -24,7 +24,7 @@ const EbookList = ({ addToCart }) => {
     addToWishlist,
     removeFromWishlist,
     clearWishlist,
-    isBookInWishlist,
+    isItemInWishlist,
   } = useWishlist();
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ const EbookList = ({ addToCart }) => {
 
   const handleFavoriteClick = (ebookID) => {
     const book = ebooks.find((b) => b.bookID === ebookID);
-    if (isBookInWishlist(ebookID)) {
+    if (isItemInWishlist(ebookID)) {
       removeFromWishlist(ebookID);
       setMessage("Book removed from wishlist");
     } else {
@@ -180,7 +180,7 @@ const EbookList = ({ addToCart }) => {
                   className="book-image"
                 />
                 <div className="icon-container">
-                  {isBookInWishlist(ebook.bookID) ? (
+                  {isItemInWishlist(ebook.bookID) ? (
                     <MdFavorite
                       className="favorite-icon"
                       onClick={(e) => {

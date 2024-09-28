@@ -23,7 +23,7 @@ const AuthorDetails = ({ addToCart }) => {
   const navigate = useNavigate();
 
   // Use the wishlist hook
-  const { isBookInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const { isItemInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -70,7 +70,7 @@ const AuthorDetails = ({ addToCart }) => {
 
   const handleFavoriteClick = (e, book) => {
     e.stopPropagation();
-    if (isBookInWishlist(book.bookID)) {
+    if (isItemInWishlist(book.bookID)) {
       removeFromWishlist(book.bookID);
       setMessage("Book removed from wishlist");
       setShowWishlistModal(false);
@@ -151,7 +151,7 @@ const AuthorDetails = ({ addToCart }) => {
                         className="book-image"
                       />
                       <div className="icon-container">
-                        {isBookInWishlist(book.bookID) ? (
+                        {isItemInWishlist(book.bookID) ? (
                           <MdFavorite
                             className="favorite-icon"
                             onClick={(e) => handleFavoriteClick(e, book)}

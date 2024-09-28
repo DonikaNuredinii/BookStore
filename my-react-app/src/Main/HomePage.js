@@ -26,7 +26,7 @@ const HomePage = ({ addToCart }) => {
   const [messageTimeout, setMessageTimeout] = useState(null);
   const navigate = useNavigate();
 
-  const { isBookInWishlist, removeFromWishlist, addToWishlist } = useWishlist();
+  const { isItemInWishlist, removeFromWishlist, addToWishlist } = useWishlist();
 
   const closeModal = () => {
     setShowModal(false);
@@ -155,7 +155,7 @@ const HomePage = ({ addToCart }) => {
     e.stopPropagation();
     const book = books.find((b) => b.bookID === bookID);
 
-    if (isBookInWishlist(bookID)) {
+    if (isItemInWishlist(bookID)) {
       removeFromWishlist(bookID);
       setSelectedBooks((prevSelectedBooks) =>
         prevSelectedBooks.filter((b) => b.bookID !== bookID)
@@ -217,7 +217,7 @@ const HomePage = ({ addToCart }) => {
     addToCart(book);
     setSelectedBooks([book]);
     setShowCartModal(true);
-    if (isBookInWishlist(book.bookID)) {
+    if (isItemInWishlist(book.bookID)) {
       removeFromWishlist(book.bookID);
     }
   };
@@ -293,7 +293,7 @@ const HomePage = ({ addToCart }) => {
                     className="book-image"
                   />
                   <div className="icon-container">
-                    {isBookInWishlist(book.bookID) ? (
+                    {isItemInWishlist(book.bookID) ? (
                       <MdFavorite
                         className="favorite-icon"
                         onClick={(e) => handleFavoriteClick(e, book.bookID)}

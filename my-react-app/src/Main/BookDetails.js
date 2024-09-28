@@ -29,7 +29,7 @@ const BookDetails = ({ addToCart }) => {
   const [currentUserId, setCurrentUserId] = useState(1); 
   const navigate = useNavigate();
 
-  const { wishlist, addToWishlist, removeFromWishlist, isBookInWishlist } =
+  const { wishlist, addToWishlist, removeFromWishlist, isItemInWishlist } =
     useWishlist();
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const BookDetails = ({ addToCart }) => {
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    if (isBookInWishlist(bookID)) {
+    if (isItemInWishlist(bookID)) {
       removeFromWishlist(bookID);
       setSelectedBooks((prevSelectedBooks) =>
         prevSelectedBooks.filter((b) => b.bookID !== bookID)
@@ -306,7 +306,7 @@ const BookDetails = ({ addToCart }) => {
                   <CiShoppingCart /> Add to Cart
                 </button>
                 <button className="favorite-btn" onClick={handleFavoriteClick}>
-                  {isBookInWishlist(bookID) ? (
+                  {isItemInWishlist(bookID) ? (
                     <MdFavorite />
                   ) : (
                     <MdFavoriteBorder />

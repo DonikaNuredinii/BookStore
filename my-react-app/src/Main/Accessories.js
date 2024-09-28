@@ -1,14 +1,15 @@
+import React, { useState, useEffect } from "react";
 import AccessoriesBanner from "../Components/AccessoriesBanner";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import { useSpring, animated } from "react-spring";
-import React, { useState, useEffect } from "react";
 import { BsArrowUpShort } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
+import { useWishlist } from "../Components/Wishlist";
 
 const ImazhetEAksesoriev = require.context(
   "../Images",
@@ -20,11 +21,24 @@ const Accessories = ({ addToCart }) => {
   const [detail, setDetail] = useState([]);
   const [close, setClose] = useState(false);
   const [accessories, setAccessories] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedAccessory, setSelectedAccessory] = useState(null);
   const [accessoriesPerPage, setAccessoriesPerPage] = useState(24);
+  const [showWishlistModal, setShowWishlistModal] = useState(false);
+  const [selectedAccessories, setSelectedAccessories] = useState([]);
+  const [message, setMessage] = useState("");
+  const [messageTimeout, setMessageTimeout] = useState(null);
+
+  const {
+    wishlist,
+    addToWishlist,
+    removeFromWishlist,
+    clearWishlist,
+    isItemInWishlist,
+  } = useWishlist();
+
+  const navigate = useNavigate();
 
   // Function to update items per page based on screen width
   const updateAccessoriesPerPage = () => {
@@ -59,15 +73,54 @@ const Accessories = ({ addToCart }) => {
     setClose(true);
   };
 
-  const handleFavoriteClick = (accessoryID) => {
-    setIsFavorite(!isFavorite);
+ 
+  const handleFavoriteClick = (e, accessoriesID) => {
+    e.stopPropagation();
+    const accessory = accessories.find((a) => a.accessoriesID === accessoriesID);
+  
+    if (isItemInWishlist(accessoriesID)) {
+      removeFromWishlist(accessoriesID);
+      setSelectedAccessories((prevSelectedAccessories) =>
+        prevSelectedAccessories.filter((a) => a.accessoriesID !== accessoriesID)
+      );
+      setMessage("Accessory removed from wishlist");
+      setShowWishlistModal(false);
+      if (messageTimeout) {
+        clearTimeout(messageTimeout);
+      }
+      setMessageTimeout(setTimeout(() => setMessage(""), 1000));
+    } else {
+      addToWishlist(accessory);
+      setSelectedAccessories((prevSelectedAccessories) => [
+        ...prevSelectedAccessories,
+        accessory,
+      ]); 
+      setShowWishlistModal(true);
+    }
+  };
+  
+
+  const handleAddAllToCart = () => {
+    selectedAccessories.forEach((accessory) => {
+      addToCart(accessory);
+      removeFromWishlist(accessory.accessoriesID);
+    });
+
+    setShowWishlistModal(false);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setShowWishlistModal(false);
   };
 
   const sortedAccessories = [...accessories].sort(
     (a, b) => new Date(b.dateofAddition) - new Date(a.dateofAddition)
   );
 
-  const totalPages = Math.ceil(sortedAccessories.length / accessoriesPerPage);
+  const totalPages = Math.ceil(
+    sortedAccessories.length / accessoriesPerPage
+  );
 
   const currentAccessories = sortedAccessories.slice(
     (currentPage - 1) * accessoriesPerPage,
@@ -102,7 +155,7 @@ const Accessories = ({ addToCart }) => {
 
   const scrollToFirstQuarter = () => {
     const firstQuarterY = window.innerHeight / 3;
-    window.scrollTo(0, firstQuarterY);
+    window.scrollTo({ top: firstQuarterY, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -145,7 +198,7 @@ const Accessories = ({ addToCart }) => {
   };
 
   const top = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const modalSpring = useSpring({
@@ -169,16 +222,18 @@ const Accessories = ({ addToCart }) => {
               <div key={`${x.id}-${index}`} className="Acc-detail-info">
                 <div className="Acc-img-box">
                   <img src={preprocessImagePath(x.image)} alt={x.name} />
-                  <br></br>
+                  <br />
                 </div>
                 <div className="Accessory_Details">
                   <h4>{x.name}</h4>
-                  <h5>{x.price}€</h5>
+                  <h5>${x.price}</h5>
                   <p>Marka: {x.seller}</p>
                   <p>Pershkrimi: {x.description}</p>
                   <p>Permasat: {x.dimensions}</p>
                   <p>Data e Shtimit: {x.dateofAddition}</p>
-                  <p>Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"} </p>
+                  <p>
+                    Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"}
+                  </p>
                   <div className="book-buttons">
                     <button
                       className="favorite-btn"
@@ -188,10 +243,16 @@ const Accessories = ({ addToCart }) => {
                     </button>
                     <button
                       className="favorite-btn"
-                      onClick={() => handleFavoriteClick(x.id)}
+                      onClick={(e) => handleFavoriteClick(e, x.accessoriesID)}
                     >
-                      {isFavorite ? <MdFavorite /> : <MdFavoriteBorder />} Add
-                      to Wish List
+                      {isItemInWishlist(x.accessoriesID) ? (
+                        <MdFavorite />
+                      ) : (
+                        <MdFavoriteBorder />
+                      )}{" "}
+                      {isItemInWishlist(x.accessoriesID)
+                        ? "Remove from Wish List"
+                        : "Add to Wish List"}
                     </button>
                   </div>
                 </div>
@@ -204,7 +265,10 @@ const Accessories = ({ addToCart }) => {
         {currentAccessories.map((accessory, index) => {
           const imagePath = preprocessImagePath(accessory.image);
           return (
-            <div className="card-item" key={`${accessory.id}-${index}`}>
+            <div
+              className="card-item"
+              key={`${accessory.accessoriesID}-${index}`}
+            >
               <div className="acc-card-image">
                 <div className="acc-image">
                   <img
@@ -214,21 +278,22 @@ const Accessories = ({ addToCart }) => {
                   />
                 </div>
                 <div className="icon-container">
-                  {isFavorite ? (
+                  {isItemInWishlist(accessory.accessoriesID) ? (
                     <MdFavorite
                       className="favorite-icon"
-                      onClick={() => handleFavoriteClick(accessory.id)}
+                      onClick={(e) => handleFavoriteClick(e, accessory.accessoriesID)}
                     />
                   ) : (
                     <MdFavoriteBorder
                       className="favorite-icon"
-                      onClick={() => handleFavoriteClick(accessory.id)}
+                      onClick={(e) => handleFavoriteClick(e, accessory.accessoriesID)}
                     />
                   )}
                 </div>
+
                 <div className="dropup">
                   <div className="a-dropup-content">
-                    <p className="card-price">Price: {accessory.price}€</p>
+                    <p className="card-price">Price: €{accessory.price}</p>
                     <h3 className="card-title">{accessory.name}</h3>
                     <button
                       onClick={() => {
@@ -262,7 +327,10 @@ const Accessories = ({ addToCart }) => {
             {number}
           </button>
         ))}
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
           <GrNext />
         </button>
       </div>
@@ -272,10 +340,12 @@ const Accessories = ({ addToCart }) => {
           <BsArrowUpShort />
         </button>
       </p>
+      
+      {/* Cart Modal */}
       {showModal && selectedAccessory && (
         <animated.div className="modal-cart" style={modalSpring}>
           <div className="modal-content">
-            <span className="close" onClick={() => setShowModal(false)}>
+          <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
             {selectedAccessory && (
@@ -286,11 +356,11 @@ const Accessories = ({ addToCart }) => {
                   alt={selectedAccessory.name}
                   className="design-preview"
                 />
-                <p>Amount: {selectedAccessory.price}€</p>
+                <p>Amount: €{selectedAccessory.price}</p>
               </>
             )}
             <div className="view-cart-container">
-              <Link to="./cart" className="view-cart-button">
+              <Link to="/cart" className="view-cart-button">
                 View Cart
               </Link>
             </div>
@@ -302,6 +372,75 @@ const Accessories = ({ addToCart }) => {
           </div>
         </animated.div>
       )}
+      
+      {showWishlistModal && (
+  <div className="wishlist-modal">
+    <div className="modal-content">
+      <span className="close" onClick={closeModal}>
+        &times;
+      </span>
+      <h3>Accessories</h3>
+      
+     
+      {console.log("Selected Accessories at render:", selectedAccessories)}
+
+      {selectedAccessories && selectedAccessories.length > 0 ? (
+        <div className="wishlist-items">
+          {selectedAccessories.map((accessory) => {
+            if (!accessory || !accessory.accessoriesID) {
+              console.error("Invalid accessory object:", accessory);
+              return null; 
+            }
+
+            const imagePath = accessory.image ? preprocessImagePath(accessory.image) : "/Images/placeholder.jpg";
+            
+            return (
+              <div key={accessory.accessoriesID} className="wishlist-item">
+                <img
+                  src={imagePath}
+                  alt={accessory.name || "Accessory"}
+                  className="wishlist-image"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/Images/placeholder.jpg";
+                  }}
+                />
+                <div className="wishlist-details">
+                  <h4>{accessory.name ? accessory.name : "No Name Available"}</h4>
+                  <p>Seller: {accessory.seller ? accessory.seller : "Unknown"}</p>
+                  <p>Price: €{accessory.price ? accessory.price.toFixed(2) : "N/A"}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <p>Your wishlist is empty.</p>
+      )}
+      <div className="wishlist-buttons">
+        <button
+          className="view-wishlist-button"
+          onClick={() => {
+            setShowWishlistModal(false);
+            navigate("/WishlistPage");
+          }}
+        >
+          View Wishlist
+        </button>
+        <button
+          className="add-all-to-cart-button"
+          onClick={handleAddAllToCart}
+          disabled={selectedAccessories.length === 0}
+        >
+          Add All to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+{message && <div className="feedback-message">{message}</div>}
+
+
     </div>
   );
 };

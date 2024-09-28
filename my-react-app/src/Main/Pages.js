@@ -58,7 +58,7 @@ function Pages() {
         quantity: item.quantity || 1,
         image: item.image || item.selectedDesign || "",
         price: item.price || item.amount || 0,
-        title: item.title || "No Title",
+        title: item.title || item.name || "No Title",
       };
 
       console.log("New item added to cart:", newItem);

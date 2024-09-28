@@ -30,7 +30,7 @@ const CategoriesF = ({ addToCart }) => {
     addToWishlist,
     removeFromWishlist,
     clearWishlist,
-    isBookInWishlist,
+    isItemInWishlist,
   } = useWishlist();
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ const CategoriesF = ({ addToCart }) => {
     addToCart(book);
     setSelectedBooks([book]);
     setShowCartModal(true);
-    if (isBookInWishlist(book.bookID)) {
+    if (isItemInWishlist(book.bookID)) {
       removeFromWishlist(book.bookID);
     }
   };
@@ -152,7 +152,7 @@ const CategoriesF = ({ addToCart }) => {
       authors: getAuthorsForBook(book.bookID),
     };
 
-    if (isBookInWishlist(bookID)) {
+    if (isItemInWishlist(bookID)) {
       removeFromWishlist(bookID);
       setSelectedBooks((prevSelectedBooks) =>
         prevSelectedBooks.filter((b) => b.bookID !== bookID)
@@ -299,7 +299,7 @@ const CategoriesF = ({ addToCart }) => {
                         className="book-image"
                       />
                       <div className="icon-container">
-                        {isBookInWishlist(book.bookID) ? (
+                        {isItemInWishlist(book.bookID) ? (
                           <MdFavorite
                             className="favorite-icon"
                             onClick={(e) => handleFavoriteClick(e, book.bookID)}
@@ -380,7 +380,7 @@ const CategoriesF = ({ addToCart }) => {
               alt={selectedBooks[0].title}
               className="design-preview"
             />
-            <p>Amount: €{selectedBooks[0].price}</p>
+            <p>Amount: {selectedBooks[0].price}€</p>
             <div className="view-cart-container">
               <Link to="/cart" className="view-cart-button">
                 View Cart
