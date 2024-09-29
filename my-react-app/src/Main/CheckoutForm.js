@@ -374,24 +374,13 @@ const CheckoutForm = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email or mobile phone number"
+                placeholder="Your Email"
                 className="form-input"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 autoComplete="email"
               />
-              <div className="whatsapp-update">
-                <input
-                  type="checkbox"
-                  name="getOrderUpdatesOnWhatsApp"
-                  id="whatsapp"
-                  className="form-checkbox"
-                  checked={formData.getOrderUpdatesOnWhatsApp}
-                  onChange={handleChange}
-                />
-                <label htmlFor="whatsapp">Get order updates on WhatsApp</label>
-              </div>
             </div>
             <div className="delivery">
               <h2>Delivery</h2>
@@ -468,19 +457,6 @@ const CheckoutForm = () => {
                 onChange={handleChange}
                 autoComplete="tel"
               />
-              <div className="save-info">
-                <input
-                  type="checkbox"
-                  name="saveInfo"
-                  id="save-info"
-                  className="form-checkbox"
-                  checked={formData.saveInfo}
-                  onChange={handleChange}
-                />
-                <label htmlFor="save-info">
-                  Save this information for next time
-                </label>
-              </div>
             </div>
             <div className="payment">
               <h2>Payment</h2>
@@ -505,19 +481,6 @@ const CheckoutForm = () => {
                         options={cardElementOptions}
                         className="card-element"
                       />
-                      <div className="save-payment-info">
-                        <input
-                          type="checkbox"
-                          name="savePaymentInfo"
-                          id="savePaymentInfo"
-                          className="form-checkbox"
-                          checked={formData.savePaymentInfo}
-                          onChange={handleChange}
-                        />
-                        <label htmlFor="savePaymentInfo">
-                          Save this information for next time
-                        </label>
-                      </div>
                     </div>
                   )}
                 </div>

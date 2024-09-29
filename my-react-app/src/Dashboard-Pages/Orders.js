@@ -20,6 +20,9 @@ const Orders = ({ searchQuery }) => {
   const [editCountry, setEditCountry] = useState("");
   const [editZipCode, setEditZipCode] = useState("");
   const [editDiscountId, setEditDiscountID] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -39,14 +42,14 @@ const Orders = ({ searchQuery }) => {
     }
 
     const filteredData = data.filter((order) =>
-      order.city.toLowerCase().includes(query.toLowerCase())
+      order.invoiceNumber.toLowerCase().includes(query.toLowerCase())
     );
     setData(filteredData);
   };
 
   const getData = () => {
     axios
-      .get(`https://localhost:7061/api/Orders`)
+      .get(`https://localhost:7061/api/Order`)
       .then((result) => {
         console.log(result.data.creationDate);
         setData(result.data);
@@ -55,21 +58,36 @@ const Orders = ({ searchQuery }) => {
         console.log(error);
       });
   };
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7061/api/Countries"
+        );
+        setCountries(response.data);
+      } catch (error) {
+        toast.error("Failed to load countries: " + error.message);
+      }
+    };
+
+    if (show) {
+      fetchCountries();
+    }
+  }, [show]);
 
   //edit
   const handleEdit = (ordersId) => {
     handleShow();
     setEditOrdersId(ordersId);
     axios
-      .get(`https://localhost:7061/api/Orders/${ordersId}`)
+      .get(`https://localhost:7061/api/Order/${ordersId}`)
       .then((result) => {
         setEditOrderDate(result.data.orderDate);
         setEditOrderShipDate(result.data.orderShipDate);
         setEditAddress(result.data.address);
         setEditCity(result.data.city);
-        setEditCountry(result.data.country);
+        setEditCountry(result.data.countryID);
         setEditZipCode(result.data.zipCode);
-        setEditDiscountID(result.data.setEditDiscountId);
       })
       .catch((error) => {
         toast.error("Failed to get Orders: " + error.message);
@@ -80,7 +98,7 @@ const Orders = ({ searchQuery }) => {
   const handleDelete = (ordersId) => {
     if (window.confirm("Are you sure you want to delete this Order") === true) {
       axios
-        .delete(`https://localhost:7061/api/Category/${ordersId}`)
+        .delete(`https://localhost:7061/api/Order/${ordersId}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Orders has been deleted");
@@ -95,16 +113,15 @@ const Orders = ({ searchQuery }) => {
   //update
 
   const handleUpdate = (e) => {
-    const url = `https://localhost:7061/api/Orders/${editOrdersId}`;
+    const url = `https://localhost:7061/api/Order/${editOrdersId}`;
     const data = {
       OrdersId: editOrdersId,
       OrderDate: editOrderDate,
       OrderShipDate: editOrderShipDate,
       Address: editAddress,
       City: editCity,
-      Country: editCountry,
+      Country: selectedCountry,
       ZipCode: editZipCode,
-      DiscountId: editDiscountId,
     };
     axios
       .put(url, data)
@@ -142,13 +159,17 @@ const Orders = ({ searchQuery }) => {
         <thead className="table-dark">
           <tr>
             <th>#</th>
-            <th>OrderDate</th>
-            <th>OrderShipDate</th>
+            <th>User</th>
+            <th>Order Date</th>
+            <th>Ship Date</th>
             <th>Address</th>
             <th>City</th>
             <th>Country</th>
-            <th>ZipCode</th>
-            <th>DiscountId</th>
+            <th>Zip Code</th>
+            <th>Total Price</th>
+            <th>Invoice Date</th>
+            <th>Invoice Number</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -157,13 +178,16 @@ const Orders = ({ searchQuery }) => {
                 return (
                   <tr key={item.orderId}>
                     <td>{index + 1}</td>
+                    <td>{item.userFirstName}</td>
                     <td>{item.orderDate}</td>
                     <td>{item.orderShipDate}</td>
                     <td>{item.address}</td>
                     <td>{item.city}</td>
-                    <td>{item.country}</td>
+                    <td>{item.countryName}</td>
                     <td>{item.zipCode}</td>
-                    <td>{item.discountId}</td>
+                    <td>{item.totalPrice}</td>
+                    <td>{item.invoiceDate}</td>
+                    <td>{item.invoiceNumber}</td>
                     <td colSpan={2} className="btn">
                       <Button
                         variant="outline-dark"
@@ -247,6 +271,10 @@ const Orders = ({ searchQuery }) => {
                     onChange={(e) => setEditAddress(e.target.value)}
                   />
                 </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 <Form.Group controlId="fromCity">
                   <Form.Label>City</Form.Label>
                   <Form.Control
@@ -256,31 +284,34 @@ const Orders = ({ searchQuery }) => {
                     onChange={(e) => setEditCity(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group controlId="fromCountry">
+              </Col>
+              <Col>
+                <Form.Group controlId="formCountry">
                   <Form.Label>Country</Form.Label>
                   <Form.Control
-                    type="text"
-                    placeholder="Enter Country"
-                    value={editCountry}
-                    onChange={(e) => setEditCountry(e.target.value)}
-                  />
+                    as="select"
+                    value={selectedCountry}
+                    onChange={(e) => setSelectedCountry(e.target.value)}
+                  >
+                    <option value="">Select Country</option>
+                    {countries.map((country) => (
+                      <option key={country.countryID} value={country.countryID}>
+                        {country.countryName}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 <Form.Group controlId="fromZipCode">
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label>Zip Code</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter ZipCode"
                     value={editZipCode}
                     onChange={(e) => setEditZipCode(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group controlId="fromDiscountId">
-                  <Form.Label>DiscountId</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter DiscountId"
-                    value={editDiscountId}
-                    onChange={(e) => setEditDiscountID(e.target.value)}
                   />
                 </Form.Group>
               </Col>

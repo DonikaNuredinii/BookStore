@@ -21,7 +21,8 @@ const EbookDetails = () => {
         `https://localhost:7061/api/Ebooks/${id}`
       );
       setEbook(response.data);
-      fetchPdfContent(response.data.content);
+      const pdfPath = preprocessPdfPath(response.data.content);
+      fetchPdfContent(pdfPath);
     } catch (error) {
       console.error("Error fetching ebook details:", error);
       setError("Failed to load ebook details.");
@@ -29,8 +30,20 @@ const EbookDetails = () => {
     }
   };
 
+  const preprocessPdfPath = (path) => {
+    if (!path) return path;
+
+    const normalizedPath = path.replace(/\/{2,}/g, "/");
+    const fileName = normalizedPath.split("/").pop();
+
+    const shortUrl = `/${fileName}`;
+    const host = window.location.origin;
+    return `${host}${shortUrl}`;
+  };
+
   const fetchPdfContent = async (url) => {
     try {
+      console.log("Fetching PDF from URL:", url);
       setLoading(true);
       const response = await axios.get(url, { responseType: "blob" });
       const blob = new Blob([response.data], { type: "application/pdf" });

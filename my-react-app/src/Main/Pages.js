@@ -22,6 +22,7 @@ import StripeContainer from "../Components/StripeContainer";
 import { useWishlist } from "../Components/Wishlist";
 import EventsPage from "./EventsPage";
 import UpdatePassword from "./UpdatePassword";
+import EbookLoan from "./EbookLoan";
 
 function Pages() {
   const [isSticky] = useState(false);
@@ -123,6 +124,7 @@ function Pages() {
         <Route path="/ebooks" element={<EbookList addToCart={addToCart} />} />
         <Route path="/EbookDetails/:id" element={<EbookDetails />} />
         <Route path="/update-password" element={<UpdatePassword />} />
+        <Route path="/ebookLoans" element={<EbookLoan />} />
       </Routes>
       <Footer Toggle={Toggle} />
     </div>

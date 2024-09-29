@@ -77,10 +77,11 @@ namespace BookStore.Controllers
 
 
         // PUT: api/EbookLoans/5
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEbookLoan(int id, [FromBody] EbookLoan ebookLoan)
+        public async Task<IActionResult> UpdateEbookLoan(int id, [FromBody] EbookLoanDto ebookLoanDto)
         {
-            if (id != ebookLoan.EbookLoanID)
+            if (id != ebookLoanDto.EbookLoanID)
             {
                 return BadRequest("EbookLoan ID mismatch.");
             }
@@ -89,6 +90,34 @@ namespace BookStore.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            // Validate that the Ebook exists
+            var ebook = await _context.Ebooks.FindAsync(ebookLoanDto.EbookID);
+            if (ebook == null)
+            {
+                return NotFound($"Ebook with ID {ebookLoanDto.EbookID} not found.");
+            }
+
+            // Validate that the User exists
+            var user = await _context.Users.FindAsync(ebookLoanDto.UserID);
+            if (user == null)
+            {
+                return NotFound($"User with ID {ebookLoanDto.UserID} not found.");
+            }
+
+            // Update the existing EbookLoan
+            var ebookLoan = await _context.EbookLoans.FindAsync(id);
+            if (ebookLoan == null)
+            {
+                return NotFound();
+            }
+
+            // Map the DTO to the entity
+            ebookLoan.EbookID = ebookLoanDto.EbookID;
+            ebookLoan.LoanStartDate = ebookLoanDto.LoanStartDate;
+            ebookLoan.LoanDueDate = ebookLoanDto.LoanDueDate;
+            ebookLoan.UserID = ebookLoanDto.UserID;
+            ebookLoan.IsReturned = ebookLoanDto.IsReturned;
 
             _context.Entry(ebookLoan).State = EntityState.Modified;
 
@@ -110,11 +139,44 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
-        [HttpGet("active")]
-        public IActionResult GetActiveLoans()
+
+        public class EbookLoanDto
         {
-            var activeLoans = _context.EbookLoans.Count(el => !el.IsReturned);
-            return Ok(activeLoans);
+            public int EbookLoanID { get; set; }
+            public int EbookID { get; set; }
+            public DateTime LoanStartDate { get; set; }
+            public DateTime LoanDueDate { get; set; }
+            public int UserID { get; set; }
+            public bool IsReturned { get; set; }
+        }
+
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveLoans(int userId)
+        {
+            var loans = await _context.EbookLoans
+                .Where(loan => loan.UserID == userId && loan.LoanDueDate > DateTime.UtcNow)
+                .Include(loan => loan.Ebook) 
+                .ToListAsync();
+
+            return Ok(loans);
+        }
+        [HttpGet("loaned/{userId}")]
+        public async Task<IActionResult> GetLoanedEbooks(int userId)
+        {
+            var loans = await _context.EbookLoans
+                .Include(el => el.Ebook)
+                .Where(el => el.UserID == userId && !el.IsReturned)
+                .Select(el => new
+                {
+                    el.EbookID,
+                    el.Ebook.Title,
+                    el.Ebook.Image,
+                    el.LoanStartDate,
+                    el.LoanDueDate
+                })
+                .ToListAsync();
+
+            return Ok(loans);
         }
 
 

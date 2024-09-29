@@ -26,30 +26,41 @@ namespace BookStore.Controllers
             _emailService = emailService;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
+        public IActionResult GetOrders()
         {
-            try
-            {
-                var orders = await _context.Orders
-                    .Include(o => o.OrderDetails)
+            var orders = _context.Orders
+                .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.CartItems)
-                    .ToListAsync();
+                .Include(o => o.UserOrders)
+                    .ThenInclude(uo => uo.User)
+                .Include(o => o.Country)
+                .ToList();
 
-                if (orders == null || !orders.Any())
-                {
-                    return NotFound();
-                }
-
-                return Ok(orders);
-            }
-            catch (Exception ex)
+            var orderDtoList = orders.Select(order => new
             {
-                _logger.LogError(ex, "Error retrieving orders.");
-                return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
-            }
+                OrdersId = order.OrdersId,
+                OrderDate = order.OrderDate,
+                Address = order.Address,
+                City = order.City,
+                CountryID = order.CountryID,
+                CountryName = order.Country.CountryName,
+                ZipCode = order.ZipCode,
+                Email = order.Email,
+                DiscountID = order.DiscountID,
+                GiftCardID = order.GiftCardID,
+                UserID = order.UserOrders.FirstOrDefault()?.UserId,
+                UserFirstName = order.UserOrders.FirstOrDefault()?.User.FirstName,
+                TotalPrice = order.OrderDetails?.TotalPrice ?? 0,
+                InvoiceDate = order.OrderDetails?.InvoiceDate ?? DateTime.MinValue,
+                OrderShipDate = order.OrderDetails?.OrderShipDate ?? DateTime.MinValue,
+                InvoiceNumber = order.OrderDetails?.InvoiceNumber ?? string.Empty,
+                CartItemsIds = order.OrderDetails?.CartItemIds,
+            }).ToList();
+
+            return Ok(orderDtoList);
         }
+
 
         [HttpGet("{orderId}")]
         public async Task<ActionResult<Orders>> GetOrder(int orderId)
@@ -113,18 +124,32 @@ namespace BookStore.Controllers
                     OrderDetails = orderDetails,
                     UserID = orderDto.UserID,
                 };
+
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
-             
-                var userOrder = new UserOrder
+                foreach (var cartItemId in orderDto.OrderDetails.CartItemIds)
                 {
-                    UserId = user.UserID, 
-                    OrdersId = order.OrdersId 
-                };
+                    var ebookId = await GetEbookIdFromCartItem(cartItemId);
+                    if (ebookId.HasValue)
+                    {
+                        var ebookLoan = new EbookLoan
+                        {
+                            EbookID = ebookId.Value,
+                            UserID = orderDto.UserID,
+                            LoanStartDate = DateTime.UtcNow,
+                            LoanDueDate = DateTime.UtcNow.AddDays(30),
+                            IsReturned = false
+                        };
 
-                _context.UserOrders.Add(userOrder);
+                        _context.EbookLoans.Add(ebookLoan);
+                    }
+                }
+
                 await _context.SaveChangesAsync();
+
+                var ebookLoansCount = await _context.EbookLoans.CountAsync(loan => loan.UserID == orderDto.UserID);
+                Console.WriteLine($"EbookLoans count for UserID {orderDto.UserID}: {ebookLoansCount}");
 
                 await _emailService.SendInvoiceEmailAsync(
                     new[] { orderDto.Email },
@@ -135,30 +160,6 @@ namespace BookStore.Controllers
                     orderDto.OrderDetails.CartItemIds
                 );
 
-                var giftCardIds = orderDto.OrderDetails.CartItemIds
-                    .Select(cartItemId => _context.CartItems
-                        .Where(ci => ci.CartItemId == cartItemId && ci.GiftCardId.HasValue)
-                        .Select(ci => ci.GiftCardId.Value)
-                        .FirstOrDefault())
-                    .Where(giftCardId => giftCardId > 0)
-                    .Distinct()
-                    .ToList();
-
-                if (giftCardIds.Any())
-                {
-                    Console.WriteLine($"Gift Card IDs: {string.Join(", ", giftCardIds)}");
-
-                    foreach (var giftCardId in giftCardIds)
-                    {
-                        var giftCard = await _context.GiftCards.FindAsync(giftCardId);
-                        if (giftCard != null)
-                        {
-                            string senderName = user.FirstName;
-                            await _emailService.SendGiftCardEmailAsync(orderDto.Email, giftCard, senderName);
-                        }
-                    }
-                }
-
                 return Ok(new { message = "Order processed successfully, invoice and gift card emails sent." });
             }
             catch (Exception ex)
@@ -166,6 +167,21 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
+
+
+        private async Task<int?> GetEbookIdFromCartItem(int cartItemId)
+        {
+            var cartItem = await _context.CartItems
+                .FirstOrDefaultAsync(ci => ci.CartItemId == cartItemId);
+
+            if (cartItem == null) return null;
+
+            var book = await _context.Books
+                .FirstOrDefaultAsync(b => b.BookID == cartItem.BookId && b.Type == "Ebook");
+
+            return book?.BookID;
+        }
+
 
 
 

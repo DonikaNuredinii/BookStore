@@ -5176,6 +5176,55 @@ button.linkaccbutton {
 .success-popup button:hover {
   background-color: #061639;
 }
+/*Ebook Loans*/
+.ebook-cardsA {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 40px 0;
+}
 
+.ebook-cardA {
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  border-bottom: 2px solid #0f4365;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+.ebook-cardA h5 {
+  color: #0f4365;
+  margin-top: 5px;
+}
 
+.ebook-imageA {
+  width: 50px;
+  height: 75px;
+  margin-right: 15px;
+}
 
+.ebook-contentA {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.view-details-buttonA {
+  display: inline-block;
+  padding: 6px 10px;
+  background-color: #030e26;
+  color: #d1dddb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.view-details-buttonA:hover {
+  background-color: #0f4365;
+}

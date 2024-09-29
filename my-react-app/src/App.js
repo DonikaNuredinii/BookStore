@@ -5,16 +5,33 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Pages from "./Main/Pages";
 import Dashboard from "./Main/Dashboard";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Ensure this is imported correctly
 
 function App() {
   const [toggle, setToggle] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Initialize isAdmin from localStorage
+  const [isAdmin, setIsAdmin] = useState(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        return decodedToken.exp > currentTime && decodedToken.RolesID === "3";
+      } catch (error) {
+        console.error("Error decoding token", error);
+        localStorage.removeItem("token");
+        return false;
+      }
+    }
+    return false;
+  });
 
   const Toggle = () => {
     setToggle(!toggle);
   };
 
+  // Check if the user is an admin whenever the token changes
   useEffect(() => {
     const checkIfAdmin = () => {
       const token = localStorage.getItem("token");
@@ -39,7 +56,8 @@ function App() {
       }
     };
 
-    checkIfAdmin();
+    window.addEventListener("storage", checkIfAdmin); // Listen for storage changes
+    return () => window.removeEventListener("storage", checkIfAdmin); // Cleanup on unmount
   }, []);
 
   return (

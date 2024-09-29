@@ -23,32 +23,40 @@ function Sidebar() {
         </Link>
         <Link to="./User" className="list-group-item py-2">
           <i class="bi bi-person-badge fs-5 me-3"></i>
-          <span>User</span>
+          <span>Users</span>
         </Link>
         <Link to="./Books" className="list-group-item py-2 ">
           <i className="bi bi-book fs-5 me-3"></i>
-          <span>Libra</span>
+          <span>Books</span>
         </Link>
         <Link to="./Ebooks" className="list-group-item py-2 ">
           <i class="bi bi-tablet fs-5 me-3"></i>
           <span>Ebooks</span>
         </Link>
+        <Link to="./Loans" className="list-group-item py-2 ">
+          <i class="bi bi-journal-bookmark-fill fs-5 me-3"></i>
+          <span>Ebook Loans</span>
+        </Link>
         <Link to="./Categories" className="list-group-item py-2 ">
           <i class="bi bi-grid-1x2 fs-5 me-3"></i>
-          <span>Kategorite</span>
+          <span>Categories</span>
         </Link>
         <Link to="./Author" className="list-group-item py-2">
           <i class="bi bi-vector-pen fs-5 me-3"></i>
-          <span>Autoret</span>
+          <span>Authors</span>
         </Link>
 
         <Link to="./Accessories" className="list-group-item py-2 ">
-          <i class="bi bi-bookmark-star-fill fs-5 me-3"></i>
-          <span>Aksesoret</span>
+          <i class="bi bi-bookmark-heart fs-5 me-3"></i>
+          <span>Acessories</span>
         </Link>
         <Link to="./Orders" className="list-group-item py-2 ">
           <i class="bi bi-cart2 fs-5 me-3"></i>
-          <span>Porosite</span>
+          <span>Orders</span>
+        </Link>
+        <Link to="./payment" className="list-group-item py-2 ">
+          <i class="bi bi-credit-card-2-back fs-5 me-3"></i>
+          <span>Payments</span>
         </Link>
 
         <Link to="./ContactUs" className="list-group-item py-2 ">

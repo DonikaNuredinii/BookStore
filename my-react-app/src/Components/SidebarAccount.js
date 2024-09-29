@@ -24,7 +24,7 @@ const SidebarAccount = () => {
       <Link to="/" className="linkacc">
         Notifications
       </Link>
-      <Link to="/" className="linkacc">
+      <Link to="/ebookLoans" className="linkacc">
         E-books
       </Link>
       <button className="linkaccbutton" onClick={handleLogout}>
