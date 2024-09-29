@@ -19,10 +19,22 @@ const Orders = ({ searchQuery }) => {
   const [editCity, setEditCity] = useState("");
   const [editCountry, setEditCountry] = useState("");
   const [editZipCode, setEditZipCode] = useState("");
-  const [editDiscountId, setEditDiscountID] = useState("");
   const [userFirstName, setUserFirstName] = useState("");
   const [countries, setCountries] = useState([]);
+  const [discount, setDiscount] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedDiscount, setSelectedDiscount] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editDiscountID, setEditDiscountID] = useState("");
+  const [editGiftCardID, setEditGiftCardID] = useState("");
+  const [editPaymentAmount, setEditPaymentAmount] = useState(0);
+  const [editPaymentMethod, setEditPaymentMethod] = useState("");
+  const [editLastFourDigits, setEditLastFourDigits] = useState("");
+  const [editTransactionId, setEditTransactionId] = useState("");
+  const [editTotalPrice, setEditTotalPrice] = useState(0);
+  const [editInvoiceDate, setEditInvoiceDate] = useState("");
+  const [editInvoiceNumber, setEditInvoiceNumber] = useState("");
+  const [editCartItemIds, setEditCartItemIds] = useState([]);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -74,20 +86,54 @@ const Orders = ({ searchQuery }) => {
       fetchCountries();
     }
   }, [show]);
+  useEffect(() => {
+    const fetchDiscount = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7061/api/Discounts"
+        );
+        setDiscount(response.data);
+      } catch (error) {
+        toast.error("Failed to load Discount: " + error.message);
+      }
+    };
+
+    if (show) {
+      fetchDiscount();
+    }
+  }, [show]);
 
   //edit
   const handleEdit = (ordersId) => {
     handleShow();
     setEditOrdersId(ordersId);
+
     axios
       .get(`https://localhost:7061/api/Order/${ordersId}`)
       .then((result) => {
-        setEditOrderDate(result.data.orderDate);
-        setEditOrderShipDate(result.data.orderShipDate);
-        setEditAddress(result.data.address);
-        setEditCity(result.data.city);
-        setEditCountry(result.data.countryID);
-        setEditZipCode(result.data.zipCode);
+        console.log(result.data);
+        const order = result.data;
+
+        // Safely handle null or undefined dates
+        setEditOrderDate(order.orderDate ? order.orderDate.split("T")[0] : "");
+        setEditOrderShipDate(order.orderShipDate?.split("T")[0] || "");
+
+        setEditOrdersId(order.ordersId);
+        setEditAddress(order.address);
+        setEditCity(order.city);
+        setEditCountry(order.countryID);
+        setEditZipCode(order.zipCode);
+        setEditEmail(order.email);
+        setEditDiscountID(order.discountID);
+        setEditGiftCardID(order.giftCardID);
+        setEditPaymentAmount(order.payment.amount);
+        setEditPaymentMethod(order.payment.paymentMethod);
+        setEditLastFourDigits(order.payment.lastFourDigits);
+        setEditTransactionId(order.payment.transactionID);
+        setEditTotalPrice(order.orderDetails.totalPrice);
+        setEditInvoiceDate(order.orderDetails.invoiceDate);
+        setEditInvoiceNumber(order.orderDetails.invoiceNumber);
+        setEditCartItemIds(order.orderDetails.cartItemIds);
       })
       .catch((error) => {
         toast.error("Failed to get Orders: " + error.message);
@@ -112,7 +158,7 @@ const Orders = ({ searchQuery }) => {
 
   //update
 
-  const handleUpdate = (e) => {
+  const handleUpdate = () => {
     const url = `https://localhost:7061/api/Order/${editOrdersId}`;
     const data = {
       OrdersId: editOrdersId,
@@ -120,21 +166,37 @@ const Orders = ({ searchQuery }) => {
       OrderShipDate: editOrderShipDate,
       Address: editAddress,
       City: editCity,
-      Country: selectedCountry,
+      CountryID: selectedCountry,
       ZipCode: editZipCode,
+      Email: editEmail,
+      DiscountID: editDiscountID,
+      GiftCardID: editGiftCardID,
+      Payment: {
+        amount: editPaymentAmount,
+        paymentMethod: editPaymentMethod || "",
+        lastFourDigits: editLastFourDigits || "",
+        transactionID: editTransactionId || "",
+      },
+      OrderDetails: {
+        totalPrice: editTotalPrice,
+        invoiceDate: editInvoiceDate || "",
+        invoiceNumber: editInvoiceNumber || "",
+        cartItemIds: editCartItemIds || [],
+      },
     };
+
     axios
       .put(url, data)
       .then((result) => {
         handleClose();
         getData();
-        clear();
-        toast.success("Orders has been updated");
+        toast.success("Order has been updated");
       })
       .catch((error) => {
-        toast.error("Failed to edit Orders: " + error.message);
+        toast.error("Failed to edit Order: " + error.message);
       });
   };
+
   const clear = () => {
     setEditOrderDate("");
     setEditOrderShipDate("");
@@ -313,6 +375,26 @@ const Orders = ({ searchQuery }) => {
                     value={editZipCode}
                     onChange={(e) => setEditZipCode(e.target.value)}
                   />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="formDiscount">
+                  <Form.Label>Discount</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={selectedDiscount}
+                    onChange={(e) => setSelectedDiscount(e.target.value)}
+                  >
+                    <option value="">Select Discount</option>
+                    {discount.map((discounts) => (
+                      <option
+                        key={discounts.discountID}
+                        value={discounts.discountID}
+                      >
+                        {discounts.discountAmount}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
               </Col>
             </Row>

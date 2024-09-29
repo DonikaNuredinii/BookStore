@@ -30,6 +30,7 @@ import AddEbooks from "../Components/AddEbooks";
 import SearchBar from "../Components/SearchBar";
 import Loans from "../Dashboard-Pages/Loans";
 import Statistics from "../Dashboard-Pages/Statistics";
+import Payments from "../Dashboard-Pages/Payments";
 import AddLoans from "../Components/AddLoans";
 
 function Dashboard() {
@@ -120,6 +121,7 @@ function Dashboard() {
             <Route path="/add-Ebooks" element={<AddEbooks />} />
             <Route path="/loans" element={<Loans />} />
             <Route path="/add-loans" element={<AddLoans />} />
+            <Route path="/payment" element={<Payments />} />
             <Route path="/" element={<Statistics />} />
           </Routes>
         </div>

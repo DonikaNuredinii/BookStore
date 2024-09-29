@@ -19,7 +19,19 @@ namespace BookStore.Controllers
         {
             _context = context;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
+        {
+            try
+            {
+                var payments = await _context.Payment.ToListAsync();
+                return Ok(payments); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while retrieving the payments.", error = ex.Message });
+            }
+        }
         [HttpPost]
         public async Task<ActionResult> ProcessPayment([FromBody] CreatePaymentRequest request)
         {

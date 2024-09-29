@@ -235,24 +235,40 @@ const CheckoutForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      return;
+    if (formData.paymentMethod === "creditCard") {
+      if (!stripe || !elements) {
+        return;
+      }
+
+      const cardElement = elements.getElement(CardElement);
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardElement,
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+        return;
+      }
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        payment: {
+          ...prevFormData.payment,
+          lastFourDigits: paymentMethod.card.last4,
+          transactionID: paymentMethod.id,
+        },
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        payment: {
+          amount: totalPrice,
+          lastFourDigits: null,
+          transactionID: null,
+        },
+      }));
     }
-
-    const cardElement = elements.getElement(CardElement);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: cardElement,
-    });
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      payment: {
-        ...prevFormData.payment,
-        lastFourDigits: paymentMethod.card.last4,
-        transactionID: paymentMethod.id,
-      },
-    }));
 
     const orderPayload = {
       ordersId: 0,
@@ -266,9 +282,9 @@ const CheckoutForm = () => {
       giftCardID: formData.giftCardID,
       payment: {
         amount: formData.payment.amount,
-        lastFourDigits: paymentMethod.card.last4,
-        paymentMethod: "creditCard",
-        transactionID: paymentMethod.id,
+        lastFourDigits: formData.payment.lastFourDigits,
+        paymentMethod: formData.paymentMethod,
+        transactionID: formData.payment.transactionID,
       },
       orderDetails: {
         totalPrice: formData.orderDetails.totalPrice,
@@ -279,8 +295,7 @@ const CheckoutForm = () => {
       },
       userID: formData.userID,
     };
-    console.log("Order payload being sent:", orderPayload);
-
+    console.log("Data", orderPayload);
     try {
       const response = await fetch("https://localhost:7061/api/Order", {
         method: "POST",
@@ -292,16 +307,16 @@ const CheckoutForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
+        setErrorMessage(
+          errorData.message || "An error occurred while processing your order."
+        );
         console.error("Error details:", errorData);
-        setErrorMessage("An error occurred while processing your order.");
         return;
       }
 
       const orderData = await response.json();
       setShowSuccessPopup(true);
       setSuccessMessage("Your order has been processed successfully!");
-
-      setErrorMessage("");
 
       setFormData({
         address: "",
@@ -327,12 +342,12 @@ const CheckoutForm = () => {
         },
         userID: 0,
       });
+      setErrorMessage("Error");
     } catch (error) {
-      revertGiftCardAmount();
-      console.error("Error processing order:", error);
       setErrorMessage("An unexpected error occurred. Please try again.");
     }
   };
+
   const cardElementOptions = {
     style: {
       base: {
@@ -482,23 +497,6 @@ const CheckoutForm = () => {
                         className="card-element"
                       />
                     </div>
-                  )}
-                </div>
-                <div className="payment-method">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="paypal"
-                    value="paypal"
-                    className="form-radio"
-                    checked={formData.paymentMethod === "paypal"}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="paypal">
-                    <FaPaypal />
-                  </label>
-                  {formData.paymentMethod === "paypal" && (
-                    <div id="paypal-button"></div>
                   )}
                 </div>
                 <div className="payment-method">

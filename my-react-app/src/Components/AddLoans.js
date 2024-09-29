@@ -40,7 +40,7 @@ const AddLoans = () => {
 
   const getEbooks = () => {
     axios
-      .get(`https://localhost:7061/api/Ebooks`) // Adjust according to your API
+      .get(`https://localhost:7061/api/Ebooks`)
       .then((result) => {
         setEbooks(result.data);
       })
@@ -75,7 +75,6 @@ const AddLoans = () => {
     e.preventDefault();
     const url = "https://localhost:7061/api/EbookLoans";
     const data = {
-      ebookLoanID,
       ebookID: EbookID,
       userID: UserID,
       loanStartDate: LoanStartDate,
@@ -87,7 +86,7 @@ const AddLoans = () => {
       .then((result) => {
         getData();
         clear();
-        toast.success("Author has been added successfully");
+        toast.success("Ebook Loan has been added successfully");
       })
       .catch((error) => {
         toast.error("Failed to add author: " + error.message);
@@ -171,6 +170,7 @@ const AddLoans = () => {
             label="Is Returned"
             checked={setIsReturned}
             onChange={(e) => setIsReturned(e.target.checked)}
+            readOnly
           />
         </Form.Group>
         <Col>

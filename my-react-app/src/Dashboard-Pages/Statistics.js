@@ -33,14 +33,65 @@ ChartJS.register(
   ArcElement
 );
 
-const ALBANIAN_CATEGORIES = ["Anektoda & Thënje", "Arkeologji", "Arkitekturë", "Art", "Biografi", "Ekonomi", "Enciklopedi", "Fantashkencë", "Filozofi", "Gjuhësi", "Histori", "Klasike", "Kritikë", "Mister", "Muzikë", "Novela Grafike", "Poezi", "Psikologji", "Romancë", "Shkencë", "Shkenca Natyrore", "Shkenca Teknike", "Sociologji", "Sport", "Teatër & Kinematografi"];
+const ALBANIAN_CATEGORIES = [
+  "Anektoda & Thënje",
+  "Arkeologji",
+  "Arkitekturë",
+  "Art",
+  "Biografi",
+  "Ekonomi",
+  "Enciklopedi",
+  "Fantashkencë",
+  "Filozofi",
+  "Gjuhësi",
+  "Histori",
+  "Klasike",
+  "Kritikë",
+  "Mister",
+  "Muzikë",
+  "Novela Grafike",
+  "Poezi",
+  "Psikologji",
+  "Romancë",
+  "Shkencë",
+  "Shkenca Natyrore",
+  "Shkenca Teknike",
+  "Sociologji",
+  "Sport",
+  "Teatër & Kinematografi",
+];
 const generateColors = (count) => {
-  const pastelColors = 
-    ["#A8DADC", "#F4A261", "#E76F51", "#2A9D8F", "#E9C46A", "#F0B7A4", "#CDB4DB", "#BDE0FE", "#FFB4A2", "#FEC5BB", "#B5E48C", "#9AD1D4", "#E3D5CA", "#FFDDD2", "#FFE5EC", "#A0C4FF", "#B8E2FF", "#FFF3B0", "#FFCAD4", "#D3F8E2", "#B6CCFE", "#FED7C3", "#E0BBE4", "#D8C3A5", "#C8A2C8"];
-  return pastelColors.length >= count ? pastelColors.slice(0, count) : pastelColors;
+  const pastelColors = [
+    "#A8DADC",
+    "#F4A261",
+    "#E76F51",
+    "#2A9D8F",
+    "#E9C46A",
+    "#F0B7A4",
+    "#CDB4DB",
+    "#BDE0FE",
+    "#FFB4A2",
+    "#FEC5BB",
+    "#B5E48C",
+    "#9AD1D4",
+    "#E3D5CA",
+    "#FFDDD2",
+    "#FFE5EC",
+    "#A0C4FF",
+    "#B8E2FF",
+    "#FFF3B0",
+    "#FFCAD4",
+    "#D3F8E2",
+    "#B6CCFE",
+    "#FED7C3",
+    "#E0BBE4",
+    "#D8C3A5",
+    "#C8A2C8",
+  ];
+  return pastelColors.length >= count
+    ? pastelColors.slice(0, count)
+    : pastelColors;
 };
-
-
 
 const StyledCalendar = styled(Calendar)`
   background-color: #f0f8ff;
@@ -88,7 +139,7 @@ const Statistics = () => {
   const [cartValue, setCartValue] = useState(0);
   const [orderData, setOrderData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
-  const [activeLoans, setActiveLoans] = useState(0);
+  const [ebookLoans, setActiveLoans] = useState(0);
   const [events, setEvents] = useState([]);
   const [totalContacts, setTotalContacts] = useState(0);
   const [growthPercentage, setGrowthPercentage] = useState(0);
@@ -128,7 +179,9 @@ const Statistics = () => {
       );
 
       const genres = response.data.map((item) => item.genre || item.Genre);
-      const counts = response.data.map((item) => item.bookCount || item.BookCount);
+      const counts = response.data.map(
+        (item) => item.bookCount || item.BookCount
+      );
 
       const albanianGenres = genres.filter((genre) =>
         ALBANIAN_CATEGORIES.includes(genre)
@@ -162,7 +215,6 @@ const Statistics = () => {
     fetchGenreData();
   }, []);
 
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -171,7 +223,6 @@ const Statistics = () => {
         display: false,
       },
     },
-    
   };
 
   const colors = [
@@ -316,13 +367,12 @@ const Statistics = () => {
     }
   };
 
-
-
   const fetchOrdersSummary = async () => {
     try {
       const response = await axios.get(
         "https://localhost:7061/api/Order/orders-summary"
       );
+      console.log(response.data);
       setOrdersSummary(response.data);
     } catch (error) {
       console.error("Error fetching orders summary:", error);
@@ -400,8 +450,6 @@ const Statistics = () => {
 
     fetchWeeklySales();
   }, []);
-
-  
 
   const earningsChartData = {
     labels: categoryData.map((cat) => cat.Category),
@@ -658,9 +706,9 @@ const Statistics = () => {
             <h4>Accessories Orders</h4>
             <h2>{ordersSummary.accessoriesOrders}</h2>
           </div>
-          <div className="card-dashboard text-dark p-4 mt-3 rounded shadow-sm">
+          <div className="card-dashboard p-4 mt-3 rounded shadow-sm">
             <h4>Ebook Loans</h4>
-            <h2>{activeLoans}</h2>
+            <h2>{ordersSummary.ebookLoans}</h2>
           </div>
         </div>
       </div>
@@ -723,94 +771,94 @@ const Statistics = () => {
       </div>
 
       <div className="container-fluid d-flex justify-content-end">
-      <div
-        style={{
-          height: "400px",  // Increased height for larger visualization
-          width: "500px",   // Increased width for larger chart
-          background: "#f7f9fc",
-          borderRadius: "15px",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          padding: "20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ height: "100%", width: "60%" }}>  {/* Enlarged Pie Chart */}
-          <Pie
-            data={genreChartData}
-            options={{
-              responsive: true,
-              plugins: {
-                legend: {
-                  display: false,
-                },
-                tooltip: {
-                  enabled: true,
-                  backgroundColor: "#333",
-                  titleColor: "#fff",
-                  bodyColor: "#fff",
-                  borderColor: "#fff",
-                  borderWidth: 1,
-                  callbacks: {
-                    label: function (tooltipItem) {
-                      return ` ${tooltipItem.label}: ${tooltipItem.raw} books`;
+        <div
+          style={{
+            height: "400px",
+            width: "500px",
+            background: "#f7f9fc",
+            borderRadius: "15px",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            padding: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ height: "100%", width: "60%" }}>
+            <Pie
+              data={genreChartData}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    enabled: true,
+                    backgroundColor: "#333",
+                    titleColor: "#fff",
+                    bodyColor: "#fff",
+                    borderColor: "#fff",
+                    borderWidth: 1,
+                    callbacks: {
+                      label: function (tooltipItem) {
+                        return ` ${tooltipItem.label}: ${tooltipItem.raw} books`;
+                      },
                     },
                   },
                 },
-              },
-              animation: {
-                animateRotate: true,
-                animateScale: true,
-              },
-            }}
-          />
-        </div>
+                animation: {
+                  animateRotate: true,
+                  animateScale: true,
+                },
+              }}
+            />
+          </div>
 
-        <div style={{ height: "100%", width: "35%", overflowY: "auto" }}>
-          <div className="custom-legend p-2 border rounded shadow-sm">
-            <h6 className="mb-1">Albanian Genres</h6>
-            <ul className="list-unstyled">
-              {genreChartData.labels.map((label, index) => (
-                <li
-                  key={index}
-                  className="d-flex align-items-center mb-1"
-                  style={{
-                    backgroundColor:
-                      hoveredIndex === index ? "#eaf2f8" : "transparent",
-                    padding: hoveredIndex === index ? "5px" : "2px",
-                    borderRadius: "4px",
-                  }}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
-                  <span
+          <div style={{ height: "100%", width: "35%", overflowY: "auto" }}>
+            <div className="custom-legend p-2 border rounded shadow-sm">
+              <h6 className="mb-1">Albanian Genres</h6>
+              <ul className="list-unstyled">
+                {genreChartData.labels.map((label, index) => (
+                  <li
+                    key={index}
+                    className="d-flex align-items-center mb-1"
                     style={{
-                      display: "inline-block",
-                      width: "12px",
-                      height: "12px",
-                      backgroundColor: genreChartData.datasets[0].backgroundColor[index],
-                      marginRight: "8px",
-                      borderRadius: "50%",
-                      boxShadow: "0 1px 3px rgba(0, 0, 0, 0.2)",
+                      backgroundColor:
+                        hoveredIndex === index ? "#eaf2f8" : "transparent",
+                      padding: hoveredIndex === index ? "5px" : "2px",
+                      borderRadius: "4px",
                     }}
-                  ></span>
-                  <span>
-                    {label}
-                    {hoveredIndex === index && (
-                      <strong style={{ marginLeft: "4px", color: "#333" }}>
-                        - {genreChartData.datasets[0].data[index]} books
-                      </strong>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "12px",
+                        height: "12px",
+                        backgroundColor:
+                          genreChartData.datasets[0].backgroundColor[index],
+                        marginRight: "8px",
+                        borderRadius: "50%",
+                        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.2)",
+                      }}
+                    ></span>
+                    <span>
+                      {label}
+                      {hoveredIndex === index && (
+                        <strong style={{ marginLeft: "4px", color: "#333" }}>
+                          - {genreChartData.datasets[0].data[index]} books
+                        </strong>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  
     </div>
   );
 };

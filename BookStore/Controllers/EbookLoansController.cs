@@ -47,33 +47,39 @@ namespace BookStore.Controllers
 
         // POST: api/EbookLoans
         [HttpPost]
-        public async Task<ActionResult<EbookLoan>> CreateEbookLoan([FromBody] EbookLoan ebookLoan)
+        public async Task<ActionResult<EbookLoan>> CreateEbookLoan([FromBody] EbookLoanDto ebookLoanDto)
         {
-            if (ebookLoan == null)
+            if (ebookLoanDto == null)
             {
                 return BadRequest("EbookLoan data is required.");
             }
 
-            // Validate that the Ebook exists
-            var ebook = await _context.Ebooks.FindAsync(ebookLoan.EbookID);
+            var ebook = await _context.Ebooks.FindAsync(ebookLoanDto.EbookID);
             if (ebook == null)
             {
-                return NotFound($"Ebook with ID {ebookLoan.EbookID} not found.");
+                return NotFound($"Ebook with ID {ebookLoanDto.EbookID} not found.");
             }
 
-            // Validate that the User exists
-            var user = await _context.Users.FindAsync(ebookLoan.UserID);
+            var user = await _context.Users.FindAsync(ebookLoanDto.UserID);
             if (user == null)
             {
-                return NotFound($"User with ID {ebookLoan.UserID} not found.");
+                return NotFound($"User with ID {ebookLoanDto.UserID} not found.");
             }
+            var ebookLoan = new EbookLoan
+            {
+                EbookID = ebookLoanDto.EbookID,
+                LoanStartDate = ebookLoanDto.LoanStartDate,
+                LoanDueDate = ebookLoanDto.LoanDueDate,
+                UserID = ebookLoanDto.UserID,
+                IsReturned = ebookLoanDto.IsReturned
+            };
 
-            // Create the EbookLoan
             _context.EbookLoans.Add(ebookLoan);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetEbookLoan), new { id = ebookLoan.EbookLoanID }, ebookLoan);
         }
+
 
 
         // PUT: api/EbookLoans/5
@@ -90,29 +96,24 @@ namespace BookStore.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            // Validate that the Ebook exists
-            var ebook = await _context.Ebooks.FindAsync(ebookLoanDto.EbookID);
+           var ebook = await _context.Ebooks.FindAsync(ebookLoanDto.EbookID);
             if (ebook == null)
             {
                 return NotFound($"Ebook with ID {ebookLoanDto.EbookID} not found.");
             }
 
-            // Validate that the User exists
             var user = await _context.Users.FindAsync(ebookLoanDto.UserID);
             if (user == null)
             {
                 return NotFound($"User with ID {ebookLoanDto.UserID} not found.");
             }
 
-            // Update the existing EbookLoan
             var ebookLoan = await _context.EbookLoans.FindAsync(id);
             if (ebookLoan == null)
             {
                 return NotFound();
             }
 
-            // Map the DTO to the entity
             ebookLoan.EbookID = ebookLoanDto.EbookID;
             ebookLoan.LoanStartDate = ebookLoanDto.LoanStartDate;
             ebookLoan.LoanDueDate = ebookLoanDto.LoanDueDate;

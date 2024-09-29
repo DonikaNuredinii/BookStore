@@ -63,21 +63,50 @@ namespace BookStore.Controllers
 
 
         [HttpGet("{orderId}")]
-        public async Task<ActionResult<Orders>> GetOrder(int orderId)
+        public async Task<IActionResult> GetOrder(int orderId)
         {
             try
             {
                 var order = await _context.Orders
-                    .Include(o => o.OrderDetails)
-                    .ThenInclude(od => od.CartItems)
+                    .Include(o => o.OrderDetails) // Include related OrderDetails
+                        .ThenInclude(od => od.CartItems) // Include related CartItems
                     .FirstOrDefaultAsync(o => o.OrdersId == orderId);
 
                 if (order == null)
                 {
-                    return NotFound();
+                    return NotFound(new { message = "Order not found." });
                 }
 
-                return Ok(order);
+                var result = new
+                {
+                    OrdersId = order.OrdersId,
+                    OrderDate = order.OrderDate,
+                    OrderShipDate = order.OrderShipDate,
+                    Address = order.Address,
+                    City = order.City,
+                    CountryID = order.CountryID,
+                    ZipCode = order.ZipCode,
+                    Email = order.Email,
+                    DiscountID = order.DiscountID,
+                    GiftCardID = order.GiftCardID,
+                    Payment = new
+                    {
+                        Amount = order.Payment?.Amount ?? 0,
+                        PaymentMethod = order.Payment?.PaymentMethod ?? string.Empty,
+                        LastFourDigits = order.Payment?.LastFourDigits ?? string.Empty,
+                        TransactionID = order.Payment?.TransactionID ?? string.Empty,
+                    },
+                    OrderDetails = new
+                    {
+                        TotalPrice = order.OrderDetails?.TotalPrice ?? 0,
+                        InvoiceDate = order.OrderDetails?.InvoiceDate,
+                        OrderShipDate = order.OrderShipDate,
+                        InvoiceNumber = order.OrderDetails?.InvoiceNumber ?? string.Empty,
+                        CartItemIds = order.OrderDetails?.CartItems.Select(ci => ci.CartItemId) ?? Enumerable.Empty<int>(),
+                    }
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -85,6 +114,7 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrdersDto orderDto)
         {
@@ -117,15 +147,23 @@ namespace BookStore.Controllers
                     Payment = new Payment
                     {
                         Amount = orderDto.Payment.Amount,
-                        LastFourDigits = orderDto.Payment.LastFourDigits,
+                        LastFourDigits = orderDto.Payment.PaymentMethod == "cashOnDelivery" ? null : orderDto.Payment.LastFourDigits,
                         PaymentMethod = orderDto.Payment.PaymentMethod,
-                        TransactionID = orderDto.Payment.TransactionID
+                        TransactionID = orderDto.Payment.PaymentMethod == "cashOnDelivery" ? null : orderDto.Payment.TransactionID
                     },
                     OrderDetails = orderDetails,
                     UserID = orderDto.UserID,
                 };
 
                 _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+                var userOrder = new UserOrder
+                {
+                    UserId = orderDto.UserID,
+                    OrdersId = order.OrdersId
+                };
+
+                _context.UserOrders.Add(userOrder); 
                 await _context.SaveChangesAsync();
 
                 foreach (var cartItemId in orderDto.OrderDetails.CartItemIds)
@@ -330,7 +368,7 @@ namespace BookStore.Controllers
                         OrderCount = g.Count() 
                     })
                     .OrderByDescending(tc => tc.TotalSpent)
-                    .Take(5)
+                    .Take(6)
                     .ToListAsync();
 
                 return Ok(topCustomers);
