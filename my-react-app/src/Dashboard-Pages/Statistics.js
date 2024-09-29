@@ -32,6 +32,16 @@ ChartJS.register(
   BarElement,
   ArcElement
 );
+
+const ALBANIAN_CATEGORIES = ["Anektoda & Thënje", "Arkeologji", "Arkitekturë", "Art", "Biografi", "Ekonomi", "Enciklopedi", "Fantashkencë", "Filozofi", "Gjuhësi", "Histori", "Klasike", "Kritikë", "Mister", "Muzikë", "Novela Grafike", "Poezi", "Psikologji", "Romancë", "Shkencë", "Shkenca Natyrore", "Shkenca Teknike", "Sociologji", "Sport", "Teatër & Kinematografi"];
+const generateColors = (count) => {
+  const pastelColors = 
+    ["#A8DADC", "#F4A261", "#E76F51", "#2A9D8F", "#E9C46A", "#F0B7A4", "#CDB4DB", "#BDE0FE", "#FFB4A2", "#FEC5BB", "#B5E48C", "#9AD1D4", "#E3D5CA", "#FFDDD2", "#FFE5EC", "#A0C4FF", "#B8E2FF", "#FFF3B0", "#FFCAD4", "#D3F8E2", "#B6CCFE", "#FED7C3", "#E0BBE4", "#D8C3A5", "#C8A2C8"];
+  return pastelColors.length >= count ? pastelColors.slice(0, count) : pastelColors;
+};
+
+
+
 const StyledCalendar = styled(Calendar)`
   background-color: #f0f8ff;
   border-radius: 15px;
@@ -97,6 +107,62 @@ const Statistics = () => {
     accessoriesOrders: 0,
     ebookLoans: 0,
   });
+  const [genreChartData, setGenreChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: [],
+        borderColor: "#fff",
+        borderWidth: 2,
+      },
+    ],
+  });
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const fetchGenreData = async () => {
+    try {
+      const response = await axios.get(
+        "https://localhost:7061/api/CategoryBooks/genre-distribution"
+      );
+
+      const genres = response.data.map((item) => item.genre || item.Genre);
+      const counts = response.data.map((item) => item.bookCount || item.BookCount);
+
+      const albanianGenres = genres.filter((genre) =>
+        ALBANIAN_CATEGORIES.includes(genre)
+      );
+      const albanianCounts = counts.filter((_, index) =>
+        ALBANIAN_CATEGORIES.includes(genres[index])
+      );
+
+      const colors = generateColors(albanianGenres.length);
+
+      setGenreChartData({
+        labels: albanianGenres,
+        datasets: [
+          {
+            data: albanianCounts,
+            backgroundColor: colors,
+            hoverBackgroundColor: colors.map((color) =>
+              color.replace(")", ", 0.8)").replace("rgb", "rgba")
+            ),
+            borderColor: "#fff",
+            borderWidth: 2,
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("Error fetching genre data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGenreData();
+  }, []);
+
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -105,6 +171,7 @@ const Statistics = () => {
         display: false,
       },
     },
+    
   };
 
   const colors = [
@@ -249,16 +316,7 @@ const Statistics = () => {
     }
   };
 
-  const fetchCategoryData = async () => {
-    try {
-      const response = await axios.get(
-        "https://localhost:7061/api/CategoryBooks/earnings-by-category"
-      );
-      setCategoryData(response.data);
-    } catch (error) {
-      console.error("Error fetching category data:", error);
-    }
-  };
+
 
   const fetchOrdersSummary = async () => {
     try {
@@ -316,7 +374,6 @@ const Statistics = () => {
     fetchTotalUsers();
     fetchGiftCardStats();
     fetchOrderData();
-    fetchCategoryData();
     fetchOrdersSummary();
     fetchActiveLoans();
     fetchUserGrowth();
@@ -344,18 +401,7 @@ const Statistics = () => {
     fetchWeeklySales();
   }, []);
 
-  const ordersChartData = {
-    labels: orderData.map((order) => order.date),
-    datasets: [
-      {
-        label: "Orders Over Time",
-        data: orderData.map((order) => order.count),
-        fill: false,
-        backgroundColor: "rgb(75, 192, 192)",
-        borderColor: "rgba(75, 192, 192, 0.2)",
-      },
-    ],
-  };
+  
 
   const earningsChartData = {
     labels: categoryData.map((cat) => cat.Category),
@@ -676,20 +722,95 @@ const Statistics = () => {
         </div>
       </div>
 
-      <div className="row mt-4">
-        <div className="col-md-6">
-          <div className="chart-card p-4 rounded shadow-sm">
-            <h4>Orders Over Time</h4>
-            <Line data={ordersChartData} />
-          </div>
+      <div className="container-fluid d-flex justify-content-end">
+      <div
+        style={{
+          height: "400px",  // Increased height for larger visualization
+          width: "500px",   // Increased width for larger chart
+          background: "#f7f9fc",
+          borderRadius: "15px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          padding: "20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ height: "100%", width: "60%" }}>  {/* Enlarged Pie Chart */}
+          <Pie
+            data={genreChartData}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+                tooltip: {
+                  enabled: true,
+                  backgroundColor: "#333",
+                  titleColor: "#fff",
+                  bodyColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 1,
+                  callbacks: {
+                    label: function (tooltipItem) {
+                      return ` ${tooltipItem.label}: ${tooltipItem.raw} books`;
+                    },
+                  },
+                },
+              },
+              animation: {
+                animateRotate: true,
+                animateScale: true,
+              },
+            }}
+          />
         </div>
-        <div className="col-md-6">
-          <div className="chart-card p-4 rounded shadow-sm">
-            <h4>Earnings by Category</h4>
-            <Pie data={earningsChartData} />
+
+        <div style={{ height: "100%", width: "35%", overflowY: "auto" }}>
+          <div className="custom-legend p-2 border rounded shadow-sm">
+            <h6 className="mb-1">Albanian Genres</h6>
+            <ul className="list-unstyled">
+              {genreChartData.labels.map((label, index) => (
+                <li
+                  key={index}
+                  className="d-flex align-items-center mb-1"
+                  style={{
+                    backgroundColor:
+                      hoveredIndex === index ? "#eaf2f8" : "transparent",
+                    padding: hoveredIndex === index ? "5px" : "2px",
+                    borderRadius: "4px",
+                  }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "12px",
+                      height: "12px",
+                      backgroundColor: genreChartData.datasets[0].backgroundColor[index],
+                      marginRight: "8px",
+                      borderRadius: "50%",
+                      boxShadow: "0 1px 3px rgba(0, 0, 0, 0.2)",
+                    }}
+                  ></span>
+                  <span>
+                    {label}
+                    {hoveredIndex === index && (
+                      <strong style={{ marginLeft: "4px", color: "#333" }}>
+                        - {genreChartData.datasets[0].data[index]} books
+                      </strong>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
+    </div>
+  
     </div>
   );
 };

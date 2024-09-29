@@ -293,7 +293,7 @@ const Accessories = ({ addToCart }) => {
 
                 <div className="dropup">
                   <div className="a-dropup-content">
-                    <p className="card-price">Price: €{accessory.price}</p>
+                    <p className="card-price">Price: {accessory.price}€</p>
                     <h3 className="card-title">{accessory.name}</h3>
                     <button
                       onClick={() => {
@@ -356,7 +356,7 @@ const Accessories = ({ addToCart }) => {
                   alt={selectedAccessory.name}
                   className="design-preview"
                 />
-                <p>Amount: €{selectedAccessory.price}</p>
+                <p>Amount: {selectedAccessory.price}€</p>
               </>
             )}
             <div className="view-cart-container">
@@ -408,7 +408,7 @@ const Accessories = ({ addToCart }) => {
                 <div className="wishlist-details">
                   <h4>{accessory.name ? accessory.name : "No Name Available"}</h4>
                   <p>Seller: {accessory.seller ? accessory.seller : "Unknown"}</p>
-                  <p>Price: €{accessory.price ? accessory.price.toFixed(2) : "N/A"}</p>
+                  <p>Price: {accessory.price ? accessory.price.toFixed(2) : "N/A"}€</p>
                 </div>
               </div>
             );
