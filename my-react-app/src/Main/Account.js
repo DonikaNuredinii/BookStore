@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Added useEffect here
+
 import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,6 +22,13 @@ const Account = () => {
   const [action, setAction] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("token");
+    if (isLoggedIn) {
+      navigate("/"); // Redirect to home if already logged in
+    }
+  }, [navigate]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -168,8 +176,7 @@ const Account = () => {
         localStorage.setItem("userID", userID);
         localStorage.setItem("rolesID", rolesID);
         toast.success("Login successful!");
-        window.dispatchEvent(new Event("storage"));
-        navigate("/");
+        navigate("/"); // Redirect to home after login
       })
       .catch((error) => {
         toast.error("Invalid username or password.");

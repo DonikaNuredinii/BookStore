@@ -8,9 +8,9 @@ const SidebarAccount = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
+    localStorage.removeItem("rolesID");
     toast.success("Logged out successfully!");
-    window.dispatchEvent(new Event("storage"));
-    navigate("/account");
+    navigate("/account"); // Redirect to account page after logout
   };
 
   return (
