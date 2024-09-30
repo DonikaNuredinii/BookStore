@@ -30,6 +30,7 @@ namespace BookStore.Services
             return smtpClient;
         }
 
+
         public async Task SendEmailAsync(string[] recipientEmails, string subject, string body)
         {
             using (var smtpClient = CreateSmtpClient())
@@ -52,7 +53,8 @@ namespace BookStore.Services
         }
         public async Task SendGiftCardEmailAsync(string recipientEmail, GiftCard giftCard, string senderName)
         {
-            var imagePath = Path.Combine("C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\my-react-app\\src\\Images", giftCard.SelectedDesign);
+            var userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var imagePath = Path.Combine(userProfile, "OneDrive", "Desktop", "BookStore", "my-react-app", "src", "Images", giftCard.SelectedDesign);
             string imageContentId = "giftCardImage";
 
             using (var smtpClient = CreateSmtpClient())
@@ -107,13 +109,13 @@ namespace BookStore.Services
                     {
                         ContentId = imageContentId
                     };
-                    attachment.ContentDisposition.DispositionType = "inline"; 
+                    attachment.ContentDisposition.DispositionType = "inline";
                     mailMessage.Attachments.Add(attachment);
                 }
                 else
                 {
                     Console.WriteLine($"Image file not found: {imagePath}");
-                    return; 
+                    return;
                 }
 
                 try
@@ -152,24 +154,28 @@ namespace BookStore.Services
                 decimal itemPrice = 0;
                 int itemQuantity = item.Quantity;
                 string imagePath = null;
+                var userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
                 if (item.Book != null)
                 {
                     itemName = item.Book.Title;
                     itemPrice = item.Book.Price;
-                    imagePath = Path.Combine("C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\my-react-app\\src\\Images", item.Book.Image);
+                    // Dynamically generate image path for books
+                    imagePath = Path.Combine(userProfile, "OneDrive", "Desktop", "BookStore", "my-react-app", "src", "Images", item.Book.Image);
                 }
                 else if (item.Accessories != null)
                 {
                     itemName = item.Accessories.Name;
                     itemPrice = item.Accessories.Price;
-                    imagePath = Path.Combine("C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\my-react-app\\src\\Images", item.Accessories.Image);
+                    // Dynamically generate image path for accessories
+                    imagePath = Path.Combine(userProfile, "OneDrive", "Desktop", "BookStore", "my-react-app", "src", "Images", item.Accessories.Image);
                 }
                 else if (item.GiftCard != null)
                 {
                     itemName = item.GiftCard.Code;
                     itemPrice = item.GiftCard.Amount;
-                    imagePath = Path.Combine("C:\\Users\\hp\\OneDrive\\Desktop\\BookStore\\my-react-app\\src\\Images", item.GiftCard.SelectedDesign);
+                    // Dynamically generate image path for gift cards
+                    imagePath = Path.Combine(userProfile, "OneDrive", "Desktop", "BookStore", "my-react-app", "src", "Images", item.GiftCard.SelectedDesign);
                 }
                 if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
                 {
