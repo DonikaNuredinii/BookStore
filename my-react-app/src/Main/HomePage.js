@@ -308,7 +308,7 @@ const HomePage = ({ addToCart }) => {
                 </div>
                 <div className="dropup">
                   <div className="dropup-content">
-                    <p className="card-price">Price: {book.price}€</p>
+                    <p className="card-price">Price: {book.price.toFixed(2)}€</p>
                     <h3 className="card-title">{book.title}</h3>
                     <p className="card-author">
                       Author:{" "}
@@ -330,7 +330,7 @@ const HomePage = ({ addToCart }) => {
                     Author: Author:{" "}
                     {book.authors ? book.authors.join(", ") : "Unknown"}
                   </p>
-                  <p className="card-price">Price: {book.price}€</p>
+                  <p className="card-price">Price: {book.price.toFixed(2)}€</p>
                 </div>
               </div>
             );
@@ -354,7 +354,7 @@ const HomePage = ({ addToCart }) => {
                   alt={selectedBook.title || "Book Image"}
                   className="design-preview"
                 />
-                <p>Amount: {selectedBook.price}€</p>
+                <p>Amount: {selectedBook.price.toFixed(2)}€</p>
               </>
             )}
             <div className="view-cart-container">
@@ -393,7 +393,7 @@ const HomePage = ({ addToCart }) => {
                         Author:{" "}
                         {book.authors ? book.authors.join(", ") : "Unknown"}
                       </p>
-                      <p>Price: {book.price}€</p>
+                      <p>Price: {book.price.toFixed(2)}€</p>
                     </div>
                   </div>
                 ))}

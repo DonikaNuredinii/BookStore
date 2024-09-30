@@ -85,6 +85,23 @@ public class BookAuthorsController : ControllerBase
 
         return Ok(books);
     }
+    [HttpGet("api/BookAuthors/top-authors")]
+    public IActionResult GetTopAuthors()
+    {
+        var topAuthors = _context.BookAuthors
+            .GroupBy(ba => ba.Author.Name)
+            .Select(group => new
+            {
+                AuthorName = group.Key,
+                BookCount = group.Count()
+            })
+            .OrderByDescending(a => a.BookCount)
+            .Take(10) // Get top 10 authors
+            .ToList();
+
+        return Ok(topAuthors);
+    }
+
 
     // POST: api/BookAuthors
     [HttpPost]

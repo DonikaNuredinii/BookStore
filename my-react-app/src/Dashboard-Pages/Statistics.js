@@ -61,33 +61,7 @@ const ALBANIAN_CATEGORIES = [
   "Teatër & Kinematografi",
 ];
 const generateColors = (count) => {
-  const pastelColors = [
-    "#A8DADC",
-    "#F4A261",
-    "#E76F51",
-    "#2A9D8F",
-    "#E9C46A",
-    "#F0B7A4",
-    "#CDB4DB",
-    "#BDE0FE",
-    "#FFB4A2",
-    "#FEC5BB",
-    "#B5E48C",
-    "#9AD1D4",
-    "#E3D5CA",
-    "#FFDDD2",
-    "#FFE5EC",
-    "#A0C4FF",
-    "#B8E2FF",
-    "#FFF3B0",
-    "#FFCAD4",
-    "#D3F8E2",
-    "#B6CCFE",
-    "#FED7C3",
-    "#E0BBE4",
-    "#D8C3A5",
-    "#C8A2C8",
-  ];
+  const pastelColors = ["#A8DADC", "#F4A261", "#E76F51", "#2A9D8F", "#E9C46A", "#F0B7A4", "#CDB4DB", "#BDE0FE", "#FFB4A2", "#FEC5BB", "#B5E48C", "#9AD1D4", "#E3D5CA", "#FFDDD2", "#FFE5EC", "#A0C4FF", "#B8E2FF", "#FFF3B0", "#FFCAD4", "#D3F8E2", "#B6CCFE", "#FED7C3", "#E0BBE4", "#D8C3A5", "#C8A2C8"];
   return pastelColors.length >= count
     ? pastelColors.slice(0, count)
     : pastelColors;
@@ -158,6 +132,19 @@ const Statistics = () => {
     accessoriesOrders: 0,
     ebookLoans: 0,
   });
+  const [topAuthorsData, setTopAuthorsData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Number of Books",
+        data: [],
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+    ],
+  });
+
   const [genreChartData, setGenreChartData] = useState({
     labels: [],
     datasets: [
@@ -210,7 +197,35 @@ const Statistics = () => {
       console.error("Error fetching genre data:", error);
     }
   };
+  useEffect(() => {
+    const fetchTopAuthors = async () => {
+      try {
+        const response = await axios.get("https://localhost:7061/api/BookAuthors/api/BookAuthors/top-authors");
+        const authors = response.data;
 
+        const authorNames = authors.map((author) => author.authorName);
+        const bookCounts = authors.map((author) => author.bookCount);
+
+        setTopAuthorsData({
+          labels: authorNames,
+          datasets: [
+            {
+              label: "Number of Books",
+              data: bookCounts,
+              backgroundColor: generateColors(authorNames.length),
+              borderColor: "rgba(255, 255, 255, 1)",
+              borderWidth: 2,
+            },
+          ],
+        });
+      } catch (error) {
+        console.error("Error fetching top authors data:", error);
+      }
+    };
+
+    fetchTopAuthors();
+  }, []);
+  
   useEffect(() => {
     fetchGenreData();
   }, []);
@@ -760,7 +775,7 @@ const Statistics = () => {
                 {bestCustomers.map((customer) => (
                   <li key={customer.id} className="mb-3 border-bottom pb-2">
                     <strong className="d-block">{customer.name}</strong>
-                    <div>Total Spent: ${customer.totalSpent.toFixed(2)}</div>
+                    <div>Total Spent: {customer.totalSpent.toFixed(2)}€</div>
                     <div>Order Count: {customer.orderCount}</div>
                   </li>
                 ))}
@@ -770,10 +785,61 @@ const Statistics = () => {
         </div>
       </div>
 
-      <div className="container-fluid d-flex justify-content-end">
+      <div className="row mt-4">
+    <div className="d-flex justify-content-between align-items-start" style={{ width: "100%", gap: "20px" }}>
+         <div style={{ flex: 1 }}>
+        <h4>Top 10 Authors by Number of Books</h4>
+        <div style={{ height: "400px", background: "#f7f9fc", borderRadius: "15px", padding: "20px", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)" }}>
+          <Bar
+            data={topAuthorsData}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: true,
+                },
+                tooltip: {
+                  backgroundColor: "#333",
+                  titleColor: "#fff",
+                  bodyColor: "#fff",
+                  borderColor: "#fff",
+                  borderWidth: 1,
+                  callbacks: {
+                    label: function (tooltipItem) {
+                      return ` ${tooltipItem.label}: ${tooltipItem.raw} books`;
+                    },
+                  },
+                },
+              },
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: "Authors",
+                  },
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: "Number of Books",
+                  },
+                  beginAtZero: true,
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            }}
+          />
+        </div>
+      </div>
+      <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", height: "400px" }}>
         <div
           style={{
-            height: "400px",
+            height: "100%",
             width: "500px",
             background: "#f7f9fc",
             borderRadius: "15px",
@@ -814,7 +880,6 @@ const Statistics = () => {
               }}
             />
           </div>
-
           <div style={{ height: "100%", width: "35%", overflowY: "auto" }}>
             <div className="custom-legend p-2 border rounded shadow-sm">
               <h6 className="mb-1">Albanian Genres</h6>
@@ -860,6 +925,9 @@ const Statistics = () => {
         </div>
       </div>
     </div>
+  </div>
+    </div>
+    
   );
 };
 

@@ -314,7 +314,7 @@ const CategoriesF = ({ addToCart }) => {
                     </div>
                     <div className="dropup">
                       <div className="dropup-content">
-                        <p className="card-price">Price: {book.price}€</p>
+                      <p className="card-price">Price: {book.price.toFixed(2)}€</p>
                         <h3 className="card-title">{book.title}</h3>
                         <p className="card-author">
                           Author:{" "}
@@ -334,7 +334,7 @@ const CategoriesF = ({ addToCart }) => {
                         Author:{" "}
                         {book.authors ? book.authors.join(", ") : "Unknown"}
                       </p>
-                      <p className="card-price">Price: {book.price}€</p>
+                      <p className="card-price">Price: {book.price.toFixed(2)}€</p>
                     </div>
                   </div>
                 );
@@ -380,7 +380,7 @@ const CategoriesF = ({ addToCart }) => {
               alt={selectedBooks[0].title}
               className="design-preview"
             />
-            <p>Amount: {selectedBooks[0].price}€</p>
+            <p>Amount: {selectedBooks[0].price.toFixed(2)}€</p>
             <div className="view-cart-container">
               <Link to="/cart" className="view-cart-button">
                 View Cart
@@ -417,7 +417,7 @@ const CategoriesF = ({ addToCart }) => {
                         Author:{" "}
                         {book.authors ? book.authors.join(", ") : "Unknown"}
                       </p>
-                      <p>Price: {book.price}€</p>
+                      <p>Price: {book.price.toFixed(2)}€</p>
                     </div>
                   </div>
                 ))}
