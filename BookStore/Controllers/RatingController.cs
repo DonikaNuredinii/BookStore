@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using BookStore.Models;
 using BookStore.DTOs;
@@ -24,30 +25,29 @@ namespace BookStore.Controllers
             _configuration = configuration;
         }
 
+        
         [HttpGet("{bookId}/ratings")]
         public async Task<ActionResult<RatingResponse>> GetBookRatings(int bookId)
         {
-
             var ratings = await _context.Ratings
-                .Where(r => r.BookID == bookId) 
+                .Where(r => r.BookID == bookId)
                 .ToListAsync();
-
 
             var averageRating = ratings.Any() ? ratings.Average(r => r.RatingValue) : 0;
 
-
-            return Ok(new RatingResponse 
-            { 
-                AverageRating = averageRating, 
-                TotalRatings = ratings.Count() 
+            return Ok(new RatingResponse
+            {
+                AverageRating = averageRating,
+                TotalRatings = ratings.Count()
             });
         }
 
-
+        
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> PostRating([FromBody] RatingDTO ratingDto)
         {
+           
             var token = HttpContext.Request.Headers["Authorization"].ToString();
             if (string.IsNullOrEmpty(token))
             {
@@ -74,24 +74,41 @@ namespace BookStore.Controllers
                 return Unauthorized(); 
             }
 
+        
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
-                return NotFound(); 
+                return NotFound("User not found.");
             }
 
-            var rating = new Rating
-            {
-                BookID = ratingDto.BookID,
-                RatingValue = ratingDto.RatingValue,
-                UserID = userId, 
-                Username = user.Username 
-            };
+            
+            var existingRating = await _context.Ratings
+                .FirstOrDefaultAsync(r => r.BookID == ratingDto.BookID && r.UserID == userId);
 
-            await _context.Ratings.AddAsync(rating);
+            if (existingRating != null)
+            {
+               
+                existingRating.RatingValue = ratingDto.RatingValue;
+                _context.Ratings.Update(existingRating);
+            }
+            else
+            {
+                
+                var rating = new Rating
+                {
+                    BookID = ratingDto.BookID,
+                    RatingValue = ratingDto.RatingValue,
+                    UserID = userId,
+                    Username = user.Username
+                };
+
+                await _context.Ratings.AddAsync(rating);
+            }
+
+         
             await _context.SaveChangesAsync();
 
-            return Ok(rating);
+            return Ok("Rating submitted successfully.");
         }
 
         [HttpPut("{ratingId}")]
@@ -141,6 +158,7 @@ namespace BookStore.Controllers
             return Ok(rating);
         }
 
+  
         [HttpGet("{bookId}")]
         public IActionResult GetBookRating(int bookId)
         {

@@ -15,7 +15,7 @@ const BookDetails = ({ addToCart }) => {
   const [authors, setAuthors] = useState([]);
   const [categories, setCategories] = useState([]);
   const [publishingHouseName, setPublishingHouseName] = useState("");
-  const [rating, setRating] = useState(3);
+  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showWishlistModal, setShowWishlistModal] = useState(false);
@@ -26,7 +26,8 @@ const BookDetails = ({ addToCart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [averageRating, setAverageRating] = useState(0); 
   const [totalRatings, setTotalRatings] = useState(0);
-  const [currentUserId, setCurrentUserId] = useState(1); 
+  const [starRating, setStarRating] = useState(0);
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
   const navigate = useNavigate();
 
   const { wishlist, addToWishlist, removeFromWishlist, isItemInWishlist } =
@@ -53,10 +54,20 @@ const BookDetails = ({ addToCart }) => {
           setPublishingHouseName(publishingHouseResponse.data.houseName || "");
         }
 
-        // Fetch book ratings
+        //
         const ratingsResponse = await axios.get(`https://localhost:7061/api/Rating/${bookID}/ratings`);
         setAverageRating(ratingsResponse.data.averageRating);
         setTotalRatings(ratingsResponse.data.totalRatings);
+
+        const savedRating = localStorage.getItem(`starRating-${bookID}`);
+        if (savedRating) {
+          setRating(parseInt(savedRating, 10)); 
+        }
+        const handleRatingChange = (newRating) => {
+        setStarRating(newRating);
+        localStorage.setItem(`starRating-${bookID}`, newRating); 
+    };
+    
 
       } catch (error) {
         setError("Failed to fetch book details. Please try again later.");
@@ -74,9 +85,12 @@ const BookDetails = ({ addToCart }) => {
   }, [bookID]);
 
 
+
+
   const handleRatingSubmit = async (ratingValue) => {
     const token = localStorage.getItem("token");
     const userID = localStorage.getItem("userID");
+    localStorage.setItem(`starRating-${bookID}`, ratingValue);
 
     if (!token) {
       alert("You must be logged in to rate!");
@@ -202,7 +216,7 @@ const BookDetails = ({ addToCart }) => {
                       <FaStar
                         className="star"
                         color={
-                          ratingValue <= (hover || rating)
+                          ratingValue <= (hover || rating || starRating)
                             ? "#0f4365"
                             : "#e4e5e9"
                         }
@@ -294,7 +308,7 @@ const BookDetails = ({ addToCart }) => {
                     <FaStar
                       key={index}
                       className="star"
-                      color={ratingValue <= averageRating ? "#1d6a96" : "#e4e5e9"}
+                      color={ratingValue <= (starRating || averageRating) ? "#1d6a96" : "#e4e5e9"}
                       size={20}
                     />
                   );
