@@ -112,6 +112,22 @@ const Books = ({ searchQuery }) => {
     }
     return text;
   };
+  const fetchWithRetry = async (url, retries = 3) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const response = await axios.get(url);
+        return response.data;
+      } catch (error) {
+        if (i < retries - 1) {
+          console.warn(`Retrying fetch for ${url}...`);
+        } else {
+          console.error(`Failed to fetch after ${retries} attempts:`, error);
+          throw error;
+        }
+      }
+    }
+  };
+
   const getData = async () => {
     try {
       const response = await axios.get("https://localhost:7061/api/Book");
@@ -125,29 +141,27 @@ const Books = ({ searchQuery }) => {
                 bookCategoriesResponse,
                 bookLanguageResponse,
               ] = await Promise.all([
-                axios.get(
+                fetchWithRetry(
                   `https://localhost:7061/api/BookAuthors/Book/${book.bookID}`
                 ),
-                axios.get(
+                fetchWithRetry(
                   `https://localhost:7061/api/CategoryBooks/Book/${book.bookID}`
                 ),
-                axios.get(
+                fetchWithRetry(
                   `https://localhost:7061/api/LanguageBook/Book/${book.bookID}`
                 ),
               ]);
 
-              const authors = Array.isArray(bookAuthorsResponse.data)
-                ? bookAuthorsResponse.data
+              const authors = Array.isArray(bookAuthorsResponse)
+                ? bookAuthorsResponse
                 : [];
-              const categories = Array.isArray(bookCategoriesResponse.data)
-                ? bookCategoriesResponse.data
+              const categories = Array.isArray(bookCategoriesResponse)
+                ? bookCategoriesResponse
                 : [];
-
-              // Correctly handle array for languages
               const language =
-                Array.isArray(bookLanguageResponse.data) &&
-                bookLanguageResponse.data.length > 0
-                  ? bookLanguageResponse.data[0].language
+                Array.isArray(bookLanguageResponse) &&
+                bookLanguageResponse.length > 0
+                  ? bookLanguageResponse[0].language
                   : { languageName: "-" };
 
               return { ...book, authors, categories, language };
@@ -176,6 +190,7 @@ const Books = ({ searchQuery }) => {
       toast.error("Failed to get books: " + error.message);
     }
   };
+
   useEffect(() => {
     if (searchQuery) {
       filterData(searchQuery);
@@ -232,11 +247,10 @@ const Books = ({ searchQuery }) => {
         setSelectedCategories(categories);
         setSelectedStock(bookData?.stockId || "");
 
-        // Set selected language based on book's languageId
         const selectedBookLanguage = bookData.languages?.[0]?.languageId || "";
         console.log("Selected Book Language ID:", selectedBookLanguage);
 
-        setSelectedLanguage(selectedBookLanguage); // Set the language in state
+        setSelectedLanguage(selectedBookLanguage);
       })
       .catch((error) => {
         console.error("Failed to fetch book details:", error);
@@ -401,6 +415,7 @@ const Books = ({ searchQuery }) => {
                   ? item.categories
                   : [];
                 const publishingHouse = item.publishingHouse || {};
+                const language = item.language?.languageName || "-";
 
                 return (
                   <tr key={item.bookID}>
@@ -414,18 +429,29 @@ const Books = ({ searchQuery }) => {
                       />
                     </td>
                     <td>{item.title}</td>
+
+                    {/* Handle authors */}
                     <td>
-                      {authors.map((author) => author.author.name).join(", ")}
+                      {authors.length > 0
+                        ? authors
+                            .map((author) => author.author?.name)
+                            .join(", ")
+                        : "No authors available"}
                     </td>
+
+                    {/* Handle publishing house */}
                     <td>
                       {publishingHouseList.find(
                         (house) =>
                           house.publishingHouseId === item.publishingHouseId
                       )?.houseName || "-"}
                     </td>
+
                     <td>{item.publicationDate}</td>
                     <td>{item.pageNumber}</td>
                     <td>{item.price}</td>
+
+                    {/* Handle description truncation */}
                     <td>
                       <span
                         className="truncated-description"
@@ -436,12 +462,17 @@ const Books = ({ searchQuery }) => {
                         {truncateText(item.description, 50)}
                       </span>
                     </td>
+
                     <td>{item.dateOfadition}</td>
                     <td>{item.type}</td>
+
+                    {/* Handle stock information */}
                     <td>
                       {stockList.find((stock) => stock.stockId === item.stockId)
                         ?.quantity || "-"}
                     </td>
+
+                    {/* Handle categories */}
                     <td>
                       {categories.length > 0
                         ? categories
@@ -449,11 +480,9 @@ const Books = ({ searchQuery }) => {
                             .join(", ")
                         : "No categories available"}
                     </td>
-                    <td>
-                      <td>
-                        <td>{item.language?.languageName || "-"}</td>
-                      </td>
-                    </td>
+
+                    {/* Handle language */}
+                    <td>{language}</td>
 
                     <td colSpan={2} className="btn">
                       <Button

@@ -24,10 +24,10 @@ const BookDetails = ({ addToCart }) => {
   const [message, setMessage] = useState("");
   const [messageTimeout, setMessageTimeout] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [averageRating, setAverageRating] = useState(0); 
+  const [averageRating, setAverageRating] = useState(0);
   const [totalRatings, setTotalRatings] = useState(0);
   const [starRating, setStarRating] = useState(0);
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
   const navigate = useNavigate();
 
   const { wishlist, addToWishlist, removeFromWishlist, isItemInWishlist } =
@@ -55,20 +55,20 @@ const BookDetails = ({ addToCart }) => {
         }
 
         //
-        const ratingsResponse = await axios.get(`https://localhost:7061/api/Rating/${bookID}/ratings`);
+        const ratingsResponse = await axios.get(
+          `https://localhost:7061/api/Rating/${bookID}/ratings`
+        );
         setAverageRating(ratingsResponse.data.averageRating);
         setTotalRatings(ratingsResponse.data.totalRatings);
 
         const savedRating = localStorage.getItem(`starRating-${bookID}`);
         if (savedRating) {
-          setRating(parseInt(savedRating, 10)); 
+          setRating(parseInt(savedRating, 10));
         }
         const handleRatingChange = (newRating) => {
-        setStarRating(newRating);
-        localStorage.setItem(`starRating-${bookID}`, newRating); 
-    };
-    
-
+          setStarRating(newRating);
+          localStorage.setItem(`starRating-${bookID}`, newRating);
+        };
       } catch (error) {
         setError("Failed to fetch book details. Please try again later.");
       }
@@ -80,12 +80,7 @@ const BookDetails = ({ addToCart }) => {
     if (userToken) {
       setIsLoggedIn(true);
     }
-
-
   }, [bookID]);
-
-
-
 
   const handleRatingSubmit = async (ratingValue) => {
     const token = localStorage.getItem("token");
@@ -101,19 +96,24 @@ const BookDetails = ({ addToCart }) => {
       const response = await axios.post(
         `https://localhost:7061/api/Rating`,
         { bookID: bookID, ratingValue: ratingValue, userID: userID },
-        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
-      setRating(ratingValue); 
+      setRating(ratingValue);
       alert("Rating submitted successfully!");
+      window.dispatchEvent(new Event("storage"));
     } catch (error) {
-      const errorMessage = error.response ? error.response.data.message : error.message;
+      const errorMessage = error.response
+        ? error.response.data.message
+        : error.message;
       alert("Failed to submit rating: " + errorMessage);
     }
   };
 
-
-
-  
   const preprocessImagePath = (path) => {
     if (!path) return "default-image.jpg";
     const imageName = path.split("/").pop();
@@ -197,9 +197,8 @@ const BookDetails = ({ addToCart }) => {
                 alt={book.title || "Book Image"}
                 className="book-detail-image"
               />
-              
+
               <div className="book-rating">
-                
                 <span>
                   <strong></strong>
                 </span>
@@ -228,16 +227,15 @@ const BookDetails = ({ addToCart }) => {
                   );
                 })}
               </div>
-              
             </div>
 
             <div className="book-details">
               <h4>{book.title || "No title available"}</h4>
               <h5>
-                
                 {book.price !== undefined
                   ? book.price.toFixed(2)
-                  : "Price not available"} €
+                  : "Price not available"}{" "}
+                €
               </h5>
               <p>
                 <strong>ISBN:</strong> {book.isbn || "Not available"}
@@ -298,23 +296,28 @@ const BookDetails = ({ addToCart }) => {
                 <p>No authors available</p>
               )}
 
-              
-            <div className="book-rating">
-            <span><strong>Costumer Reviews</strong> {averageRating.toFixed(1)}</span>
-              <div className="star-rating">
-                {[...Array(5)].map((star, index) => {
-                  const ratingValue = index + 1;
-                  return (
-                    <FaStar
-                      key={index}
-                      className="star"
-                      color={ratingValue <= (starRating || averageRating) ? "#1d6a96" : "#e4e5e9"}
-                      size={20}
-                    />
-                  );
-                })}
-            </div>
-            </div>
+              <div className="book-rating">
+                <span>
+                  <strong>Costumer Reviews</strong> {averageRating.toFixed(1)}
+                </span>
+                <div className="star-rating">
+                  {[...Array(5)].map((star, index) => {
+                    const ratingValue = index + 1;
+                    return (
+                      <FaStar
+                        key={index}
+                        className="star"
+                        color={
+                          ratingValue <= (starRating || averageRating)
+                            ? "#1d6a96"
+                            : "#e4e5e9"
+                        }
+                        size={20}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
               <div className="book-buttons">
                 <button className="favorite-btn" onClick={handleSubmit}>
                   <CiShoppingCart /> Add to Cart
@@ -406,10 +409,7 @@ const BookDetails = ({ addToCart }) => {
                   Add All to Cart
                 </button>
               </div>
-              
-              
             </div>
-            
           </div>
         )}
       </div>

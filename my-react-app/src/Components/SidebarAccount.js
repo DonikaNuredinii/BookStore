@@ -10,7 +10,8 @@ const SidebarAccount = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("rolesID");
     toast.success("Logged out successfully!");
-    navigate("/account"); // Redirect to account page after logout
+    window.dispatchEvent(new Event("storage"));
+    navigate("/account");
   };
 
   return (
@@ -20,9 +21,6 @@ const SidebarAccount = () => {
       </Link>
       <Link to="/update-password" className="linkacc">
         Change Password
-      </Link>
-      <Link to="/" className="linkacc">
-        Notifications
       </Link>
       <Link to="/ebookLoans" className="linkacc">
         E-books

@@ -5,60 +5,47 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Pages from "./Main/Pages";
 import Dashboard from "./Main/Dashboard";
-import { jwtDecode } from "jwt-decode"; // Ensure this is imported correctly
+import { jwtDecode } from "jwt-decode";
 
 function App() {
   const [toggle, setToggle] = useState(true);
 
-  // Initialize isAdmin from localStorage
   const [isAdmin, setIsAdmin] = useState(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        const currentTime = Date.now() / 1000;
-        return decodedToken.exp > currentTime && decodedToken.RolesID === "3";
-      } catch (error) {
-        console.error("Error decoding token", error);
-        localStorage.removeItem("token");
-        return false;
-      }
-    }
-    return false;
+    return token ? checkAdminStatus(token) : false;
   });
+
+  const checkAdminStatus = (token) => {
+    try {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      return decodedToken.exp > currentTime && decodedToken.RolesID === "3";
+    } catch (error) {
+      console.error("Error decoding token", error);
+      localStorage.removeItem("token");
+      return false;
+    }
+  };
 
   const Toggle = () => {
     setToggle(!toggle);
   };
 
-  // Check if the user is an admin whenever the token changes
   useEffect(() => {
     const checkIfAdmin = () => {
       const token = localStorage.getItem("token");
-
       if (token) {
-        try {
-          const decodedToken = jwtDecode(token);
-          const currentTime = Date.now() / 1000;
-
-          if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
-            setIsAdmin(true);
-          } else {
-            setIsAdmin(false);
-          }
-        } catch (error) {
-          console.error("Error decoding token", error);
-          localStorage.removeItem("token");
-          setIsAdmin(false);
-        }
+        setIsAdmin(checkAdminStatus(token));
       } else {
         setIsAdmin(false);
       }
     };
 
-    window.addEventListener("storage", checkIfAdmin); // Listen for storage changes
-    return () => window.removeEventListener("storage", checkIfAdmin); // Cleanup on unmount
+    window.addEventListener("storage", checkIfAdmin);
+    return () => window.removeEventListener("storage", checkIfAdmin);
   }, []);
+
+  const isLoggedIn = () => !!localStorage.getItem("token");
 
   return (
     <div className="container-fluid custom-bg min-vh-100">
@@ -70,8 +57,14 @@ function App() {
             isAdmin ? (
               <Dashboard toggle={toggle} Toggle={Toggle} />
             ) : (
-              <Navigate to="/account" />
+              <Navigate to="/" replace />
             )
+          }
+        />
+        <Route
+          path="*"
+          element={
+            isLoggedIn() ? <Navigate to="/dashboard" /> : <Navigate to="/" />
           }
         />
       </Routes>

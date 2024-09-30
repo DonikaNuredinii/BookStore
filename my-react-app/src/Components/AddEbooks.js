@@ -4,6 +4,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const AddEbooks = () => {
   const [isbn, setISBN] = useState("");
@@ -19,7 +20,7 @@ const AddEbooks = () => {
   const [selectedStock, setSelectedStock] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [pdfFile, setPdfFile] = useState(null);
-
+  const navigate = useNavigate();
   const [authorsList, setAuthorsList] = useState([]);
   const [publishingHouseList, setPublishingHouseList] = useState([]);
   const [stockList, setStockList] = useState([]);
@@ -113,6 +114,9 @@ const AddEbooks = () => {
       clear();
       toast.success("Ebook has been added");
       setSuccess(true);
+      setTimeout(() => {
+        navigate("/dashboard/Ebooks");
+      }, 2000);
     } catch (error) {
       toast.error("Failed to add Ebook: " + error.message);
     }

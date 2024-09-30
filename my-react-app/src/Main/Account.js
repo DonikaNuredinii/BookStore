@@ -176,7 +176,8 @@ const Account = () => {
         localStorage.setItem("userID", userID);
         localStorage.setItem("rolesID", rolesID);
         toast.success("Login successful!");
-        navigate("/"); // Redirect to home after login
+        window.dispatchEvent(new Event("storage"));
+        navigate("/");
       })
       .catch((error) => {
         toast.error("Invalid username or password.");

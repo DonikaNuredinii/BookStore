@@ -3,7 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import EbookLoan from "../Main/EbookLoan";
 const AddLoans = () => {
@@ -17,6 +17,7 @@ const AddLoans = () => {
   const [ebooks, setEbooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -87,6 +88,9 @@ const AddLoans = () => {
         getData();
         clear();
         toast.success("Ebook Loan has been added successfully");
+        setTimeout(() => {
+          navigate("/dashboard/Loans");
+        }, 2000);
       })
       .catch((error) => {
         toast.error("Failed to add author: " + error.message);

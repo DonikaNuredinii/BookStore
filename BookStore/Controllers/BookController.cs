@@ -243,16 +243,17 @@ namespace BookStore.Controllers
                 Directory.CreateDirectory(folderPath);
             }
 
-            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(folderPath, uniqueFileName);
+            var fileName = Path.GetFileName(file.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 file.CopyTo(fileStream);
             }
 
-            return $"/{folderName}/{uniqueFileName}".Replace("\\", "/");
+            return $"/{folderName}/{fileName}";
         }
+
 
     }
 }

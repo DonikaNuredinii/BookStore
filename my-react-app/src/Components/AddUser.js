@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,7 @@ const AddUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [selectedRole, setSelectedRole] = useState(2);
+  const navigate = useNavigate();
 
   const handleSave = () => {
     // Form validation
@@ -37,6 +38,9 @@ const AddUser = () => {
         console.log("User added successfully:", response.data);
         clearForm();
         toast.success("User has been added");
+        setTimeout(() => {
+          navigate("/dashboard/User");
+        }, 2000);
       })
       .catch((error) => {
         console.error("Failed to add user:", error);

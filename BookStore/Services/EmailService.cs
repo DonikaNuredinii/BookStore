@@ -190,7 +190,7 @@ namespace BookStore.Services
                     <tr>
                         <td style='text-align:center;'><img src='cid:{attachment.ContentId}' style='width:50px; height:50px;' alt='{itemName}' /></td>
                         <td style='text-align:left;'>{itemName}</td>
-                        <td style='text-align:center;'>${itemPrice:F2}</td>
+                        <td style='text-align:center;'>{itemPrice:F2}€</td>
                         <td style='text-align:center;'>{itemQuantity}</td>
                     </tr>");
                 }
@@ -200,7 +200,7 @@ namespace BookStore.Services
             <div style='border: 1px solid #0f4365; padding: 20px;'>
                 <h2 style='color:#0f4365;'>Thank You for Your Purchase!</h2>
                 <h3>Invoice #{invoiceNumber}</h3>
-                <p>Total Price: ${totalPrice:F2}</p>
+                <p>Total Price: {totalPrice:F2}€</p>
                 <p>Invoice Date: {invoiceDate:MM/dd/yyyy}</p>
                 <p>Details: {invoiceDetails}</p>
                 <table style='width: 100%; border-collapse: collapse;'>

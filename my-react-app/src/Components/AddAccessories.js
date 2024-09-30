@@ -2,7 +2,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AddAccessories = () => {
@@ -11,10 +11,11 @@ const AddAccessories = () => {
   const [seller, setSeller] = useState("");
   const [description, setDescription] = useState("");
   const [dimensions, setDimensions] = useState("");
-  const [price, setPrice] = useState(""); // Initialize as string
+  const [price, setPrice] = useState("");
   const [dateOfaddition, setDateOfAddition] = useState("");
   const [selectedStock, setSelectedStock] = useState("");
   const [stockList, setStockList] = useState([]);
+  const navigate = useNavigate();
 
   const getStocks = () => {
     axios
@@ -54,9 +55,14 @@ const AddAccessories = () => {
 
       clear();
       toast.success("Accessory has been added.");
-
+      setTimeout(() => {
+        navigate("/dashboard/Accessories");
+      }, 2000);
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message || "Failed to add Accessory";
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to add Accessory";
       toast.error(`Failed to add Accessory: ${errorMessage}`);
     }
   };
@@ -196,7 +202,8 @@ const AddAccessories = () => {
             <Button
               variant="dark"
               className="btn-addAccessories"
-              onClick={handleSave}>
+              onClick={handleSave}
+            >
               Add Accessory
             </Button>
           </Link>
@@ -206,7 +213,8 @@ const AddAccessories = () => {
           <Button
             variant="dark"
             className="btn-addAccessories"
-            onClick={handleClear}>
+            onClick={handleClear}
+          >
             Clear
           </Button>
         </Col>

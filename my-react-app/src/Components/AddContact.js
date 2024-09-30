@@ -3,13 +3,14 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const AddContact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSave = () => {
     const userData = {
@@ -24,6 +25,9 @@ const AddContact = () => {
         console.log("Contact added successfully:", response.data);
         clearForm();
         toast.success("Contact has been added");
+        setTimeout(() => {
+          navigate("/dashboard/ContactUs");
+        }, 2000);
       })
       .catch((error) => {
         console.error("Failed to add contact:", error);

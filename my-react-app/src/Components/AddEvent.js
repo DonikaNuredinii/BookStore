@@ -3,7 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 
 const AddEvent = () => {
@@ -12,6 +12,7 @@ const AddEvent = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -44,6 +45,9 @@ const AddEvent = () => {
         getData();
         clear();
         toast.success("Event has been added successfully");
+        setTimeout(() => {
+          navigate("/dashboard/GiftCards");
+        }, 2000);
       })
       .catch((error) => {
         toast.error("Failed to add event: " + error.message);

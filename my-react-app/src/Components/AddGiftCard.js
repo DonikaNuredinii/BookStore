@@ -3,7 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddGiftCard = () => {
   const [amount, setAmount] = useState("");
@@ -15,6 +15,7 @@ const AddGiftCard = () => {
   const [usersList, setUsersList] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   const [generatedCode, setGeneratedCode] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUsers();
@@ -46,6 +47,9 @@ const AddGiftCard = () => {
     try {
       await axios.post("https://localhost:7061/api/GiftCard", giftCardData);
       toast.success("Gift card has been added");
+      setTimeout(() => {
+        navigate("/dashboard/GiftCards");
+      }, 2000);
       clearForm();
     } catch (error) {
       toast.error("Failed to add gift card: " + error.message);

@@ -73,11 +73,12 @@ const Accessories = ({ addToCart }) => {
     setClose(true);
   };
 
- 
   const handleFavoriteClick = (e, accessoriesID) => {
     e.stopPropagation();
-    const accessory = accessories.find((a) => a.accessoriesID === accessoriesID);
-  
+    const accessory = accessories.find(
+      (a) => a.accessoriesID === accessoriesID
+    );
+
     if (isItemInWishlist(accessoriesID)) {
       removeFromWishlist(accessoriesID);
       setSelectedAccessories((prevSelectedAccessories) =>
@@ -94,11 +95,10 @@ const Accessories = ({ addToCart }) => {
       setSelectedAccessories((prevSelectedAccessories) => [
         ...prevSelectedAccessories,
         accessory,
-      ]); 
+      ]);
       setShowWishlistModal(true);
     }
   };
-  
 
   const handleAddAllToCart = () => {
     selectedAccessories.forEach((accessory) => {
@@ -118,9 +118,7 @@ const Accessories = ({ addToCart }) => {
     (a, b) => new Date(b.dateofAddition) - new Date(a.dateofAddition)
   );
 
-  const totalPages = Math.ceil(
-    sortedAccessories.length / accessoriesPerPage
-  );
+  const totalPages = Math.ceil(sortedAccessories.length / accessoriesPerPage);
 
   const currentAccessories = sortedAccessories.slice(
     (currentPage - 1) * accessoriesPerPage,
@@ -226,14 +224,12 @@ const Accessories = ({ addToCart }) => {
                 </div>
                 <div className="Accessory_Details">
                   <h4>{x.name}</h4>
-                  <h5>${x.price.toFixed(2)}</h5>
+                  <h5>{x.price.toFixed(2)}€</h5>
                   <p>Marka: {x.seller}</p>
                   <p>Pershkrimi: {x.description}</p>
                   <p>Permasat: {x.dimensions}</p>
                   <p>Data e Shtimit: {x.dateofAddition}</p>
-                  <p>
-                    Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"}
-                  </p>
+                  <p>Ne magazine: {x.Stock > 0 ? x.Stock : "Jashte Stoku"}</p>
                   <div className="book-buttons">
                     <button
                       className="favorite-btn"
@@ -269,8 +265,8 @@ const Accessories = ({ addToCart }) => {
               className="card-item"
               key={`${accessory.accessoriesID}-${index}`}
             >
-              <div className="acc-card-image">
-                <div className="acc-image">
+              <div className="card-image">
+                <div className="book-image">
                   <img
                     src={imagePath || "/Images/placeholder.jpg"}
                     alt={accessory.name}
@@ -281,26 +277,32 @@ const Accessories = ({ addToCart }) => {
                   {isItemInWishlist(accessory.accessoriesID) ? (
                     <MdFavorite
                       className="favorite-icon"
-                      onClick={(e) => handleFavoriteClick(e, accessory.accessoriesID)}
+                      onClick={(e) =>
+                        handleFavoriteClick(e, accessory.accessoriesID)
+                      }
                     />
                   ) : (
                     <MdFavoriteBorder
                       className="favorite-icon"
-                      onClick={(e) => handleFavoriteClick(e, accessory.accessoriesID)}
+                      onClick={(e) =>
+                        handleFavoriteClick(e, accessory.accessoriesID)
+                      }
                     />
                   )}
                 </div>
 
                 <div className="dropup">
                   <div className="a-dropup-content">
-                    <p className="card-price">Price: {accessory.price.toFixed(2)}€</p>
+                    <p className="card-price">
+                      Price: {accessory.price.toFixed(2)}€
+                    </p>
                     <h3 className="card-title">{accessory.name}</h3>
                     <button
                       onClick={() => {
                         AccDetailPage(accessory);
                         scrollToFirstQuarter();
                       }}
-                      className="Acc-btn"
+                      className="buy-now-btn"
                     >
                       View
                     </button>
@@ -327,10 +329,7 @@ const Accessories = ({ addToCart }) => {
             {number}
           </button>
         ))}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           <GrNext />
         </button>
       </div>
@@ -340,12 +339,12 @@ const Accessories = ({ addToCart }) => {
           <BsArrowUpShort />
         </button>
       </p>
-      
+
       {/* Cart Modal */}
       {showModal && selectedAccessory && (
         <animated.div className="modal-cart" style={modalSpring}>
           <div className="modal-content">
-          <span className="close" onClick={() => setShowModal(false)}>
+            <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
             {selectedAccessory && (
@@ -372,75 +371,91 @@ const Accessories = ({ addToCart }) => {
           </div>
         </animated.div>
       )}
-      
+
       {showWishlistModal && (
-  <div className="wishlist-modal">
-    <div className="modal-content">
-      <span className="close" onClick={closeModal}>
-        &times;
-      </span>
-      <h3>Accessories</h3>
-      
-     
-      {console.log("Selected Accessories at render:", selectedAccessories)}
+        <div className="wishlist-modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h3>Accessories</h3>
 
-      {selectedAccessories && selectedAccessories.length > 0 ? (
-        <div className="wishlist-items">
-          {selectedAccessories.map((accessory) => {
-            if (!accessory || !accessory.accessoriesID) {
-              console.error("Invalid accessory object:", accessory);
-              return null; 
-            }
+            {console.log(
+              "Selected Accessories at render:",
+              selectedAccessories
+            )}
 
-            const imagePath = accessory.image ? preprocessImagePath(accessory.image) : "/Images/placeholder.jpg";
-            
-            return (
-              <div key={accessory.accessoriesID} className="wishlist-item">
-                <img
-                  src={imagePath}
-                  alt={accessory.name || "Accessory"}
-                  className="wishlist-image"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/Images/placeholder.jpg";
-                  }}
-                />
-                <div className="wishlist-details">
-                  <h4>{accessory.name ? accessory.name : "No Name Available"}</h4>
-                  <p>Seller: {accessory.seller ? accessory.seller : "Unknown"}</p>
-                  <p>Price: {accessory.price ? accessory.price.toFixed(2) : "N/A"}€</p>
-                </div>
+            {selectedAccessories && selectedAccessories.length > 0 ? (
+              <div className="wishlist-items">
+                {selectedAccessories.map((accessory) => {
+                  if (!accessory || !accessory.accessoriesID) {
+                    console.error("Invalid accessory object:", accessory);
+                    return null;
+                  }
+
+                  const imagePath = accessory.image
+                    ? preprocessImagePath(accessory.image)
+                    : "/Images/placeholder.jpg";
+
+                  return (
+                    <div
+                      key={accessory.accessoriesID}
+                      className="wishlist-item"
+                    >
+                      <img
+                        src={imagePath}
+                        alt={accessory.name || "Accessory"}
+                        className="wishlist-image"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/Images/placeholder.jpg";
+                        }}
+                      />
+                      <div className="wishlist-details">
+                        <h4>
+                          {accessory.name
+                            ? accessory.name
+                            : "No Name Available"}
+                        </h4>
+                        <p>
+                          Seller:{" "}
+                          {accessory.seller ? accessory.seller : "Unknown"}
+                        </p>
+                        <p>
+                          Price:{" "}
+                          {accessory.price ? accessory.price.toFixed(2) : "N/A"}
+                          €
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            ) : (
+              <p>Your wishlist is empty.</p>
+            )}
+            <div className="wishlist-buttons">
+              <button
+                className="view-wishlist-button"
+                onClick={() => {
+                  setShowWishlistModal(false);
+                  navigate("/WishlistPage");
+                }}
+              >
+                View Wishlist
+              </button>
+              <button
+                className="add-all-to-cart-button"
+                onClick={handleAddAllToCart}
+                disabled={selectedAccessories.length === 0}
+              >
+                Add All to Cart
+              </button>
+            </div>
+          </div>
         </div>
-      ) : (
-        <p>Your wishlist is empty.</p>
       )}
-      <div className="wishlist-buttons">
-        <button
-          className="view-wishlist-button"
-          onClick={() => {
-            setShowWishlistModal(false);
-            navigate("/WishlistPage");
-          }}
-        >
-          View Wishlist
-        </button>
-        <button
-          className="add-all-to-cart-button"
-          onClick={handleAddAllToCart}
-          disabled={selectedAccessories.length === 0}
-        >
-          Add All to Cart
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-{message && <div className="feedback-message">{message}</div>}
-
-
+      {message && <div className="feedback-message">{message}</div>}
     </div>
   );
 };

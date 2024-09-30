@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import HomePage from "./HomePage";
 import NavbarHome from "./NavbarHome";
 import Footer from "./Footer";
@@ -30,7 +31,6 @@ function Pages() {
   const location = useLocation();
   const [cart, setCart] = useState([]);
   const { wishlist } = useWishlist();
-
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storedCart);
@@ -69,9 +69,12 @@ function Pages() {
   };
 
   const Toggle = () => {
-    setToggle(!toggle);
+    setToggle((prevToggle) => !prevToggle);
+    console.log("Toggle state:", !toggle);
   };
-
+  const isLoggedIn = () => {
+    return !!localStorage.getItem("token");
+  };
   return (
     <div>
       <NavbarHome Toggle={Toggle} />
@@ -109,8 +112,12 @@ function Pages() {
         />
         <Route path="/giftCard" element={<GiftCard addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="/checkout" element={<StripeContainer />} />{" "}
-        {/* Use StripeContainer */}
+        <Route
+          path="/checkout"
+          element={
+            isLoggedIn() ? <StripeContainer /> : <Navigate to="/account" />
+          }
+        />
         <Route path="/invoice" element={<Invoice />} />
         <Route
           path="/accessories"

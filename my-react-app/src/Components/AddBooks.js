@@ -123,15 +123,18 @@ const AddBooks = () => {
         }
       );
       toast.success("Book has been added successfully");
+      setTimeout(() => {
+        navigate("/dashboard/Books");
+      }, 2000);
     } catch (error) {
       if (error.response) {
-        console.error("Validation errors:", error.response.data.errors); // Log validation errors
+        console.error("Validation errors:", error.response.data.errors);
         toast.error(
           "Failed to add Book: " + error.response.data.title ||
             "Unknown server error"
         );
       } else {
-        console.error("Error:", error.message); // Log any other errors
+        console.error("Error:", error.message);
         toast.error("Failed to add Book: " + error.message);
       }
     }
@@ -391,7 +394,7 @@ const AddBooks = () => {
       </Row>
       <Row>
         <Col>
-          <Link to="./Books">
+          <Link to="../Books">
             <Button variant="dark" className="btn-add" onClick={handleSave}>
               Add Book
             </Button>
