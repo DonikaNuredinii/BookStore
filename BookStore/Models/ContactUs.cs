@@ -12,6 +12,8 @@ namespace BookStore.Models
     public string Email { get; set; }
     public string Message { get; set; }
     public string? InquiryType { get; set; }
+    [ForeignKey("User")]
+    public int? UserId { get; set; }
     }
 
 }

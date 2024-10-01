@@ -1,6 +1,7 @@
 using BookStore.DTOs;
 using BookStore.Models;
 using BookStore.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -114,7 +115,7 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
             }
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrdersDto orderDto)
         {
@@ -222,7 +223,7 @@ namespace BookStore.Controllers
 
 
 
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{orderId}")]
         public async Task<IActionResult> PutOrder(int orderId, OrdersDto ordersDto)
         {
@@ -426,7 +427,7 @@ namespace BookStore.Controllers
         }
 
 
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{orderId}")]
         public async Task<IActionResult> DeleteOrder(int orderId)
         {

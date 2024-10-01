@@ -7,6 +7,7 @@ using BookStore.Models;
 using Microsoft.Extensions.Logging;
 using BookStore.DTOs;
 using BookStore.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -191,6 +192,7 @@ namespace WebApplication1.Controllers
         }
 
         // PUT: api/GiftCard/5
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{GiftCardID}")]
         public async Task<IActionResult> PutGiftCard(int GiftCardID, [FromBody] GiftCard giftCard)
         {
@@ -280,7 +282,6 @@ namespace WebApplication1.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
         private bool GiftCardExists(int id)
         {
             return _context.GiftCards.Any(e => e.GiftCardID == id);

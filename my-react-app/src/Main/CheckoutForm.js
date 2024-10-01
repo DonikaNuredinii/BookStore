@@ -234,9 +234,11 @@ const CheckoutForm = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
+    const token = localStorage.getItem("token");
     if (formData.paymentMethod === "creditCard") {
       if (!stripe || !elements) {
+        setLoading(false);
         return;
       }
 
@@ -248,6 +250,7 @@ const CheckoutForm = () => {
 
       if (error) {
         setErrorMessage(error.message);
+        setLoading(false);
         return;
       }
 
@@ -301,6 +304,7 @@ const CheckoutForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(orderPayload),
       });
@@ -311,12 +315,14 @@ const CheckoutForm = () => {
           errorData.message || "An error occurred while processing your order."
         );
         console.error("Error details:", errorData);
+        setLoading(false);
         return;
       }
 
       const orderData = await response.json();
       setShowSuccessPopup(true);
       setSuccessMessage("Your order has been processed successfully!");
+      setLoading(false);
 
       setFormData({
         address: "",
@@ -345,6 +351,7 @@ const CheckoutForm = () => {
       setErrorMessage("Error");
     } catch (error) {
       setErrorMessage("An unexpected error occurred. Please try again.");
+      setLoading(false);
     }
   };
 

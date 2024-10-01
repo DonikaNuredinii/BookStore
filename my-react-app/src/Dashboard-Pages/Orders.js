@@ -142,23 +142,33 @@ const Orders = ({ searchQuery }) => {
 
   //delete
   const handleDelete = (ordersId) => {
-    if (window.confirm("Are you sure you want to delete this Order") === true) {
+    const adminToken = localStorage.getItem("token");
+
+    if (window.confirm("Are you sure you want to delete this Order?")) {
       axios
-        .delete(`https://localhost:7061/api/Order/${ordersId}`)
+        .delete(`https://localhost:7061/api/Order/${ordersId}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        })
         .then((result) => {
-          if (result.status === 200) {
-            toast.success("Orders has been deleted");
+          if (result.status === 204) {
+            toast.success("Order has been deleted");
           }
         })
         .catch((error) => {
-          toast.error("Failed to delete Orders: " + error.message);
+          if (error.response && error.response.status === 401) {
+            toast.error("Unauthorized. Please check your admin token.");
+          } else {
+            toast.error("Failed to delete Order: " + error.message);
+          }
         });
     }
   };
 
   //update
-
   const handleUpdate = () => {
+    const adminToken = localStorage.getItem("token");
     const url = `https://localhost:7061/api/Order/${editOrdersId}`;
     const data = {
       OrdersId: editOrdersId,
@@ -186,7 +196,11 @@ const Orders = ({ searchQuery }) => {
     };
 
     axios
-      .put(url, data)
+      .put(url, data, {
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
       .then((result) => {
         handleClose();
         getData();

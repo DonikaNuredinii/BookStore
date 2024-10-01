@@ -20,7 +20,9 @@ const GiftCards = ({ searchQuery }) => {
   const [editMessage, setEditMessage] = useState("");
   const [editStatus, setEditStatus] = useState(true);
   const [originalGiftCard, setOriginalGiftCard] = useState(null);
-  const [currentUserId, setCurrentUserId] = useState(1); // Set this to the actual user ID
+  const [currentUserId, setCurrentUserId] = useState(1);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
 
   useEffect(() => {
     getData();
@@ -73,9 +75,9 @@ const GiftCards = ({ searchQuery }) => {
         toast.error("Failed to get gift card: " + error.message);
       });
   };
-
   const handleUpdate = (e) => {
     e.preventDefault();
+    const adminToken = localStorage.getItem("token");
 
     const updatedData = {
       GiftCardID: editGiftCardId,
@@ -90,7 +92,15 @@ const GiftCards = ({ searchQuery }) => {
     };
 
     axios
-      .put(`https://localhost:7061/api/GiftCard/${editGiftCardId}`, updatedData)
+      .put(
+        `https://localhost:7061/api/GiftCard/${editGiftCardId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        }
+      )
       .then((response) => {
         console.log("Gift card updated:", response.data);
         toast.success("Gift card updated successfully");
@@ -100,20 +110,6 @@ const GiftCards = ({ searchQuery }) => {
       .catch((error) => {
         console.error("Failed to edit gift card:", error.message);
         toast.error("Failed to edit gift card: " + error.message);
-      });
-  };
-
-  const handleDelete = (giftCardID) => {
-    axios
-      .delete(`https://localhost:7061/api/GiftCard/${giftCardID}`)
-      .then((response) => {
-        console.log("Gift card deleted:", response.data);
-        toast.success("Gift card deleted successfully");
-        getData();
-      })
-      .catch((error) => {
-        console.error("Failed to delete gift card:", error.message);
-        toast.error("Failed to delete gift card: " + error.message);
       });
   };
 
@@ -164,13 +160,6 @@ const GiftCards = ({ searchQuery }) => {
                     onClick={() => handleEdit(item.giftCardID)}
                   >
                     <i className="bi bi-pencil-square"></i>
-                  </Button>
-                  <Button
-                    variant="outline-dark"
-                    className="btn-delete"
-                    onClick={() => handleDelete(item.giftCardID)}
-                  >
-                    <i className="bi bi-trash"></i>
                   </Button>
                 </td>
               </tr>
