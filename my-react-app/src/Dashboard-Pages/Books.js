@@ -38,6 +38,8 @@ const Books = ({ searchQuery }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [languagesList, setLanguagesList] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
 
   const handleShow = () => setShow(true);
 
@@ -217,7 +219,11 @@ const Books = ({ searchQuery }) => {
   const handleEdit = (bookID) => {
     handleShow();
     axios
-      .get(`https://localhost:7061/api/Book/${bookID}`)
+      .get(`https://localhost:7061/api/Book/${bookID}`, {
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         const bookData = result.data.book || result.data;
 
@@ -259,6 +265,7 @@ const Books = ({ searchQuery }) => {
   };
 
   const handleUpdate = async (e) => {
+    const adminToken = localStorage.getItem("token"); 
     e.preventDefault();
 
     if (
@@ -314,7 +321,8 @@ const Books = ({ searchQuery }) => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-data", 
+            Authorization: `Bearer ${adminToken}`,  
           },
         }
       );
@@ -332,14 +340,26 @@ const Books = ({ searchQuery }) => {
   };
 
   const handleDelete = async (bookID) => {
+    const adminToken = localStorage.getItem("token"); 
+  
+    console.log("Token being used for delete:", adminToken);
+  
     if (window.confirm("Are you sure you want to delete this Book?")) {
       try {
-        await axios.delete(`https://localhost:7061/api/Book/${bookID}`);
+        await axios.delete(`https://localhost:7061/api/Book/${bookID}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         toast.success("Book has been deleted");
         getData();
       } catch (error) {
         console.error("Failed to delete book:", error);
-        toast.error("Failed to delete book: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please check your admin token.");
+        } else {
+          toast.error("Failed to delete this Author: " + error.message);
+        }
       }
     }
   };

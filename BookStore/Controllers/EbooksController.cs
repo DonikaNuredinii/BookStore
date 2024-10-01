@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
@@ -124,6 +125,7 @@ namespace BookStore.Controllers
 
 
         // Update ebook
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEbook(int id, [FromForm] EbookUploadRequest request)
         {
@@ -184,6 +186,7 @@ namespace BookStore.Controllers
 
 
         // Delete ebook
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEbook(int id)
         {

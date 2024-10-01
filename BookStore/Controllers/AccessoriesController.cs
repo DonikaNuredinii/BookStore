@@ -5,6 +5,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bookstore.Controllers
 {
@@ -44,6 +45,7 @@ namespace Bookstore.Controllers
             return CreatedAtAction(nameof(GetAccessories), new { AccessoriesID = accessories.AccessoriesID }, accessories);
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{AccessoriesID}")]
         public async Task<ActionResult> PutAccessory(int AccessoriesID, Accessories accessories)
         {
@@ -66,6 +68,7 @@ namespace Bookstore.Controllers
             return Ok();
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{AccessoriesID}")]
         public async Task<ActionResult> DeleteAccessories(int AccessoriesID)
         {

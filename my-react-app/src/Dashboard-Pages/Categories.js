@@ -16,7 +16,8 @@ const Categories = ({ searchQuery }) => {
   const [editGenre, setEditGenre] = useState("");
   const [editCategoryDescription, setEditCategoryDescription] = useState("");
   const [editCreationDate, setEditCreationDate] = useState("");
-
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
@@ -39,7 +40,11 @@ const Categories = ({ searchQuery }) => {
     handleShow();
     setEditCategoryId(categoryId);
     axios
-      .get(`https://localhost:7061/api/Category/${categoryId}`)
+      .get(`https://localhost:7061/api/Category/${categoryId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         setEditGenre(result.data.genre);
         setEditCategoryDescription(result.data.categoryDescription);
@@ -65,24 +70,36 @@ const Categories = ({ searchQuery }) => {
 
   //delete
   const handleDelete = (categoryId) => {
+    const adminToken = localStorage.getItem("token"); 
+  
+    console.log("Token being used for delete:", adminToken);
     if (
       window.confirm("Are you sure you want to delete this Category") === true
     ) {
       axios
-        .delete(`https://localhost:7061/api/Category/${categoryId}`)
+        .delete(`https://localhost:7061/api/Category/${categoryId}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         .then((result) => {
           if (result.status === 200) {
             toast.success("Category has been deleted");
           }
         })
         .catch((error) => {
-          toast.error("Failed to delete Category: " + error.message);
+          if (error.response && error.response.status === 401) {
+            toast.error("Unauthorized. Please check your admin token.");
+          } else {
+            toast.error("Failed to delete this Author: " + error.message);
+          }
         });
     }
   };
   //update
 
   const handleUpdate = (e) => {
+    const adminToken = localStorage.getItem("token"); 
     const url = `https://localhost:7061/api/Category/${editCategoryId}`;
     const data = {
       CategoryId: editCategoryId,
@@ -91,7 +108,11 @@ const Categories = ({ searchQuery }) => {
       CreatioDate: editCreationDate,
     };
     axios
-      .put(url, data)
+      .put(url, data,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         handleClose();
         getData();

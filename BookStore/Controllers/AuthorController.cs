@@ -1,4 +1,5 @@
 ﻿using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -98,6 +99,7 @@ namespace WebApplication1.Controllers
         }
 
         // PUT: api/Author/{authorID}
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{authorID}")]
         public async Task<IActionResult> PutAuthor(int authorID, Author author)
         {
@@ -128,6 +130,7 @@ namespace WebApplication1.Controllers
         }
 
         // DELETE: api/Author/{authorID}
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{authorID}")]
         public async Task<IActionResult> DeleteAuthor(int authorID)
         {

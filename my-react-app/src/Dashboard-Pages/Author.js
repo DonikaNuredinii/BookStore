@@ -16,6 +16,9 @@ const Author = ({ searchQuery }) => {
   const [editGenre, setEditGenre] = useState("");
   const [editAwards, setEditAwards] = useState("");
   const [data, setData] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
+  
 
   useEffect(() => {
     getData();
@@ -39,7 +42,11 @@ const Author = ({ searchQuery }) => {
     handleShow();
     setEditAuthorID(authorID);
     axios
-      .get(`https://localhost:7061/api/Author/${authorID}`)
+      .get(`https://localhost:7061/api/Author/${authorID}`, {
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         const authorData = result.data;
         setEditName(authorData.name);
@@ -61,7 +68,7 @@ const Author = ({ searchQuery }) => {
   }, [searchQuery]);
   const filterData = (query) => {
     if (!query) {
-      getData(); // Refetch data if query is empty
+      getData(); 
       return;
     }
 
@@ -72,9 +79,17 @@ const Author = ({ searchQuery }) => {
   };
 
   const handleDelete = (AuthorID) => {
+    const adminToken = localStorage.getItem("token"); 
+  
+    console.log("Token being used for delete:", adminToken);
+  
     if (window.confirm("Are you sure you want to delete this Author")) {
       axios
-        .delete(`https://localhost:7061/api/Author/${AuthorID}`)
+        .delete(`https://localhost:7061/api/Author/${AuthorID}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         .then((result) => {
           if (result.status === 200) {
             toast.success("Author has been deleted");
@@ -82,12 +97,18 @@ const Author = ({ searchQuery }) => {
           }
         })
         .catch((error) => {
-          toast.error("Failed to delete this Author: " + error.message);
+          if (error.response && error.response.status === 401) {
+            toast.error("Unauthorized. Please check your admin token.");
+          } else {
+            toast.error("Failed to delete this Author: " + error.message);
+          }
         });
     }
   };
+  
 
   const handleUpdate = () => {
+    const adminToken = localStorage.getItem("token"); 
     const url = `https://localhost:7061/api/Author/${editAuthorID}`;
     const authorData = {
       AuthorID: editAuthorID,
@@ -98,7 +119,11 @@ const Author = ({ searchQuery }) => {
       Awards: editAwards,
     };
     axios
-      .put(url, authorData)
+    .put(url, authorData, {
+      headers: {
+        Authorization: `Bearer ${adminToken}`, 
+      },
+    })
       .then((result) => {
         handleClose();
         getData();

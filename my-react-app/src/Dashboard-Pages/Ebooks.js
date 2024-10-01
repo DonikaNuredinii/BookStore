@@ -40,6 +40,9 @@ const Ebooks = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [prevImage, setPrevImage] = useState("");
   const [prevContent, setPrevContent] = useState("");
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
+  
   const handleShow = () => setShow(true);
 
   useEffect(() => {
@@ -178,7 +181,11 @@ const Ebooks = () => {
   const handleEdit = (bookID) => {
     handleShow();
     axios
-      .get(`https://localhost:7061/api/Book/${bookID}`)
+      .get(`https://localhost:7061/api/Book/${bookID}`, {
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         const bookData = result.data.book || result.data;
         console.log("Fetched book data:", bookData);
@@ -217,6 +224,7 @@ const Ebooks = () => {
   };
 
   const handleUpdate = (e) => {
+    const adminToken = localStorage.getItem("token"); 
     e.preventDefault();
 
     if (
@@ -275,6 +283,7 @@ const Ebooks = () => {
       .put(`https://localhost:7061/api/Ebooks/${editEbookId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${adminToken}`, 
         },
       })
       .then((result) => {
@@ -293,13 +302,24 @@ const Ebooks = () => {
   };
 
   const handleDelete = async (ebookID) => {
+    const adminToken = localStorage.getItem("token"); 
+  
+    console.log("Token being used for delete:", adminToken);
     if (window.confirm("Are you sure you want to delete this Ebook?")) {
       try {
-        await axios.delete(`https://localhost:7061/api/Ebooks/${ebookID}`);
+        await axios.delete(`https://localhost:7061/api/Ebooks/${ebookID}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         toast.success("Ebook has been deleted");
         getData();
       } catch (error) {
-        toast.error("Failed to delete ebook: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please check your admin token.");
+        } else {
+          toast.error("Failed to delete this Ebook: " + error.message);
+        }
       }
     }
   };

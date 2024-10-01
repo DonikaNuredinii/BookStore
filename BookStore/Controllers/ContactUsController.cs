@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MailKit.Security;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
@@ -121,7 +122,7 @@ namespace BookStore.Controllers
             }
         }
 
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{ContactID}")]
         public async Task<IActionResult> PutContact(int ContactID, ContactUs contactUs)
         {
@@ -169,6 +170,7 @@ namespace BookStore.Controllers
             public int Value { get; set; }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{ContactID}")]
         public async Task<IActionResult> DeleteContact(int ContactID)
         {

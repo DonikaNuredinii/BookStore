@@ -18,6 +18,8 @@ const Event = ({ searchQuery }) => {
   const [editTime, setEditTime] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [data, setData] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
 
   useEffect(() => {
     getData();
@@ -60,7 +62,11 @@ const Event = ({ searchQuery }) => {
     handleShow();
     setEditEventsID(EventsID); // Set the ID for editing
     axios
-      .get(`https://localhost:7061/api/Event/${EventsID}`)
+      .get(`https://localhost:7061/api/Event/${EventsID}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         const eventData = result.data;
         setEditEventName(eventData.eventName); // Ensure correct capitalization
@@ -75,9 +81,14 @@ const Event = ({ searchQuery }) => {
   };
 
   const handleDelete = async (EventsID) => {
+    const adminToken = localStorage.getItem("token"); 
     if (window.confirm("Are you sure you want to delete this Event?")) {
       try {
-        await axios.delete(`https://localhost:7061/api/Event/${EventsID}`);
+        await axios.delete(`https://localhost:7061/api/Event/${EventsID}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         toast.success("Event has been deleted");
         getData(); // Refresh the table data after deletion
       } catch (error) {
@@ -90,6 +101,7 @@ const Event = ({ searchQuery }) => {
   };
 
   const handleUpdate = async (e) => {
+    const adminToken = localStorage.getItem("token"); 
     e.preventDefault();
     console.log("Edit id:", editEventsID);
 
@@ -105,7 +117,15 @@ const Event = ({ searchQuery }) => {
     console.log("Data being sent:", data);
 
     try {
-      await axios.put(`https://localhost:7061/api/Event/${editEventsID}`, data);
+      await axios.put(
+        `https://localhost:7061/api/Event/${editEventsID}`, 
+        data, 
+        {
+          headers: {
+            Authorization: `Bearer ${adminToken}`
+          }
+        }
+      );
       handleClose();
       getData();
       toast.success("Event has been updated successfully!");

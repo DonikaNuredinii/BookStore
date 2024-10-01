@@ -12,20 +12,19 @@ function App() {
 
   const [isAdmin, setIsAdmin] = useState(() => {
     const token = localStorage.getItem("token");
-    return token ? checkAdminStatus(token) : false;
-  });
-
-  const checkAdminStatus = (token) => {
-    try {
-      const decodedToken = jwtDecode(token);
-      const currentTime = Date.now() / 1000;
-      return decodedToken.exp > currentTime && decodedToken.RolesID === "3";
-    } catch (error) {
-      console.error("Error decoding token", error);
-      localStorage.removeItem("token");
-      return false;
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        return decodedToken.exp > currentTime && decodedToken.RolesID === "3";
+      } catch (error) {
+        console.error("Error decoding token", error);
+        localStorage.removeItem("token");
+        return false;
+      }
     }
-  };
+    return false;
+  });
 
   const Toggle = () => {
     setToggle(!toggle);
@@ -35,7 +34,20 @@ function App() {
     const checkIfAdmin = () => {
       const token = localStorage.getItem("token");
       if (token) {
-        setIsAdmin(checkAdminStatus(token));
+        try {
+          const decodedToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000;
+
+          if (decodedToken.exp > currentTime && decodedToken.RolesID === "3") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error("Error decoding token", error);
+          localStorage.removeItem("token");
+          setIsAdmin(false);
+        }
       } else {
         setIsAdmin(false);
       }
@@ -45,7 +57,7 @@ function App() {
     return () => window.removeEventListener("storage", checkIfAdmin);
   }, []);
 
-  const isLoggedIn = () => !!localStorage.getItem("token");
+  
 
   return (
     <div className="container-fluid custom-bg min-vh-100">
@@ -57,16 +69,11 @@ function App() {
             isAdmin ? (
               <Dashboard toggle={toggle} Toggle={Toggle} />
             ) : (
-              <Navigate to="/" replace />
+              <Navigate to="/" account />
             )
           }
         />
-        <Route
-          path="*"
-          element={
-            isLoggedIn() ? <Navigate to="/dashboard" /> : <Navigate to="/" />
-          }
-        />
+    
       </Routes>
     </div>
   );

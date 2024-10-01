@@ -5,6 +5,7 @@ using BookStore.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SendGrid.Helpers.Mail;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -72,7 +73,7 @@ namespace WebApplication1.Controllers
 
             return CreatedAtAction(nameof(GetCategory), new { CategoryId = category.CategoryId }, category);
         }
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{CategoryId}")]
         public async Task<ActionResult> PutCategory(int CategoryId, Category category)
         {
@@ -94,7 +95,7 @@ namespace WebApplication1.Controllers
 
             return Ok();
         }
-
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{CategoryId}")]
         public async Task<ActionResult> DeleteCategory(int CategoryId)
         {

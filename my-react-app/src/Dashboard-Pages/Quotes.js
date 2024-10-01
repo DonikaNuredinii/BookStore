@@ -17,6 +17,8 @@ const Quotes = ({ searchQuery }) => {
   const [selectedAuthorId, setSelectedAuthorId] = useState(""); // State for selected author ID
   const [data, setData] = useState([]);
   const [authorsList, setAuthorsList] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
 
   useEffect(() => {
     fetchData();
@@ -94,7 +96,11 @@ const Quotes = ({ searchQuery }) => {
         setEditQuoteId(quoteID);
         setEditText(quoteData.text);
         axios
-          .get(`https://localhost:7061/api/AuthorQuotes/Quote/${quoteID}`)
+          .get(`https://localhost:7061/api/AuthorQuotes/Quote/${quoteID}`,{
+            headers: {
+              Authorization: `Bearer ${adminToken}`, 
+            },
+          })
           .then((authorsResponse) => {
             const authorIds = authorsResponse.data.map(
               (author) => author.authorID
@@ -113,6 +119,7 @@ const Quotes = ({ searchQuery }) => {
   };
 
   const handleUpdate = async (e) => {
+    const adminToken = localStorage.getItem("token"); 
     e.preventDefault();
 
     if (!selectedAuthorId || !editQuoteId) {
@@ -130,7 +137,8 @@ const Quotes = ({ searchQuery }) => {
         payload,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json",        
+            Authorization: `Bearer ${adminToken}`,     
           },
         }
       );
@@ -154,13 +162,22 @@ const Quotes = ({ searchQuery }) => {
   };
 
   const handleDelete = async (quoteID) => {
+    const adminToken = localStorage.getItem("token"); 
     if (window.confirm("Are you sure you want to delete this Quote")) {
       try {
-        await axios.delete(`https://localhost:7061/api/Quotes/${quoteID}`);
+        await axios.delete(`https://localhost:7061/api/Quotes/${quoteID}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, 
+          },
+        })
         toast.success("Quote has been deleted");
         fetchData();
       } catch (error) {
-        toast.error("Failed to delete quote: " + error.message);
+        if (error.response && error.response.status === 401) {
+          toast.error("Unauthorized. Please check your admin token.");
+        } else {
+          toast.error("Failed to delete this Author: " + error.message);
+        }
       }
     }
   };

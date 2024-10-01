@@ -4,6 +4,7 @@ using BookStore.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
@@ -67,6 +68,7 @@ namespace BookStore.Controllers
 
 
         // PUT: api/Quotes/5
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutQuote(int id, Quote quote)
         {
@@ -95,7 +97,7 @@ namespace BookStore.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Policy = "AdminPolicy")]
         // DELETE: api/Quotes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuote(int id)

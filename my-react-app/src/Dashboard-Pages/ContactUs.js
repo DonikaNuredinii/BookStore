@@ -18,6 +18,8 @@ const ContactUs = ({ searchQuery }) => {
   const [editMessage, setEditMessage] = useState("");
 
   const [data, setData] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  console.log("Admin Token: ", adminToken);
 
   useEffect(() => {
     getData();
@@ -44,7 +46,11 @@ const ContactUs = ({ searchQuery }) => {
     handleShow();
     setEditContactID(contactId);
     axios
-      .get(`https://localhost:7061/api/ContactUs/${contactId}`)
+      .get(`https://localhost:7061/api/ContactUs/${contactId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         const contactData = result.data;
         setEditName(contactData.name);
@@ -57,11 +63,18 @@ const ContactUs = ({ searchQuery }) => {
   };
 
   const handleDelete = (contactId) => {
+    const adminToken = localStorage.getItem("token"); 
+    console.log("Token being used for delete:", adminToken);
+   
     if (
       window.confirm("Are you sure you want to delete this contact message?")
     ) {
       axios
-        .delete(`https://localhost:7061/api/ContactUs/${contactId}`)
+      .delete(`https://localhost:7061/api/ContactUs/${contactId}`, {
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
         .then((result) => {
           if (result.status === 200) {
             toast.success("Message has been deleted");
@@ -93,6 +106,7 @@ const ContactUs = ({ searchQuery }) => {
   };
 
   const handleUpdate = async () => {
+    const adminToken = localStorage.getItem("token"); 
     const url = `https://localhost:7061/api/ContactUs/${editContactID}`;
 
     const contactData = {
@@ -103,7 +117,11 @@ const ContactUs = ({ searchQuery }) => {
     };
 
     axios
-      .put(url, contactData)
+      .put(url, contactData,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`, 
+        },
+      })
       .then((result) => {
         handleClose();
         getData();

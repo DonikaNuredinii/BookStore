@@ -1,4 +1,5 @@
 ﻿using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -72,6 +73,7 @@ public class EventController : ControllerBase
     }
 
     // PUT: api/Events/5
+    [Authorize(Policy = "AdminPolicy")]
     [HttpPut("{id}")]
     public async Task<IActionResult> PutEvent(int id, Event eventItem)
     {
@@ -102,6 +104,7 @@ public class EventController : ControllerBase
     }
 
     // DELETE: api/Events/5
+    [Authorize(Policy = "AdminPolicy")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteEvent(int id)
     {
