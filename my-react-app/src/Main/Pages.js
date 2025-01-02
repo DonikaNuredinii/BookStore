@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import HomePage from "./HomePage";
 import NavbarHome from "./NavbarHome";
 import Footer from "./Footer";

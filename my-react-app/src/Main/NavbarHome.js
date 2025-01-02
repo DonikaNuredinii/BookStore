@@ -188,8 +188,10 @@ const NavbarHome = () => {
         const currentTime = Date.now() / 1000;
 
         if (decodedToken.exp > currentTime) {
+          // Token is valid, navigate to account settings
           navigate("/account-settings");
         } else {
+          // Token has expired, remove it and navigate to login page
           localStorage.removeItem("token");
           navigate("/account");
         }
@@ -240,6 +242,7 @@ const NavbarHome = () => {
           Contact Us
         </Link>
 
+        {/* Only show Dashboard link if the user is an admin */}
         {isAdmin && (
           <Link to="/dashboard" className="navbar-link" onClick={closeMenu}>
             Dashboard
