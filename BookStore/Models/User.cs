@@ -22,7 +22,7 @@ namespace BookStore.Models
 
         public User()
         {
-            RolesID = 2; // Default role ID
+            RolesID = 2; 
         }
     }
 }

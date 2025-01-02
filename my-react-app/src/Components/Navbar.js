@@ -7,16 +7,6 @@ import { Link } from "react-router-dom";
 import { Toggle } from "../App";
 
 function Navbar({ Toggle }) {
-  //   useEffect(() => {
-  //     const dropdownToggle = document.querySelector('.dropdown-toggle');
-  //     if (dropdownToggle) {
-  //       dropdownToggle.addEventListener('click', function () {
-  //         const dropdownMenu = this.nextElementSibling;
-  //         dropdownMenu.classList.toggle('show');
-  //       });
-  //     }
-  //   }, []);
-
   return (
     <nav className="navbar navbar-expand-sm px-3 fs-4 me-3">
       <i
@@ -66,16 +56,7 @@ function Navbar({ Toggle }) {
               </Link>
             </div>
           </li>
-
-          {/* <li className="nav-item">
-            <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
-          </li> */}
         </ul>
-
-        {/* <form className="d-flex my-2 my-lg-0">
-          <input className="form-control me-sm-2" type="text" placeholder="Search" />
-          <button className="btn-search btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> */}
       </div>
     </nav>
   );
